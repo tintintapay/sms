@@ -3,22 +3,14 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/about.css"> <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="assets/css/about.css"> <!-- Link to the external CSS file -->
     <title>About</title>
   </head>
 <body>
 
 <div class="background-image"></div>
 
-<div class="nav">
-  <div class="logo"><img src="1.jpg" alt="Logo"></div>
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="sport.html">Sport</a>
-  <a href="contact.html">Contact</a>
-  <a href="help.html">Help</a>
-  <div class="logo"><img src="1.jpg" alt="Logo"></div>
-</div>
+<?php include_once 'common/nav.php';?>
 
 <div class="container">
   <div class="content">
