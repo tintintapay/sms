@@ -1,0 +1,171 @@
+/* General styles */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Hide overflow to prevent scrolling */
+  position: relative; /* Ensure relative positioning */
+  background-image: url('../images/p.jpg'); /* Background image for the whole page */
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Container styles */
+.container {
+  position: relative;
+  z-index: 1; /* Ensure it's above the background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Set height to viewport height */
+  padding: 50px; /* Add padding to the container */
+  box-sizing: border-box; /* Include padding in height calculation */
+}
+
+/* Content styles */
+.content {
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 600px; /* Limit maximum width for content */
+  width: 100%;
+}
+
+/* Navigation bar styles */
+.nav {
+  position: fixed; /* Fixed position at the top */
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px; /* Add some space around the navigation bar */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  backdrop-filter: blur(10px); /* Apply blur effect */
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+.nav .logo {
+  display: inline-block;
+  margin-right: 20px;
+  border: 1px solid #fff; /* White border */
+  border-radius: 50%;
+  padding: 5px;
+  width: 40px;
+  height: 40px;
+}
+
+.nav .logo img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #fff; /* White text */
+  font-weight: bold;
+  margin: 0 10px; /* Add some space between the navigation links */
+  padding: 0 10px; /* Add 10px padding to the left and right sides of the link text */
+}
+
+.nav a:hover {
+  color: #007bff; /* Hover color */
+}
+
+/* Search box styles */
+.search-box {
+  width: 600px;
+  background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+  margin: 200px auto 0;
+  border-radius: 5px;
+  z-index: 2; /* Ensure it's above the information section */
+  position: relative;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better visibility */
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.search-box input[type="text"] {
+  flex: 1;
+  height: 30px;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.button {
+  background: transparent;
+  border: 0;
+  outline: 0;
+}
+
+.button .fa-solid {
+  width: 20px;
+  color: #555;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.result-box ul {
+  border-top: 1px solid #999;
+  padding: 15px 10px;
+}
+
+.result-box ul li {
+  list-style: none;
+  border-radius: 3px;
+  padding: 15px 10px;
+  cursor: pointer;
+}
+
+.result-box ul li:hover {
+  background-color: #e9f3ff;
+}
+
+.result-box {
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+/* Information section styles */
+.info-section {
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+  padding: 50px;
+  border-radius: 5px;
+  max-width: 600px; /* Limit maximum width for content */
+  margin: 20px auto 0;
+  text-align: center;
+  z-index: 1; /* Ensure it's behind the search box */
+  position: relative;
+}
+
+.info-section p {
+  color: #333; /* Dark text color */
+  font-weight: bold;
+  text-align: justify; /* Justify the text */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .content {
+    padding: 20px; /* Reduce padding on smaller screens */
+  }
+
+  .search-box {
+    width: 90%;
+  }
+
+  .info-section {
+    width: 90%;
+  }
+}

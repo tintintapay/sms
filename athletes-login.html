@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="css/athletes-login.css"> <!-- Link to the external CSS file -->
+   <!-- Link to the external JavaScript files in the 'js' folder -->
+   <script src="js/hideandshow.js" defer></script>  <!-- Password visibility functionality -->
+   <script src="js/contactUs.js" defer></script>  <!-- Contact Us functionality -->
+  <title>Athletes Login</title>
+</head>
+<body>
+
+  <div class="background-image"></div>
+
+  <header class="header">
+    <div class="title">Athletes Login</div>
+    <div class="logo"><img src="logo.png" alt="Logo"></div>
+    <div class="back">
+      <button onclick="location.href='login.html'">Back</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="content">
+      <img src="images/p.jpg" alt="Your Image">
+    </div>
+
+    <div class="error-message">
+        
+    </div>
+
+
+    <div class="form-container">
+      <form action="login_athlete.php" method="POST" id="login-form">
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Email" required>
+        </div>
+        <div class="form-field">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Password" required>
+          <i class="fas fa-eye" id="togglePassword"></i>
+        </div>
+        <div class="form-actions">
+          <div class="forgot-password">
+            <a href="forgot_password_athlete.html">Forgot Password?</a>
+          </div>
+          <button type="submit">Login</button>
+        </div>
+      </form>
+      <div class="register">
+        <p>Don't have an account? <a href="register.html">Register</a></p>
+        <button class="contact-button" id="contactButton"><i class="fas fa-phone"></i></button>
+      </div>
+    </div>
+
+    <!-- Chatbot -->
+    <div id="chatbot" class="chatbot">
+      <div class="chatbot-header">
+        <span>SPORTAN</span>
+        <button id="exitChatbot" class="chatbot-exit">X</button>
+      </div>
+      <div id="chatbotBody" class="chatbot-body">
+        <!-- Chat messages will be added here -->
+      </div>
+      <div class="chatbot-footer">
+        <input id="messageInput" type="text" placeholder="Type a message...">
+        <button id="sendMessage">Send</button>
+      </div>
+    </div>    
+  </div>
+
+</body>
+</html>

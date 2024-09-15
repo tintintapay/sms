@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <link rel="stylesheet" href="css/register.css"> <!-- Link to the external CSS file -->
+</head>
+<body>
+
+  <header class="header">
+    <div class="avatar"></div> <!-- Avatar/Logo in the center -->
+    <div class="title">Register</div>
+  </header>
+
+  <div class="container">
+    <div class="form-container">
+      <form action="register_athlete_login.php" method="POST" enctype="multipart/form-data">
+
+        <div class="form-field">
+          <label for="first-name">First Name</label>
+          <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
+        </div>
+        <div class="form-field">
+          <label for="last-name">Last Name</label>
+          <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
+        </div>
+        <div class="form-field">
+          <label for="middle-name">Middle Name</label>
+          <input type="text" id="middle-name" name="middle-name" placeholder="Middle Name">
+        </div>
+        <div class="form-field gender-field">
+          <label>Sex</label>
+          <label><input type="radio" name="sex" value="male" required> Male</label>
+          <label><input type="radio" name="sex" value="female" required> Female</label>
+        </div>
+        <div class="form-field">
+          <label for="year-course">Year & Course</label>
+          <input type="text" id="year-course" name="year-course" placeholder="Year & Course" required>
+        </div>
+        <div class="form-field">
+          <label for="address">Address</label>
+          <input type="text" id="address" name="address" placeholder="Address" required>
+        </div>
+        <div class="form-field">
+          <label for="email">Email (G Suite Account)</label>
+          <input type="email" id="email" name="email" placeholder="Email" required>
+        </div>
+        <div class="form-field">
+          <label for="school">School</label>
+          <input type="text" id="school" name="school" placeholder="School" required>
+        </div>
+        <div class="form-field">
+          <label for="guardian">Guardian</label>
+          <input type="text" id="guardian" name="guardian" placeholder="Guardian" required>
+        </div>
+        <div class="form-field">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Password" required>
+        </div>
+        <div class="form-field">
+          <label for="confirm-password">Confirm Password</label>
+          <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
+        </div>
+        <div class="form-field">
+          <label for="age">Age</label>
+          <input type="number" id="age" name="age" placeholder="Age" required>
+        </div>
+        <div class="form-field">
+          <label for="sports">Sports</label>
+          <div class="dropdown">
+            <input type="text" id="sports" name="sports" placeholder="Type to search sports">
+            <div id="sports-dropdown" class="dropdown-content"></div>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="Phone Number (11 digits)" pattern="\d{11}" required>
+        </div>
+        <div class="form-field">
+          <label for="cor">Certificate of Registration (COR)</label>
+          <input type="file" id="cor" name="cor" accept=".pdf,.jpg,.png" required>
+          <div class="file-notes">Accepted file formats: PDF, JPG, PNG.</div>
+        </div>
+        <div class="form-field">
+          <label for="psa">PSA Birth Certificate</label>
+          <input type="file" id="psa" name="psa" accept=".pdf,.jpg,.png" required>
+          <div class="file-notes">Accepted file formats: PDF, JPG, PNG.</div>
+        </div>
+        <div class="form-field">
+          <label for="medical">Medical Certificate</label>
+          <input type="file" id="medical" name="medical" accept=".pdf,.jpg,.png" required>
+          <div class="file-notes">Accepted file formats: PDF, JPG, PNG.</div>
+        </div>
+        <div class="form-field">
+          <label for="photo">2x2 Picture with White Background</label>
+          <input type="file" id="photo" name="photo" accept=".jpg,.png" required>
+          <div class="file-notes">Accepted file formats: JPG, PNG.</div>
+        </div>
+        <div class="checkbox-field">
+          <input type="checkbox" id="terms" name="terms" required>
+          <label for="terms">I agree to the <a href="terms.html">Terms and Conditions</a></label>
+        </div>
+        <div class="form-actions">
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function showConfirmation() {
+      alert("Your registration has been submitted. Please wait up to 24 hours for registration validation.");
+      // Optionally, you can use a `return false` here to prevent form submission for testing
+      return true; // Continue with form submission
+    }
+  </script>
+
+
+  <script src="js/register.js"></script> <!-- Link to the external JavaScript file -->
+</body>
+</html>

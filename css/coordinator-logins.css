@@ -1,0 +1,321 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+}
+
+.profile-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.name {
+    margin: 0;
+    font-weight: bold;
+}
+
+.role {
+    margin: 0;
+    color: #666;
+}
+
+.signout-button {
+    background-color: #ddd;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+
+.main-content {
+    display: flex;
+    padding: 20px;
+}
+
+/* Left Panel */
+.left-panel {
+    width: 40%;
+    margin-right: 20px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.athletes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.athletes-header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+/* Filters */
+.filters {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 10px; /* Adds space between the "Athletes" header and the filters */
+}
+
+.filter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filter label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.filter select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.approval-list h3 {
+    margin-top: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.view-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.view-button {
+    background-color: #ddd;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+/* Right Panel */
+.right-panel {
+    width: 60%;
+}
+
+.stats-section {
+    position: relative;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+canvas#athleteStatsChart {
+    width: 100%;
+    max-width: 100%;
+    height: 300px;
+}
+
+.print-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #ddd;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 5px 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.print-button img {
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+}
+
+.options-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.options-list {
+    width: 40%;
+}
+
+.option-btn {
+    display: block;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    text-align: left;
+}
+
+/* Search Section */
+.search-section {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the start */
+    margin-bottom: 20px; /* Adds space below the search section */
+}
+
+.search-container {
+    display: flex;
+    align-items: center; /* Center items vertically within the container */
+    width: 100%;
+}
+
+.search-input {
+    flex: 1; /* Allow the input to take available space */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px; /* Rounded corners only on the left */
+    margin-right: -1px; /* Adjust spacing to prevent border overlap */
+}
+
+.search-icon {
+    background-color: #007BFF;
+    border: 1px solid #007BFF;
+    border-radius: 0 5px 5px 0; /* Rounded corners only on the right */
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-icon i {
+    color: white; /* Font Awesome icon color */
+    font-size: 16px; /* Adjust icon size as needed */
+}
+
+.additional-field {
+    margin-top: 10px; /* Space between the search input and the additional field */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.additional-field label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.additional-field input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%; /* Ensure it takes full width of the container */
+}
+
+/* Buttons and General Layout */
+button {
+    padding: 10px 15px;
+    font-size: 16px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: white;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Table and List Styles */
+.table-container {
+    margin-top: 20px;
+}
+
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-container th, .table-container td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.table-container th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.table-container tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table-container tr:hover {
+    background-color: #e9e9e9;
+}
+.approval-input-container {
+    position: relative;
+    display: inline-block;
+}
+
+#approvalInput {
+    width: 100%;
+    padding-right: 60px; /* To make space for the button */
+    box-sizing: border-box;
+    height: 40px;
+    font-size: 16px;
+}
+
+.view-profile-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    background-color: #4CAF50; /* Customize button color */
+    color: white;
+    border: none;
+    padding: 0 15px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.view-profile-btn:hover {
+    background-color: #45a049; /* Darker button on hover */
+}
+
