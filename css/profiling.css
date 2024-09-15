@@ -1,0 +1,183 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.background {
+    background-image: url('../images/p.jpg'); /* Replace with your player background image */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay to enhance text visibility */
+    padding: 30px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    width: 600px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.player-name h1 {
+    font-size: 28px;
+    margin: 0;
+    color: #333;
+}
+
+.rating {
+    text-align: right;
+}
+
+.stars {
+    font-size: 20px;
+    color: gold;
+}
+
+.player-info {
+    display: flex;
+    margin-top: 20px;
+}
+
+.player-image {
+    width: 150px;
+    height: auto;
+    border-radius: 10px;
+    margin-right: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.player-info p {
+    flex: 1;
+    font-size: 14px;
+    color: #555;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.stat-box {
+    width: 48%;
+}
+
+.stat-box h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 18px;
+}
+
+.performance-chart {
+    display: flex;
+    justify-content: space-between;
+    background-color: #ddd;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.bar {
+    width: 40%;
+    height: 20px;
+    background-color: #4CAF50;
+    border-radius: 5px;
+}
+
+.records {
+    display: flex;
+    justify-content: space-between;
+}
+
+.records p {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.schedule {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+}
+
+th {
+    background-color: #f9f9f9;
+    font-weight: bold;
+}
+
+.credentials {
+    margin-top: 20px;
+}
+
+.credentials label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
+}
+
+.credentials input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.show-more {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.evaluate {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}

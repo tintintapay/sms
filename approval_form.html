@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Approval Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/approval_form.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="profile-pic">
+        <i class="fas fa-user-circle"></i>
+        <input type="text" placeholder="Full Name" class="name-input" />
+    </div>
+    
+    <h2>APPROVAL FORM</h2>
+    
+    <div class="form-content">
+        <div class="form-column">
+            <div class="form-group">
+                <label for="department">Department:</label>
+                <input type="text" id="department" name="department">
+            </div>
+            
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address">
+            </div>
+            
+            <div class="form-group">
+                <label for="guardian">Guardian:</label>
+                <input type="text" id="guardian" name="guardian">
+            </div>
+            
+            <div class="form-group">
+                <label for="birthday">Birthday:</label>
+                <input type="date" id="birthday" name="birthday">
+            </div>
+
+            <div class="form-group">
+                <label for="sports">Sports:</label>
+                <input type="text" id="sports" name="sports">
+            </div>
+
+            <div class="form-group">
+                <label for="contact">Contact No:</label>
+                <input type="text" id="contact" name="contact">
+            </div>
+        </div>
+
+        <div class="form-column">
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age">
+            </div>
+            
+            <div class="form-group">
+                <label for="sex">Sex:</label>
+                <select id="sex" name="sex">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+
+            <div class="icon-group">
+                <i class="fas fa-file-alt"></i>
+            </div>
+        </div>
+    </div>
+    
+    <div class="buttons">
+        <button class="decline">Decline</button>
+        <button class="accept">Accept</button>
+    </div>
+</div>
+
+</body>
+</html>

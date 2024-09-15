@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coordinator Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/coordinator-logins.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="profile-info">
+            <img src="images/1.jpg" alt="Profile" class="profile-icon">
+            <div>
+                <p class="name">Loading...</p> <!-- Placeholder text -->
+                <p class="role">Loading...</p> <!-- Placeholder text -->
+            </div>
+        </div>
+        <button id="signout-btn" class="signout-button">Sign-out</button>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Left Panel -->
+        <section class="left-panel">
+            <div class="athletes-header">
+                <h2>Athletes</h2>
+            </div>
+            <!-- Filters placed directly under the "Athletes" header -->
+            <div class="filters">
+                <div class="filter">
+                    <label for="school-filter">School:</label>
+                    <select id="school-filter">
+                        <option value=" "></option>
+                        <option value="school1">School 1</option>
+                        <option value="school2">School 2</option>
+                    </select>
+                </div>
+                <div class="filter">
+                    <label for="sports-filter">Sports:</label>
+                    <select id="sports-filter">
+                        <option value=" "></option>
+                        <option value="school1">Football</option>
+                        <option value="school2">Basketball</option>
+                        <!-- Options will be dynamically populated -->
+                    </select>
+                </div>
+            </div>
+            <div class="approval-list">
+                <h3>List Of Approval</h3>
+                <!-- Dynamically populate this list based on filtered data -->
+                <div id="approval-list-container"></div>
+                <input type="text" id="approvalInput" placeholder="Athlete Name" readonly>
+                <button id="view-profile-btn" class="view-profile-btn" onclick="window.location.href='approval_form.html';">View</button>
+            </div>
+        </section>
+
+        <!-- Right Panel -->
+        <section class="right-panel">
+            <div class="stats-section">
+                <div class="chart-controls">
+                    <label for="chart-type">Chart Type:</label>
+                    <select id="chart-type">
+                        <option value="bar">Bar</option>
+                        <option value="line">Line</option>
+                        <option value="pie">Pie</option>
+                        <option value="doughnut">Doughnut</option>
+                    </select>
+                </div>
+                <canvas id="athleteStatsChart"></canvas>
+                <button id="print-btn" class="print-button">Print <img src="images/1.jpg" alt="Print"></button>
+            </div>
+            <div class="options-panel">
+                <div class="options-list">
+                    <button id="athletes-btn" class="option-btn">Athletes</button>
+                    <button id="schedules-btn" class="option-btn">Schedules</button>
+                    <button id="events-btn" class="option-btn">Events</button>
+                    <button id="upload-btn" class="option-btn">Upload</button>
+                </div>
+                <div class="search-section">
+                    <div class="search-container">
+                        <input type="text" class="search-input" placeholder="Search Athletes...">
+                        <button class="search-icon">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <div class="additional-field">
+                        <input type="text" id="additionalInput" placeholder="Enter additional info">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/coordinator-logins.js"></script>
+</body>
+</html>
