@@ -1,6 +1,5 @@
 RewriteEngine On
-
+RewriteBase /sms/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ views/$1 [L]
-RewriteRule ^([a-zA-Z0-9_-]+)$ /sms/views/$1.php [L]
+RewriteRule ^(.*)$ index.php [L]

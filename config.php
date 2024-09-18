@@ -4,6 +4,6 @@ return [
         'host' => 'localhost',
         'username' => 'root',
         'password' => '',
-        'database' => 'bsu_sms',
+        'database' => 'db_sms',
     ]
 ];

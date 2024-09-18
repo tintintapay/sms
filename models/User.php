@@ -1,22 +1,97 @@
 <?php
+
+require_once 'core/Database.php';
+require_once 'enums/UserRole.php';
+
 class User
 {
     private $db;
 
-    public function __construct($db)
+    public function __construct()
     {
-        $this->db = $db;
+        $database = new Database();
+        $this->db = $database->getConnection();
     }
 
-    public function findUserByUserName($username)
+    public function insertUser($data): int|null
     {
-        $result = $this->db->query("SELECT * FROM users WHERE username = ?", [$username]);
-        return $result->fetch();
+        $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);
+
+        $stmt = $this->db->prepare("INSERT INTO users (active, role, email, password, status) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("issss", $data['active'], $data['role'], $data['email'], $hashedPassword, $data['status']);
+
+        if (!$stmt->execute()) {
+            return null;
+        }
+
+        return $this->db->insert_id;
+    }
+
+
+    public function findUserByEmail($email)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        return $result->fetch_assoc();
     }
 
     public function findUserById($id)
     {
-        $result = $this->db->query("SELECT * FROM users WHERE id = ?", [$id]);
-        return $result->fetch();
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        return $result->fetch_assoc();
+    }
+
+    public function getCoordinatorsWithInfo()
+    {
+        $coor = UserRole::COORDINATOR;
+        $stmt = $this->db->prepare(
+            "SELECT ui.first_name, ui.last_name, ui.middle_name, ui.gender, ui.address, ui.school, ui.guardian, ui.age, ui.sport, ui.phone_number
+         FROM users u
+         LEFT JOIN user_info ui ON u.id = ui.user_id
+         WHERE u.role = '$coor'"
+        );
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    //========================================
+
+    public function readAll()
+    {
+        $result = $this->db->query("SELECT * FROM users");
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function readById($id)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_assoc();
+    }
+
+    public function update($id, $name, $username)
+    {
+        $stmt = $this->db->prepare("UPDATE users SET name = ?, username = ? WHERE id = ?");
+        $stmt->bind_param("ssi", $name, $username, $id);
+        return $stmt->execute();
+    }
+
+    public function delete($id)
+    {
+        $stmt = $this->db->prepare("DELETE FROM users WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        return $stmt->execute();
     }
 }
