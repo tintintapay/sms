@@ -45,14 +45,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  const form = document.querySelector('form'); // Ensure the form selector matches your HTML
-  form.addEventListener('submit', (e) => {
-    e.preventDefault(); // Prevent form submission for demonstration
+  // const form = document.querySelector('form'); // Ensure the form selector matches your HTML
+  // form.addEventListener('submit', (e) => {
+  //   e.preventDefault(); // Prevent form submission for demonstration
 
-    // Show the validation message
-    alert('Please wait for 24 hours for registration approval.');
+  //   // Show the validation message
+  //   alert('Please wait for 24 hours for registration approval.');
 
-    // Redirect to login page
-    window.location.href = 'athletes-login.html';
-  });
+  //   // Redirect to login page
+  //   window.location.href = 'athletes-login.html';
+  // });
 });

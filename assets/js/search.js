@@ -30,13 +30,14 @@ inputBox.onkeyup = function(){
 
 function display(result){
     const content = result.map((list)=>{
-        return "<li onclick = selectInput(this)>" + list + "</li>";
+        return `<li onclick = selectInput(this)>${list}</li>`;
     });
 
     resultsBox.innerHTML = "<ul>" + content.join('') + "</ul>";
 }
 
 function selectInput(list){
+    console.info(list);
     inputBox.value = list.innerHTML;
     resultsBox.innerHTML = '';
 }

@@ -1,7 +1,7 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
     // Signout button functionality
-    document.querySelector('.signout-btn').addEventListener('click', function() {
+    document.querySelector('.signout-btn').addEventListener('click', function () {
         if (confirm("Are you sure you want to sign out?")) {
             window.location.href = 'login.html'; // Redirect to login page
         }
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Filter buttons functionality (for Coordinators and Athletes)
     document.querySelectorAll('.filter-btn').forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             const filterType = this.textContent.trim();
             filterList(filterType); // Apply the filtering function
         });
@@ -17,24 +17,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // View button functionality
     document.querySelectorAll('.view-btn').forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             const coordinatorName = this.parentElement.querySelector('.coordinator-name').textContent;
             viewCoordinator(coordinatorName); // Call function to view coordinator details
         });
     });
 
-    // Add button functionality
-    document.querySelector('.add-btn').addEventListener('click', function() {
-        window.location.href = 'addcoor.html'; // Redirect to addcoor.html
-    });
-
-    // Update button functionality for analytics
-    document.querySelector('.update-btn').addEventListener('click', function() {
-        updateChart(); // Update the chart data
-    });
-
     // Print button functionality
-    document.querySelector('.print-btn').addEventListener('click', function() {
+    document.querySelector('.print-btn').addEventListener('click', function () {
         window.print(); // Trigger the print dialog
     });
 
@@ -75,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             }
         });
-    }
+    } updateChart();
 
     // Function to filter the list based on criteria
     function filterList(criteria) {

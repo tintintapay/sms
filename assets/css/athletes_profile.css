@@ -122,6 +122,21 @@ body {
 }
 
 /* Sign-out Button Styling */
+a.signout {
+    background-color: #fff;
+    border: 1px solid #e31b23;
+    color: #e31b23;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+    text-decoration: none;
+}
 .signout {
     background-color: #fff;
     border: 1px solid #e31b23;

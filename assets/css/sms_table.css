@@ -1,0 +1,21 @@
+table.sms-table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.sms-table td, table.sms-table th {
+  border: 1px solid #AAAAAA;
+  padding: 6px 8px;
+}
+table.sms-table tr:nth-child(even) {
+  background: #F5F5F5;
+}
+table.sms-table thead {
+  background: #FFCAC8;
+  border-bottom: 2px solid #AAAAAA;
+}
+table.sms-table thead th {
+  font-size: 15px;
+  font-weight: bold;
+  text-align: left;
+}
