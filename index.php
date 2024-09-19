@@ -35,6 +35,12 @@ $routes = [
     // Admin
     '/sms/admin/home' => ['GET' => [$adminHomeController, 'index']],
     '/sms/admin/coordinators' => ['GET' => [$coordinatorController, 'index']],
+    '/sms/admin/coordinator-add' => [
+        'GET' => [$coordinatorController, 'addnew'],
+        'POST' => [$coordinatorController, 'create']
+    ],
+    '/sms/admin/coordinator' => ['GET' => [$coordinatorController, 'show']],
+    '/sms/admin/coordinator-update' => ['GET' => [$coordinatorController, 'show']],
 
     //Coordinator
     '/sms/coordinator/home' => ['GET' => [$coordinatorHomeController, 'index']],

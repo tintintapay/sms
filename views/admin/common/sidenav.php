@@ -1,7 +1,7 @@
 <div class="left-panel">
     <a href="home" class="menu">
         <div class="menu-item">
-            <span class="menu-title">Home</span>
+            <span class="menu-title">Dashboard</span>
         </div>
     </a>
     <a href="coordinators" class="menu">

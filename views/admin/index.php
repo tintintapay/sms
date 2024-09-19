@@ -21,12 +21,22 @@
             <!-- SIDE NAVIGATION -->
             <?php include 'common/sidenav.php'; ?>
             <div class="right-panel">
-                <div class="analytics">
-                    <div class="chart">
-                        <canvas id="myChart"></canvas>
-                    </div>
-                    <button class="print-btn">PRINT</button>
+                <div class="page-title">
+                    Dashboard
                 </div>
+                <hr>
+                <div class="section">
+                    <div class="card">
+                        <div class="analytics">
+                            <div class="chart">
+                                <canvas id="myChart"></canvas>
+                            </div>
+                            <button class="sms-btn">PRINT</button>
+                        </div>
+                    </div>
+                </div>
+
+
                 <div class="athletes">
                     <h3>Athletes</h3>
                     <div class="filter">

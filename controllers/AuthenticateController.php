@@ -26,11 +26,15 @@ class AuthenticateController
     {
         // Validate request
         $loginRequest = new LoginRequest();
-        $loginRequest->validate($request);
+        $flash = $loginRequest->validate($request);
 
         $email = Helper::sanitize($request['email']);
         $password = Helper::sanitize($request['password']);
 
+        if (!$flash['isValid']) {
+            return include 'views/login.php';
+        }
+        
         // Fetch user
         $user = $this->user->findUserByEmail($email);
 

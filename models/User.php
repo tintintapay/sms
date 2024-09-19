@@ -54,15 +54,49 @@ class User
     {
         $coor = UserRole::COORDINATOR;
         $stmt = $this->db->prepare(
-            "SELECT ui.first_name, ui.last_name, ui.middle_name, ui.gender, ui.address, ui.school, ui.guardian, ui.age, ui.sport, ui.phone_number
-         FROM users u
-         LEFT JOIN user_info ui ON u.id = ui.user_id
-         WHERE u.role = '$coor'"
+            "SELECT 
+                u.email,
+                u.active,
+                ui.user_id,
+                ui.first_name,
+                ui.last_name,
+                ui.middle_name,
+                CONCAT(ui.first_name, ' ', IFNULL(ui.middle_name, ''), ' ', ui.last_name) AS full_name,
+                ui.gender,
+                ui.address,
+                ui.age,
+                ui.sport,
+                ui.phone_number
+            FROM users u
+            LEFT JOIN user_info ui ON u.id = ui.user_id
+            WHERE u.role = ?
+            ORDER BY u.active DESC, u.created_at DESC"
         );
+        $stmt->bind_param("s", $coor);
         $stmt->execute();
 
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getUser($user_id)
+    {
+        $stmt = $this->db->prepare(
+            "SELECT
+                u.*,
+                ui.*,
+                CONCAT(ui.first_name, ' ', IFNULL(ui.middle_name, ''), ' ', ui.last_name) AS full_name
+            FROM users u
+            LEFT JOIN user_info ui ON u.id = ui.user_id
+            WHERE u.id = ?
+            "
+        );
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        return $result->fetch_assoc();
     }
 
     //========================================

@@ -7,13 +7,6 @@ body {
     background-color: #e8e8e8;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    padding: 10px;
-}
-
 .header {
     display: flex;
     justify-content: space-between;
@@ -77,12 +70,6 @@ a.signout-btn{
     display: flex;
     flex: 1;
     flex-direction: row;
-}
-
-.right-panel {
-    flex: 1;
-    margin: 10px;
-    border-radius: 10px;
 }
 
 .section-title {
@@ -258,15 +245,6 @@ canvas {
 
 
 /* new*/
-
-.left-panel {
-    padding: 20px;
-    border-radius: 10px;
-    width: 250px;
-    height: fit-content;
-    position: relative;
-    text-align: center;
-}
 
 .athletes {
     background-color: rgb(255, 44, 44);
