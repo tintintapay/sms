@@ -13,19 +13,22 @@ class LoginRequest
 
     public function validate($request)
     {
-        $this->validation->isEmpty('email', $request['email']);
         $this->validation->isEmail('email', $request['email']);
+        $this->validation->isEmpty('email', $request['email']);
         $this->validation->isEmpty('password', $request['password']);
-        
 
-        if (!$this->validation->passes()) {
-            // Handle validation errors
-            $err = $this->validation->getErrors();
-            foreach ($err as $key => $value) {
-                echo "$key : $value";
-            }
+        return [
+            'isValid' => $this->validation->passes(),
+            'message' => implode('<br>', $this->validation->getErrors())
+        ];
+        // if (!$this->validation->passes()) {
+        //     // Handle validation errors
+        //     $err = $this->validation->getErrors();
+        //     foreach ($err as $key => $value) {
+        //         echo "$key : $value";
+        //     }
 
-            die();
-        }
+        //     die();
+        // }
     }
 }

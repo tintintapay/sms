@@ -14,8 +14,16 @@ class UserInfo
 
     public function insertUserInfo($data)
     {
-        $stmt = $this->db->prepare("INSERT INTO user_info (user_id, first_name, last_name, middle_name, gender, year_level, course, address, school, guardian, age, sport, phone_number, cor, psa, medical_cert, picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $this->db->prepare("INSERT INTO user_info (user_id, first_name, last_name, middle_name, gender, year_level, course, address, school, guardian, age, sport, phone_number, cor, psa, medical_cert, picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("isssssssssissssss", $data['user_id'], $data['first_name'], $data['last_name'], $data['middle_name'], $data['gender'], $data['year_level'], $data['course'], $data['address'], $data['school'], $data['guardian'], $data['age'], $data['sport'], $data['phone_number'], $data['cor'], $data['psa'], $data['medical_cert'], $data['picture']);
+        
+        return $stmt->execute();
+    }
+
+    public function insertCoordinator($data)
+    {
+        $stmt = $this->db->prepare("INSERT INTO user_info (user_id, first_name, last_name, middle_name, gender, address, age, phone_number, picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("isssssiss", $data['user_id'], $data['first_name'], $data['last_name'], $data['middle_name'], $data['gender'], $data['address'], $data['age'], $data['phone_number'], $data['picture']);
         
         return $stmt->execute();
     }

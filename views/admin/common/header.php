@@ -9,5 +9,5 @@
             <p><?php echo $_SESSION['role']; ?></p>
         </div>
     </div>
-    <a href="../logout" class="signout-btn">Logout</a>
+    <a href="../logout" class="sms-btn btn-white">Logout</a>
 </div>

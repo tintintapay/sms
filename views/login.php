@@ -36,15 +36,18 @@
 
 
         <div class="form-container">
-            <?php echo $flash['message'] ?? ''; ?>
+            <div class="msg" style="display:<?php echo !empty($flash['message']) ? 'block' : 'none'?>">
+                <?php echo $flash['message'] ?? ''; ?>
+            </div>
+            
             <form method="post" action="login" id="login-form">
                 <div class="form-field">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Email" value="<?php echo $email ?? ''?>" required>
+                    <input type="email" id="email" name="email" placeholder="Email" value="<?php echo $email ?? ''?>">
                 </div>
                 <div class="form-field">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Password" required>
+                    <input type="password" id="password" name="password" placeholder="Password">
                     <i class="fas fa-eye" id="togglePassword"></i>
                 </div>
                 <div class="form-actions">
