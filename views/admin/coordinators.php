@@ -39,15 +39,28 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($coordinators as $coordinator): ?>
-                                    <tr style="background-color: <?= ($coordinator['active']) ? '' : '#afafaf' ?>">
-                                        <td><?= $coordinator['full_name'] ?></td>
-                                        <td><?= $coordinator['email'] ?></td>
-                                        <td><a href="coordinator?id=<?= $coordinator['user_id'] ?>">View</a></td>
+                                <?php
+                                if (!empty($data['data'])) {
+                                    foreach ($data['data'] as $coor):
+                                        ?>
+                                        <tr style="background-color: <?= ($coor['active']) ? '' : '#afafaf' ?>">
+                                            <td><?= $coor['full_name'] ?></td>
+                                            <td><?= $coor['email'] ?></td>
+                                            <td><a href="coordinator?id=<?= $coor['user_id'] ?>">View</a></td>
+                                        </tr>
+                                    <?php endforeach;
+                                } else {
+                                    ?>
+                                    <tr>
+                                        <td colspan="6" style="text-align: center;">No record...</td>
                                     </tr>
-                                <?php endforeach; ?>
+                                    <?php
+                                } ?>
                             </tbody>
                         </table>
+                        <div class="pagination">
+                            <?= $data['links'] ?>
+                        </div>
                     </div>
                 </div>
 

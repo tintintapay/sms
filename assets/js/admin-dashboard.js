@@ -1,11 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    // Signout button functionality
-    document.querySelector('.signout-btn').addEventListener('click', function () {
-        if (confirm("Are you sure you want to sign out?")) {
-            window.location.href = 'login.html'; // Redirect to login page
-        }
-    });
 
     // Filter buttons functionality (for Coordinators and Athletes)
     document.querySelectorAll('.filter-btn').forEach(button => {
@@ -23,10 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Print button functionality
-    document.querySelector('.print-btn').addEventListener('click', function () {
-        window.print(); // Trigger the print dialog
-    });
 
     // Example Chart.js update function
     function updateChart() {
