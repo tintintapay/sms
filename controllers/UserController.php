@@ -110,11 +110,6 @@ class UserController
         Helper::redirect('../index');
     }
 
-    public function show($params)
-    {
-        echo $params['id'];
-    }
-
     // public function create()
     // {
     //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {

@@ -16,10 +16,14 @@ class CoordinatorController
         $this->user = new User();
     }
 
+    /**
+     * List of coordinator
+     * @param mixed $param
+     * @return void
+     */
     public function index($param)
     {
         $coordinators = $this->user->getCoordinatorsWithInfo();
-        $data = Helper::paginate($coordinators, 1);
 
         include 'views/admin/coordinators.php';
     }

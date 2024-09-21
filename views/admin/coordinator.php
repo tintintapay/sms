@@ -24,8 +24,10 @@
 
             <div class="right-panel" style="color:black">
                 <div class="page-title">
-                    Coordinators <i class="fa-solid fa-chevron-right fa-2xs" style="color: #b0b0b0;"></i>
-                    <small><?= $request['full_name'] ?></small>
+                    <div>
+                        Coordinators <i class="fa-solid fa-chevron-right fa-2xs" style="color: #b0b0b0;"></i>
+                        <small><?= $request['full_name'] ?></small>
+                    </div>
                 </div>
                 <hr>
                 <div class="section">

@@ -14,7 +14,12 @@
 - allowance button - allows the athletes to tract their allowance , like kapag clinick po may message lang containing information that tells whether their allowance was process or not yet applicable if not varsity
 -dapat may expand button sa announcements that allows user to view it more visible
 - apply evaluation button , dito dapat mag didirect sa evaluation form
+:TODO: Apply evaluation for restricted to coordinator list. athlete will have a application form for evaluation(restrict 1 application only)
+
 - forms dapat po yung mga file name siguro is clickable nalang instead of adding an download button and all this forms was came from the coordinator
+:TODO: Create upload module for coordinator. can upload multiple file. Display file to athletes home page.(downloadable)
+File clickable for download
+
 - schedule dapat dynamic yung image and allow user to download yung print button ( note okay na yung print button)
 -Credentials dito nakalagay yung mga list of credentials na meron sila and meron dapat upload button that let them upload file if may need silang isubmitted na dapat mag rereflect or manonotify si coor na nakapagsubmit na si specific player
 [  ] Admin page
@@ -37,6 +42,7 @@
 - same with admin dapat yung nagrereflect sa kung ano yung data base sa email na ginamit and coordinator word was constant
 - filtering for school and campus ( note yung campus po papaltan ng sports nalang
 - list of approval dito dapat lalabas yung mga list of athletes base sa filtering and each field dapat may view button na magdidirect sa approval form interface
+:TODO: create button to redirect to athlete's Profile.
 - athletes button was use to view athletes names *|( note dito po papasok yung profiling the players na kung saan kapag napresent na yung list kapag clinick ay papasok na  or pupunta na sa profiling the player page)|* and schedules button is in where they can upload updated schedules that must reflect sa mga respective page ng athletes  same with  events  button , and yung uploads button was use to upload generic forms na magrereflect sa forms ni athletes.
 - search field was use to search athletes name 
 - list field is in where they can see the list of athletes or forms na pwede nila ishare sa athletes

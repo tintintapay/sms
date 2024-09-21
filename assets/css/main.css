@@ -127,7 +127,7 @@ body {
   color: #555;
 }
 
-/* .button {
+.button {
   display: inline-block;
   padding: 10px 20px;
   background-color: #007bff;
@@ -140,7 +140,7 @@ body {
 
 .button:hover {
   background-color: #0056b3;
-} */
+}
 
 /* Page */
 
@@ -194,7 +194,7 @@ hr {
 }
 
 .sms-input {
-  width: 100%;
+  width: calc(100% - 22px);
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
@@ -297,6 +297,14 @@ input[type="file"] {
 .button-lg {
   padding: 14px 28px;
   font-size: 16px;
+}
+
+tr.pending {
+    background-color: #ffd9d9!important;
+}
+tr.inactive {
+    background-color: #c2c2c2!important;
+    color: #777777!important;
 }
 
 /* Media Queries for Responsiveness */

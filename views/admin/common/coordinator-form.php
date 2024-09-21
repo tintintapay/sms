@@ -31,7 +31,7 @@
 <input type="text" class="sms-input num-only" id="phone_number" name="phone_number" maxlength="11"
     value="<?= $request['phone_number'] ?? '' ?>">
 
-<label for="picture">Profile Picture:</label>
+<label for="picture" class="label">Profile Picture:</label>
 <input type="file" class="file-input" id="picture" name="picture" accept="image/*">
 
 <hr>
@@ -45,5 +45,5 @@
 
 <label for="confirm_password" class="label">Confirm Password:</label>
 <input type="password" class="sms-input" id="confirm_password" name="confirm_password" required>
-
-<button type="submit" class="sms-btn">Save</button>
+<br>
+<button type="submit" class="button button-primary">Save</button>

@@ -42,7 +42,7 @@
                                     <th>School</th>
                                     <th>Sport</th>
                                     <th>Status</th>
-                                    <th>Action</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>

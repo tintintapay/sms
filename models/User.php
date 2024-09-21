@@ -58,6 +58,7 @@ class User
             "SELECT 
                 u.email,
                 u.active,
+                u.status,
                 ui.user_id,
                 ui.first_name,
                 ui.last_name,
@@ -71,7 +72,7 @@ class User
             FROM users u
             LEFT JOIN user_info ui ON u.id = ui.user_id
             WHERE u.role = ?
-            ORDER BY u.active DESC, u.created_at DESC"
+            ORDER BY u.active ASC"
         );
         $stmt->bind_param("s", $coor);
         $stmt->execute();
@@ -101,7 +102,7 @@ class User
         return $result;
     }
 
-    public function getAthleteWithInfo()
+    public function fetchAllAthleteWithInfo()
     {
         $coor = UserRole::ATHLETE;
         $stmt = $this->db->prepare(
@@ -124,7 +125,7 @@ class User
             FROM users u
             LEFT JOIN user_info ui ON u.id = ui.user_id
             WHERE u.role = ? AND u.status != 'deleted'
-            ORDER BY status DESC, u.active DESC, u.created_at DESC"
+            ORDER BY u.status ASC"
         );
         $stmt->bind_param("s", $coor);
         $stmt->execute();

@@ -30,7 +30,7 @@
                         <?php echo $athlete['status'] === UserStatus::PENDING
                             ? '<button class="button button-success button-md approve-athlete">Approve</button>'
                             : ''; ?>
-                        <button class="button button-primary button-md">Delete</button>
+                        <button class="button button-primary button-md delete-athlete">Delete</button>
                     </div>
                 </div>
                 <hr>
@@ -58,24 +58,36 @@
 
                             <h3>Documents</h3>
                             <ul class="documents-list">
-                                <li>Certificate of Registration (COR) <a
-                                        href="../assets/uploads/docs/<?= $athlete['user_id'] ?>/<?= $athlete['cor'] ?>"
-                                        target="_blank" class="button button-s button-danger">Download</a></li>
-                                <li>PSA Birth Certificate <a
-                                        href="../assets/uploads/docs/<?= $athlete['user_id'] ?>/<?= $athlete['psa'] ?>"
-                                        target="_blank" class="button button-s button-danger">Download</a></li>
-                                <li>Medical Certificate <a
-                                        href="../assets/uploads/docs/<?= $athlete['user_id'] ?>/<?= $athlete['medical_cert'] ?>"
-                                        target="_blank" class="button button-s button-danger">Download</a></li>
-                                <li>2x2 Picture <a
-                                        href="../assets/uploads/docs/<?= $athlete['user_id'] ?>/<?= $athlete['picture'] ?>"
-                                        target="_blank" class="button button-s button-danger">Download</a></li>
+                                <li>Certificate of Registration (COR)
+                                    <a href="../assets/uploads/docs/<?= $athlete['user_id'] ?>/<?= $athlete['cor'] ?>"
+                                        target="_blank" class="button button-s button-danger"
+                                        download="<?= $athlete['full_name'].'Certificate of Registration (COR)' ?>">Download
+                                    </a>
+                                </li>
+                                <li>PSA Birth Certificate
+                                    <a href="../assets/uploads/docs/<?= $athlete['user_id'] ?>/<?= $athlete['psa'] ?>"
+                                        target="_blank" class="button button-s button-danger"
+                                        download="<?= $athlete['full_name'].'PSA Birth Certificate' ?>">Download
+                                    </a>
+                                </li>
+                                <li>Medical Certificate
+                                    <a href="../assets/uploads/docs/<?= $athlete['user_id'] ?>/<?= $athlete['medical_cert'] ?>"
+                                        target="_blank" class="button button-s button-danger"
+                                        download="<?= $athlete['full_name'].'Medical Certificate' ?>">Download
+                                    </a>
+                                </li>
+                                <li>2x2 Picture
+                                    <a href="../assets/uploads/docs/<?= $athlete['user_id'] ?>/<?= $athlete['picture'] ?>"
+                                        target="_blank" class="button button-s button-danger"
+                                        download="<?= $athlete['full_name'].'2x2 Picture' ?>">Download
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-
+                <iframe id="downloadFrm" style="display:none;"></iframe>
             </div>
         </div>
     </div>

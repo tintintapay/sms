@@ -49,15 +49,13 @@ $routes = [
     '/sms/coordinator/manage-athlete' => ['GET' => [$athleteController, 'index']],
     '/sms/coordinator/athlete' => ['GET' => [$athleteController, 'show']],
     '/sms/coordinator/athlete-approve' => ['POST' => [$athleteController, 'store']],
+    '/sms/coordinator/athlete-delete' => ['POST' => [$athleteController, 'delete']],
 
     // Athlete
     '/sms/athlete/home' => ['GET' => [$athleteHomeController, 'index']],
 
     // Logout
     '/sms/logout' => ['GET' => [$authenticateController, 'logout']],
-
-    // Testing
-    '/sms/user' => ['GET' => [$userController, 'show']],
 ];
 
 // Strip query string from URI
@@ -75,5 +73,5 @@ if (isset($routes[$uri][$method])) {
 } else {
     // Handle 404 - route not found
     http_response_code(404);
-    echo "404 Not Found";
+    include 'views/404-not-found.html';
 }

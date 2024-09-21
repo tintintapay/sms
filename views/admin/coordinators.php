@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="../assets/css/admin_profile.css">
     <link rel="stylesheet" href="../assets/css/sms-table.css">
     <link rel="stylesheet" href="../assets/css/main.css">
+    <script src="../vendor/jquery/jquery-3.7.1.js"></script>
+    <?php include 'views/common/datatables.php'; ?>
+    <script src="../assets/js/coordinators.js"></script>
 </head>
 
 <body>
@@ -30,23 +33,34 @@
                         <div class="action-bar">
                             <a href="coordinator-add" class="sms-btn">Add</a>
                         </div>
-                        <table class="sms-table">
+                        <table id="myTable" style="display:none">
                             <thead>
                                 <tr>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Action</th>
+                                    <th>Gender</th>
+                                    <th>Age</th>
+                                    <th>Phone Number</th>
+                                    <th>Address</th>
+                                    <th>Status</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                if (!empty($data['data'])) {
-                                    foreach ($data['data'] as $coor):
-                                        ?>
-                                        <tr style="background-color: <?= ($coor['active']) ? '' : '#afafaf' ?>">
-                                            <td><?= $coor['full_name'] ?></td>
-                                            <td><?= $coor['email'] ?></td>
-                                            <td><a href="coordinator?id=<?= $coor['user_id'] ?>">View</a></td>
+                                if (!empty($coordinators)) {
+                                    foreach ($coordinators as $coordinator): ?>
+                                        <tr class="<?= $coordinator['status'] ?>">
+                                            <td><?= $coordinator['full_name'] ?></td>
+                                            <td><?= $coordinator['email'] ?></td>
+                                            <td><?= $coordinator['gender'] ?></td>
+                                            <td><?= $coordinator['age'] ?></td>
+                                            <td><?= $coordinator['phone_number'] ?></td>
+                                            <td><?= $coordinator['address'] ?></td>
+                                            <td><?= $coordinator['status'] ?></td>
+                                            <td>
+                                                <a href="coordinator?id=<?= $coordinator['user_id'] ?>" class="button button-primary button-xs">View</a>
+                                            </td>
                                         </tr>
                                     <?php endforeach;
                                 } else {
@@ -58,9 +72,6 @@
                                 } ?>
                             </tbody>
                         </table>
-                        <div class="pagination">
-                            <?= $data['links'] ?>
-                        </div>
                     </div>
                 </div>
 
@@ -68,7 +79,7 @@
             </div>
         </div>
     </div>
-    <script src="../assets/js/admin_profile.js"></script>
+    <!-- <script src="../assets/js/admin_profile.js"></script> -->
 </body>
 
 </html>

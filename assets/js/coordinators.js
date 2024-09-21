@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    const exportingCol = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-    const exportingTitle = 'Athletes';
+    const exportingCol = [0, 1, 2, 3, 4, 5, 6];
+    const exportingTitle = 'Coordinators';
     let table = $("#myTable").DataTable({
         responsive: true,
         layout: {
@@ -46,12 +46,12 @@ $(document).ready(function () {
         ordering: false,
         columnDefs: [
             {
-                target: [2, 3, 4, 5, 8, 9],
+                target: [6, 7],
                 searchable: false
             },
 
             {
-                target: [2, 3, 4, 5, 8],
+                target: [2, 3, 5, 6],
                 visible: false,
                 searchable: false
             }
