@@ -16,9 +16,15 @@ class CoordinatorController
         $this->user = new User();
     }
 
-    public function index()
+    /**
+     * List of coordinator
+     * @param mixed $param
+     * @return void
+     */
+    public function index($param)
     {
         $coordinators = $this->user->getCoordinatorsWithInfo();
+
         include 'views/admin/coordinators.php';
     }
 
@@ -90,10 +96,6 @@ class CoordinatorController
         if (empty($request) || $request['role'] !== UserRole::COORDINATOR) {
             Helper::redirect('404-not-found');
         }
-
-        echo '<pre>';
-        // print_r($coordinator);
-        echo '</pre>';
 
         return include 'views/admin/coordinator.php';
     }

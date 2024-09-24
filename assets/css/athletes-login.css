@@ -141,8 +141,10 @@ body {
   margin-bottom: 15px; /* Add some space below the form actions */
 }
 
-.form-container button {
-  padding: 7px;
+.form-container .contact-button {
+  height: auto;
+  text-decoration: none;
+  padding: 15px 7px;
   width: 100px; /* Set a specific width for the button */
   border: none;
   border-radius: 5px;

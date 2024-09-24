@@ -3,19 +3,27 @@ table.sms-table {
   text-align: left;
   border-collapse: collapse;
 }
-table.sms-table td, table.sms-table th {
-  border: 1px solid #AAAAAA;
+table.sms-table td,
+table.sms-table th {
+  border: 1px solid #aaaaaa;
   padding: 6px 8px;
 }
 table.sms-table tr:nth-child(even) {
-  background: #F5F5F5;
+  background: #f5f5f5;
 }
 table.sms-table thead {
-  background: #FFCAC8;
-  border-bottom: 2px solid #AAAAAA;
+  background: #ffcac8;
+  border-bottom: 2px solid #aaaaaa;
 }
 table.sms-table thead th {
   font-size: 15px;
   font-weight: bold;
   text-align: left;
+}
+table.sms-table tr.pending {
+  background-color: #ffdede;
+}
+table.sms-table tr.inactive {
+  background-color: #d4d4d4;
+  color: #8c8c8c;
 }

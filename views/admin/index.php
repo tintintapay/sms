@@ -59,7 +59,7 @@
             </div>
         </div>
     </div>
-    <script src="../assets/js/admin_profile.js"></script>
+    <script src="../assets/js/admin-dashboard.js"></script>
 </body>
 
 </html>

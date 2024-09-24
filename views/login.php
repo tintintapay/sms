@@ -59,12 +59,12 @@
             </form>
             <div class="register">
                 <p>Don't have an account? <a href="register">Register</a></p>
-                <button class="contact-button" id="contactButton"><i class="fas fa-phone"></i></button>
+                <a href="contact" class="contact-button" id="contactButton"><i class="fas fa-phone"></i></a>
             </div>
         </div>
         
         <!-- Chatbot Components -->
-        <?php include_once 'common/chatbot.php'?>
+        <?php // include_once 'common/chatbot.php'?>
     </div>
 
 </body>

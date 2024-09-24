@@ -8,6 +8,8 @@ require_once 'controllers/CoordinatorHomeController.php';
 require_once 'controllers/AthleteHomeController.php';
 require_once 'controllers/AdminHomeController.php';
 require_once 'controllers/CoordinatorController.php';
+require_once 'controllers/AthleteController.php';
+require_once 'controllers/GameScheduleController.php';
 
 // Define your controllers
 $userController = new UserController();
@@ -17,6 +19,8 @@ $coordinatorHomeController = new CoordinatorHomeController();
 $athleteHomeController = new AthleteHomeController();
 $adminHomeController = new AdminHomeController();
 $coordinatorController = new CoordinatorController();
+$athleteController = new AthleteController();
+$gameScheduleController = new GameScheduleController();
 
 // Define routes
 $routes = [
@@ -40,19 +44,22 @@ $routes = [
         'POST' => [$coordinatorController, 'create']
     ],
     '/sms/admin/coordinator' => ['GET' => [$coordinatorController, 'show']],
-    '/sms/admin/coordinator-update' => ['GET' => [$coordinatorController, 'show']],
+    '/sms/admin/coordinator-update' => ['GET' => [$coordinatorController, 'update']],
 
     //Coordinator
     '/sms/coordinator/home' => ['GET' => [$coordinatorHomeController, 'index']],
+    '/sms/coordinator/manage-athlete' => ['GET' => [$athleteController, 'index']],
+    '/sms/coordinator/athlete' => ['GET' => [$athleteController, 'show']],
+    '/sms/coordinator/athlete-approve' => ['POST' => [$athleteController, 'store']],
+    '/sms/coordinator/athlete-delete' => ['POST' => [$athleteController, 'delete']],
+    '/sms/coordinator/game-schedules' => ['GET' => [$gameScheduleController, 'index']],
+    '/sms/coordinator/game-schedules-create' => ['GET' => [$gameScheduleController, 'create']],
 
     // Athlete
     '/sms/athlete/home' => ['GET' => [$athleteHomeController, 'index']],
 
     // Logout
     '/sms/logout' => ['GET' => [$authenticateController, 'logout']],
-
-    // Testing
-    '/sms/user' => ['GET' => [$userController, 'show']],
 ];
 
 // Strip query string from URI
@@ -70,5 +77,5 @@ if (isset($routes[$uri][$method])) {
 } else {
     // Handle 404 - route not found
     http_response_code(404);
-    echo "404 Not Found";
+    include 'views/404-not-found.html';
 }

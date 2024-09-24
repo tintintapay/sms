@@ -4,6 +4,7 @@ class UserStatus
 {
     const PENDING = "pending";
     const ACTIVE = "active";
+    const INACTIVE = "inactive";
     const DELETED = "deleted";
 
     public static function getDescription($status)
@@ -13,6 +14,8 @@ class UserStatus
                 return "Pending";
             case self::ACTIVE:
                 return "Active";
+            case self::INACTIVE:
+                return "Inactive";
             case self::DELETED:
                 return "Deleted";
         }
