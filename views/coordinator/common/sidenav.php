@@ -4,7 +4,7 @@
             <span class="menu-title">Dashboard</span>
         </div>
     </a>
-    <a href="game-schedule" class="menu">
+    <a href="game-schedules" class="menu">
         <div class="menu-item">
             <span class="menu-title">Game Schedule</span>
         </div>

@@ -98,7 +98,7 @@ class User
 
         $result = $stmt->get_result()->fetch_assoc();
         $result['gender'] = ucfirst($result['gender']);
-        
+
         return $result;
     }
 
@@ -116,11 +116,17 @@ class User
                 ui.middle_name,
                 CONCAT(ui.first_name, ' ', IFNULL(ui.middle_name, ''), ' ', ui.last_name) AS full_name,
                 ui.school,
-                ui.sport,
+                CASE 
+                    WHEN ui.sport = 'base_ball' THEN 'Base Ball'
+                    WHEN ui.sport = 'basket_ball' THEN 'Basket Ball'
+                    WHEN ui.sport = 'soccer' THEN 'Soccer'
+                    WHEN ui.sport = 'swimming' THEN 'Swimming'
+                    WHEN ui.sport = 'tennis' THEN 'Tennis'
+                    ELSE ''
+                END AS sport,
                 ui.gender,
                 ui.address,
                 ui.age,
-                ui.sport,
                 ui.phone_number
             FROM users u
             LEFT JOIN user_info ui ON u.id = ui.user_id
@@ -128,6 +134,45 @@ class User
             ORDER BY u.status ASC"
         );
         $stmt->bind_param("s", $coor);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function fetchAllApprovedAthleteWithInfo()
+    {
+        $coor = UserRole::ATHLETE;
+        $status = UserStatus::ACTIVE;
+        $stmt = $this->db->prepare(
+            "SELECT 
+                u.email,
+                u.active,
+                u.status,
+                ui.user_id,
+                ui.first_name,
+                ui.last_name,
+                ui.middle_name,
+                CONCAT(ui.first_name, ' ', IFNULL(ui.middle_name, ''), ' ', ui.last_name) AS full_name,
+                ui.school,
+                CASE 
+                    WHEN ui.sport = 'base_ball' THEN 'Base Ball'
+                    WHEN ui.sport = 'basket_ball' THEN 'Basket Ball'
+                    WHEN ui.sport = 'soccer' THEN 'Soccer'
+                    WHEN ui.sport = 'swimming' THEN 'Swimming'
+                    WHEN ui.sport = 'tennis' THEN 'Tennis'
+                    ELSE ''
+                END AS sport,
+                ui.gender,
+                ui.address,
+                ui.age,
+                ui.phone_number
+            FROM users u
+            LEFT JOIN user_info ui ON u.id = ui.user_id
+            WHERE u.role = ? AND u.status = ?
+            ORDER BY u.id DESC"
+        );
+        $stmt->bind_param("ss", $coor, $status);
         $stmt->execute();
 
         $result = $stmt->get_result();

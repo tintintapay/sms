@@ -3,6 +3,7 @@
 require_once 'core/Helper.php';
 require_once 'enums/UserRole.php';
 require_once 'enums/UserStatus.php';
+require_once 'enums/Sport.php';
 require_once 'models/User.php';
 require_once 'models/UserInfo.php';
 require_once 'requests/RegisterRequest.php';
@@ -20,6 +21,8 @@ class UserController
 
     public function index()
     {
+        $sports = Sport::fetchList();
+
         include 'views/register.php';
     }
 
@@ -109,36 +112,4 @@ class UserController
         // Return to home page
         Helper::redirect('../index');
     }
-
-    // public function create()
-    // {
-    //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    //         $name = $_POST['name'];
-    //         $username = $_POST['username'];
-    //         $password = $_POST['password'];
-    //         $this->user->create($name, $username, $password);
-    //         header('Location: /sms/');
-    //     } else {
-    //         include '../views/create.php';
-    //     }
-    // }
-
-    // public function edit($id)
-    // {
-    //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    //         $name = $_POST['name'];
-    //         $username = $_POST['username'];
-    //         $this->user->update($id, $name, $username);
-    //         header('Location: /sms/');
-    //     } else {
-    //         $user = $this->user->readById($id);
-    //         include '../views/edit.php';
-    //     }
-    // }
-
-    // public function delete($id)
-    // {
-    //     $this->user->delete($id);
-    //     header('Location: /sms/');
-    // }
 }

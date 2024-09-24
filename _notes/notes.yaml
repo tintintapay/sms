@@ -77,3 +77,107 @@ File clickable for download
   ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   ADD COLUMN updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
 -----
+
+=================
+### Summary of the Web App Process
+
+1. **Game Schedule Management**
+   - **List View**: Display a list of game schedules with columns for Game Title, Schedule, Sport, School, and Status.
+   - **Status Indicators**: Show the status (Active, Inactive, Completed) with color-coded labels.
+   - **View Button**: Redirects to the Athlete List page for the selected game.
+
+   ```
+   +-------------------------------------------------------------+
+   | Game Title       | Schedule       | Sport     | School      | Status   | Actions |
+   +-------------------------------------------------------------+
+   | Basketball Final | 2024-09-25     | Basketball| XYZ School  | Active   | [View]  |
+   | Soccer Semi-Final| 2024-09-26     | Soccer    | ABC School  | Inactive | [View]  |
+   | Volleyball Match | 2024-09-27     | Volleyball| DEF School  | Completed| [View]  |
+   +-------------------------------------------------------------+
+   ```
+
+2. **Athlete List Management**
+   - **Merged List**: Combine Target Athlete List and Applied Athlete List.
+   - **Status Indicators**: Show status as Pending (if documents are not submitted) or Applied (if documents are submitted).
+   - **Add Button**: Opens a modal or new page to select and add athletes from the remaining list.
+   - **Remove Button**: Allows users to remove athletes from the list.
+   - **Accept/Deny Buttons**: Approve or reject athletes directly from the list.
+   - **View Button**: Redirects to the Athlete Information page.
+
+   ```
+   +--------------------------------------------------+
+   | Athlete Name | Sport     | School      | Status  | Actions  |
+   +--------------------------------------------------+
+   | John Doe     | Basketball| XYZ School  | Pending | [Accept] [Deny] [View] |
+   | Jane Smith   | Basketball| XYZ School  | Applied | [Accept] [Deny] [View] |
+   +--------------------------------------------------+
+   [Add Athlete]
+   ```
+
+3. **Athlete Information Page**
+   - **Detailed View**: Show comprehensive information about the athlete, including personal details, performance metrics, and previous evaluations.
+   - **Download Document**: Provide a button to download relevant documents.
+   - **Accept/Deny Buttons**: Approve or reject the athlete from this page as well.
+
+   ```
+   +---------------------------------------------+
+   | Athlete Name: John Doe                      |
+   | Sport: Basketball                           |
+   | School: XYZ School                          |
+   | Performance Metrics: ...                    |
+   | Previous Evaluations: ...                   |
+   +---------------------------------------------+
+   [Download Document] [Accept] [Deny]
+   ```
+
+4. **User Notifications**
+   - **Email Notifications**: Notify athletes about their application status.
+   - **In-App Alerts**: Inform users of important updates and actions.
+
+5. **Search and Filters**
+   - **Search Bar**: Allow users to search for specific game schedules, athletes, etc.
+   - **Filters**: Enable filtering by various criteria such as date, sport, school, and status.
+
+6. **Analytics and Reporting**
+   - **Performance Analytics**: Provide insights into athlete performance and evaluation trends.
+   - **Custom Reports**: Allow users to generate reports based on specific criteria.
+
+7. **Mobile Compatibility**
+   - **Responsive Design**: Ensure the web app is accessible and functional on mobile devices.
+
+By following this process, you can create a comprehensive and user-friendly web app for managing athlete evaluations. If you need further assistance with specific features or coding, feel free to ask! 😊
+
+### DB SCHEMA
+
+CREATE TABLE game_schedules (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    game_title VARCHAR(255) NOT NULL,
+    schedule DATETIME NOT NULL,
+    sport VARCHAR(255) NOT NULL,
+    status ENUM('Active', 'Inactive', 'Completed') NOT NULL,
+    created_user INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP NULL DEFAULT NULL,
+    FOREIGN KEY (created_user) REFERENCES users(id)
+);
+
+CREATE TABLE evaluations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    game_schedules_id INT NOT NULL,
+    athlete_id INT NOT NULL,
+    evaluator_id INT NOT NULL,
+    evaluation_date DATETIME NOT NULL,
+    comments TEXT,
+    status ENUM('Pending', 'Accepted', 'Denied') NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP NULL DEFAULT NULL,
+    FOREIGN KEY (game_schedules_id) REFERENCES game_schedules(id),
+    FOREIGN KEY (athlete_id) REFERENCES users(id),
+    FOREIGN KEY (evaluator_id) REFERENCES users(id),
+    INDEX (game_schedules_id),
+    INDEX (athlete_id),
+    INDEX (evaluator_id),
+    INDEX (evaluation_date)
+);

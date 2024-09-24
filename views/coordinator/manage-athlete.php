@@ -42,13 +42,12 @@
                                     <th>School</th>
                                     <th>Sport</th>
                                     <th>Status</th>
-                                    <th></th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php
-                                if (!empty($athletes)) {
-                                    foreach ($athletes as $athlete): ?>
+                                <?php if (!empty($athletes)): ?>
+                                    <?php foreach ($athletes as $athlete): ?>
                                         <tr class="<?= $athlete['status'] ?>">
                                             <td><?= $athlete['full_name'] ?></td>
                                             <td><?= $athlete['email'] ?></td>
@@ -60,19 +59,19 @@
                                             <td><?= $athlete['sport'] ?></td>
                                             <td><?= $athlete['status'] ?></td>
                                             <td>
-                                                <a href="athlete?id=<?= $athlete['user_id'] ?>" class="button button-primary button-xs">View</a>
+                                                <a href="athlete?id=<?= $athlete['user_id'] ?>"
+                                                    class="button button-primary button-xs">View</a>
                                             </td>
                                         </tr>
-                                    <?php endforeach;
-                                } else {
-                                    ?>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
                                     <tr>
-                                        <td colspan="6" style="text-align: center;">No record...</td>
+                                        <td colspan="10" style="text-align: center;">No record...</td>
                                     </tr>
-                                    <?php
-                                } ?>
+                                <?php endif; ?>
                             </tbody>
                         </table>
+
                     </div>
                 </div>
 

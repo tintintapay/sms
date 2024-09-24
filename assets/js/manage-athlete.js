@@ -36,6 +36,25 @@ $(document).ready(function () {
                         },
                         className: 'button button-s button-light',
                     },
+                    {
+                        extend: 'selected',
+                        text:'With Selected',
+                        action: function (e, dt, node, config) {
+                            var rows = dt.rows({ selected: true }).count();
+
+                            alert('There are ' + rows + '(s) selected in the table');
+                        }
+                    }
+                ]
+            },
+            top: {
+                buttons: [
+                    {
+                        extend: 'searchPanes',
+                        config: {
+                            cascadePanes: true
+                        }
+                    }
                 ]
             },
             topEnd: 'search',
@@ -56,16 +75,13 @@ $(document).ready(function () {
                 searchable: false
             }
         ],
+        select: true,
     });
 
     $("#myTable").show();
 
     table.on('click', '.btn-del', function (e) {
-        let data = table.row(e.target.closest('tr')).data();
         console.log($(e.target).data('id'));
-
-        // alert(data[0] + "'s salary is: " + data[5]);
     });
-
 
 });

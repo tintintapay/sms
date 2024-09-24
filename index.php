@@ -9,6 +9,7 @@ require_once 'controllers/AthleteHomeController.php';
 require_once 'controllers/AdminHomeController.php';
 require_once 'controllers/CoordinatorController.php';
 require_once 'controllers/AthleteController.php';
+require_once 'controllers/GameScheduleController.php';
 
 // Define your controllers
 $userController = new UserController();
@@ -19,6 +20,7 @@ $athleteHomeController = new AthleteHomeController();
 $adminHomeController = new AdminHomeController();
 $coordinatorController = new CoordinatorController();
 $athleteController = new AthleteController();
+$gameScheduleController = new GameScheduleController();
 
 // Define routes
 $routes = [
@@ -50,6 +52,8 @@ $routes = [
     '/sms/coordinator/athlete' => ['GET' => [$athleteController, 'show']],
     '/sms/coordinator/athlete-approve' => ['POST' => [$athleteController, 'store']],
     '/sms/coordinator/athlete-delete' => ['POST' => [$athleteController, 'delete']],
+    '/sms/coordinator/game-schedules' => ['GET' => [$gameScheduleController, 'index']],
+    '/sms/coordinator/game-schedules-create' => ['GET' => [$gameScheduleController, 'create']],
 
     // Athlete
     '/sms/athlete/home' => ['GET' => [$athleteHomeController, 'index']],
