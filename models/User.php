@@ -186,6 +186,88 @@ class User
         return $stmt->execute();
     }
 
+    public function fetchAthletesBySport($sport, $start, $length, $search)
+    {
+        if ($sport === '') {
+            return [
+                "recordsTotal" => 0,
+                "recordsFiltered" => 0,
+                "data" => []
+            ];
+        }
+
+
+        $status = UserStatus::ACTIVE;
+        $role = UserRole::ATHLETE;
+
+        // Query to count total records
+        $countSql = "SELECT COUNT(*) as total
+             FROM users u
+             LEFT JOIN user_info ui ON u.id = ui.user_id
+             WHERE ui.sport = ? AND u.status = ? AND u.role = ?";
+        $params = [$sport, $status, $role];
+
+        if (!empty($search)) {
+            $countSql .= " AND (ui.sport LIKE ? OR ui.first_name LIKE ? OR ui.middle_name LIKE ? OR ui.last_name LIKE ? OR ui.phone_number LIKE ?)";
+            $params[] = "%$search%";
+            $params[] = "%$search%";
+            $params[] = "%$search%";
+            $params[] = "%$search%";
+            $params[] = "%$search%";
+        }
+
+        $countQuery = $this->db->prepare($countSql);
+        $countQuery->execute($params);
+        $countQuery->store_result();
+        $countQuery->bind_result($totalRecords);
+        $countQuery->fetch();
+
+        // Query to fetch data with limit
+        $dataSql = "SELECT
+            ui.user_id,
+            ui.first_name, ui.middle_name, ui.last_name,
+            ui.phone_number,
+            ui.sport
+            FROM users u
+            LEFT JOIN user_info ui ON u.id = ui.user_id
+            WHERE ui.sport = ? AND u.status = ? AND u.role = ?";
+        $params = [$sport, $status, $role];
+
+        if (!empty($search)) {
+            $dataSql .= " AND (ui.sport LIKE ? OR ui.first_name LIKE ? OR ui.middle_name LIKE ? OR ui.last_name LIKE ? OR ui.phone_number LIKE ?)";
+            $params[] = "%$search%";
+            $params[] = "%$search%";
+            $params[] = "%$search%";
+            $params[] = "%$search%";
+            $params[] = "%$search%";
+        }
+
+        $dataSql .= " LIMIT ?, ?";
+        $params[] = (int) $start;
+        $params[] = (int) $length;
+
+        $dataQuery = $this->db->prepare($dataSql);
+        $dataQuery->execute($params);
+        $data = $dataQuery->get_result()->fetch_all(MYSQLI_ASSOC);
+
+        $returnData = [];
+        foreach ($data as $d) {
+            $returnData[] = [
+                $d['user_id'],
+                $d['first_name'] . ' ' . $d['middle_name'] . ' ' . $d['last_name'],
+                $d['phone_number'],
+                Sport::getDescription($d['sport'])
+            ];
+        }
+
+        return [
+            "recordsTotal" => $totalRecords,
+            "recordsFiltered" => $totalRecords,
+            "data" => $returnData,
+        ];
+
+    }
+
     //========================================
 
     public function readAll()

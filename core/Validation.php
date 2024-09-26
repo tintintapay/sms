@@ -1,12 +1,12 @@
 <?php
 
-class Validation
+abstract class Validation
 {
     private $errors = [];
 
     public function isEmpty($field, $value)
     {
-        if (empty(trim($value))) {
+        if (empty(trim($value)) && $value === "") {
             $this->errors[$field] = ucfirst($field) . " cannot be empty.";
         }
     }
@@ -15,6 +15,13 @@ class Validation
     {
         if ($password !== $confirmPassword) {
             $this->errors['password'] = "Passwords do not match.";
+        }
+    }
+
+    public function isExist($field, $key, $array)
+    {
+        if (!array_key_exists($key, $array)) {
+            $this->errors[$field] = ucfirst($field) . " must not be empty";
         }
     }
 
