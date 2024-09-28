@@ -9,6 +9,7 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/admin_profile.css">
+    <link rel="stylesheet" href="../vendor/jquery/datepicker/jquery-ui.css">
     <script src="../vendor/jquery/jquery-3.7.1.js"></script>
     <?php include 'views/common/datatables.php'; ?>
     <script src="../assets/js/game-schedules-create.js"></script>
@@ -30,13 +31,17 @@
                 <div class="section">
                     <div class="card">
                         <form action="game-schedules-create" method="post">
+                            <div class="msg" style="display:<?php echo !empty($flash['message']) ? 'block' : 'none' ?>">
+                                <?php echo $flash['message'] ?? ''; ?>
+                            </div>
+                            <div id="targetAthletes"></div>
                             <label for="game_title" class="label">Game Title:</label>
                             <input type="text" class="sms-input text-only" id="game_title" name="game_title"
-                                value="<?= $request['game_title'] ?? '' ?>" required autocomplete="off">
+                                value="<?= $request['game_title'] ?? '' ?>" autocomplete="off">
 
                             <label for="schedule" class="label">Schedule:</label>
-                            <input type="date" class="sms-input" id="schedule" name="schedule"
-                                value="<?= $request['schedule'] ?? '' ?>" required autocomplete="off">
+                            <input type="date" class="sms-input" id="schedule" name="schedule" min="<?= date('Y-m-d', strtotime('+1 day'))?>"
+                                value="<?= $request['schedule'] ?? '' ?>" autocomplete="off">
 
                             <label for="sport" class="label">Sport:</label>
                             <select name="sport" id="sport" class="sms-input">
@@ -50,7 +55,7 @@
                                 <input type="checkbox" name="status" id="status">
                                 Active this after creating
                             </label>
-                            
+
                             <hr>
 
                             <h3>Target Athletes:</h3>
@@ -59,32 +64,16 @@
                                     <tr>
                                         <th></th>
                                         <th>Name</th>
+                                        <th>Email</th>
                                         <th>Phone Number</th>
-                                        <th>Sport</th>
-                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php if (!empty($athletes)): ?>
-                                        <?php foreach ($athletes as $athlete): ?>
-                                            <tr data-id="<?= $athlete['user_id']?>">
-                                                <td></td>
-                                                <td><?= $athlete['full_name'] ?></td>
-                                                <td><?= $athlete['phone_number'] ?></td>
-                                                <td><?= $athlete['sport'] ?></td>
-                                                <td>
-                                                    <a href="athlete?id=<?= $athlete['user_id'] ?>" class="button button-primary button-xs">View</a>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    <?php else: ?>
-                                        <tr>
-                                            <td style="text-align: center;">No record...</td>
-                                        </tr>
-                                    <?php endif; ?>
+                                    
                                 </tbody>
                             </table>
 
+                            <button type="submit" class="button buttom-primary">Save</button>
                         </form>
                     </div>
                 </div>

@@ -1,21 +1,27 @@
-$(document).ready(function () {
+$(function () {
+
     let selectedIds = [];
+    let sportSelected;
 
     let table = $("#myTable").DataTable({
         responsive: true,
         select: {
-            style: 'multi',
-            selector: 'td:first-child',
-            headerCheckbox: false
+            style: "multi",
+            selector: "td:first-child",
+            headerCheckbox: false,
         },
-        order: [[1, 'asc']],
+        order: [[1, "asc"]],
         layout: {
-            topStart: '',
-            topEnd: 'search',
-            bottomStart: 'info',
-            bottomEnd: 'paging',
+            topStart: "",
+            topEnd: "search",
+            bottomStart: "info",
+            bottomEnd: {
+                paging: {
+                    firstLast: false
+                }
+            },
         },
-        pageLength: 1,
+        pageLength: 5,
         paging: true,
         ordering: false,
         columnDefs: [
@@ -24,41 +30,77 @@ $(document).ready(function () {
                 orderable: false,
                 searchable: false,
                 render: DataTable.render.select(),
-                className: 'select-all'
+                className: "select-all",
             },
             {
-                targets: [0, 4],
-                searchable: false
+                targets: [0],
+                searchable: false,
             },
         ],
+        processing: true,
+        serverSide: true,
+        fixedColumns: {
+            "leftColumns": 0
+        },
+        ajax: {
+            url: "target-athlete",
+            type: 'POST',
+            data: function (data) {
+                data.sport = sportSelected ?? '';
+            },
+            error: function (e) {
+                console.log(e.responseText);
+            }
+        },
+        stateSave: true,
+        bDestroy: true,
+        createdRow: function (row, data, dataIndex) {
+            $(row).attr('data-id', data[0]);
+        }
     });
+
 
     $("#myTable").show();
 
     table
-        .on('select', function (e, dt, type, indexes) {
-            table.rows({ selected: true }).nodes().each(function (node) {
-                var id = $(node).data('id');
-                if (!selectedIds.includes(id)) {
-                    selectedIds.push(id);
-                }
-            });
-            console.log('Selected IDs:', selectedIds);
-        })
-        .on('deselect', function (e, dt, type, indexes) {
-            table.rows(indexes).nodes().each(function (node) {
-                var id = $(node).data('id');
-                selectedIds = selectedIds.filter(function (value) {
-                    return value !== id;
+        .on("select", function (e, dt, type, indexes) {
+            table
+                .rows(indexes)
+                .nodes()
+                .each(function (node) {
+                    var id = $(node).data("id");
+                    if (!selectedIds.includes(id)) {
+                        selectedIds.push(id);
+                        $("#targetAthletes").append(
+                            '<input class="athlete-selected" type="hidden" name="athletes[]" id="athlete-' +
+                            id +
+                            '" value="' +
+                            id +
+                            '">',
+                        );
+                    }
                 });
-            });
-            console.log('Selected IDs:', selectedIds);
+        })
+        .on("deselect", function (e, dt, type, indexes) {
+            table
+                .rows(indexes)
+                .nodes()
+                .each(function (node) {
+                    var id = $(node).data("id");
+                    selectedIds = selectedIds.filter(function (value) {
+                        return value !== id;
+                    });
+                    $("#athlete-" + id).remove();
+                });
         });
 
-    // Get selected IDs on button click
-    $('#get-selected-ids').on('click', function () {
-        console.log('Selected IDs:', selectedIds);
-    });
-
-
+    $('select#sport').on('change', function () {
+        sportSelected = $(this).val();
+        // clear list
+        selectedIds = [];
+        // remove created input
+        $('.athlete-selected').remove();
+        // refresh list
+        table.ajax.reload();
+    })
 });

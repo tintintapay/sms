@@ -26,7 +26,7 @@
                 <div class="page-title">
                     Game Schedules
                     <div class="header-action">
-                        <a href="game-schedules-create" class="button button-primary button-md">Add</a>
+                        <a href="game-schedules-create" class="button button-success button-md">Add</a>
                     </div>
                 </div>
                 <hr>
@@ -47,7 +47,7 @@
                                     <tr class="<?= $gameSched['status'] ?>">
                                         <td><?= $gameSched['game_title'] ?></td>
                                         <td><?= $gameSched['schedule'] ?></td>
-                                        <td><?= $gameSched['sport'] ?></td>
+                                        <td><?= Sport::getDescription($gameSched['sport']) ?></td>
                                         <td><?= $gameSched['status'] ?></td>
                                         <td>
                                             <a href="game-schedule?id=<?= $gameSched['id'] ?>"

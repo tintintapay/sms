@@ -64,7 +64,7 @@ $(document).ready(function () {
                     success: function (data) {
                         console.log(data);
                         if (data.success) {
-                            $('.approve-athlete').remove();
+                            $('.delete-athlete').remove();
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Athlete has been removed.",

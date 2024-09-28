@@ -1,5 +1,6 @@
 <?php
 session_start();
+date_default_timezone_set('Asia/Manila');
 
 require_once 'controllers/UserController.php';
 require_once 'controllers/HomeController.php';
@@ -53,10 +54,21 @@ $routes = [
     '/sms/coordinator/athlete-approve' => ['POST' => [$athleteController, 'store']],
     '/sms/coordinator/athlete-delete' => ['POST' => [$athleteController, 'delete']],
     '/sms/coordinator/game-schedules' => ['GET' => [$gameScheduleController, 'index']],
-    '/sms/coordinator/game-schedules-create' => ['GET' => [$gameScheduleController, 'create']],
+    '/sms/coordinator/game-schedules-create' => [
+        'GET' => [$gameScheduleController, 'create'],
+        'POST' => [$gameScheduleController, 'store']
+    ],
+    '/sms/coordinator/game-schedule-delete' => ['POST' => [$gameScheduleController, 'delete']],
+    '/sms/coordinator/game-schedule' => [
+        'GET' => [$gameScheduleController, 'show'],
+        'POST' => [$gameScheduleController, 'update']
+    ],
 
     // Athlete
     '/sms/athlete/home' => ['GET' => [$athleteHomeController, 'index']],
+
+    // Ajax API request
+    '/sms/coordinator/target-athlete' => ['POST' => [$athleteController, 'target_athlete']],
 
     // Logout
     '/sms/logout' => ['GET' => [$authenticateController, 'logout']],

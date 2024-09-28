@@ -2,33 +2,17 @@
 
 require_once 'core/Validation.php';
 
-class LoginRequest
+class LoginRequest extends Validation
 {
-    private $validation;
-
-    public function __construct()
-    {
-        $this->validation = new Validation();
-    }
-
     public function validate($request)
     {
-        $this->validation->isEmail('email', $request['email']);
-        $this->validation->isEmpty('email', $request['email']);
-        $this->validation->isEmpty('password', $request['password']);
+        $this->isEmail('email', $request['email']);
+        $this->isEmpty('email', $request['email']);
+        $this->isEmpty('password', $request['password']);
 
         return [
-            'isValid' => $this->validation->passes(),
-            'message' => implode('<br>', $this->validation->getErrors())
+            'isValid' => $this->passes(),
+            'message' => implode('<br>', $this->getErrors())
         ];
-        // if (!$this->validation->passes()) {
-        //     // Handle validation errors
-        //     $err = $this->validation->getErrors();
-        //     foreach ($err as $key => $value) {
-        //         echo "$key : $value";
-        //     }
-
-        //     die();
-        // }
     }
 }

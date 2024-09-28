@@ -6,13 +6,6 @@ $(document).ready(function () {
         layout: {
             topStart: {
                 buttons: [
-                    // {
-                    //     extend: 'copy',
-                    //     title: exportingTitle,
-                    //     exportOptions: {
-                    //         columns: exportingCol
-                    //     },
-                    // },
                     {
                         extend: 'csv',
                         title: exportingTitle,
@@ -21,13 +14,6 @@ $(document).ready(function () {
                         },
                         className: 'button button-s button-success',
                     },
-                    // {
-                    //     extend: 'pdfHtml5',
-                    //     title: exportingTitle,
-                    //     exportOptions: {
-                    //         columns: exportingCol
-                    //     },
-                    // },
                     {
                         extend: 'print',
                         title: exportingTitle,
@@ -36,30 +22,15 @@ $(document).ready(function () {
                         },
                         className: 'button button-s button-light',
                     },
-                    {
-                        extend: 'selected',
-                        text:'With Selected',
-                        action: function (e, dt, node, config) {
-                            var rows = dt.rows({ selected: true }).count();
-
-                            alert('There are ' + rows + '(s) selected in the table');
-                        }
-                    }
-                ]
-            },
-            top: {
-                buttons: [
-                    {
-                        extend: 'searchPanes',
-                        config: {
-                            cascadePanes: true
-                        }
-                    }
                 ]
             },
             topEnd: 'search',
             bottomStart: 'info',
-            bottomEnd: 'paging'
+            bottomEnd: {
+                paging: {
+                    firstLast: false
+                }
+            },
         },
         pageLength: 5,
         ordering: false,
@@ -74,8 +45,7 @@ $(document).ready(function () {
                 visible: false,
                 searchable: false
             }
-        ],
-        select: true,
+        ]
     });
 
     $("#myTable").show();

@@ -35,8 +35,21 @@ class Database
         return $stmt->get_result();
     }
 
-    // public function __destruct()
-    // {
-    //     $this->connection->close();
-    // }
+    public static function selectNative($query)
+    {
+        $config = require 'config.php';
+        $conn = new mysqli(
+            $config['db']['host'],
+            $config['db']['username'],
+            $config['db']['password'],
+            $config['db']['database']
+        );
+
+        // Check for connection errors
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        
+        return $conn->query($query);
+    }
 }

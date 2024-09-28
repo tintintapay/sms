@@ -2,31 +2,24 @@
 
 require_once 'core/Validation.php';
 
-class CoordinatorRequest
+class CoordinatorRequest extends Validation
 {
-    private $validation;
-
-    public function __construct()
-    {
-        $this->validation = new Validation();
-    }
-
     public function validate($request)
     {
-        $this->validation->isEmpty('first name', $request['first_name']);
-        $this->validation->isEmpty('last name', $request['last_name']);
-        $this->validation->isEmpty('password', $request['password']);
-        $this->validation->isEmpty('address', $request['address']);
-        $this->validation->isEmpty('gender', $request['gender']);
-        $this->validation->isEmail('email', $request['email']);
-        $this->validation->passwordMatch($request['password'], $request['confirm_password']);
-        $this->validation->isEmpty('password', $request['password']);
-        $this->validation->isEmpty('confirm password', $request['confirm_password']);
+        $this->isEmpty('first name', $request['first_name']);
+        $this->isEmpty('last name', $request['last_name']);
+        $this->isEmpty('password', $request['password']);
+        $this->isEmpty('address', $request['address']);
+        $this->isEmpty('gender', $request['gender']);
+        $this->isEmail('email', $request['email']);
+        $this->passwordMatch($request['password'], $request['confirm_password']);
+        $this->isEmpty('password', $request['password']);
+        $this->isEmpty('confirm password', $request['confirm_password']);
         
 
         return [
-            'isValid' => $this->validation->passes(),
-            'message' => implode('<br>', $this->validation->getErrors())
+            'isValid' => $this->passes(),
+            'message' => implode('<br>', $this->getErrors())
         ];
     }
 }

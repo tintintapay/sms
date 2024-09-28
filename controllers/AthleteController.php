@@ -1,6 +1,7 @@
 <?php
 
 require_once 'models/User.php';
+require_once 'core/Database.php';
 
 class AthleteController
 {
@@ -57,7 +58,7 @@ class AthleteController
 
         echo json_encode(['success' => true]);
     }
-    
+
     /**
      * Update athlete status to active or approve
      * @todo send email to athlete for the status of the registration
@@ -76,5 +77,27 @@ class AthleteController
         }
 
         echo json_encode(['success' => true]);
+    }
+
+    public function target_athlete($request)
+    {
+        // Fetching data
+        $sport = $request['sport'] ?? '';
+        $start = $request['start'];
+        $length = $request['length'];
+        $search = $request['search']['value'] ?? $request['search'];
+
+
+        $responseData = $this->user->fetchAthletesBySport($sport, $start, $length, $search);
+
+        $response = [
+            "draw" => intval($request['draw']),
+            "recordsTotal" => $responseData['recordsTotal'],
+            "recordsFiltered" => $responseData['recordsFiltered'],
+            "data" => $responseData['data'],
+        ];
+        
+        echo json_encode($response);
+
     }
 }
