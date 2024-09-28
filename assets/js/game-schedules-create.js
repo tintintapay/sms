@@ -1,4 +1,5 @@
-$(document).ready(function () {
+$(function () {
+
     let selectedIds = [];
     let sportSelected;
 
@@ -58,6 +59,7 @@ $(document).ready(function () {
         }
     });
 
+
     $("#myTable").show();
 
     table
@@ -92,7 +94,7 @@ $(document).ready(function () {
                 });
         });
 
-    $('select#sport').on('change', function() {
+    $('select#sport').on('change', function () {
         sportSelected = $(this).val();
         // clear list
         selectedIds = [];

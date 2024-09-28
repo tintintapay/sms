@@ -1,5 +1,6 @@
 <?php
 session_start();
+date_default_timezone_set('Asia/Manila');
 
 require_once 'controllers/UserController.php';
 require_once 'controllers/HomeController.php';
@@ -56,6 +57,11 @@ $routes = [
     '/sms/coordinator/game-schedules-create' => [
         'GET' => [$gameScheduleController, 'create'],
         'POST' => [$gameScheduleController, 'store']
+    ],
+    '/sms/coordinator/game-schedule-delete' => ['POST' => [$gameScheduleController, 'delete']],
+    '/sms/coordinator/game-schedule' => [
+        'GET' => [$gameScheduleController, 'show'],
+        'POST' => [$gameScheduleController, 'update']
     ],
 
     // Athlete

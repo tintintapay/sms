@@ -35,8 +35,7 @@ $(document).ready(function () {
                 target: [3, 4],
                 searchable: false
             }
-        ],
-        select: true,
+        ]
     });
 
     $("#myTable").show();
