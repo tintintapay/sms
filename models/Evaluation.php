@@ -119,4 +119,21 @@ class Evaluation
         return $stmt->execute();
     }
 
+    public function submit_form($data)
+    {
+        $stmt = $this->db->prepare("UPDATE evaluations SET contract_date = ?, eligibility_form = ?, tryout_form = ?, med_cert = ?, cor = ?, grades = ? WHERE athlete_id = ? and game_schedules_id = ?");
+        $stmt->bind_param('ssssssii', $data['contract_date'], $data['eligibility_form'], $data['tryout_form'], $data['med_cert'], $data['cor'], $data['grades'], $data['athlete_id'], $data['game_schedules_id']);
+
+        return $stmt->execute();
+    }
+
+    public function findByGameIdAndAthleteId($gameId, $userId)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM evaluations WHERE game_schedules_id = ? AND athlete_id = ?");
+        $stmt->bind_param('ii', $gameId, $userId);
+        $stmt->execute();
+        
+        return $stmt->get_result()->fetch_assoc();
+    }
+
 }

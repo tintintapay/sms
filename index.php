@@ -11,6 +11,7 @@ require_once 'controllers/AdminHomeController.php';
 require_once 'controllers/CoordinatorController.php';
 require_once 'controllers/AthleteController.php';
 require_once 'controllers/GameScheduleController.php';
+require_once 'controllers/EvaluationController.php';
 
 // Define your controllers
 $userController = new UserController();
@@ -22,6 +23,7 @@ $adminHomeController = new AdminHomeController();
 $coordinatorController = new CoordinatorController();
 $athleteController = new AthleteController();
 $gameScheduleController = new GameScheduleController();
+$evaluationController = new EvaluationController();
 
 // Define routes
 $routes = [
@@ -66,6 +68,10 @@ $routes = [
 
     // Athlete
     '/sms/athlete/home' => ['GET' => [$athleteHomeController, 'index']],
+    '/sms/athlete/submit-evaluation' => [
+        'GET' => [$evaluationController, 'submit'],
+        'POST' => [$evaluationController, 'submit_form']
+    ],
 
     // Ajax API request
     '/sms/coordinator/target-athlete' => ['POST' => [$athleteController, 'target_athlete']],

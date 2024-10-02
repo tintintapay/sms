@@ -1,4 +1,7 @@
 <?php
+ini_set('post_max_size', '20M');
+ini_set('upload_max_filesize', '20M');
+
 class Helper
 {
     public static function sanitize($data)
@@ -65,26 +68,4 @@ class Helper
         return ['success' => false, 'message' => "No file uploaded."];
     }
 
-    public static function paginate($data, $limit = 10)
-    {
-        $total = count($data);
-        $page = $_GET['page'] ?? 1;
-        $start = ($page - 1) * $limit;
-        $pagedData = array_slice($data, $start, $limit);
-
-        // Generate pagination links
-        $totalPages = ceil($total / $limit);
-        $paginationLinks = '';
-        for ($i = 1; $i <= $totalPages; $i++) {
-            $paginationLinks .= "<a href='?page=$i'>$i</a> ";
-        }
-
-        return [
-            'data' => $pagedData,
-            'total' => $total,
-            'current_page' => $page,
-            'total_pages' => $totalPages,
-            'links' => $paginationLinks
-        ];
-    }
 }

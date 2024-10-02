@@ -63,4 +63,38 @@ class GameSchedules
         return $stmt->execute();
     }
 
+    public function fetchAthleteSchedule()
+    {
+        $stmt = $this->db->prepare(
+            "SELECT g.*,
+            (CASE 
+                WHEN EXISTS (SELECT 1 
+                    FROM evaluations 
+                    WHERE game_schedules_id = g.id 
+                    AND athlete_id = ?
+                )
+                THEN 1 
+                ELSE 0 
+            END) AS is_included,
+            (CASE
+                WHEN EXISTS (SELECT 1 
+                    FROM evaluations 
+                    WHERE game_schedules_id = g.id 
+                    AND athlete_id = ? 
+                    AND eligibility_form IS NULL
+                )
+                THEN 0
+                ELSE 1
+            END) as is_submitted
+            FROM game_schedules g
+            WHERE sport = ?
+            AND deleted_at IS NULL"
+        );
+
+        $stmt->bind_param('iis', $_SESSION['user_id'], $_SESSION['user_id'], $_SESSION['sport']);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }
