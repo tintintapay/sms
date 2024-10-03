@@ -9,15 +9,12 @@ class UserStatus
 
     public static function getDescription($status)
     {
-        switch ($status) {
-            case self::PENDING:
-                return "Pending";
-            case self::ACTIVE:
-                return "Active";
-            case self::INACTIVE:
-                return "Inactive";
-            case self::DELETED:
-                return "Deleted";
-        }
+        return match ($status) {
+            self::PENDING => "Pending",
+            self::ACTIVE => "Active",
+            self::INACTIVE => "Inactive",
+            self::DELETED => "Deleted",
+            default => "",
+        };
     }
 }

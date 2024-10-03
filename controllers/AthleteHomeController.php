@@ -1,6 +1,7 @@
 <?php
 
 require_once 'models/GameSchedules.php';
+require_once 'enums/EvaluationStatus.php';
 
 class AthleteHomeController
 {

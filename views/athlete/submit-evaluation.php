@@ -27,14 +27,14 @@
                     Submit Evaluation
                 </div>
                 <hr>
-                <?php if ($isSubmited): ?>
+                <?php if ($eval['status'] === EvaluationStatus::SUBMITTED): ?>
                 <div class="section">
                     <div class="card">
                         <h1>Evaluation already submitted</h1>
                         <input type="hidden" name="game_schedules_id" id="game_schedules_id" value="<?= $gameId ?>">
                     </div>
                 </div>
-                <?php else:?>
+                <?php elseif ($eval['status'] === EvaluationStatus::PENDING):?>
                 <div class="section">
                     <div class="card">
                         <div class="card-body">

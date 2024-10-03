@@ -32,6 +32,10 @@ body {
 
 /* Layout */
 
+.text-right{
+  text-align: right;
+}
+
 .main-content {
   display: flex;
   flex: 1;

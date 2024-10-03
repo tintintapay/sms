@@ -66,7 +66,7 @@ class GameSchedules
     public function fetchAthleteSchedule()
     {
         $stmt = $this->db->prepare(
-            "SELECT g.*,
+            "SELECT g.*, e.status,
             (CASE 
                 WHEN EXISTS (SELECT 1 
                     FROM evaluations 
@@ -75,23 +75,16 @@ class GameSchedules
                 )
                 THEN 1 
                 ELSE 0 
-            END) AS is_included,
-            (CASE
-                WHEN EXISTS (SELECT 1 
-                    FROM evaluations 
-                    WHERE game_schedules_id = g.id 
-                    AND athlete_id = ? 
-                    AND eligibility_form IS NULL
-                )
-                THEN 0
-                ELSE 1
-            END) as is_submitted
+            END) AS is_included
             FROM game_schedules g
-            WHERE sport = ?
-            AND deleted_at IS NULL"
+            JOIN evaluations e
+            ON e.game_schedules_id = g.id
+            WHERE g.sport = ?
+            AND e.athlete_id = ?
+            AND g.deleted_at IS NULL"
         );
 
-        $stmt->bind_param('iis', $_SESSION['user_id'], $_SESSION['user_id'], $_SESSION['sport']);
+        $stmt->bind_param('isi', $_SESSION['user_id'], $_SESSION['sport'], $_SESSION['user_id']);
         $stmt->execute();
 
         $result = $stmt->get_result();

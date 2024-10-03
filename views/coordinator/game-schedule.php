@@ -33,6 +33,9 @@
                 <hr>
                 <div class="section">
                     <div class="card">
+                        <div class="text-right">
+                            <a href="evaluations?game-id=<?= $game['id'] ?>" class="button button-warning button-xs">Show submission</a>
+                        </div>
                         <form action="game-schedule" method="post">
                             <div class="msg" style="display:<?php echo !empty($flash['message']) ? 'block' : 'none' ?>">
                                 <?php echo $flash['message'] ?? ''; ?>

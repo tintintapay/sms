@@ -48,7 +48,9 @@
                                         <div class="game-title"><?= $schedule['game_title'] ?></div>
                                         <div class="game-schedule"><?= $schedule['schedule'] ?></div>
                                     </div>
-                                    <?php if ($schedule['is_included'] && !$schedule['is_submitted']): ?>
+                                    <?php if ($schedule['is_included']): ?>
+                                        <!-- PENDING -->
+                                        <?php if ($schedule['status'] === EvaluationStatus::PENDING):?>
                                         <div class="game-action">
                                             <div class="game-schedule">Submission until:
                                                 <?php
@@ -60,12 +62,23 @@
                                             <a href="submit-evaluation?game-id=<?= $schedule['id'] ?>"
                                                 class="button button-success">Submit Evaluation</a>
                                         </div>
+                                        <!-- SUBMITTED -->
+                                        <?php elseif($schedule['status'] === EvaluationStatus::SUBMITTED): ?>
+                                            <div class="game-action">
+                                                Submitted!
+                                            </div>
+                                        <!-- APPROVED -->
+                                        <?php elseif ($schedule['status'] === EvaluationStatus::APPROVED): ?>
+                                            <div class="game-action">
+                                                Evaluation Approved!
+                                            </div>
+                                        <!-- DISAPPROVED -->
+                                        <?php elseif ($schedule['status'] === EvaluationStatus::DISAPPROVED): ?>
+                                            <div class="game-action">
+                                                Evaluation Disapproved!
+                                            </div>
+                                        <?php endif; ?>
                                     <?php endif; ?>
-                                    <?php if($schedule['is_submitted']):?>
-                                        <div class="game-action">
-                                            Submitted!
-                                        </div>
-                                    <?php endif;?>
                                 </div>
                             <?php endforeach; ?>
                         </div>

@@ -65,6 +65,8 @@ $routes = [
         'GET' => [$gameScheduleController, 'show'],
         'POST' => [$gameScheduleController, 'update']
     ],
+    '/sms/coordinator/evaluations' => ['GET' => [$evaluationController, 'show']],
+    '/sms/coordinator/evaluations-approve-disapprove' => ['POST' => [$evaluationController, 'approve_disapprove']],
 
     // Athlete
     '/sms/athlete/home' => ['GET' => [$athleteHomeController, 'index']],

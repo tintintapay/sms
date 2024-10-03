@@ -136,4 +136,29 @@ class Evaluation
         return $stmt->get_result()->fetch_assoc();
     }
 
+    public function findAllByGameIdJoinUsers($gameId, $fetchDeleted = false)
+    {
+        $sql = "SELECT e.*, CONCAT(ui.first_name, ' ', IFNULL(ui.middle_name, ''), ' ', ui.last_name) AS full_name, ui.age, u.email, ui.year_level, ui.course FROM evaluations e LEFT JOIN user_info ui ON e.athlete_id = ui.user_id LEFT JOIN users u ON u.id = e.athlete_id WHERE e.game_schedules_id = ?";
+        // Fetch even deleted.
+        if (!$fetchDeleted) {
+            $sql .= " AND e.deleted_at IS NULL";
+        }
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("i", $gameId);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function approve_disapprove($id, $status)
+    {
+        $stmt = $this->db->prepare("UPDATE evaluations SET status = ? WHERE id = ?");
+        $stmt->bind_param("si", $status, $id);
+
+        return $stmt->execute();
+    }
+
 }

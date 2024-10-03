@@ -3,6 +3,7 @@
 require_once 'models/Evaluation.php';
 require_once 'models/GameSchedules.php';
 require_once 'core/Helper.php';
+require_once 'enums/EvaluationStatus.php';
 
 class EvaluationController
 {
@@ -37,15 +38,10 @@ class EvaluationController
         // Deadline
         $scheduleDate = new DateTime($gameSched['schedule']);
         $deadlineDate = (clone $scheduleDate)->modify('-7 days');
-        
+
         // print_r([$scheduleDate, $deadlineDate]);die();
         if ($deadlineDate < new DateTime()) {
             Helper::redirect('404-not-found');
-        }
-        
-        $isSubmited = false;
-        if ($eval['eligibility_form'] !== null) {
-            $isSubmited = true;
         }
 
         include 'views/athlete/submit-evaluation.php';
@@ -56,7 +52,7 @@ class EvaluationController
         $userId = $_SESSION['user_id'];
         $_GET['game-id'] = $request['game_schedules_id'];
         $gameId = $request['game_schedules_id'];
-        
+
         $directory = 'assets/downloadable';
         $files = array_diff(scandir($directory), array('.', '..'));
 
@@ -116,11 +112,11 @@ class EvaluationController
             'athlete_id' => $request['athlete_id'],
             'eligibility_form' => $eligi_result['file'],
             'tryout_form' => $tryout_result['file'],
-            'med_cert'=> $med_result['file'],
-            'cor'=> $cor_result['file'],
-            'grades'=> $grades_result['file'],
+            'med_cert' => $med_result['file'],
+            'cor' => $cor_result['file'],
+            'grades' => $grades_result['file'],
         ];
-        
+
         $this->evaluation->submit_form($data);
 
         $eval = $this->evaluation->findByGameIdAndAthleteId($gameId, $_SESSION['user_id']);
@@ -130,5 +126,35 @@ class EvaluationController
         }
 
         return include 'views/athlete/submit-evaluation.php';
+    }
+
+    // Coordinator
+    public function show($params)
+    {
+        // header('Content-Type: application/json');
+        $gameId = $params['game-id'];
+
+        $evaluations = $this->evaluation->findAllByGameIdJoinUsers($gameId, true);
+        $gameSched = $this->gameScheds->findById($gameId);
+
+        // echo json_encode($evaluations);
+
+        return include 'views/coordinator/evaluations.php';
+    }
+
+    // TODO: send an email to athlete
+    public function approve_disapprove($request)
+    {
+        header('Content-Type: application/json');
+
+        $status = ($request['action'] === 'approve')
+            ? EvaluationStatus::APPROVED
+            : EvaluationStatus::DISAPPROVED;
+
+        $response = $this->evaluation->approve_disapprove($request['id'], $status);
+
+        echo json_encode([
+            'success' => $response
+        ]);
     }
 }
