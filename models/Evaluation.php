@@ -119,4 +119,46 @@ class Evaluation
         return $stmt->execute();
     }
 
+    public function submit_form($data)
+    {
+        $stmt = $this->db->prepare("UPDATE evaluations SET contract_date = ?, eligibility_form = ?, tryout_form = ?, med_cert = ?, cor = ?, grades = ? WHERE athlete_id = ? and game_schedules_id = ?");
+        $stmt->bind_param('ssssssii', $data['contract_date'], $data['eligibility_form'], $data['tryout_form'], $data['med_cert'], $data['cor'], $data['grades'], $data['athlete_id'], $data['game_schedules_id']);
+
+        return $stmt->execute();
+    }
+
+    public function findByGameIdAndAthleteId($gameId, $userId)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM evaluations WHERE game_schedules_id = ? AND athlete_id = ?");
+        $stmt->bind_param('ii', $gameId, $userId);
+        $stmt->execute();
+        
+        return $stmt->get_result()->fetch_assoc();
+    }
+
+    public function findAllByGameIdJoinUsers($gameId, $fetchDeleted = false)
+    {
+        $sql = "SELECT e.*, CONCAT(ui.first_name, ' ', IFNULL(ui.middle_name, ''), ' ', ui.last_name) AS full_name, ui.age, u.email, ui.year_level, ui.course FROM evaluations e LEFT JOIN user_info ui ON e.athlete_id = ui.user_id LEFT JOIN users u ON u.id = e.athlete_id WHERE e.game_schedules_id = ?";
+        // Fetch even deleted.
+        if (!$fetchDeleted) {
+            $sql .= " AND e.deleted_at IS NULL";
+        }
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("i", $gameId);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function approve_disapprove($id, $status)
+    {
+        $stmt = $this->db->prepare("UPDATE evaluations SET status = ? WHERE id = ?");
+        $stmt->bind_param("si", $status, $id);
+
+        return $stmt->execute();
+    }
+
 }

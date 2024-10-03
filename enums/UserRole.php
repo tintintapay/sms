@@ -8,18 +8,11 @@ class UserRole
 
     public static function getDescription($role)
     {
-        switch ($role) {
-            case UserRole::ADMIN:
-                return 'Administrator';
-
-            case UserRole::COORDINATOR:
-                return 'Coordinator';
-
-            case UserRole::ATHLETE:
-                return 'Athelete';
-
-            default:
-                return "----";
-        }
+        return match ($role) {
+            self::ADMIN => 'Administrator',
+            self::COORDINATOR => 'Coordinator',
+            self::ATHLETE => 'Athelete',
+            default => "",
+        };
     }
 }

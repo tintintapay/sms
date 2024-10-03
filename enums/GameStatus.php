@@ -8,18 +8,11 @@ class GameStatus
 
     public static function getDescription($status)
     {
-        switch ($status) {
-            case GameStatus::INACTIVE:
-                return 'Inactive';
-
-            case GameStatus::ACTIVE:
-                return 'Active';
-
-            case GameStatus::COMPLETED:
-                return 'Completed';
-
-            default:
-                return "";
-        }
+        return match ($status) {
+            self::INACTIVE => 'Inactive',
+            self::ACTIVE => 'Active',
+            self::COMPLETED => 'Completed',
+            default => "",
+        };
     }
 }

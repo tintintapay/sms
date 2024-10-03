@@ -10,35 +10,24 @@ class Sport
 
     public static function getDescription($sport)
     {
-        switch ($sport) {
-            case Sport::BASE_BALL:
-                return 'Base Ball';
-
-            case Sport::BASKET_BALL:
-                return 'Basket Ball';
-
-            case Sport::SOCCER:
-                return 'Soccer';
-
-            case Sport::SWIMMING:
-                return 'Swimming';
-
-            case Sport::TENNIS:
-                return 'Tennis';
-
-            default:
-                return "";
-        }
+        return match ($sport) {
+            self::BASE_BALL => 'Base Ball',
+            self::BASKET_BALL => 'Basket Ball',
+            self::SOCCER => 'Soccer',
+            self::SWIMMING => 'Swimming',
+            self::TENNIS => 'Tennis',
+            default => "",
+        };
     }
 
     public static function fetchList()
     {
         return [
-            Sport::BASE_BALL => self::getDescription(Sport::BASE_BALL),
-            Sport::BASKET_BALL => self::getDescription(Sport::BASKET_BALL),
-            Sport::SOCCER => self::getDescription(Sport::SOCCER),
-            Sport::SWIMMING => self::getDescription(Sport::SWIMMING),
-            Sport::TENNIS => self::getDescription(Sport::TENNIS),
+            self::BASE_BALL => self::getDescription(self::BASE_BALL),
+            self::BASKET_BALL => self::getDescription(self::BASKET_BALL),
+            self::SOCCER => self::getDescription(self::SOCCER),
+            self::SWIMMING => self::getDescription(self::SWIMMING),
+            self::TENNIS => self::getDescription(self::TENNIS),
         ];
     }
 }
