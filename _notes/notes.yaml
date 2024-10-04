@@ -13,11 +13,11 @@
 - approved logo that tells or represent that their account was approved that is base on the database status
 - allowance button - allows the athletes to tract their allowance , like kapag clinick po may message lang containing information that tells whether their allowance was process or not yet applicable if not varsity
 -dapat may expand button sa announcements that allows user to view it more visible
-- apply evaluation button , dito dapat mag didirect sa evaluation form
-:TODO: Apply evaluation for restricted to coordinator list. athlete will have a application form for evaluation(restrict 1 application only)
+:DONE: - apply evaluation button , dito dapat mag didirect sa evaluation form
+:DONE: Apply evaluation for restricted to coordinator list. athlete will have a application form for evaluation(restrict 1 application only)
 
 - forms dapat po yung mga file name siguro is clickable nalang instead of adding an download button and all this forms was came from the coordinator
-:TODO: Create upload module for coordinator. can upload multiple file. Display file to athletes home page.(downloadable)
+:DONE: Create upload module for coordinator. can upload multiple file. Display file to athletes home page.(downloadable)
 File clickable for download
 
 - schedule dapat dynamic yung image and allow user to download yung print button ( note okay na yung print button)

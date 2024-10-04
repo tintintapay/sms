@@ -7,28 +7,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/admin_profile.css">
     <link rel="stylesheet" href="../assets/css/sms-table.css">
-    <link rel="stylesheet" href="../assets/css/main.css">
     <script src="../vendor/jquery/jquery-3.7.1.js"></script>
     <?php include 'views/common/datatables.php'; ?>
-    <script src="../assets/js/coordinators.js"></script>
+    <script src="../assets/js/manage-athlete.js"></script>
 </head>
 
 <body>
     <!-- HEADER -->
     <?php include 'common/header.php'; ?>
     <div class="container">
+
         <div class="main-content">
             <!-- SIDE NAVIGATION -->
             <?php include 'common/sidenav.php'; ?>
-
-            <div class="right-panel" style="color:black">
+            <div class="right-panel">
                 <div class="page-title">
-                    Coordinators
-                    <div class="header-action">
-                        <a href="coordinator-add" class="button button-success button-md">Add</a>
-                    </div>
+                    Manage Athlete
                 </div>
                 <hr>
                 <div class="section">
@@ -42,36 +39,39 @@
                                     <th>Age</th>
                                     <th>Phone Number</th>
                                     <th>Address</th>
+                                    <th>School</th>
+                                    <th>Sport</th>
                                     <th>Status</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php
-                                if (!empty($coordinators)) {
-                                    foreach ($coordinators as $coordinator): ?>
-                                        <tr class="<?= $coordinator['status'] ?>">
-                                            <td><?= $coordinator['full_name'] ?></td>
-                                            <td><?= $coordinator['email'] ?></td>
-                                            <td><?= $coordinator['gender'] ?></td>
-                                            <td><?= $coordinator['age'] ?></td>
-                                            <td><?= $coordinator['phone_number'] ?></td>
-                                            <td><?= $coordinator['address'] ?></td>
-                                            <td><?= $coordinator['status'] ?></td>
+                                <?php if (!empty($athletes)): ?>
+                                    <?php foreach ($athletes as $athlete): ?>
+                                        <tr class="<?= $athlete['status'] ?>">
+                                            <td><?= $athlete['full_name'] ?></td>
+                                            <td><?= $athlete['email'] ?></td>
+                                            <td><?= $athlete['gender'] ?></td>
+                                            <td><?= $athlete['age'] ?></td>
+                                            <td><?= $athlete['phone_number'] ?></td>
+                                            <td><?= $athlete['address'] ?></td>
+                                            <td><?= $athlete['school'] ?></td>
+                                            <td><?= $athlete['sport'] ?></td>
+                                            <td><?= $athlete['status'] ?></td>
                                             <td>
-                                                <a href="coordinator?id=<?= $coordinator['user_id'] ?>" class="button button-primary button-xs">View</a>
+                                                <a href="athlete?id=<?= $athlete['user_id'] ?>"
+                                                    class="button button-primary button-xs">View</a>
                                             </td>
                                         </tr>
-                                    <?php endforeach;
-                                } else {
-                                    ?>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
                                     <tr>
-                                        <td colspan="6" style="text-align: center;">No record...</td>
+                                        <td colspan="10" style="text-align: center;">No record...</td>
                                     </tr>
-                                    <?php
-                                } ?>
+                                <?php endif; ?>
                             </tbody>
                         </table>
+
                     </div>
                 </div>
 
@@ -79,7 +79,6 @@
             </div>
         </div>
     </div>
-    <!-- <script src="../assets/js/admin_profile.js"></script> -->
 </body>
 
 </html>

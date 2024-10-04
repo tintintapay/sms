@@ -121,8 +121,8 @@ class Evaluation
 
     public function submit_form($data)
     {
-        $stmt = $this->db->prepare("UPDATE evaluations SET contract_date = ?, eligibility_form = ?, tryout_form = ?, med_cert = ?, cor = ?, grades = ? WHERE athlete_id = ? and game_schedules_id = ?");
-        $stmt->bind_param('ssssssii', $data['contract_date'], $data['eligibility_form'], $data['tryout_form'], $data['med_cert'], $data['cor'], $data['grades'], $data['athlete_id'], $data['game_schedules_id']);
+        $stmt = $this->db->prepare("UPDATE evaluations SET contract_date = ?, eligibility_form = ?, tryout_form = ?, med_cert = ?, cor = ?, grades = ?, status = ? WHERE athlete_id = ? and game_schedules_id = ?");
+        $stmt->bind_param('sssssssii', $data['contract_date'], $data['eligibility_form'], $data['tryout_form'], $data['med_cert'], $data['cor'], $data['grades'], $data['status'], $data['athlete_id'], $data['game_schedules_id']);
 
         return $stmt->execute();
     }

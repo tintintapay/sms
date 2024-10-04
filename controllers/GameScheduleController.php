@@ -6,6 +6,7 @@ require_once 'models/Evaluation.php';
 require_once 'requests/GameSchedulesRequest.php';
 require_once 'enums/GameStatus.php';
 require_once 'core/Helper.php';
+require_once 'enums/EvaluationStatus.php';
 
 class GameScheduleController
 {
@@ -64,7 +65,8 @@ class GameScheduleController
         foreach ($athletes as $athlete) {
             $evalData[] = [
                 'game_schedules_id' => $gameId,
-                'athlete_id' => $athlete
+                'athlete_id' => $athlete,
+                'status' => EvaluationStatus::PENDING
             ];
         }
 

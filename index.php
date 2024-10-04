@@ -48,6 +48,8 @@ $routes = [
     ],
     '/sms/admin/coordinator' => ['GET' => [$coordinatorController, 'show']],
     '/sms/admin/coordinator-update' => ['GET' => [$coordinatorController, 'update']],
+    '/sms/admin/manage-athlete' => ['GET' => [$athleteController, 'admin_index']],
+    '/sms/admin/announcement' => ['GET' => [$athleteController, 'admin_index']],
 
     //Coordinator
     '/sms/coordinator/home' => ['GET' => [$coordinatorHomeController, 'index']],
