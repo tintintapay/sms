@@ -1,19 +1,11 @@
 <?php
 
-require_once 'core/Database.php';
+require_once 'core/Model.php';
 require_once 'enums/UserRole.php';
 require_once 'enums/UserStatus.php';
 
-class User
+class User extends Model
 {
-    private $db;
-
-    public function __construct()
-    {
-        $database = new Database();
-        $this->db = $database->getConnection();
-    }
-
     public function insertUser($data): int|null
     {
         $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);

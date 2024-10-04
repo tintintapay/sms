@@ -1,17 +1,9 @@
 <?php
 
-require_once 'core/Database.php';
+require_once 'core/Model.php';
 
-class UserInfo
+class UserInfo extends Model
 {
-    private $db;
-
-    public function __construct()
-    {
-        $database = new Database();
-        $this->db = $database->getConnection();
-    }
-
     public function insertUserInfo($data)
     {
         $stmt = $this->db->prepare("INSERT INTO user_info (user_id, first_name, last_name, middle_name, gender, year_level, course, address, school, guardian, age, sport, phone_number, cor, psa, medical_cert, picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");

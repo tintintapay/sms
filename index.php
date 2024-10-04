@@ -12,6 +12,7 @@ require_once 'controllers/CoordinatorController.php';
 require_once 'controllers/AthleteController.php';
 require_once 'controllers/GameScheduleController.php';
 require_once 'controllers/EvaluationController.php';
+require_once 'controllers/AnnouncementController.php';
 
 // Define your controllers
 $userController = new UserController();
@@ -24,6 +25,7 @@ $coordinatorController = new CoordinatorController();
 $athleteController = new AthleteController();
 $gameScheduleController = new GameScheduleController();
 $evaluationController = new EvaluationController();
+$announcementController = new AnnouncementController();
 
 // Define routes
 $routes = [
@@ -49,7 +51,13 @@ $routes = [
     '/sms/admin/coordinator' => ['GET' => [$coordinatorController, 'show']],
     '/sms/admin/coordinator-update' => ['GET' => [$coordinatorController, 'update']],
     '/sms/admin/manage-athlete' => ['GET' => [$athleteController, 'admin_index']],
-    '/sms/admin/announcement' => ['GET' => [$athleteController, 'admin_index']],
+    '/sms/admin/announcements' => ['GET' => [$announcementController, 'index']],
+    '/sms/admin/announcements-create' => [
+        'GET' => [$announcementController, 'create'],
+        'POST' => [$announcementController, 'store']
+    ],
+    '/sms/admin/announcement' => ['GET' => [$announcementController, 'show']],
+    '/sms/admin/announcement-delete' => ['POST' => [$announcementController, 'delete']],
 
     //Coordinator
     '/sms/coordinator/home' => ['GET' => [$coordinatorHomeController, 'index']],

@@ -1,16 +1,9 @@
 <?php
 
-require_once 'core/Database.php';
+require_once 'core/Model.php';
 
-class Evaluation
+class Evaluation extends Model
 {
-    private $db;
-    public function __construct()
-    {
-        $database = new Database();
-        $this->db = $database->getConnection();
-    }
-
     public function upsertUser($table, $data)
     {
         $columns = [];
