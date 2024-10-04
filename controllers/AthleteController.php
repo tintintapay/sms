@@ -100,4 +100,12 @@ class AthleteController
         echo json_encode($response);
 
     }
+
+    // Admin
+    public function admin_index()
+    {
+        $athletes = $this->user->fetchAllAthleteWithInfo();
+
+        return include 'views/admin/manage-athlete.php';
+    }
 }

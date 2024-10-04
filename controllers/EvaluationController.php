@@ -115,6 +115,7 @@ class EvaluationController
             'med_cert' => $med_result['file'],
             'cor' => $cor_result['file'],
             'grades' => $grades_result['file'],
+            'status' => EvaluationStatus::SUBMITTED
         ];
 
         $this->evaluation->submit_form($data);
