@@ -17,7 +17,7 @@ $(document).ready(function () {
         columnDefs: [
             {
                 target: [0, 1, 2],
-                searchable: false
+                searchable: true
             },
         ]
     });

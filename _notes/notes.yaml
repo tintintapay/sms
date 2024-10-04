@@ -16,7 +16,7 @@
 :DONE: - apply evaluation button , dito dapat mag didirect sa evaluation form
 :DONE: Apply evaluation for restricted to coordinator list. athlete will have a application form for evaluation(restrict 1 application only)
 
-- forms dapat po yung mga file name siguro is clickable nalang instead of adding an download button and all this forms was came from the coordinator
+:DONE: - forms dapat po yung mga file name siguro is clickable nalang instead of adding an download button and all this forms was came from the coordinator
 :DONE: Create upload module for coordinator. can upload multiple file. Display file to athletes home page.(downloadable)
 File clickable for download
 
@@ -48,7 +48,7 @@ File clickable for download
 - list field is in where they can see the list of athletes or forms na pwede nila ishare sa athletes
 - chart same thing with the chart of admin and print to print that chart only and dapat mag expand button din
 [  ] Approval form
-- ito dapat yung makikita kapag clinick ko yung view sa lis t of approval field. Na nakay coordinator page na dapat ang lalabas ditong information is kung ano yung yung pinasa ni user upon registration  and yung parang file button po dito is kapag click ko po ito dapat mag didisplay yung mga file na pinasa ni athletes and the accept button was kapag clinick ni coordinator dapat magrereflect na sa data status ni athletes na approved and kapag declined was magrereflect din at kapag inaccept or hindi dapat may matatanggap si user na email whether approved or decline yung registration nila
+:DONE: - ito dapat yung makikita kapag clinick ko yung view sa lis t of approval field. Na nakay coordinator page na dapat ang lalabas ditong information is kung ano yung yung pinasa ni user upon registration  and yung parang file button po dito is kapag click ko po ito dapat mag didisplay yung mga file na pinasa ni athletes and the accept button was kapag clinick ni coordinator dapat magrereflect na sa data status ni athletes na approved and kapag declined was magrereflect din at kapag inaccept or hindi dapat may matatanggap si user na email whether approved or decline yung registration nila
 [] profiling the players
  - ito kuya ay papasok dito sa part ni coordinator  yung athletes po nadiscuss ko po ito dito sa coordinator page and also dapat lahat ng info dito ay base sa lahat ng information na base sa records ni athletes as wells us kung saan sya naglaro na pwede po sigurong yung mga records na yun is base na sa details na binibigay ng mga nakaassign sa mga games or kada tournament
 
