@@ -51,13 +51,6 @@ $routes = [
     '/sms/admin/coordinator' => ['GET' => [$coordinatorController, 'show']],
     '/sms/admin/coordinator-update' => ['GET' => [$coordinatorController, 'update']],
     '/sms/admin/manage-athlete' => ['GET' => [$athleteController, 'admin_index']],
-    '/sms/admin/announcements' => ['GET' => [$announcementController, 'index']],
-    '/sms/admin/announcements-create' => [
-        'GET' => [$announcementController, 'create'],
-        'POST' => [$announcementController, 'store']
-    ],
-    '/sms/admin/announcement' => ['GET' => [$announcementController, 'show']],
-    '/sms/admin/announcement-delete' => ['POST' => [$announcementController, 'delete']],
 
     //Coordinator
     '/sms/coordinator/home' => ['GET' => [$coordinatorHomeController, 'index']],
@@ -77,6 +70,13 @@ $routes = [
     ],
     '/sms/coordinator/evaluations' => ['GET' => [$evaluationController, 'show']],
     '/sms/coordinator/evaluations-approve-disapprove' => ['POST' => [$evaluationController, 'approve_disapprove']],
+    '/sms/coordinator/announcements' => ['GET' => [$announcementController, 'index']],
+    '/sms/coordinator/announcements-create' => [
+        'GET' => [$announcementController, 'create'],
+        'POST' => [$announcementController, 'store']
+    ],
+    '/sms/coordinator/announcement' => ['GET' => [$announcementController, 'show']],
+    '/sms/coordinator/announcement-delete' => ['POST' => [$announcementController, 'delete']],
 
     // Athlete
     '/sms/athlete/home' => ['GET' => [$athleteHomeController, 'index']],

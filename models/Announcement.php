@@ -4,9 +4,9 @@ require_once 'core/Model.php';
 
 class Announcement extends Model
 {
-    public function fetchAllAnnouncement()
+    public function fetchAll()
     {
-        $stmt = $this->db->prepare("SELECT a.*, CONCAT(u.first_name, ' ', IFNULL(u.middle_name, ''), ' ', u.last_name) AS created FROM announcements a JOIN user_info u ON u.user_id = a.created_user WHERE deleted_at IS NULL");
+        $stmt = $this->db->prepare("SELECT a.*, CONCAT(u.first_name, ' ', IFNULL(u.middle_name, ''), ' ', u.last_name) AS created FROM announcements a JOIN user_info u ON u.user_id = a.created_user WHERE deleted_at IS NULL ORDER BY id DESC");
         $stmt->execute();
 
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);

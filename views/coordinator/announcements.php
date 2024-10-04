@@ -1,4 +1,4 @@
-<?php require 'views/admin/config.php'; ?>
+<?php require 'views/coordinator/config.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">

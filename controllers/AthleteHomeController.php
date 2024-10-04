@@ -17,7 +17,7 @@ class AthleteHomeController
 
     public function index()
     {
-        $announcements = $this->announcement->fetchAllAnnouncement();
+        $announcements = $this->announcement->fetchAll();
         $schedules = $this->gameScheds->fetchAthleteSchedule();
 
         include 'views/athlete/index.php';

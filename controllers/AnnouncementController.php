@@ -15,14 +15,14 @@ class AnnouncementController
 
     public function index()
     {
-        $announcements = $this->announcement->fetchAllAnnouncement();
+        $announcements = $this->announcement->fetchAll();
 
-        return include 'views/admin/announcements.php';
+        return include 'views/coordinator/announcements.php';
     }
 
     public function create()
     {
-        return include 'views/admin/announcements-create.php';
+        return include 'views/coordinator/announcements-create.php';
     }
 
     public function store($request)
@@ -34,7 +34,7 @@ class AnnouncementController
         $description = Helper::sanitize($request['description']);
 
         if (!$flash['isValid']) {
-            return include 'views/admin/announcements-create.php';
+            return include 'views/coordinator/announcements-create.php';
         }
 
         $data = [
@@ -56,7 +56,7 @@ class AnnouncementController
 
         $request['id'] = $params['id'];
 
-        return include 'views/admin/announcement.php';
+        return include 'views/coordinator/announcement.php';
     }
 
     public function delete($request)
