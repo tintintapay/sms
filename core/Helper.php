@@ -2,6 +2,13 @@
 ini_set('post_max_size', '20M');
 ini_set('upload_max_filesize', '20M');
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+//Load Composer's autoloader
+require_once 'vendor/phpmailer/vendor/autoload.php';
+
 class Helper
 {
     public static function sanitize($data)
@@ -66,6 +73,51 @@ class Helper
         }
 
         return ['success' => false, 'message' => "No file uploaded."];
+    }
+
+    public static function sendMail($data)
+    {
+        // use
+        // $template = file_get_contents('template/mail/allowance.html');
+        // $body = str_replace('[Recipient_Name]', 'Elmers Glue', $template);
+        // $data = [
+        //     'email' => 'magnomagz@gmail.com',
+        //     'name' => 'Elmer',
+        //     'subject' => 'Test',
+        //     'body' => $body,
+        // ];
+        // Helper::sendMail($data);
+
+        $config = require 'config.php';
+        //Create an instance; passing `true` enables exceptions
+        $mail = new PHPMailer(true);
+
+        try {
+            //Server settings
+            // $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = $config['mailer']['username'];
+            $mail->Password = $config['mailer']['password'];
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+            $mail->Port = 465;
+
+            //Recipients
+            $mail->setFrom('from@example.com', 'Sportan Portal');
+            $mail->addAddress($data['email'], $data['name']);
+
+            //Content
+            $mail->isHTML(true);
+            $mail->Subject = $data['subject'];
+            $mail->Body = $data['body'];
+
+            if ($mail->send()) {
+                return true;
+            }
+        } catch (Exception $e) {
+            return "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
     }
 
 }
