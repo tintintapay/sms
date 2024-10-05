@@ -104,8 +104,14 @@ class Helper
             $mail->Port = 465;
 
             //Recipients
-            $mail->setFrom('from@example.com', 'Sportan Portal');
-            $mail->addAddress($data['email'], $data['name']);
+            $mail->setFrom($config['mailer']['username'], 'Sportan Portal');
+            if (is_array($data['email'])) {
+                foreach ($data['email'] as $email) {
+                    $mail->addAddress($email['email'], $email['name']);
+                }
+            } else {
+                $mail->addAddress($data['email'], $data['name']);
+            }
 
             //Content
             $mail->isHTML(true);
