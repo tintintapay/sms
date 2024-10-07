@@ -143,7 +143,6 @@ class EvaluationController
         return include 'views/coordinator/evaluations.php';
     }
 
-    // TODO: send an email to athlete
     public function approve_disapprove($request)
     {
         header('Content-Type: application/json');
@@ -153,6 +152,22 @@ class EvaluationController
             : EvaluationStatus::DISAPPROVED;
 
         $response = $this->evaluation->approve_disapprove($request['id'], $status);
+        
+        $athlete = $this->evaluation->findAthleteById($request['id']);
+
+        $template = $status === EvaluationStatus::APPROVED
+            ? file_get_contents('template/evaluation/approve.html')
+            : file_get_contents('template/evaluation/disapprove.html');
+
+        $body = str_replace('[Athlete_Name]', $athlete['full_name'], $template);
+        $data = [
+            'email' => $athlete['email'],
+            'name' => $athlete['full_name'],
+            'subject' => 'Evaluation Result',
+            'body' => $body,
+        ];
+
+        Helper::sendMail($data);
 
         echo json_encode([
             'success' => $response

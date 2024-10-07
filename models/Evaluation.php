@@ -154,4 +154,12 @@ class Evaluation extends Model
         return $stmt->execute();
     }
 
+    public function findAthleteById($eval_id)
+    {
+        $stmt = $this->db->prepare("SELECT u.email, CONCAT(ui.first_name, ' ', IFNULL(ui.middle_name, ''), ' ', ui.last_name) AS full_name FROM evaluations e LEFT JOIN user_info ui ON ui.user_id = e.athlete_id LEFT JOIN users u ON u.id = e.athlete_id WHERE e.id = ?");
+        $stmt->bind_param("i", $eval_id);
+        $stmt->execute();
+
+        return $stmt->get_result()->fetch_assoc();
+    }
 }

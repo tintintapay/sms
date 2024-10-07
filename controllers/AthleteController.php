@@ -2,6 +2,7 @@
 
 require_once 'models/User.php';
 require_once 'core/Database.php';
+require_once 'core/Helper.php';
 
 class AthleteController
 {
@@ -41,7 +42,6 @@ class AthleteController
 
     /**
      * Update athlete status to active or approve
-     * @todo send email to athlete for the status of the registration
      * 
      * @param mixed $request
      * @return void
@@ -50,6 +50,19 @@ class AthleteController
     {
         header('Content-Type: application/json');
         $res = $this->user->updateStatus($request['id'], UserStatus::ACTIVE);
+
+        $user = $this->user->getUser($request['id']);
+
+        $template = file_get_contents('template/account/approve.html');
+        $body = str_replace('[Athlete_Name]', $user['full_name'], $template);
+        $data = [
+            'email' => $user['email'],
+            'name' => $user['full_name'],
+            'subject' => 'Account Notice',
+            'body' => $body,
+        ];
+
+        Helper::sendMail($data);
 
         if (!$res) {
             echo json_encode(['success' => false]);
@@ -61,7 +74,6 @@ class AthleteController
 
     /**
      * Update athlete status to active or approve
-     * @todo send email to athlete for the status of the registration
      * 
      * @param mixed $request
      * @return void
@@ -70,6 +82,19 @@ class AthleteController
     {
         header('Content-Type: application/json');
         $res = $this->user->updateStatus($request['id'], UserStatus::DELETED);
+
+        $user = $this->user->getUser($request['id']);
+
+        $template = file_get_contents('template/account/disapprove.html');
+        $body = str_replace('[Athlete_Name]', $user['full_name'], $template);
+        $data = [
+            'email' => $user['email'],
+            'name' => $user['full_name'],
+            'subject' => 'Account Notice',
+            'body' => $body,
+        ];
+
+        Helper::sendMail($data);
 
         if (!$res) {
             echo json_encode(['success' => false]);
