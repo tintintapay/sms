@@ -1,19 +1,11 @@
 <?php
 
-require_once 'core/Database.php';
+require_once 'core/Model.php';
 require_once 'enums/UserRole.php';
 require_once 'enums/UserStatus.php';
 
-class User
+class User extends Model
 {
-    private $db;
-
-    public function __construct()
-    {
-        $database = new Database();
-        $this->db = $database->getConnection();
-    }
-
     public function insertUser($data): int|null
     {
         $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);
@@ -266,35 +258,5 @@ class User
             "data" => $returnData,
         ];
 
-    }
-
-    //========================================
-
-    public function readAll()
-    {
-        $result = $this->db->query("SELECT * FROM users");
-        return $result->fetch_all(MYSQLI_ASSOC);
-    }
-
-    public function readById($id)
-    {
-        $stmt = $this->db->prepare("SELECT * FROM users WHERE id = ?");
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        return $stmt->get_result()->fetch_assoc();
-    }
-
-    public function update($id, $name, $username)
-    {
-        $stmt = $this->db->prepare("UPDATE users SET name = ?, username = ? WHERE id = ?");
-        $stmt->bind_param("ssi", $name, $username, $id);
-        return $stmt->execute();
-    }
-
-    public function delete($id)
-    {
-        $stmt = $this->db->prepare("DELETE FROM users WHERE id = ?");
-        $stmt->bind_param("i", $id);
-        return $stmt->execute();
     }
 }

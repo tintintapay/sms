@@ -3,6 +3,7 @@ $(document).ready(function () {
     const id = urlParams.get('id');
 
     $('.approve-athlete').on('click', function () {
+        var ele = $(this);
         Swal.fire({
             title: "Approve",
             text: "Are you sure to approve this athlete?",
@@ -18,8 +19,11 @@ $(document).ready(function () {
                     type: "POST",
                     data: { id: id },
                     dataType: "json",
+                    beforeSend: function() {
+                        ele.prop('disabled', true);
+                        ele.html('Processing...');
+                    },
                     success: function (data) {
-                        console.log(data);
                         if (data.success) {
                             $('.approve-athlete').remove();
                             Swal.fire({
@@ -28,6 +32,8 @@ $(document).ready(function () {
                                 icon: "success"
                             });
                         } else {
+                            ele.prop('disabled', false);
+                            ele.html('Delete');
                             Swal.fire({
                                 title: "500 Error!",
                                 text: "Internal Server Error",
@@ -37,6 +43,8 @@ $(document).ready(function () {
 
                     },
                     error: function (err) {
+                        ele.prop('disabled', false);
+                        ele.html('Delete');
                         console.log(err);
                     }
                 });

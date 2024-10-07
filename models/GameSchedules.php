@@ -1,19 +1,11 @@
 <?php
 
-require_once 'core/Database.php';
+require_once 'core/Model.php';
 require_once 'enums/UserRole.php';
 require_once 'enums/UserStatus.php';
 
-class GameSchedules
+class GameSchedules extends Model
 {
-    private $db;
-
-    public function __construct()
-    {
-        $database = new Database();
-        $this->db = $database->getConnection();
-    }
-
     public function findById($id)
     {
         $stmt = $this->db->prepare("SELECT * FROM game_schedules WHERE id = ?");

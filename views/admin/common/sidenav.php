@@ -14,9 +14,9 @@
             <span class="menu-title">Manage Athlete</span>
         </div>
     </a>
-    <a href="announcement" class="menu">
+    <a href="allowance" class="menu">
         <div class="menu-item">
-            <span class="menu-title">Announcement</span>
+            <span class="menu-title">Allowance</span>
         </div>
     </a>
     

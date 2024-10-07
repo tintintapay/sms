@@ -12,6 +12,8 @@ require_once 'controllers/CoordinatorController.php';
 require_once 'controllers/AthleteController.php';
 require_once 'controllers/GameScheduleController.php';
 require_once 'controllers/EvaluationController.php';
+require_once 'controllers/AnnouncementController.php';
+require_once 'controllers/AllowanceController.php';
 
 // Define your controllers
 $userController = new UserController();
@@ -24,6 +26,8 @@ $coordinatorController = new CoordinatorController();
 $athleteController = new AthleteController();
 $gameScheduleController = new GameScheduleController();
 $evaluationController = new EvaluationController();
+$announcementController = new AnnouncementController();
+$allowanceController = new AllowanceController();
 
 // Define routes
 $routes = [
@@ -49,7 +53,8 @@ $routes = [
     '/sms/admin/coordinator' => ['GET' => [$coordinatorController, 'show']],
     '/sms/admin/coordinator-update' => ['GET' => [$coordinatorController, 'update']],
     '/sms/admin/manage-athlete' => ['GET' => [$athleteController, 'admin_index']],
-    '/sms/admin/announcement' => ['GET' => [$athleteController, 'admin_index']],
+    '/sms/admin/allowance' => ['GET' => [$allowanceController, 'index']],
+    '/sms/admin/send-allowance-notice' => ['POST' => [$allowanceController, 'send_allowance_notice']],
 
     //Coordinator
     '/sms/coordinator/home' => ['GET' => [$coordinatorHomeController, 'index']],
@@ -69,6 +74,13 @@ $routes = [
     ],
     '/sms/coordinator/evaluations' => ['GET' => [$evaluationController, 'show']],
     '/sms/coordinator/evaluations-approve-disapprove' => ['POST' => [$evaluationController, 'approve_disapprove']],
+    '/sms/coordinator/announcements' => ['GET' => [$announcementController, 'index']],
+    '/sms/coordinator/announcements-create' => [
+        'GET' => [$announcementController, 'create'],
+        'POST' => [$announcementController, 'store']
+    ],
+    '/sms/coordinator/announcement' => ['GET' => [$announcementController, 'show']],
+    '/sms/coordinator/announcement-delete' => ['POST' => [$announcementController, 'delete']],
 
     // Athlete
     '/sms/athlete/home' => ['GET' => [$athleteHomeController, 'index']],

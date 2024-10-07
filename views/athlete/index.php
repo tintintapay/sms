@@ -24,22 +24,29 @@
                     Dashboard
                 </div>
                 <hr>
-                <div class="section">
-                    <div class="card">
+                <div class="section flex gap-10">
+                    <div class="w-half" style="overflow-y: auto;max-height: 500px; ">
                         <h3>Announcement</h3>
-                        <div class="card-body">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae dicta temporibus fugiat,
-                                quibusdam placeat harum facere veritatis quis accusamus autem facilis fuga illo
-                                cupiditate
-                                quaerat, ipsa, blanditiis excepturi unde nemo?
+                        <?php foreach ($announcements as $announcement): ?>
+                            <div style="margin: 20px auto;padding: 20px;box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);background-color: #f9f9f9;font-family: Arial, sans-serif;">
+                                <h2 style="font-size: 24px;color: #333;margin-bottom: 10px;font-weight: bold;">
+                                    <?= $announcement['title'] ?>
+                                </h2>
+                                <p style="font-size: 14px;color: #666;margin-bottom: 15px;">
+                                    <strong>Date:</strong> <?= (new DateTime($announcement['created_at']))->format('F j, Y, g:i A'); ?>
+                                </p>
+                                <p style="font-size: 14px;color: #666;margin-bottom: 15px;">
+                                    <strong>Author:</strong> <?php echo $announcement['created']; ?>
+                                </p>
 
-                            </p>
-                        </div>
-
+                                <p style="font-size: 16px;color: #555;line-height: 1.6;">
+                                    <?= $announcement['description']?>
+                                </p>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
-                </div>
-                <div class="section">
-                    <div class="card">
+
+                    <div class="card w-half" style="overflow-y: auto;max-height: 500px; ">
                         <h3>Schedule</h3>
                         <div class="card-body">
                             <?php foreach ($schedules as $schedule): ?>
@@ -50,29 +57,29 @@
                                     </div>
                                     <?php if ($schedule['is_included']): ?>
                                         <!-- PENDING -->
-                                        <?php if ($schedule['status'] === EvaluationStatus::PENDING):?>
-                                        <div class="game-action">
-                                            <div class="game-schedule">Submission until:
-                                                <?php
-                                                $scheduleDate = new DateTime($schedule['schedule']);
-                                                $deadlineDate = (clone $scheduleDate)->modify('-7 days');
-                                                echo $deadlineDate->format('Y-m-d');
-                                                ?>
+                                        <?php if ($schedule['status'] === EvaluationStatus::PENDING): ?>
+                                            <div class="game-action">
+                                                <div class="game-schedule">Submission until:
+                                                    <?php
+                                                    $scheduleDate = new DateTime($schedule['schedule']);
+                                                    $deadlineDate = (clone $scheduleDate)->modify('-7 days');
+                                                    echo $deadlineDate->format('Y-m-d');
+                                                    ?>
+                                                </div>
+                                                <a href="submit-evaluation?game-id=<?= $schedule['id'] ?>"
+                                                    class="button button-success">Submit Evaluation</a>
                                             </div>
-                                            <a href="submit-evaluation?game-id=<?= $schedule['id'] ?>"
-                                                class="button button-success">Submit Evaluation</a>
-                                        </div>
-                                        <!-- SUBMITTED -->
-                                        <?php elseif($schedule['status'] === EvaluationStatus::SUBMITTED): ?>
+                                            <!-- SUBMITTED -->
+                                        <?php elseif ($schedule['status'] === EvaluationStatus::SUBMITTED): ?>
                                             <div class="game-action">
                                                 Submitted!
                                             </div>
-                                        <!-- APPROVED -->
+                                            <!-- APPROVED -->
                                         <?php elseif ($schedule['status'] === EvaluationStatus::APPROVED): ?>
                                             <div class="game-action">
                                                 Evaluation Approved!
                                             </div>
-                                        <!-- DISAPPROVED -->
+                                            <!-- DISAPPROVED -->
                                         <?php elseif ($schedule['status'] === EvaluationStatus::DISAPPROVED): ?>
                                             <div class="game-action">
                                                 Evaluation Disapproved!
@@ -84,6 +91,10 @@
                         </div>
 
                     </div>
+
+                </div>
+                <div class="section">
+                    
                 </div>
 
             </div>
