@@ -14,6 +14,7 @@ require_once 'controllers/GameScheduleController.php';
 require_once 'controllers/EvaluationController.php';
 require_once 'controllers/AnnouncementController.php';
 require_once 'controllers/AllowanceController.php';
+require_once 'controllers/AthleteRatingController.php';
 
 // Define your controllers
 $userController = new UserController();
@@ -28,6 +29,7 @@ $gameScheduleController = new GameScheduleController();
 $evaluationController = new EvaluationController();
 $announcementController = new AnnouncementController();
 $allowanceController = new AllowanceController();
+$athleteRatingController = new AthleteRatingController();
 
 // Define routes
 $routes = [
@@ -81,6 +83,9 @@ $routes = [
     ],
     '/sms/coordinator/announcement' => ['GET' => [$announcementController, 'show']],
     '/sms/coordinator/announcement-delete' => ['POST' => [$announcementController, 'delete']],
+    '/sms/coordinator/athlete-ratings' => ['GET' => [$athleteRatingController, 'index']],
+    '/sms/coordinator/athlete-rating' => ['GET' => [$athleteRatingController, 'show']],
+    '/sms/coordinator/athlete-rating-save' => ['POST' => [$athleteRatingController, 'store']],
 
     // Athlete
     '/sms/athlete/home' => ['GET' => [$athleteHomeController, 'index']],

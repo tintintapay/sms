@@ -255,8 +255,6 @@ input[type="file"] {
   display: inline-block;
   padding: 10px 20px;
   border:none;
-  background-color: #4e4e4e;
-  color: #fff;
   text-align: center;
   border-radius: 5px;
   text-decoration: none;
@@ -266,7 +264,7 @@ input[type="file"] {
 }
 
 .button:hover {
-  background-color: #ff4949;
+  background-color: #ff4949!important;
 }
 
 .button-primary {

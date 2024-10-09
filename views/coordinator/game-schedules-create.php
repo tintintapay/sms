@@ -35,7 +35,7 @@
                                 <?php echo $flash['message'] ?? ''; ?>
                             </div>
                             <div id="targetAthletes"></div>
-                            <label for="game_title" class="label">Game Title:</label>
+                            <label for="game_title" class="label">Title:</label>
                             <input type="text" class="sms-input text-only" id="game_title" name="game_title"
                                 value="<?= $request['game_title'] ?? '' ?>" autocomplete="off">
 

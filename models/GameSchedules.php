@@ -3,6 +3,7 @@
 require_once 'core/Model.php';
 require_once 'enums/UserRole.php';
 require_once 'enums/UserStatus.php';
+require_once 'enums/GameStatus.php';
 
 class GameSchedules extends Model
 {
@@ -19,6 +20,9 @@ class GameSchedules extends Model
 
     public function fetchAll()
     {
+        // Update Game Sched
+        $this->updateGameSched();
+
         $stmt = $this->db->prepare(
             "SELECT * FROM game_schedules WHERE deleted_at IS NULL"
         );
@@ -81,5 +85,27 @@ class GameSchedules extends Model
 
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function fetchAllCompleted()
+    {
+        // Update Game Sched
+        $this->updateGameSched();
+
+        $stmt = $this->db->prepare("SELECT * FROM game_schedules WHERE schedule < CURDATE()");
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function updateGameSched()
+    {
+        $completed = GameStatus::COMPLETED;
+
+        $stmt = $this->db->prepare("UPDATE game_schedules SET status = ? WHERE schedule < CURDATE()");
+        $stmt->bind_param('s', $completed);
+        
+        return $stmt->execute();
     }
 }

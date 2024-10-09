@@ -53,7 +53,7 @@
                             <p><strong>School:</strong> <?= $athlete['school'] ?></p>
                             <p><strong>Course:</strong> <?= $athlete['course'] ?></p>
                             <p><strong>Year Level:</strong> <?= $athlete['year_level'] ?> Year</p>
-                            <p><strong>Sport:</strong> <?= $athlete['sport'] ?></p>
+                            <p><strong>Sport:</strong> <?= Sport::getDescription($athlete['sport']) ?></p>
 
                             <h3>Documents</h3>
                             <ul class="documents-list">
