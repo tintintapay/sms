@@ -64,8 +64,8 @@
                             </select>
 
                             <label for="status" class="label">
-                                <input type="checkbox" name="status" id="status">
-                                Active this after creating
+                                <input type="checkbox" name="status" id="status" <?= (($game['status'] === GameStatus::ACTIVE) || ($game['status'] === GameStatus::COMPLETED)) ? 'checked' : '' ?>>
+                                Set as Active
                             </label>
 
                             <hr>
@@ -84,8 +84,9 @@
                                     
                                 </tbody>
                             </table>
-
+                            <?php if ($game['status'] !== GameStatus::COMPLETED): ?>
                             <button type="submit" class="button button-success">Save</button>
+                            <?php endif; ?>
                         </form>
                     </div>
                 </div>

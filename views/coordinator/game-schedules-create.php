@@ -52,8 +52,8 @@
                             </select>
 
                             <label for="status" class="label">
-                                <input type="checkbox" name="status" id="status">
-                                Active this after creating
+                                <input type="checkbox" name="status" id="status" <?= isset($request['status']) ? 'checked' : '' ?>>
+                                Set as Active
                             </label>
 
                             <hr>
@@ -73,7 +73,7 @@
                                 </tbody>
                             </table>
 
-                            <button type="submit" class="button buttom-primary">Save</button>
+                            <button type="submit" class="button button-success">Save</button>
                         </form>
                     </div>
                 </div>

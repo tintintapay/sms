@@ -47,7 +47,7 @@ class GameScheduleController
             $sports = Sport::fetchList();
             // $athletes = $this->user->fetchAllApprovedAthleteWithInfo();
 
-            return include 'views/coordinator/game_schedules-create.php';
+            return include 'views/coordinator/game-schedules-create.php';
         }
 
         $gameData = [
@@ -95,7 +95,6 @@ class GameScheduleController
 
     public function update($request)
     {
-        $game = $this->gameScheds->findById($request['id']);
         $gameId = $request['id'];
 
         // Validate request
@@ -124,9 +123,10 @@ class GameScheduleController
         }
 
         $gameSchedData = [
-            'game_title' => $request['game_title'],
-            'schedule' => $request['schedule'],
-            'sport' => $request['sport']
+            'game_title' => Helper::sanitize($request['game_title']),
+            'schedule' => Helper::sanitize($request['schedule']),
+            'sport' => Helper::sanitize($request['sport']),
+            'status' => isset($request['status']) ? GameStatus::ACTIVE : GameStatus::INACTIVE,
         ];
 
         $updateGameSched = $this->gameScheds->updateSchedule($gameId, $gameSchedData);
@@ -167,6 +167,7 @@ class GameScheduleController
 
         $this->evaluation->updateDeleteWhereIn($evalData, ['column' => 'athlete_id', 'athletes' => $athletes]);
 
+        $game = $this->gameScheds->findById($request['id']);
         // return to view page
         return include 'views/coordinator/game-schedule.php';
     }
