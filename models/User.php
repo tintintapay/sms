@@ -119,7 +119,8 @@ class User extends Model
                 ui.gender,
                 ui.address,
                 ui.age,
-                ui.phone_number
+                ui.phone_number,
+                birthday
             FROM users u
             LEFT JOIN user_info ui ON u.id = ui.user_id
             WHERE u.role = ? AND u.status != 'deleted'

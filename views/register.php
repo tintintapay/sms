@@ -10,7 +10,6 @@
 </head>
 
 <body>
-
     <header class="header">
         <div class="avatar"></div> <!-- Avatar/Logo in the center -->
         <div class="title">Register</div>
@@ -69,17 +68,10 @@
                     <input type="text" id="guardian" name="guardian" class="sms-input" placeholder="Guardian" required>
                 </div>
                 <div class="form-field">
-                    <label for="password" class="label">Password</label>
-                    <input type="password" id="password" name="password" class="sms-input" placeholder="Password" required>
+                    <label for="birthday" class="label">Birth Day</label>
+                    <input type="date" id="birthday" name="birthday" class="sms-input" placeholder="Birth Day" required>
                 </div>
-                <div class="form-field">
-                    <label for="confirm_password" class="label">Confirm Password</label>
-                    <input type="password" id="confirm_password" name="confirm_password" class="sms-input" placeholder="Confirm Password" required>
-                </div>
-                <div class="form-field">
-                    <label for="age" class="label">Age</label>
-                    <input type="number" id="age" name="age" class="sms-input" placeholder="Age" required>
-                </div>
+
                 <div class="form-field">
                     <label for="sport" class="label">Sports</label>
                     <select name="sport" id="sport" class="sms-input">
@@ -93,6 +85,20 @@
                     <label for="phone_number" class="label">Phone Number</label>
                     <input type="tel" id="phone_number" name="phone_number" class="sms-input" placeholder="Phone Number (11 digits)" pattern="\d{11}" required>
                 </div>
+
+                <hr>
+                
+                <div class="form-field">
+                    <label for="password" class="label">Password</label>
+                    <input type="password" id="password" name="password" class="sms-input" placeholder="Password" required>
+                </div>
+                <div class="form-field">
+                    <label for="confirm_password" class="label">Confirm Password</label>
+                    <input type="password" id="confirm_password" name="confirm_password" class="sms-input" placeholder="Confirm Password" required>
+                </div>
+
+                <hr>
+
                 <div class="form-field">
                     <label for="cor" class="label">Certificate of Registration (COR)</label>
                     <input type="file" id="cor" name="cor" accept=".pdf,.jpg,.png" required>

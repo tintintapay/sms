@@ -79,7 +79,7 @@
 
                                         <label for="age" class="label">Age:</label>
                                         <input type="text" class="sms-input num-only" id="age" name="age"
-                                            value="<?= $_SESSION['age'] ?? '' ?>" readonly>
+                                            value="<?= Helper::getAge($_SESSION['birthday']) ?? '' ?>" readonly>
 
                                         <label class="label">Year and Course:</label>
                                         <input type="text" class="sms-input text-only"

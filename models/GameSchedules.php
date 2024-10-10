@@ -9,6 +9,9 @@ class GameSchedules extends Model
 {
     public function findById($id)
     {
+        // Update Game Sched
+        $this->updateGameSched();
+        
         $stmt = $this->db->prepare("SELECT * FROM game_schedules WHERE id = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
@@ -61,6 +64,9 @@ class GameSchedules extends Model
 
     public function fetchAthleteSchedule()
     {
+        // Update Game Sched
+        $this->updateGameSched();
+
         $stmt = $this->db->prepare(
             "SELECT g.*, e.status,
             (CASE 

@@ -52,7 +52,7 @@
                                             <td><?= $athlete['full_name'] ?></td>
                                             <td><?= $athlete['email'] ?></td>
                                             <td><?= $athlete['gender'] ?></td>
-                                            <td><?= $athlete['age'] ?></td>
+                                            <td><?= Helper::getAge($athlete['birthday']) ?></td>
                                             <td><?= $athlete['phone_number'] ?></td>
                                             <td><?= $athlete['address'] ?></td>
                                             <td><?= $athlete['school'] ?></td>

@@ -42,7 +42,7 @@
                             <h2 class="student-name"><?= $athlete['full_name'] ?></h2>
                             <p><strong>Email:</strong> <?= $athlete['email'] ?></p>
                             <p><strong>Gender:</strong> <?= $athlete['gender'] ?></p>
-                            <p><strong>Age:</strong> <?= $athlete['age'] ?></p>
+                            <p><strong>Age:</strong> <?= Helper::getAge($athlete['birthday']) ?></p>
                             <p><strong>Address:</strong> <?= $athlete['address'] ?></p>
                             <p><strong>Phone Number:</strong> <?= $athlete['phone_number'] ?></p>
                         </div>

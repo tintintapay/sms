@@ -18,7 +18,6 @@ class RegisterRequest extends Validation
         $this->isEmpty('address', $request['address']);
         $this->isEmpty('school', $request['school']);
         $this->isEmpty('guardian', $request['guardian']);
-        $this->isEmpty('age', $request['age']);
         $this->isEmpty('sport', $request['sport']);
         $this->isEmpty('phone_number', $request['phone_number']);
 
