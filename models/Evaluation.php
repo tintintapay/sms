@@ -131,7 +131,7 @@ class Evaluation extends Model
 
     public function findAllByGameIdJoinUsers($gameId, $fetchDeleted = false)
     {
-        $sql = "SELECT e.*, CONCAT(ui.first_name, ' ', IFNULL(ui.middle_name, ''), ' ', ui.last_name) AS full_name, ui.age, u.email, ui.year_level, ui.course FROM evaluations e LEFT JOIN user_info ui ON e.athlete_id = ui.user_id LEFT JOIN users u ON u.id = e.athlete_id WHERE e.game_schedules_id = ?";
+        $sql = "SELECT e.*, CONCAT(ui.first_name, ' ', IFNULL(ui.middle_name, ''), ' ', ui.last_name) AS full_name, ui.age, u.email, ui.year_level, ui.course, ui.birthday FROM evaluations e LEFT JOIN user_info ui ON e.athlete_id = ui.user_id LEFT JOIN users u ON u.id = e.athlete_id WHERE e.game_schedules_id = ?";
         // Fetch even deleted.
         if (!$fetchDeleted) {
             $sql .= " AND e.deleted_at IS NULL";
