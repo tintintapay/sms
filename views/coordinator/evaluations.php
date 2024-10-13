@@ -43,7 +43,7 @@
                             </div>
                             <div class="athlete-age" style="margin-bottom: 5px;">
                                 <i class="fas fa-calendar-alt" style="margin-right: 5px;"></i>
-                                <?= $evaluation['age'] ?> years old
+                                <?= Helper::getAge($evaluation['birthday']) ?> years old
                             </div>
                             <div class="athlete-year-course" style="color: #777;">
                                 <i class="fas fa-graduation-cap" style="margin-right: 5px;"></i>
@@ -103,7 +103,7 @@
                                             download="<?= $evaluation['full_name'] . ' Copy of Grades' ?>">Copy of Grades</a>
                                     </li>
                                 </ul>
-                                <?php if ($evaluation['status'] === EvaluationStatus::SUBMITTED):?>
+                                <?php if (($evaluation['status'] === EvaluationStatus::SUBMITTED) && ($gameSched['status'] !== GameStatus::COMPLETED)):?>
                                 <!-- Buttons: Approve and Disapprove -->
                                 <div class="action-buttons" style="margin-top: 20px;">
                                     <button class="approve-evaluation" data-id="<?= $evaluation['id']?>"

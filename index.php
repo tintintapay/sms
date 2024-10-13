@@ -1,6 +1,12 @@
 <?php
-session_start();
 date_default_timezone_set('Asia/Manila');
+
+error_reporting(E_ALL);
+ini_set('log_errors', 1);
+ini_set('display_errors', 0);
+ini_set('error_log', './logs.log');
+
+session_start();
 
 require_once 'controllers/UserController.php';
 require_once 'controllers/HomeController.php';
@@ -14,6 +20,7 @@ require_once 'controllers/GameScheduleController.php';
 require_once 'controllers/EvaluationController.php';
 require_once 'controllers/AnnouncementController.php';
 require_once 'controllers/AllowanceController.php';
+require_once 'controllers/AthleteRatingController.php';
 
 // Define your controllers
 $userController = new UserController();
@@ -28,6 +35,7 @@ $gameScheduleController = new GameScheduleController();
 $evaluationController = new EvaluationController();
 $announcementController = new AnnouncementController();
 $allowanceController = new AllowanceController();
+$athleteRatingController = new AthleteRatingController();
 
 // Define routes
 $routes = [
@@ -81,6 +89,9 @@ $routes = [
     ],
     '/sms/coordinator/announcement' => ['GET' => [$announcementController, 'show']],
     '/sms/coordinator/announcement-delete' => ['POST' => [$announcementController, 'delete']],
+    '/sms/coordinator/athlete-ratings' => ['GET' => [$athleteRatingController, 'index']],
+    '/sms/coordinator/athlete-rating' => ['GET' => [$athleteRatingController, 'show']],
+    '/sms/coordinator/athlete-rating-save' => ['POST' => [$athleteRatingController, 'store']],
 
     // Athlete
     '/sms/athlete/home' => ['GET' => [$athleteHomeController, 'index']],
@@ -88,6 +99,7 @@ $routes = [
         'GET' => [$evaluationController, 'submit'],
         'POST' => [$evaluationController, 'submit_form']
     ],
+    '/sms/athlete/stat' => ['GET' => [$athleteRatingController, 'stat']],
 
     // Ajax API request
     '/sms/coordinator/target-athlete' => ['POST' => [$athleteController, 'target_athlete']],

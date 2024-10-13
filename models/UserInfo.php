@@ -6,9 +6,49 @@ class UserInfo extends Model
 {
     public function insertUserInfo($data)
     {
-        $stmt = $this->db->prepare("INSERT INTO user_info (user_id, first_name, last_name, middle_name, gender, year_level, course, address, school, guardian, age, sport, phone_number, cor, psa, medical_cert, picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("isssssssssissssss", $data['user_id'], $data['first_name'], $data['last_name'], $data['middle_name'], $data['gender'], $data['year_level'], $data['course'], $data['address'], $data['school'], $data['guardian'], $data['age'], $data['sport'], $data['phone_number'], $data['cor'], $data['psa'], $data['medical_cert'], $data['picture']);
-        
+        $stmt = $this->db->prepare("INSERT INTO user_info (
+            user_id,
+            first_name,
+            last_name,
+            middle_name,
+            gender,
+            year_level,
+            course,
+            address,
+            school,
+            guardian,
+            age,
+            birthday,
+            sport,
+            phone_number,
+            cor,
+            psa,
+            medical_cert,
+            picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+        );
+
+        $stmt->bind_param(
+            "isssssssssisssssss",
+            $data['user_id'],
+            $data['first_name'],
+            $data['last_name'],
+            $data['middle_name'],
+            $data['gender'],
+            $data['year_level'],
+            $data['course'],
+            $data['address'],
+            $data['school'],
+            $data['guardian'],
+            $data['age'],
+            $data['birthday'],
+            $data['sport'],
+            $data['phone_number'],
+            $data['cor'],
+            $data['psa'],
+            $data['medical_cert'],
+            $data['picture']
+        );
+
         return $stmt->execute();
     }
 
@@ -16,7 +56,7 @@ class UserInfo extends Model
     {
         $stmt = $this->db->prepare("INSERT INTO user_info (user_id, first_name, last_name, middle_name, gender, address, age, phone_number, picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("isssssiss", $data['user_id'], $data['first_name'], $data['last_name'], $data['middle_name'], $data['gender'], $data['address'], $data['age'], $data['phone_number'], $data['picture']);
-        
+
         return $stmt->execute();
     }
 
@@ -41,7 +81,7 @@ class UserInfo extends Model
         $stmt = $this->db->prepare("SELECT first_name, middle_name, last_name FROM user_info WHERE user_id = ?");
         $stmt->bind_param("i", $userId);
         $stmt->execute();
-        
+
         $result = $stmt->get_result()->fetch_assoc();
 
         return $result['first_name'] . ' ' . $result['middle_name'] . ' ' . $result['last_name'];

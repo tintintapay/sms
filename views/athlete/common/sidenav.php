@@ -4,6 +4,11 @@
             <span class="menu-title">Dashboard</span>
         </div>
     </a>
+    <a href="stat?id=<?= $_SESSION['user_id'] ?>" class="menu">
+        <div class="menu-item">
+            <span class="menu-title">Game Profile</span>
+        </div>
+    </a>
     <a href="profile" class="menu">
         <div class="menu-item">
             <span class="menu-title">Profile</span>

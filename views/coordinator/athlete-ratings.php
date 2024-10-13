@@ -24,7 +24,7 @@
             <?php include 'common/sidenav.php'; ?>
             <div class="right-panel">
                 <div class="page-title">
-                    Game Event
+                    Game Schedules
                     <div class="header-action">
                         <a href="game-schedules-create" class="button button-success button-md">Add</a>
                     </div>
@@ -35,8 +35,7 @@
                         <table id="myTable" style="display:none">
                             <thead>
                                 <tr>
-                                    <th>Title</th>
-                                    <th>Venue</th>
+                                    <th>Game Title</th>
                                     <th>Schedule</th>
                                     <th>Sport</th>
                                     <th>Status</th>
@@ -45,17 +44,16 @@
                             </thead>
                             <tbody>
                                 <?php foreach ($gameScheds as $gameSched): ?>
-                                    <tr class="<?= $gameSched['status'] ?>">
-                                        <td><?= $gameSched['game_title'] ?></td>
-                                        <td><?= $gameSched['venue'] ?></td>
-                                        <td><?= $gameSched['schedule'] ?></td>
-                                        <td><?= Sport::getDescription($gameSched['sport']) ?></td>
-                                        <td><?= $gameSched['status'] ?></td>
-                                        <td>
-                                            <a href="game-schedule?id=<?= $gameSched['id'] ?>"
-                                                class="button button-primary button-xs">View</a>
-                                        </td>
-                                    </tr>
+                                        <tr class="<?= $gameSched['status'] ?>">
+                                            <td><?= $gameSched['game_title'] ?></td>
+                                            <td><?= $gameSched['schedule'] ?></td>
+                                            <td><?= Sport::getDescription($gameSched['sport']) ?></td>
+                                            <td><?= $gameSched['status'] ?></td>
+                                            <td>
+                                                <a href="athlete-rating?game_id=<?= $gameSched['id'] ?>"
+                                                    class="button button-primary button-xs">View</a>
+                                            </td>
+                                        </tr>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>

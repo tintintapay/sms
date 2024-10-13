@@ -42,7 +42,7 @@
                             <h2 class="student-name"><?= $athlete['full_name'] ?></h2>
                             <p><strong>Email:</strong> <?= $athlete['email'] ?></p>
                             <p><strong>Gender:</strong> <?= $athlete['gender'] ?></p>
-                            <p><strong>Age:</strong> <?= $athlete['age'] ?></p>
+                            <p><strong>Age:</strong> <?= Helper::getAge($athlete['birthday']) ?></p>
                             <p><strong>Address:</strong> <?= $athlete['address'] ?></p>
                             <p><strong>Phone Number:</strong> <?= $athlete['phone_number'] ?></p>
                         </div>
@@ -53,7 +53,7 @@
                             <p><strong>School:</strong> <?= $athlete['school'] ?></p>
                             <p><strong>Course:</strong> <?= $athlete['course'] ?></p>
                             <p><strong>Year Level:</strong> <?= $athlete['year_level'] ?> Year</p>
-                            <p><strong>Sport:</strong> <?= $athlete['sport'] ?></p>
+                            <p><strong>Sport:</strong> <?= Sport::getDescription($athlete['sport']) ?></p>
 
                             <h3>Documents</h3>
                             <ul class="documents-list">

@@ -25,7 +25,7 @@
             <?php include 'common/sidenav.php'; ?>
             <div class="right-panel">
                 <div class="page-title">
-                    Create Game Schedule
+                    Create Game Event
                 </div>
                 <hr>
                 <div class="section">
@@ -35,9 +35,13 @@
                                 <?php echo $flash['message'] ?? ''; ?>
                             </div>
                             <div id="targetAthletes"></div>
-                            <label for="game_title" class="label">Game Title:</label>
+                            <label for="game_title" class="label">Title:</label>
                             <input type="text" class="sms-input text-only" id="game_title" name="game_title"
                                 value="<?= $request['game_title'] ?? '' ?>" autocomplete="off">
+
+                            <label for="venue" class="label">Venue:</label>
+                            <input type="text" class="sms-input" id="venue" name="venue"
+                                value="<?= $request['venue'] ?? '' ?>" autocomplete="off">
 
                             <label for="schedule" class="label">Schedule:</label>
                             <input type="date" class="sms-input" id="schedule" name="schedule" min="<?= date('Y-m-d', strtotime('+1 day'))?>"
@@ -52,8 +56,8 @@
                             </select>
 
                             <label for="status" class="label">
-                                <input type="checkbox" name="status" id="status">
-                                Active this after creating
+                                <input type="checkbox" name="status" id="status" <?= isset($request['status']) ? 'checked' : '' ?>>
+                                Set as Active
                             </label>
 
                             <hr>
@@ -73,7 +77,7 @@
                                 </tbody>
                             </table>
 
-                            <button type="submit" class="button buttom-primary">Save</button>
+                            <button type="submit" class="button button-success">Save</button>
                         </form>
                     </div>
                 </div>

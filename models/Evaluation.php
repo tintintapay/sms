@@ -162,4 +162,22 @@ class Evaluation extends Model
 
         return $stmt->get_result()->fetch_assoc();
     }
+
+    public function findAllToRate($gameId, $fetchDeleted = false)
+    {
+        $appropved = EvaluationStatus::APPROVED;
+        $sql = "SELECT e.*, CONCAT(ui.first_name, ' ', IFNULL(ui.middle_name, ''), ' ', ui.last_name) AS full_name, ui.age, u.email, ui.year_level, ui.course, ar.teamwork, ar.sportsmanship, ar.technical_skills, ar.adaptability, ar.game_sense, ar.remarks FROM evaluations e LEFT JOIN user_info ui ON e.athlete_id = ui.user_id LEFT JOIN users u ON u.id = e.athlete_id LEFT JOIN athletes_ratings ar ON ar.game_id = e.game_schedules_id AND ar.athlete_id = e.athlete_id WHERE e.game_schedules_id = ? AND e.status = ?";
+        // Fetch even deleted.
+        if (!$fetchDeleted) {
+            $sql .= " AND e.deleted_at IS NULL";
+        }
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("is", $gameId, $appropved);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }
