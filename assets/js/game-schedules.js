@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    const exportingCol = [0, 1, 2, 3];
+    const exportingCol = [0, 1, 2, 3, 4];
     const exportingTitle = 'Game Schedules';
     let table = $("#myTable").DataTable({
         responsive: true,
@@ -32,7 +32,7 @@ $(document).ready(function () {
         ordering: false,
         columnDefs: [
             {
-                target: [3, 4],
+                target: [4, 5],
                 searchable: false
             }
         ]

@@ -4,6 +4,17 @@ require_once 'core/Model.php';
 
 class AthletesRating extends Model
 {
+    public function fetchByAthlete($id)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM athletes_ratings WHERE athlete_id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function fetchByGameIdAthleteId($gameId, $athleteId)
     {
         $stmt = $this->db->prepare("SELECT * FROM athletes_ratings WHERE game_id = ? AND athlete_id = ?");

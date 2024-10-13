@@ -36,6 +36,7 @@
                             <thead>
                                 <tr>
                                     <th>Title</th>
+                                    <th>Venue</th>
                                     <th>Schedule</th>
                                     <th>Sport</th>
                                     <th>Status</th>
@@ -46,6 +47,7 @@
                                 <?php foreach ($gameScheds as $gameSched): ?>
                                     <tr class="<?= $gameSched['status'] ?>">
                                         <td><?= $gameSched['game_title'] ?></td>
+                                        <td><?= $gameSched['venue'] ?></td>
                                         <td><?= $gameSched['schedule'] ?></td>
                                         <td><?= Sport::getDescription($gameSched['sport']) ?></td>
                                         <td><?= $gameSched['status'] ?></td>

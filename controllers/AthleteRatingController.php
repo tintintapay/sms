@@ -5,18 +5,21 @@ require_once 'models/Evaluation.php';
 require_once 'models/AthletesRating.php';
 require_once 'core/Helper.php';
 require_once 'requests/AthletesRatingRequest.php';
+require_once 'models/User.php';
 
 class AthleteRatingController
 {
     private $gameScheds;
     private $evaluation;
     private $athletesRating;
+    private $user;
 
     public function __construct()
     {
         $this->gameScheds = new GameSchedules();
         $this->evaluation = new Evaluation();
         $this->athletesRating = new AthletesRating();
+        $this->user = new User();
     }
 
     public function index()
@@ -76,5 +79,54 @@ class AthleteRatingController
         echo json_encode([
             'success' => true
         ]);
+    }
+
+    public function stat($param)
+    {
+        $athleteId = $param['id'];
+        $athlete = $this->user->getUser($athleteId);
+
+        if ($athlete['role'] !== UserRole::ATHLETE) {
+            Helper::redirect('404-not-found');
+        }
+
+        $athletesRatings = $this->athletesRating->fetchByAthlete($athleteId);
+
+        $rating = [
+            'teamwork' => 0,
+            'sportsmanship' => 0,
+            'technical_skills' => 0,
+            'adaptability' => 0,
+            'game_sense' => 0
+        ];
+
+        // if athlete rating is not empty
+        if ($athletesRatings) {
+            $count = count($athletesRatings); // Get the count of ratings right from the start
+            foreach ($athletesRatings as $athletesRating) {
+                $rating['teamwork'] += $athletesRating['teamwork'];
+                $rating['sportsmanship'] += $athletesRating['sportsmanship'];
+                $rating['technical_skills'] += $athletesRating['technical_skills'];
+                $rating['adaptability'] += $athletesRating['adaptability'];
+                $rating['game_sense'] += $athletesRating['game_sense'];
+            }
+            $rating['teamwork'] /= $count;
+            $rating['sportsmanship'] /= $count;
+            $rating['technical_skills'] /= $count;
+            $rating['adaptability'] /= $count;
+            $rating['game_sense'] /= $count;
+        }
+        
+        $data = [
+            'athleteId' => $athleteId,
+            'limit' => 3,
+        ];
+
+        $gameEvents = $this->gameScheds->fetchGameWhereInByAthlete($data);
+        $totalPlayed = $this->gameScheds->getPlayedCount($data);
+
+        $bestGame = $this->gameScheds->bestGameHighlight($data);
+
+        include 'views/athlete/player-stats.php';
     }
 }

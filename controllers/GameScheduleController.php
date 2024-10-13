@@ -51,9 +51,10 @@ class GameScheduleController
         }
 
         $gameData = [
-            'game_title' => $request['game_title'],
-            'schedule' => $request['schedule'],
-            'sport' => $request['sport'],
+            'game_title' => Helper::sanitize($request['game_title']),
+            'schedule' => Helper::sanitize($request['schedule']),
+            'sport' => Helper::sanitize($request['sport']),
+            'venue' => Helper::sanitize($request['venue']),
             'status' => isset($request['status']) ? GameStatus::ACTIVE : GameStatus::INACTIVE,
             'created_user' => $_SESSION['user_id']
         ];
@@ -126,6 +127,7 @@ class GameScheduleController
             'game_title' => Helper::sanitize($request['game_title']),
             'schedule' => Helper::sanitize($request['schedule']),
             'sport' => Helper::sanitize($request['sport']),
+            'venue' => Helper::sanitize($request['venue']),
             'status' => isset($request['status']) ? GameStatus::ACTIVE : GameStatus::INACTIVE,
         ];
 

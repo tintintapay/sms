@@ -25,7 +25,7 @@
             <?php include 'common/sidenav.php'; ?>
             <div class="right-panel">
                 <div class="page-title">
-                    Create Game Schedule
+                    Create Game Event
                 </div>
                 <hr>
                 <div class="section">
@@ -38,6 +38,10 @@
                             <label for="game_title" class="label">Title:</label>
                             <input type="text" class="sms-input text-only" id="game_title" name="game_title"
                                 value="<?= $request['game_title'] ?? '' ?>" autocomplete="off">
+
+                            <label for="venue" class="label">Venue:</label>
+                            <input type="text" class="sms-input" id="venue" name="venue"
+                                value="<?= $request['venue'] ?? '' ?>" autocomplete="off">
 
                             <label for="schedule" class="label">Schedule:</label>
                             <input type="date" class="sms-input" id="schedule" name="schedule" min="<?= date('Y-m-d', strtotime('+1 day'))?>"

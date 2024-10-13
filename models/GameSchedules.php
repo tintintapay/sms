@@ -11,7 +11,7 @@ class GameSchedules extends Model
     {
         // Update Game Sched
         $this->updateGameSched();
-        
+
         $stmt = $this->db->prepare("SELECT * FROM game_schedules WHERE id = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
@@ -37,8 +37,8 @@ class GameSchedules extends Model
 
     public function insertSchedule($data)
     {
-        $stmt = $this->db->prepare("INSERT INTO game_schedules (game_title, schedule, sport, status, created_user) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssi", $data['game_title'], $data['schedule'], $data['sport'], $data['status'], $data['created_user']);
+        $stmt = $this->db->prepare("INSERT INTO game_schedules (game_title, schedule, sport, venue, status, created_user) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssi", $data['game_title'], $data['schedule'], $data['sport'], $data['venue'], $data['status'], $data['created_user']);
 
         if (!$stmt->execute()) {
             return null;
@@ -49,8 +49,8 @@ class GameSchedules extends Model
 
     public function updateSchedule($id, $data)
     {
-        $stmt = $this->db->prepare("UPDATE game_schedules SET game_title = ?, schedule = ?, sport = ?, status = ? WHERE id = ?");
-        $stmt->bind_param("ssssi", $data['game_title'], $data['schedule'], $data['sport'], $data['status'], $id);
+        $stmt = $this->db->prepare("UPDATE game_schedules SET game_title = ?, schedule = ?, sport = ?, venue = ?, status = ? WHERE id = ?");
+        $stmt->bind_param("sssssi", $data['game_title'], $data['schedule'], $data['sport'], $data['venue'], $data['status'], $id);
 
         return $stmt->execute();
     }
@@ -111,7 +111,71 @@ class GameSchedules extends Model
 
         $stmt = $this->db->prepare("UPDATE game_schedules SET status = ? WHERE schedule < CURDATE()");
         $stmt->bind_param('s', $completed);
-        
+
         return $stmt->execute();
     }
+
+    public function fetchGameWhereInByAthlete($data)
+    {
+        $approveAthlete = EvaluationStatus::APPROVED;
+        $limitClause = isset($data['limit']) && is_numeric($data['limit']) ? " LIMIT ?" : "";
+        $query = "SELECT * FROM game_schedules WHERE id IN (SELECT game_schedules_id FROM evaluations WHERE athlete_id = ? AND status = ?) AND status = ? ORDER BY schedule DESC $limitClause";
+
+        $stmt = $this->db->prepare($query);
+
+        $completed = GameStatus::COMPLETED;
+
+        $params = [$data['athleteId'], $approveAthlete, $completed];
+        $types = 'iss';
+
+        if (!empty($limitClause)) {
+            $params[] = $data['limit'];
+            $types .= 'i';
+        }
+
+        $stmt->bind_param($types, ...$params);
+
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getPlayedCount($data)
+    {
+        $approve = EvaluationStatus::APPROVED;
+        $completed = GameStatus::COMPLETED;
+        $stmt = $this->db->prepare("SELECT COUNT(*) as total FROM game_schedules WHERE id IN (SELECT game_schedules_id FROM evaluations WHERE athlete_id = ? AND status = ?) AND status = ? ORDER BY schedule DESC");
+        $stmt->bind_param('iss', $data['athleteId'], $approve, $completed);
+        $stmt->execute();
+
+        return $stmt->get_result()->fetch_assoc();
+    }
+
+    public function bestGameHighlight($data = [])
+    {
+        if (!empty($data['athleteId'])) {
+            $sql = "SELECT ar.*, gs.game_title, gs.schedule, gs.sport, gs.venue
+                FROM athletes_ratings ar
+                JOIN game_schedules gs ON ar.game_id = gs.id
+                WHERE ar.athlete_id = ?
+                ORDER BY GREATEST(ar.teamwork, ar.sportsmanship, ar.technical_skills, ar.adaptability, ar.game_sense) DESC
+                LIMIT 1;";
+            $type = "i";
+            $params = [$data['athleteId']];
+        } else {
+            $sql = "SELECT ar.*, gs.game_title, gs.schedule, gs.sport, gs.venue
+                FROM athletes_ratings ar
+                JOIN game_schedules gs ON ar.game_id = gs.id
+                ORDER BY GREATEST(ar.teamwork, ar.sportsmanship, ar.technical_skills, ar.adaptability, ar.game_sense) DESC
+                LIMIT 1;";
+            $type = "";
+            $params = [];
+        }
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param($type, ...$params);
+        $stmt->execute();
+
+        return $stmt->get_result()->fetch_assoc();
+    }
+
 }

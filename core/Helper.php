@@ -77,19 +77,8 @@ class Helper
 
     public static function sendMail($data)
     {
-        // use
-        // $template = file_get_contents('template/mail/allowance.html');
-        // $body = str_replace('[Recipient_Name]', 'Elmers Glue', $template);
-        // $data = [
-        //     'email' => 'magnomagz@gmail.com',
-        //     'name' => 'Elmer',
-        //     'subject' => 'Test',
-        //     'body' => $body,
-        // ];
-        // Helper::sendMail($data);
-
         $config = require 'config.php';
-        //Create an instance; passing `true` enables exceptions
+        
         $mail = new PHPMailer(true);
 
         try {
@@ -135,4 +124,14 @@ class Helper
         return $age;
     }
 
+    public static function formatDate($date, $format)
+    {
+        if (empty($date)) {
+            return null;
+        }
+
+        $dateTime = new DateTime($date);
+
+        return $dateTime->format($format);
+    }
 }
