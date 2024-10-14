@@ -20,6 +20,25 @@ class User extends Model
         return $this->db->insert_id;
     }
 
+    public function update($data)
+    {
+        $params = [$data['status'], $data['email'], $data['id']];
+        $types = "ssi";
+
+        if (!empty($data['password'])) {
+            $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);
+            $sql = "UPDATE users SET status = ?, email = ?, password = ? WHERE id = ?";
+            $params = [$data['status'], $data['email'], $hashedPassword, $data['id']];
+            $types = "sssi";
+        } else {
+            $sql = "UPDATE users SET status = ?, email = ? WHERE id = ?";
+        }
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param($types, ...$params);
+        return $stmt->execute();
+    }
+
 
     public function findUserByEmail($email)
     {

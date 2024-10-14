@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="../assets/css/main.css">
-    <link rel="stylesheet" href="../assets/css/admin_profile.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -54,7 +53,6 @@
             </div>
         </div>
     </div>
-    <script src="../assets/js/admin-dashboard.js"></script>
 </body>
 
 </html>

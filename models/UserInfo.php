@@ -60,6 +60,52 @@ class UserInfo extends Model
         return $stmt->execute();
     }
 
+    public function updateCoordinator($data)
+    {
+        // Define SQL and parameters based on whether picture is set
+        if (isset($data['picture'])) {
+            $sql = "UPDATE user_info SET
+                    first_name = ?, middle_name = ?, last_name = ?, address = ?,
+                    gender = ?, age = ?, phone_number = ?, picture = ?
+                WHERE user_id = ?";
+            $types = "ssssssssi";
+            $params = [
+                $data['first_name'],
+                $data['middle_name'],
+                $data['last_name'],
+                $data['address'],
+                $data['gender'],
+                $data['age'],
+                $data['phone_number'],
+                $data['picture'],
+                $data['user_id']
+            ];
+        } else {
+            $sql = "UPDATE user_info SET
+                    first_name = ?, middle_name = ?, last_name = ?, address = ?,
+                    gender = ?, age = ?, phone_number = ?
+                WHERE user_id = ?";
+            $types = "sssssssi";
+            $params = [
+                $data['first_name'],
+                $data['middle_name'],
+                $data['last_name'],
+                $data['address'],
+                $data['gender'],
+                $data['age'],
+                $data['phone_number'],
+                $data['user_id']
+            ];
+        }
+
+        // Prepare statement and bind parameters
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param($types, ...$params);
+
+        // Execute and return result
+        return $stmt->execute();
+    }
+
     public function findUserInfoById($id)
     {
         $stmt = $this->db->prepare("SELECT * FROM user_info WHERE id = ?");
