@@ -3,18 +3,25 @@
 require_once 'models/User.php';
 require_once 'core/Database.php';
 require_once 'core/Helper.php';
+require_once 'enums/Sport.php';
+require_once 'models/UserInfo.php';
 
 class AthleteController
 {
     private $user;
+    private $userInfo;
 
     public function __construct()
     {
         $this->user = new User();
+        $this->userInfo = new UserInfo();
     }
-    public function index()
+    public function index($params)
     {
-        $athletes = $this->user->fetchAllAthleteWithInfo();
+        $athletes = $this->user->fetchAllAthleteWithInfo($params);
+
+        $schools = $this->userInfo->getAllSchool();
+        $sports = Sport::fetchList();
 
         return include 'views/coordinator/manage-athlete.php';
     }
@@ -127,9 +134,12 @@ class AthleteController
     }
 
     // Admin
-    public function admin_index()
+    public function admin_index($params)
     {
-        $athletes = $this->user->fetchAllAthleteWithInfo();
+        $athletes = $this->user->fetchAllAthleteWithInfo($params);
+
+        $schools = $this->userInfo->getAllSchool();
+        $sports = Sport::fetchList();
 
         return include 'views/admin/manage-athlete.php';
     }

@@ -133,33 +133,12 @@ class UserInfo extends Model
         return $result['first_name'] . ' ' . $result['middle_name'] . ' ' . $result['last_name'];
     }
 
-    //========================================
-
-    public function readAll()
+    public function getAllSchool()
     {
-        $result = $this->db->query("SELECT * FROM users");
-        return $result->fetch_all(MYSQLI_ASSOC);
-    }
-
-    public function readById($id)
-    {
-        $stmt = $this->db->prepare("SELECT * FROM users WHERE id = ?");
-        $stmt->bind_param("i", $id);
+        $stmt = $this->db->prepare("SELECT school FROM user_info WHERE school != '' GROUP BY school");
         $stmt->execute();
-        return $stmt->get_result()->fetch_assoc();
-    }
+        $result = $stmt->get_result();
 
-    public function update($id, $name, $username)
-    {
-        $stmt = $this->db->prepare("UPDATE users SET name = ?, username = ? WHERE id = ?");
-        $stmt->bind_param("ssi", $name, $username, $id);
-        return $stmt->execute();
-    }
-
-    public function delete($id)
-    {
-        $stmt = $this->db->prepare("DELETE FROM users WHERE id = ?");
-        $stmt->bind_param("i", $id);
-        return $stmt->execute();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 }
