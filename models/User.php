@@ -20,6 +20,25 @@ class User extends Model
         return $this->db->insert_id;
     }
 
+    public function update($data)
+    {
+        $params = [$data['status'], $data['email'], $data['id']];
+        $types = "ssi";
+
+        if (!empty($data['password'])) {
+            $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);
+            $sql = "UPDATE users SET status = ?, email = ?, password = ? WHERE id = ?";
+            $params = [$data['status'], $data['email'], $hashedPassword, $data['id']];
+            $types = "sssi";
+        } else {
+            $sql = "UPDATE users SET status = ?, email = ? WHERE id = ?";
+        }
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param($types, ...$params);
+        return $stmt->execute();
+    }
+
 
     public function findUserByEmail($email)
     {
@@ -94,18 +113,29 @@ class User extends Model
         return $result;
     }
 
-    public function fetchAllAthleteWithInfo()
+    public function fetchAllAthleteWithInfo($data = [])
     {
+        $where = "";
+        $types = "";
+        $params = [];
+
+        if (!empty($data['school']) && $data['school'] !== 'all') {
+            $where .= " AND ui.school = ?";
+            $types .= "s";
+            $params[] = $data['school'];
+        }
+
+        if (!empty($data['sport']) && $data['sport'] !== 'all') {
+            $where .= " AND ui.sport = ?";
+            $types .= "s";
+            $params[] = $data['sport'];
+        }
+
         $coor = UserRole::ATHLETE;
-        $stmt = $this->db->prepare(
-            "SELECT 
-                u.email,
-                u.active,
-                u.status,
-                ui.user_id,
-                ui.first_name,
-                ui.last_name,
-                ui.middle_name,
+        $sql = "
+            SELECT 
+                u.email, u.active, u.status,
+                ui.user_id, ui.first_name, ui.last_name, ui.middle_name,
                 CONCAT(ui.first_name, ' ', IFNULL(ui.middle_name, ''), ' ', ui.last_name) AS full_name,
                 ui.school,
                 CASE 
@@ -116,22 +146,20 @@ class User extends Model
                     WHEN ui.sport = 'tennis' THEN 'Tennis'
                     ELSE ''
                 END AS sport,
-                ui.gender,
-                ui.address,
-                ui.age,
-                ui.phone_number,
-                birthday
+                ui.gender, ui.address, ui.age, ui.phone_number, ui.birthday
             FROM users u
             LEFT JOIN user_info ui ON u.id = ui.user_id
-            WHERE u.role = ? AND u.status != 'deleted'
-            ORDER BY u.status ASC"
-        );
-        $stmt->bind_param("s", $coor);
-        $stmt->execute();
+            WHERE u.role = ? AND u.status != 'deleted' $where
+            ORDER BY u.status ASC
+        ";
 
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("s" . $types, $coor, ...$params);
+        $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
 
     public function fetchAllApprovedAthleteWithInfo()
     {

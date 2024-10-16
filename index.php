@@ -58,8 +58,11 @@ $routes = [
         'GET' => [$coordinatorController, 'addnew'],
         'POST' => [$coordinatorController, 'create']
     ],
-    '/sms/admin/coordinator' => ['GET' => [$coordinatorController, 'show']],
-    '/sms/admin/coordinator-update' => ['GET' => [$coordinatorController, 'update']],
+    '/sms/admin/coordinator' => [
+        'GET' => [$coordinatorController, 'show'],
+        'POST' => [$coordinatorController, 'update']
+    ],
+    // '/sms/admin/coordinator-update' => ['GET' => [$coordinatorController, 'update']],
     '/sms/admin/manage-athlete' => ['GET' => [$athleteController, 'admin_index']],
     '/sms/admin/allowance' => ['GET' => [$allowanceController, 'index']],
     '/sms/admin/send-allowance-notice' => ['POST' => [$allowanceController, 'send_allowance_notice']],
@@ -100,6 +103,7 @@ $routes = [
         'POST' => [$evaluationController, 'submit_form']
     ],
     '/sms/athlete/stat' => ['GET' => [$athleteRatingController, 'stat']],
+    '/sms/athlete/claim-allowance' => ['POST' => [$allowanceController, 'claim']],
 
     // Ajax API request
     '/sms/coordinator/target-athlete' => ['POST' => [$athleteController, 'target_athlete']],
