@@ -86,7 +86,7 @@
                                         <th></th>
                                         <th>Name</th>
                                         <th>Email</th>
-                                        <th>Phone Number</th>
+                                        <th>School</th>
                                     </tr>
                                 </thead>
                                 <tbody>

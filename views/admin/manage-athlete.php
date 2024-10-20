@@ -35,7 +35,8 @@
                             <select name="school" id="school" class="sms-input">
                                 <option value="all">All</option>
                                 <?php foreach ($schools as $school): ?>
-                                    <option value="<?= $school['school'] ?>" <?= isset($_GET['school']) && $_GET['school'] === $school['school'] ? 'selected' : '' ?>><?= $school['school'] ?></option>
+                                    <option value="<?= $school['school'] ?>" <?= isset($_GET['school']) && $_GET['school'] === $school['school'] ? 'selected' : '' ?>><?= $school['school'] ?>
+                                    </option>
                                 <?php endforeach; ?>
                             </select>
 
@@ -66,13 +67,13 @@
                                     <th>School</th>
                                     <th>Sport</th>
                                     <th>Status</th>
-                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($athletes as $athlete): ?>
                                     <tr class="<?= $athlete['status'] ?>">
-                                        <td><?= $athlete['full_name'] ?></td>
+                                        <td><a href="../athlete/stat?id=<?= $athlete['user_id'] ?>"
+                                                style="text-decoration: none;"><?= $athlete['full_name'] ?></a></td>
                                         <td><?= $athlete['email'] ?></td>
                                         <td><?= $athlete['gender'] ?></td>
                                         <td><?= Helper::getAge($athlete['birthday']) ?></td>
@@ -81,10 +82,6 @@
                                         <td><?= $athlete['school'] ?></td>
                                         <td><?= $athlete['sport'] ?></td>
                                         <td><?= $athlete['status'] ?></td>
-                                        <td>
-                                            <a href="../athlete/stat?id=<?= $athlete['user_id'] ?>"
-                                                class="button button-primary button-xs">View</a>
-                                        </td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>

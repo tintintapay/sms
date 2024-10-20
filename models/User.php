@@ -247,8 +247,8 @@ class User extends Model
         $dataSql = "SELECT
             ui.user_id,
             ui.first_name, ui.middle_name, ui.last_name,
-            ui.phone_number,
-            ui.sport
+            u.email,
+            ui.school
             FROM users u
             LEFT JOIN user_info ui ON u.id = ui.user_id
             WHERE ui.sport = ? AND u.status = ? AND u.role = ?";
@@ -276,8 +276,8 @@ class User extends Model
             $returnData[] = [
                 $d['user_id'],
                 $d['first_name'] . ' ' . $d['middle_name'] . ' ' . $d['last_name'],
-                $d['phone_number'],
-                Sport::getDescription($d['sport'])
+                $d['email'],
+                $d['school']
             ];
         }
 
