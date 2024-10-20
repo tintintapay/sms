@@ -39,7 +39,7 @@ $athleteRatingController = new AthleteRatingController();
 
 // Define routes
 $routes = [
-    '/sms/index' => ['GET' => [$homeController, 'index']],
+    '/sms/index' => ['GET' => [$authenticateController, 'index']],
     '/sms/about' => ['GET' => [$homeController, 'about']],
     '/sms/sport' => ['GET' => [$homeController, 'sport']],
     '/sms/contact' => ['GET' => [$homeController, 'contact']],
