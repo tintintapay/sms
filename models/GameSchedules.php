@@ -27,7 +27,7 @@ class GameSchedules extends Model
         $this->updateGameSched();
 
         $stmt = $this->db->prepare(
-            "SELECT * FROM game_schedules WHERE deleted_at IS NULL"
+            "SELECT * FROM game_schedules WHERE deleted_at IS NULL ORDER BY schedule DESC"
         );
         $stmt->execute();
 
