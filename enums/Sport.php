@@ -30,15 +30,4 @@ class Sport
             self::TENNIS => self::getDescription(self::TENNIS),
         ];
     }
-
-    public static function getOptions()
-    {
-        return [
-            self::BASE_BALL => self::getDescription(self::BASE_BALL),
-            self::BASKET_BALL => self::getDescription(self::BASKET_BALL),
-            self::SOCCER => self::getDescription(self::SOCCER),
-            self::SWIMMING => self::getDescription(self::SWIMMING),
-            self::TENNIS => self::getDescription(self::TENNIS),
-        ];
-    }
 }

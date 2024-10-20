@@ -41,9 +41,11 @@ body {
   flex: 1;
   flex-direction: row;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .right-panel {
+  width: calc(100% - 260px);
   flex: 1;
   margin: 5px 0px;
   border-radius: 10px;
@@ -53,7 +55,6 @@ body {
 .left-panel {
   border-radius: 10px;
   width: 250px;
-  height: fit-content;
   position: relative;
   text-align: center;
 }
