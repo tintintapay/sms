@@ -204,4 +204,65 @@ class ReportData extends Model
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function rankings($data)
+    {
+        $sql = "
+            SELECT 
+                ar.athlete_id,
+                ui.first_name,
+                ui.last_name,
+                gs.sport,
+                AVG((ar.teamwork + ar.sportsmanship + ar.technical_skills + ar.adaptability + ar.game_sense) / 5) AS average_score,
+                RANK() OVER (PARTITION BY gs.sport ORDER BY AVG((ar.teamwork + ar.sportsmanship + ar.technical_skills + ar.adaptability + ar.game_sense) / 5) DESC) AS rank_in_sport
+            FROM 
+                athletes_ratings ar
+            JOIN 
+                game_schedules gs ON ar.game_id = gs.id
+            JOIN 
+                user_info ui ON ar.athlete_id = ui.id
+            WHERE 
+                gs.sport = ?
+            GROUP BY 
+                ar.athlete_id, gs.sport, ui.first_name, ui.last_name
+            ORDER BY 
+                rank_in_sport;
+        ";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("s", $data['sport']);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getTotalClaimAllowance($data)
+    {
+        $stmt = $this->db->prepare("
+            SELECT 
+                a.status,
+                DATE(a.created_at) AS date,
+                COUNT(*) AS count
+            FROM 
+                allowances a
+            JOIN 
+                (
+                    -- Select the two latest distinct dates
+                    SELECT DISTINCT DATE(created_at) AS latest_date
+                    FROM allowances
+                    ORDER BY created_at DESC
+                    LIMIT 1
+                ) AS latest_dates
+            ON 
+                DATE(a.created_at) = latest_dates.latest_date
+            GROUP BY 
+                a.status, DATE(a.created_at)
+            ORDER BY 
+                date DESC, status;
+
+        ");
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }

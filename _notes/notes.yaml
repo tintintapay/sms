@@ -53,30 +53,10 @@ File clickable for download
 [] profiling the players
  - ito kuya ay papasok dito sa part ni coordinator  yung athletes po nadiscuss ko po ito dito sa coordinator page and also dapat lahat ng info dito ay base sa lahat ng information na base sa records ni athletes as wells us kung saan sya naglaro na pwede po sigurong yung mga records na yun is base na sa details na binibigay ng mga nakaassign sa mga games or kada tournament
 
---------------
-* Changes [dev]
-1. Rework file structure
-2. Revise Login.
-  - Build one login UI.
-  - Adjust AuthenticateController
-  - Rebuild database for user_role
-  - Create users table (for auth)
-  - Create user_info (user's information)
-  ------
-  CREATE TABLE IF NOT EXISTS `users` (
-    `id` int NOT NULL AUTO_INCREMENT,
-    `active` int NOT NULL DEFAULT '1' COMMENT '1:true, 0:false',
-    `role` int NOT NULL,
-    `email` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-    `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-    `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`)
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-  ALTER TABLE user_info
-  ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  ADD COLUMN updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
------
-
-=================
+- Generic form upload button for coor
+- forgot password
+- FAQ
+- ranking
+- dashboard allowance ( total no . Who claim allowance)
+- print button for bar graph , pie graph, highlight

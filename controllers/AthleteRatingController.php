@@ -6,6 +6,7 @@ require_once 'models/AthletesRating.php';
 require_once 'core/Helper.php';
 require_once 'requests/AthletesRatingRequest.php';
 require_once 'models/User.php';
+require_once 'core/ReportData.php';
 
 class AthleteRatingController
 {
@@ -13,6 +14,7 @@ class AthleteRatingController
     private $evaluation;
     private $athletesRating;
     private $user;
+    private $report;
 
     public function __construct()
     {
@@ -20,6 +22,7 @@ class AthleteRatingController
         $this->evaluation = new Evaluation();
         $this->athletesRating = new AthletesRating();
         $this->user = new User();
+        $this->report = new ReportData();
     }
 
     public function index()
@@ -43,7 +46,7 @@ class AthleteRatingController
     public function store($request)
     {
         header('Content-Type: application/json');
-        
+
         // Validate request
         $athletesRatingRequest = new AthletesRatingRequest();
         $flash = $athletesRatingRequest->validate($request);
@@ -52,7 +55,7 @@ class AthleteRatingController
             echo json_encode($flash);
             exit();
         }
-        
+
         $data = [
             'created_user' => $_SESSION['user_id'],
             'athlete_id' => Helper::sanitize($request['athlete_id']),
@@ -116,7 +119,7 @@ class AthleteRatingController
             $rating['adaptability'] /= $count;
             $rating['game_sense'] /= $count;
         }
-        
+
         $data = [
             'athleteId' => $athleteId,
             'limit' => 3,
@@ -126,6 +129,19 @@ class AthleteRatingController
         $totalPlayed = $this->gameScheds->getPlayedCount($data);
 
         $bestGame = $this->gameScheds->bestGameHighlight($data);
+
+        // Ranking
+        $rankData = [
+            'sport' => $athlete['sport']
+        ];
+
+        $ranks = $this->report->rankings($rankData);
+        $ranking = "";
+        foreach ($ranks as $rank) {
+            if ($rank['athlete_id'] === $athlete['user_id']) {
+                $ranking = $rank['rank_in_sport'];
+            }
+        }
 
         include 'views/athlete/player-stats.php';
     }

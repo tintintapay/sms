@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/login.css">
-    <title>Login</title>
+    <title>Forgot Password</title>
 </head>
 
 <body>
@@ -16,22 +16,21 @@
     <div class="dark-overlay"></div>
     <div class="container">
         <div class="sample-text">
-            <h1>Welcome to Sportan!</h1>
+            <img src="assets/images/sportan-logo.png" alt="">
+            <h1>Sportan Portal!</h1>
         </div>
         <div class="login-container">
-            <h2>Login</h2>
-            <form action="login" method="post">
+            <h2>Forgot Password</h2>
+            <form action="forgot-password" method="post" autocomplete="off">
                 <div class="msg" style="display:<?php echo !empty($flash['message']) ? 'block' : 'none' ?>; width:auto">
                     <?php echo $flash['message'] ?? ''; ?>
                 </div>
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" value="<?php echo $email ?? '' ?>" required>
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-                <button type="submit">Login</button>
+                <input type="email" id="email" name="email" placeholder="Enter email address" value="<?php echo $email ?? '' ?>" required>
+                
+                <button type="submit">Next</button>
                 <div class="links">
-                    <a href="forgot-password">Forgot Password?</a>
-                    <a href="register">Register</a>
+                    <a href="login">Login</a>
                 </div>
             </form>
         </div>

@@ -21,6 +21,7 @@ require_once 'controllers/EvaluationController.php';
 require_once 'controllers/AnnouncementController.php';
 require_once 'controllers/AllowanceController.php';
 require_once 'controllers/AthleteRatingController.php';
+require_once 'controllers/FileResourceController.php';
 
 // Define your controllers
 $userController = new UserController();
@@ -36,10 +37,11 @@ $evaluationController = new EvaluationController();
 $announcementController = new AnnouncementController();
 $allowanceController = new AllowanceController();
 $athleteRatingController = new AthleteRatingController();
+$fileResourceController = new FileResourceController();
 
 // Define routes
 $routes = [
-    '/sms/index' => ['GET' => [$homeController, 'index']],
+    '/sms/index' => ['GET' => [$authenticateController, 'index']],
     '/sms/about' => ['GET' => [$homeController, 'about']],
     '/sms/sport' => ['GET' => [$homeController, 'sport']],
     '/sms/contact' => ['GET' => [$homeController, 'contact']],
@@ -50,6 +52,14 @@ $routes = [
     ],
     '/sms/register' => ['GET' => [$userController, 'index']],
     '/sms/register/create' => ['POST' => [$userController, 'create']],
+    '/sms/forgot-password'=> [
+        'GET' => [$authenticateController, 'forgot_password_index'],
+        'POST' => [$authenticateController, 'forgot_pass_store']
+    ],
+    '/sms/password-reset-validate' => [
+        'GET' => [$authenticateController, 'password_reset_validate'],
+        'POST' => [$authenticateController, 'password_reset_validate_store']
+    ],
 
     // Admin
     '/sms/admin/home' => ['GET' => [$adminHomeController, 'index']],
@@ -95,6 +105,11 @@ $routes = [
     '/sms/coordinator/athlete-ratings' => ['GET' => [$athleteRatingController, 'index']],
     '/sms/coordinator/athlete-rating' => ['GET' => [$athleteRatingController, 'show']],
     '/sms/coordinator/athlete-rating-save' => ['POST' => [$athleteRatingController, 'store']],
+    '/sms/coordinator/file-resource' => [
+        'GET' => [$fileResourceController, 'index'],
+        'POST' => [$fileResourceController, 'upload']
+    ],
+    '/sms/coordinator/file-delete' => ['POST' => [$fileResourceController, 'delete']],
 
     // Athlete
     '/sms/athlete/home' => ['GET' => [$athleteHomeController, 'index']],

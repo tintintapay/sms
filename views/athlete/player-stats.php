@@ -155,9 +155,10 @@
                     </div>
 
                     <div style="width: 50%; background-color: #242429; border-radius: 10px; padding: 20px;">
-                        <h3 style="font-size: 20px;">Total Played</h3>
+                        <h3 style="font-size: 20px;">Rank</h3>
                         <div style="display:flex;justify-content: center;align-items: center;">
-                            <p style="font-size: 5rem; color: #ffeb3b;"><?= $totalPlayed['total'] ?></p>
+                            <!-- <p style="font-size: 5rem; color: #ffeb3b;">#<?= $totalPlayed['total'] ?></p> -->
+                            <p style="font-size: 5rem; color: #ffeb3b;">#<?= $ranking ?></p>
                         </div>
 
                     </div>

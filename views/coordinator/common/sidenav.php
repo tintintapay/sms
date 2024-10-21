@@ -24,5 +24,10 @@
             <span class="menu-title">Announcement</span>
         </div>
     </a>
+    <a href="file-resource" class="menu">
+        <div class="menu-item">
+            <span class="menu-title">File Resource</span>
+        </div>
+    </a>
     
 </div>

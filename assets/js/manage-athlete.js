@@ -36,7 +36,7 @@ $(document).ready(function () {
         ordering: false,
         columnDefs: [
             {
-                target: [2, 3, 4, 5, 8, 9],
+                target: [2, 3, 4, 5, 8],
                 searchable: false
             },
 

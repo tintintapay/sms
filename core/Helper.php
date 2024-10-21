@@ -68,7 +68,7 @@ class Helper
                     return ['success' => false, 'message' => "Error uploading file."];
                 }
             } else {
-                return ['success' => false, 'message' => "Invalid file type. Only PDF, JPG, and PNG files are allowed."];
+                return ['success' => false, 'message' => "Invalid file type. Only ".strtoupper(implode(", ", $allowedTypes))." files are allowed."];
             }
         }
 
@@ -133,5 +133,51 @@ class Helper
         $dateTime = new DateTime($date);
 
         return $dateTime->format($format);
+    }
+
+    public static function encryptEmail($email)
+    {
+        // Encryption key and method
+        $config = require 'config.php';
+
+        $key = $config['encryption_key']; // Must be kept secure and private
+        $method = 'AES-256-CBC';
+
+        // Encrypt email
+        $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length($method));
+        $encryptedEmail = openssl_encrypt($email, $method, $key, 0, $iv);
+        $encryptedEmail = base64_encode("$encryptedEmail::$iv");
+
+        return $encryptedEmail;
+    }
+
+    public static function decryptEmail($email)
+    {
+        $config = require 'config.php';
+
+        $key = $config['encryption_key'];
+        $method = 'AES-256-CBC';
+        // Decrypt email
+        [$encryptedData, $iv] = explode('::', base64_decode($email), 2);
+        $decryptedEmail = openssl_decrypt($encryptedData, $method, $key, 0, $iv);
+
+        return $decryptedEmail;
+    }
+
+    public static function isExpired($dateString, $minutes)
+    {
+        $date = new DateTime($dateString);
+        $currentDate = new DateTime();
+        $interval = $currentDate->diff($date);
+
+        $minutesElapsed = $interval->days * 24 * 60;
+        $minutesElapsed += $interval->h * 60;
+        $minutesElapsed += $interval->i;
+
+        if ($minutesElapsed <= $minutes) {
+            return false;
+        }
+        
+        return true;
     }
 }

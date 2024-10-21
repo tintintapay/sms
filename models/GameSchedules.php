@@ -67,6 +67,8 @@ class GameSchedules extends Model
         // Update Game Sched
         $this->updateGameSched();
 
+        $inactive = GameStatus::INACTIVE;
+
         $stmt = $this->db->prepare(
             "SELECT g.*, e.status,
             (CASE 
@@ -83,10 +85,11 @@ class GameSchedules extends Model
             ON e.game_schedules_id = g.id
             WHERE g.sport = ?
             AND e.athlete_id = ?
+            AND g.status != ?
             AND g.deleted_at IS NULL"
         );
 
-        $stmt->bind_param('isi', $_SESSION['user_id'], $_SESSION['sport'], $_SESSION['user_id']);
+        $stmt->bind_param('isis', $_SESSION['user_id'], $_SESSION['sport'], $_SESSION['user_id'], $inactive);
         $stmt->execute();
 
         $result = $stmt->get_result();
@@ -108,9 +111,10 @@ class GameSchedules extends Model
     public function updateGameSched()
     {
         $completed = GameStatus::COMPLETED;
+        $active = GameStatus::ACTIVE;
 
-        $stmt = $this->db->prepare("UPDATE game_schedules SET status = ? WHERE schedule < CURDATE()");
-        $stmt->bind_param('s', $completed);
+        $stmt = $this->db->prepare("UPDATE game_schedules SET status = ? WHERE schedule < CURDATE() AND status = ?");
+        $stmt->bind_param('ss', $completed, $active);
 
         return $stmt->execute();
     }

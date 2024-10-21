@@ -100,4 +100,31 @@ class Widget
 
         return $html;
     }
+
+    public static function claimsAllowanceCount()
+    {
+        $report = new ReportData();
+
+        $allowances = $report->getTotalClaimAllowance([]);
+        $remainingClaim = "";
+        $totalClaim = "";
+        foreach ($allowances as $allowance) {
+            switch ($allowance['status']) {
+                case 'available':
+                    $remainingClaim = $allowance['count'];
+                    break;
+                case 'received':
+                    $totalClaim = $allowance['count'];
+                    break;
+            }
+        }
+
+        // starts output buffering
+        ob_start();
+        include 'template/widgets/allowance-claim.php';
+        // store output buffering
+        $html = ob_get_clean();
+
+        return $html;
+    }
 }
