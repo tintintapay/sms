@@ -30,6 +30,9 @@
                 <hr>
 
                 <div class="section">
+                    <?= $allowanceClaim; ?>
+                </div>
+                <div class="section">
                     <div style="display: flex;gap:15px;flex-wrap: wrap;">
                         <!-- Incoming Event -->
                         <div style="background-color:#fff; border-radius:10px; padding: 15px; flex:1">
@@ -66,7 +69,8 @@
                             style="background-color:#fff; border-radius:10px; padding: 15px; flex:0.6">
                             <h3 style="margin: 0px 0px 15px 0px;">Athlete Population
                                 <span style="float:right">
-                                    <button onclick="print_div('report_population')"><i class="fa-solid fa-print"></i></button>
+                                    <button onclick="print_div('report_population')"><i
+                                            class="fa-solid fa-print"></i></button>
                                 </span>
                             </h3>
                             <hr>
@@ -82,7 +86,8 @@
                             style="background-color:#fff; border-radius:10px; padding: 15px; flex:0.6">
                             <h3 style="margin: 0px 0px 15px 0px;"><?= date('F') ?> Top-Rated Athletes
                                 <span style="float:right">
-                                    <button onclick="print_div('report_top_rated')"><i class="fa-solid fa-print"></i></button>
+                                    <button onclick="print_div('report_top_rated')"><i
+                                            class="fa-solid fa-print"></i></button>
                                 </span>
                             </h3>
                             <hr>
@@ -92,7 +97,8 @@
                             style="background-color:#fff; border-radius:10px; padding: 15px; flex:0.4">
                             <h3 style="margin: 0px 0px 15px 0px;"><?= date('F') ?> Game highlight
                                 <span style="float:right">
-                                    <button onclick="print_div('report_game_highlight')"><i class="fa-solid fa-print"></i></button>
+                                    <button onclick="print_div('report_game_highlight')"><i
+                                            class="fa-solid fa-print"></i></button>
                                 </span>
                             </h3>
                             <hr>
