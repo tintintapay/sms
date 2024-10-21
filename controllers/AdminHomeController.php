@@ -18,12 +18,14 @@ class AdminHomeController
         $events = $this->report->getIncomingEvent(3);
         $announcement = $this->report->getLatestAnnouncement();
 
+        // Total athlete claims allowance
+        $allowanceClaim = Widget::claimsAllowanceCount();
+
         // population
         $population = Widget::athletePopulation();
 
         // Top rated athletes
-        $topRatedAthletes = Widget::topRatedAthlete(); 
-        
+        $topRatedAthletes = Widget::topRatedAthlete();
 
         //game highlights
         $gameHighlights = Widget::topGameHighlights();

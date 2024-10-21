@@ -28,6 +28,9 @@ require 'views/admin/config.php';
                 </div>
                 <hr>
                 <div class="section">
+                    <?= $allowanceClaim; ?>
+                </div>
+                <div class="section">
                     <div style="display: flex;gap:15px;flex-wrap: wrap;">
                         <!-- Incoming Event -->
                         <div style="background-color:#fff; border-radius:10px; padding: 15px; flex:1">
