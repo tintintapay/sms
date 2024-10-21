@@ -1,120 +1,122 @@
-/* General styles */
 body {
-  font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Hide overflow to prevent scrolling */
-  position: relative; /* Ensure relative positioning */
+  font-family: Arial, sans-serif;
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4f4f9;
 }
 
-/* Background image */
 .background-image {
-  position: fixed; /* Fixed position for the background */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../images/p.jpg");
+  /* Add your background image URL */
+  background-size: cover;
+  background-position: center;
+  filter: blur(4px);
+  z-index: -1;
+}
+
+.dark-overlay {
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1; /* Ensure it's behind other content */
-  background-image: url("../images/p.jpg"); /* Adjusted path to the image */
-  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.3);
+  /* Adjust the opacity as needed */
+  z-index: -1;
 }
 
-/* Container styles */
 .container {
-  position: relative;
-  z-index: 1; /* Ensure it's above the background */
   display: flex;
-  justify-content: center;
+  flex-direction: row;
   align-items: center;
-  height: 100vh; /* Set height to viewport height */
-  padding: 50px; /* Add padding to the container */
-  box-sizing: border-box; /* Include padding in height calculation */
+  width: 80%;
+  max-width: 1200px;
 }
 
-/* Content styles */
-.content {
-  padding: 30px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  max-width: 600px; /* Limit maximum width for content */
-  width: 100%;
-}
-
-/* Header styles */
-h1 {
-  padding: 50px; /* Add some padding to the h1 elements */
-  color: #fff; /* White text */
-  font-weight: bold;
-  text-align: center; /* Center the text */
-}
-
-h1 span {
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.473
-  ); /* Adjust the opacity and color of the h1 text */
-  padding: 70px; /* Add some padding to the h1 text */
-}
-
-/* Button styles */
-.btn {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 20px; /* Add some space between the buttons */
-  display: block; /* Ensure button is block level for proper layout */
-  margin: auto; /* Center button horizontally */
-  width: 80%; /* Set width to 80% for better alignment */
-  max-width: 300px; /* Limit maximum width for buttons */
-}
-
-.btn + .btn {
-  margin-top: 10px; /* Add space between the buttons */
-}
-
-.btn:hover {
-  background-color: #d92100;
-}
-
-.contact-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #007bff;
+.sample-text {
   color: white;
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 24px;
-  cursor: pointer;
-  z-index: 1000;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  flex: 1;
+  margin-right: 20px;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .content {
-    padding: 20px; /* Reduce padding on smaller screens */
-  }
+.sample-text h1 {
+  margin: 0 0 10px 0;
+}
 
-  h1 {
-    padding: 30px; /* Adjust header padding on smaller screens */
-  }
+.sample-text p {
+  margin: 0;
+}
 
-  h1 span {
-    padding: 40px; /* Adjust span padding on smaller screens */
-  }
+.login-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 0px 0px 10px 10px;
+  padding: 30px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex: 0 0 auto;
+  border-top: 9px solid red;
+}
 
-  .btn {
-    width: 100%; /* Set width to 100% for better alignment on small screens */
-  }
+.login-container h2 {
+  margin: 0 0 20px 0;
+  color: #333;
+  text-align: center;
+}
+
+.login-container label {
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.login-container input[type="text"],
+.login-container input[type="email"],
+.login-container input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.login-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-container button:hover {
+  background-color: #0056b3;
+}
+
+.login-container a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.login-container a:hover {
+  text-decoration: underline;
+}
+
+.login-container .links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
 }

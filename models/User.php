@@ -42,7 +42,7 @@ class User extends Model
 
     public function findUserByEmail($email)
     {
-        $stmt = $this->db->prepare("SELECT * FROM users WHERE email = ?");
+        $stmt = $this->db->prepare("SELECT users.*, CONCAT(user_info.first_name, ' ', user_info.last_name) AS full_name FROM users JOIN user_info ON users.id = user_info.user_id WHERE users.email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
 
@@ -207,6 +207,16 @@ class User extends Model
         return $stmt->execute();
     }
 
+    public function updatePassword($data)
+    {
+        $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);
+        $active = UserStatus::ACTIVE;
+        $stmt = $this->db->prepare("UPDATE users SET password = ?, code = '' WHERE id = ? AND status = ?");
+        $stmt->bind_param("sis", $hashedPassword, $data['id'], $active);
+
+        return $stmt->execute();
+    }
+
     public function fetchAthletesBySport($sport, $start, $length, $search)
     {
         if ($sport === '') {
@@ -287,5 +297,14 @@ class User extends Model
             "data" => $returnData,
         ];
 
+    }
+
+    public function insertResetCode($data)
+    {
+        $active = UserStatus::ACTIVE;
+        $stmt = $this->db->prepare("UPDATE users SET code = ? WHERE email = ? AND status = ?");
+        $stmt->bind_param("sss", $data['code'], $data['email'], $active);
+
+        return $stmt->execute();
     }
 }

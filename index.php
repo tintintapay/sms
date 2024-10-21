@@ -50,6 +50,14 @@ $routes = [
     ],
     '/sms/register' => ['GET' => [$userController, 'index']],
     '/sms/register/create' => ['POST' => [$userController, 'create']],
+    '/sms/forgot-password'=> [
+        'GET' => [$authenticateController, 'forgot_password_index'],
+        'POST' => [$authenticateController, 'forgot_pass_store']
+    ],
+    '/sms/password-reset-validate' => [
+        'GET' => [$authenticateController, 'password_reset_validate'],
+        'POST' => [$authenticateController, 'password_reset_validate_store']
+    ],
 
     // Admin
     '/sms/admin/home' => ['GET' => [$adminHomeController, 'index']],
