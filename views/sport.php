@@ -15,7 +15,7 @@
   <div class="container">
     <div class="content">
       <div class="title-container">
-        <p><img src="" alt="Basketball Icon"><a href="#" onclick="showInfo('Basketball')">Basketball</a></p>
+        <p><img src="assets/images/pic.jpg" alt="Basketball Icon"><a href="#" onclick="showInfo('Basketball')">Basketball</a></p>
         <p><img src="soccer_icon.png" alt="Soccer Icon"><a href="#" onclick="showInfo('Soccer')">Soccer</a></p>
         <p><img src="tennis_icon.png" alt="Tennis Icon"><a href="#" onclick="showInfo('Tennis')">Tennis</a></p>
         <p><img src="baseball_icon.png" alt="Baseball Icon"><a href="#" onclick="showInfo('Baseball')">Baseball</a></p>
