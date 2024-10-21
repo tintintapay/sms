@@ -20,8 +20,6 @@ $logo = 'assets/images/1.jpg';
         /* Semi-transparent black background */
         backdrop-filter: blur(10px);
         /* Apply blur effect */
-        z-index: 1;
-        /* Ensure it's above other content */
     }
 
     .nav .logo {
