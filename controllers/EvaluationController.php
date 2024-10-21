@@ -21,6 +21,7 @@ class EvaluationController
     {
         $gameId = $param['game-id'];
 
+        // Scan directory for files
         $directory = 'assets/downloadable';
         $files = array_diff(scandir($directory), ['.', '..']);
 

@@ -68,7 +68,7 @@ class Helper
                     return ['success' => false, 'message' => "Error uploading file."];
                 }
             } else {
-                return ['success' => false, 'message' => "Invalid file type. Only PDF, JPG, and PNG files are allowed."];
+                return ['success' => false, 'message' => "Invalid file type. Only ".strtoupper(implode(", ", $allowedTypes))." files are allowed."];
             }
         }
 
