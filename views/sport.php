@@ -15,18 +15,23 @@
   <div class="background-image"></div>
   <div class="dark-overlay"></div>
   <div class="container">
-    <div class="container">
-      <div class="content">
-        <div class="title-container">
-          <p><img src="basketball_icon.png" alt="Basketball Icon"><a href="#"
-              onclick="showInfo('Basketball')">Basketball</a></p>
-          <p><img src="soccer_icon.png" alt="Soccer Icon"><a href="#" onclick="showInfo('Soccer')">Soccer</a></p>
-          <p><img src="tennis_icon.png" alt="Tennis Icon"><a href="#" onclick="showInfo('Tennis')">Tennis</a></p>
-          <p><img src="baseball_icon.png" alt="Baseball Icon"><a href="#" onclick="showInfo('Baseball')">Baseball</a>
-          </p>
-          <p><img src="swimming_icon.png" alt="Swimming Icon"><a href="#" onclick="showInfo('Swimming')">Swimming</a>
-          </p>
-        </div>
+    <div class="content">
+      <div class="title-container">
+        <p><a href="#" onclick="showInfo('Basketball')">Basketball</a></p>
+        <p><a href="#" onclick="showInfo('Volleyball')">Volleyball</a></p>
+        <p><a href="#" onclick="showInfo('Football/Soccer')">Football/Soccer</a></p>
+        <p><a href="#" onclick="showInfo('Badminton')">Badminton</a></p>
+        <p><a href="#" onclick="showInfo('Table Tennis')">Table Tennis</a></p>
+        <p><a href="#" onclick="showInfo('Athletics')">Athletics</a></p>
+        <p><a href="#" onclick="showInfo('Chess')">Chess</a></p>
+        <p><a href="#" onclick="showInfo('Taekwondo')">Taekwondo</a></p>
+        <p><a href="#" onclick="showInfo('Swimming')">Swimming</a></p>
+        <p><a href="#" onclick="showInfo('Sepak Takraw')">Sepak Takraw</a></p>
+        <p><a href="#" onclick="showInfo('Softball/Baseball')">Softball/Baseball</a></p>
+        <p><a href="#" onclick="showInfo('Arnis')">Arnis</a></p>
+        <p><a href="#" onclick="showInfo('Dance Sports')">Dance Sports</a></p>
+        <p><a href="#" onclick="showInfo('Pencak Silat')">Pencak Silat</a></p>
+        <p><a href="#" onclick="showInfo('Karate')">Karate</a></p>
       </div>
     </div>
 
