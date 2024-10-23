@@ -1,22 +1,26 @@
+<?php require_once 'views/config.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <link rel="stylesheet" href="assets/css/register.css">
     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/login.css">
+    <link rel="stylesheet" href="assets/css/register.css">
+    <title>Register</title>
 </head>
 
 <body>
-    <header class="header">
-        <div class="avatar"></div> <!-- Avatar/Logo in the center -->
-        <div class="title">Register</div>
-    </header>
-
+    <?php include_once 'common/nav.php'; ?>
+    <div class="background-image"></div>
+    <div class="dark-overlay"></div>
     <div class="container">
-        <div class="form-container">
+        <div class="welcome-msg">
+            <img src="assets/images/sportan-logo.png" style="width:250px" alt="">
+            <h1>Register</h1>
+        </div>
+        <div class="card" style="width: 500px; height: 550px; overflow:auto">
             <form action="register/create" method="POST" enctype="multipart/form-data">
 
                 <div class="form-field">
@@ -130,16 +134,7 @@
         </div>
     </div>
 
-    <script>
-        function showConfirmation() {
-            alert("Your registration has been submitted. Please wait up to 24 hours for registration validation.");
-            // Optionally, you can use a `return false` here to prevent form submission for testing
-            return true; // Continue with form submission
-        }
-    </script>
 
-
-    <script src="assets/js/register.js"></script> <!-- Link to the external JavaScript file -->
 </body>
 
 </html>

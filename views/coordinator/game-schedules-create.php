@@ -30,11 +30,17 @@
                 <hr>
                 <div class="section">
                     <div class="card">
-                        <form action="game-schedules-create" method="post">
+                        <form action="game-schedules-create" method="post" enctype="multipart/form-data">
                             <div class="msg" style="display:<?php echo !empty($flash['message']) ? 'block' : 'none' ?>">
                                 <?php echo $flash['message'] ?? ''; ?>
                             </div>
                             <div id="targetAthletes"></div>
+
+                            <label for="status" class="label">
+                                <input type="checkbox" name="status" id="status" <?= isset($request['status']) ? 'checked' : '' ?>>
+                                Set as Active
+                            </label>
+
                             <label for="game_title" class="label">Title:</label>
                             <input type="text" class="sms-input text-only" id="game_title" name="game_title"
                                 value="<?= $request['game_title'] ?? '' ?>" autocomplete="off">
@@ -47,6 +53,9 @@
                             <input type="date" class="sms-input" id="schedule" name="schedule" min="<?= date('Y-m-d', strtotime('+1 day'))?>"
                                 value="<?= $request['schedule'] ?? '' ?>" autocomplete="off">
 
+                            <label for="schedule_picture" class="label">Schedule Picture:</label>
+                            <input type="file" class="sms-input" id="schedule_picture" name="schedule_picture" accept="image/png, image/jpeg">
+
                             <label for="sport" class="label">Sport:</label>
                             <select name="sport" id="sport" class="sms-input">
                                 <option value="" selected disabled>- Please Select -</option>
@@ -54,11 +63,6 @@
                                     <option value="<?= $key ?>"><?= $value ?></option>
                                 <?php endforeach; ?>
                             </select>
-
-                            <label for="status" class="label">
-                                <input type="checkbox" name="status" id="status" <?= isset($request['status']) ? 'checked' : '' ?>>
-                                Set as Active
-                            </label>
 
                             <hr>
 

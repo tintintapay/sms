@@ -15,7 +15,8 @@
     <div class="background-image"></div>
     <div class="dark-overlay"></div>
     <div class="container">
-        <div class="sample-text">
+        <div class="welcome-msg">
+            <img src="assets/images/sportan-logo.png" style="width:250px" alt="">
             <h1>Welcome to Sportan!</h1>
         </div>
         <div class="login-container">

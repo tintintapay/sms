@@ -119,6 +119,7 @@ $routes = [
     ],
     '/sms/athlete/stat' => ['GET' => [$athleteRatingController, 'stat']],
     '/sms/athlete/claim-allowance' => ['POST' => [$allowanceController, 'claim']],
+    '/sms/athlete/game-schedule' => ['GET' => [$gameScheduleController, 'schedule']],
 
     // Ajax API request
     '/sms/coordinator/target-athlete' => ['POST' => [$athleteController, 'target_athlete']],

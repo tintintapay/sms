@@ -50,16 +50,31 @@ class GameScheduleController
             return include 'views/coordinator/game-schedules-create.php';
         }
 
+        // schedule file name 
+        $pic_fileName = md5(uniqid());
+        $fileType = strtolower(pathinfo($_FILES["schedule_picture"]["name"], PATHINFO_EXTENSION));
+        $fileName = "$pic_fileName.$fileType";
+
         $gameData = [
             'game_title' => Helper::sanitize($request['game_title']),
             'schedule' => Helper::sanitize($request['schedule']),
             'sport' => Helper::sanitize($request['sport']),
             'venue' => Helper::sanitize($request['venue']),
             'status' => isset($request['status']) ? GameStatus::ACTIVE : GameStatus::INACTIVE,
-            'created_user' => $_SESSION['user_id']
+            'created_user' => $_SESSION['user_id'],
+            'schedule_picture' => $fileName,
         ];
 
         $gameId = $this->gameScheds->insertSchedule($gameData);
+
+        // File Upload PICTURE
+        $pic_result = Helper::fileUpload([
+            'target_dir' => "assets/uploads/game_sched/$gameId/",
+            'filename' => $pic_fileName,
+            'file' => $_FILES['schedule_picture'],
+            'allowed_types' => ['jpg', 'png'],
+            'max_size' => 5000  // 5MB in kilobytes
+        ]);
 
         $evalData = [];
         $athletes = array_map('intval', $request['athletes']);
@@ -185,5 +200,15 @@ class GameScheduleController
         }
 
         echo json_encode(['success' => true]);
+    }
+
+    public function schedule($params)
+    {
+        $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']);;
+        $gameId = $params['id'];
+        $file = $params['file'];
+        $img = "$url/assets/uploads/game_sched/$gameId/$file";
+
+        include 'views/athlete/game_schedule.php';
     }
 }

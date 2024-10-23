@@ -108,7 +108,6 @@ class CoordinatorController
         $coordinator = $this->user->getUser($request['id']);
         $request['user_id'] = $coordinator['user_id'];
         $request['full_name'] = $coordinator['full_name'];
-        $request['status'] = $coordinator['status'];
 
         $coordinatorRequest = new CoordinatorUpdateRequest();
         $flash = $coordinatorRequest->validate($request);
@@ -175,7 +174,8 @@ class CoordinatorController
         }
         
         $this->userInfo->updateCoordinator($userInfoData);
-
+        $coordinator = $this->user->getUser($request['id']);
+        $request['status'] = $coordinator['status'];
         return include 'views/admin/coordinator.php';
     }
 }

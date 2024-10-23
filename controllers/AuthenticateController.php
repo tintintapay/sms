@@ -48,7 +48,7 @@ class AuthenticateController
         // Check user status
         if ($user['status'] === UserStatus::PENDING) {
             $flash['message'] = $this->messages['invalid_pending_account'];
-        } elseif ($user['status'] === UserStatus::DELETED || !$user['active']) {
+        } elseif ($user['status'] === UserStatus::DELETED || $user['status'] === UserStatus::INACTIVE) {
             $flash['message'] = $this->messages['invalid_login'];
         } else {
             // Fetch user info and set session

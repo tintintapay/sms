@@ -25,24 +25,26 @@
                 <hr>
 
                 <!-- ALLOWANCE SECTION -->
-                <div class="section">
-                    <div class="allowance-box">
-                        <h2>Allowance</h2>
-                        <p><strong>Allowance Status:</strong> <span
-                                style="color: #28a745;"><?= AllowanceStatus::getDescription($allowance['status']) ?></span>
-                        </p>
-                        <p><?= $allowance['message'] ?></p>
-                        <p class="date-info"><?= Helper::formatDate($allowance['created_at'], 'Y-m-d') ?></p>
-                        <?php if ($allowance['status'] === AllowanceStatus::AVAILABLE): ?>
-                            <div style="text-align: right;">
-                                <form action="claim-allowance" method="POST">
-                                    <input type="hidden" name="id" id="id" value="<?= $_SESSION['user_id'] ?>">
-                                    <button type="submit" class="button">Claim</button>
-                                </form>
-                            </div>
-                        <?php endif; ?>
+                <?php if ($allowance): ?>
+                    <div class="section">
+                        <div class="allowance-box">
+                            <h2>Allowance</h2>
+                            <p><strong>Allowance Status:</strong> <span
+                                    style="color: #28a745;"><?= AllowanceStatus::getDescription($allowance['status']) ?></span>
+                            </p>
+                            <p><?= $allowance['message'] ?></p>
+                            <p class="date-info"><?= Helper::formatDate($allowance['created_at'], 'Y-m-d') ?></p>
+                            <?php if ($allowance['status'] === AllowanceStatus::AVAILABLE): ?>
+                                <div style="text-align: right;">
+                                    <form action="claim-allowance" method="POST">
+                                        <input type="hidden" name="id" id="id" value="<?= $_SESSION['user_id'] ?>">
+                                        <button type="submit" class="button">Claim</button>
+                                    </form>
+                                </div>
+                            <?php endif; ?>
+                        </div>
                     </div>
-                </div>
+                <?php endif; ?>
 
                 <!-- ANNOUNCEMENTS SECTION -->
                 <div class="section flex gap-10">
@@ -56,6 +58,7 @@
                                 <p><strong>Author:</strong> <?= $announcement['created']; ?></p>
                                 <p><?= $announcement['description'] ?></p>
                             </div>
+                            <hr>
                         <?php endforeach; ?>
                     </div>
 
@@ -68,6 +71,11 @@
                                     <div class="game-info">
                                         <div class="game-title"><?= $schedule['game_title'] ?></div>
                                         <div class="game-schedule"><?= $schedule['schedule'] ?></div>
+                                        <?php if (!empty($schedule['schedule_picture'])): ?>
+                                            <div class="game-schedule"><a target="_blank"
+                                                    href="game-schedule?id=<?= $schedule['id'] ?>&file=<?= $schedule['schedule_picture'] ?>">Game
+                                                    Schedule</a></div>
+                                        <?php endif; ?>
                                     </div>
                                     <?php if ($schedule['is_included']): ?>
                                         <!-- PENDING -->

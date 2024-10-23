@@ -1,4 +1,3 @@
-<?php require_once 'views/config.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
