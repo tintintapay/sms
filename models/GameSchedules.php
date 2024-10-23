@@ -37,8 +37,8 @@ class GameSchedules extends Model
 
     public function insertSchedule($data)
     {
-        $stmt = $this->db->prepare("INSERT INTO game_schedules (game_title, schedule, sport, venue, status, created_user) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssi", $data['game_title'], $data['schedule'], $data['sport'], $data['venue'], $data['status'], $data['created_user']);
+        $stmt = $this->db->prepare("INSERT INTO game_schedules (game_title, schedule, sport, venue, status, created_user, schedule_picture) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssis", $data['game_title'], $data['schedule'], $data['sport'], $data['venue'], $data['status'], $data['created_user'], $data['schedule_picture']);
 
         if (!$stmt->execute()) {
             return null;

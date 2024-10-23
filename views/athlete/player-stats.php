@@ -5,11 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stats | <?= $athlete['full_name'] ?></title>
+    <link rel="stylesheet" href="../vendor/fontawesome-6.5.1/css/all.min.css">
+    <script src="../vendor/jquery/jquery-3.7.1.js"></script>
     <script src="../vendor/chartjs/chart.js"></script>
+    <script src="../assets/js/print.js"></script>
 </head>
 
-<body style="margin: 0; font-family: 'Arial', sans-serif; background-color: #1b1b1d; color: #f1f1f1;">
-
+<body id="body" style="margin: 0; font-family: 'Arial', sans-serif; background-color: #1b1b1d; color: #f1f1f1;">
+    <span style="float:right">
+        <button onclick="print_div('body')"><i class="fa-solid fa-print"></i></button>
+    </span>
     <!-- Main Profile Section -->
     <main style="padding: 40px;">
         <div style="display: flex; justify-content: space-between;">
@@ -103,7 +108,8 @@
                                 <tr style="border-bottom: 1px solid #333;">
                                     <td style="padding: 10px;"><?= str_pad($count, 2, '0', STR_PAD_LEFT) ?></td>
                                     <td style="padding: 10px;"><?= Helper::formatDate($gameEvent['schedule'], 'l') ?></td>
-                                    <td style="padding: 10px;"><?= Helper::formatDate($gameEvent['schedule'], 'M d , Y') ?></td>
+                                    <td style="padding: 10px;"><?= Helper::formatDate($gameEvent['schedule'], 'M d , Y') ?>
+                                    </td>
                                     <td style="padding: 10px;"><?= $gameEvent['venue'] ?></td>
                                 </tr>
                                 <?php $count++; ?>
@@ -124,10 +130,13 @@
                     <div
                         style="flex: 1 1 100%; background-color: #242429; border-radius: 10px; padding: 20px; box-sizing: border-box; min-width: 280px;">
                         <h3 style="font-size: 20px;">Best Event Played</h3>
-                        <p style="font-size: 18px; color: #ffeb3b; margin-bottom: 5px;"><?= $bestGame['game_title'] ?? 'N/A'?></p>
+                        <p style="font-size: 18px; color: #ffeb3b; margin-bottom: 5px;">
+                            <?= $bestGame['game_title'] ?? 'N/A' ?></p>
                         <!-- Title -->
-                        <p style="color: #ccc; margin-bottom: 5px;">Date: <?= Helper::formatDate($bestGame['schedule'], 'D F j, Y') ?? 'N/A' ?></p> <!-- Date -->
-                        <p style="color: #ccc; margin-bottom: 20px;">Venue: <?= $bestGame['venue'] ?? 'N/A' ?></p> <!-- Venue -->
+                        <p style="color: #ccc; margin-bottom: 5px;">Date:
+                            <?= Helper::formatDate($bestGame['schedule'], 'D F j, Y') ?? 'N/A' ?></p> <!-- Date -->
+                        <p style="color: #ccc; margin-bottom: 20px;">Venue: <?= $bestGame['venue'] ?? 'N/A' ?></p>
+                        <!-- Venue -->
 
                         <!-- Ratings -->
                         <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px;">
@@ -140,7 +149,8 @@
                                 <p style="color: #ccc;">Sportsmanship</p>
                             </div>
                             <div style="text-align: center; flex: 1 1 18%; min-width: 100px;">
-                                <p style="font-size: 24px; color: #ffeb3b;"><?= $bestGame['technical_skills'] ?? 0 ?></p>
+                                <p style="font-size: 24px; color: #ffeb3b;"><?= $bestGame['technical_skills'] ?? 0 ?>
+                                </p>
                                 <p style="color: #ccc;">Tech Skills</p>
                             </div>
                             <div style="text-align: center; flex: 1 1 18%; min-width: 100px;">

@@ -16,9 +16,8 @@
     <div class="background-image"></div>
     <div class="dark-overlay"></div>
     <div class="container">
-        <div class="sample-text">
-            <img src="assets/images/sportan-logo.png" alt="">
-            <h1>Sportan Portal!</h1>
+        <div class="welcome-msg">
+            <img src="assets/images/sportan-logo.png" style="width:250px" alt="">
         </div>
         <div class="login-container">
             <h2>Password Reset Code</h2>

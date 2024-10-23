@@ -61,6 +61,6 @@ $logo = 'assets/images/1.jpg';
     <a href="about">About</a>
     <a href="sport">Sport</a>
     <a href="contact">Contact</a>
-    <a href="help">Help</a>
+    <a href="faqs">FAQs</a>
     <div></div>
 </div>

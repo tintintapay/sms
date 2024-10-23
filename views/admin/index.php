@@ -9,9 +9,12 @@ require 'views/admin/config.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="stylesheet" href="../vendor/fontawesome-6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/main.css">
-    <link rel="stylesheet" href="../assets/css/admin_profile.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../vendor/jquery/jquery-3.7.1.js"></script>
+    <!-- <script src="../vendor/chartjs/chart.js"></script> -->
+    <script src="../vendor/apexchart/apexcharts.js"></script>
+    <script src="../assets/js/print.js"></script>
 </head>
 
 <body>
@@ -63,7 +66,8 @@ require 'views/admin/config.php';
                         </div>
 
                         <!-- Population -->
-                        <div style="background-color:#fff; border-radius:10px; padding: 15px; flex:0.6">
+                        <div id="report_population"
+                            style="background-color:#fff; border-radius:10px; padding: 15px; flex:0.6">
                             <h3 style="margin: 0px 0px 15px 0px;">Athlete Population</h3>
                             <hr>
 
@@ -74,13 +78,20 @@ require 'views/admin/config.php';
 
                 <div class="section">
                     <div style="display:flex;gap:15px;flex-wrap: wrap;">
-                        <div style="background-color:#fff; border-radius:10px; padding: 15px; flex:0.6">
+                        <div id="report_top_rated"
+                            style="background-color:#fff; border-radius:10px; padding: 15px; flex:0.6">
                             <h3 style="margin: 0px 0px 15px 0px;"><?= date('F') ?> Top-Rated Athletes</h3>
                             <hr>
                             <?= $topRatedAthletes; ?>
                         </div>
-                        <div style="background-color:#fff; border-radius:10px; padding: 15px; flex:0.4">
-                            <h3 style="margin: 0px 0px 15px 0px;"><?= date('F') ?> Game highlight</h3>
+                        <div id="report_game_highlight"
+                            style="background-color:#fff; border-radius:10px; padding: 15px; flex:0.4">
+                            <h3 style="margin: 0px 0px 15px 0px;"><?= date('F') ?> Game highlight
+                                <span style="float:right">
+                                    <button onclick="print_div('report_game_highlight')"><i
+                                            class="fa-solid fa-print"></i></button>
+                                </span>
+                            </h3>
                             <hr>
                             <?= $gameHighlights; ?>
                         </div>
@@ -90,7 +101,7 @@ require 'views/admin/config.php';
             </div>
         </div>
     </div>
-    <script src="../assets/js/admin-dashboard.js"></script>
+    <!-- <script src="../assets/js/admin-dashboard.js"></script> -->
 </body>
 
 </html>

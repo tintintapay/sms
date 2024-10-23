@@ -45,7 +45,7 @@ $routes = [
     '/sms/about' => ['GET' => [$homeController, 'about']],
     '/sms/sport' => ['GET' => [$homeController, 'sport']],
     '/sms/contact' => ['GET' => [$homeController, 'contact']],
-    '/sms/help' => ['GET' => [$homeController, 'help']],
+    '/sms/faqs' => ['GET' => [$homeController, 'faqs']],
     '/sms/login' => [
         'GET' => [$authenticateController, 'index'],
         'POST' => [$authenticateController, 'store'],
@@ -119,6 +119,7 @@ $routes = [
     ],
     '/sms/athlete/stat' => ['GET' => [$athleteRatingController, 'stat']],
     '/sms/athlete/claim-allowance' => ['POST' => [$allowanceController, 'claim']],
+    '/sms/athlete/game-schedule' => ['GET' => [$gameScheduleController, 'schedule']],
 
     // Ajax API request
     '/sms/coordinator/target-athlete' => ['POST' => [$athleteController, 'target_athlete']],
