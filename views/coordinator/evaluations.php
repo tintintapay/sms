@@ -69,6 +69,9 @@
                             <?php if ($evaluation['eligibility_form']): ?>
                                 <ul class="documents-list" style="list-style: none; padding: 0;">
                                     <li style="margin-bottom: 5px;">
+                                        Date of Contract: <strong><?= Helper::formatDate($evaluation['contract_date'], 'F j, Y') ?></strong>
+                                    </li>
+                                    <li style="margin-bottom: 5px;">
                                         <i class="fas fa-file-alt" style="margin-right: 5px;"></i>
                                         <a href="/sms/assets/uploads/evaluation/<?= $evaluation['athlete_id'] ?>/<?= $evaluation['eligibility_form'] ?>"
                                             target="_blank" style="color: #007bff;"

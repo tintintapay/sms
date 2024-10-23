@@ -150,7 +150,8 @@ class User extends Model
             FROM users u
             LEFT JOIN user_info ui ON u.id = ui.user_id
             WHERE u.role = ? AND u.status != 'deleted' $where
-            ORDER BY u.status ASC
+            ORDER BY u.status ASC,
+            u.id DESC
         ";
 
         $stmt = $this->db->prepare($sql);

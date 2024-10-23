@@ -9,10 +9,5 @@
             <span class="menu-title">Profile Stats</span>
         </div>
     </a>
-    <a href="game-schedules" class="menu">
-        <div class="menu-item">
-            <span class="menu-title">Game Schedule</span>
-        </div>
-    </a>
     
 </div>

@@ -22,8 +22,8 @@ class HomeController
         include 'views/contact.php';
     }
 
-    public function help()
+    public function faqs()
     {
-        include 'views/help.php';
+        include 'views/faqs.php';
     }
 }

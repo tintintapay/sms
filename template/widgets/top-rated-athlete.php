@@ -1,25 +1,87 @@
-<canvas id="topAthletes"></canvas>
+<div id="topAthletes"></div>
 
 <script>
-    const ctx7 = document.getElementById('topAthletes').getContext('2d');
-    new Chart(ctx7, {
-        type: 'bar',
-        data: {
-            labels: <?= $names ?>,
-            datasets: [{
-                label: 'Overall Rating',
-                data: <?= $data ?>,
-                backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }]
+
+    var options = {
+        series: [{
+            name: 'Data',
+            data: <?= $data ?>
+        }],
+        chart: {
+            height: 350,
+            type: 'bar',
         },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+        plotOptions: {
+            bar: {
+                borderRadius: 0,
+                dataLabels: {
+                    position: 'center', // top, center, bottom
+                },
+            }
+        },
+        dataLabels: {
+            enabled: true,
+            formatter: function (val) {
+                return val + "";
+            },
+            offsetY: -20,
+            style: {
+                fontSize: '12px',
+                colors: ["#304758"]
+            }
+        },
+
+        xaxis: {
+            categories: <?= $names ?>,
+            position: 'top',
+            axisBorder: {
+                show: false
+            },
+            axisTicks: {
+                show: false
+            },
+            crosshairs: {
+                fill: {
+                    type: 'gradient',
+                    gradient: {
+                        colorFrom: '#D8E3F0',
+                        colorTo: '#BED1E6',
+                        stops: [0, 100],
+                        opacityFrom: 0.4,
+                        opacityTo: 0.5,
+                    }
+                }
+            },
+            tooltip: {
+                enabled: true,
+            }
+        },
+        yaxis: {
+            axisBorder: {
+                show: false
+            },
+            axisTicks: {
+                show: false,
+            },
+            labels: {
+                show: false,
+                formatter: function (val) {
+                    return val + "";
                 }
             }
+
+        },
+        title: {
+            text: '<?= date('F') ?> Top Rated Athletes',
+            floating: true,
+            offsetY: 0,
+            align: 'center',
+            style: {
+                color: '#444',
+            }
         }
-    });
+    };
+
+    var chart = new ApexCharts(document.querySelector("#topAthletes"), options);
+    chart.render();
 </script>
