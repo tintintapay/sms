@@ -89,6 +89,7 @@ $routes = [
         'GET' => [$authenticateController, 'index'],
         'POST' => [$authenticateController, 'store'],
     ],
+    '/sms/terms' => ['GET' => [$homeController, 'terms']],
     '/sms/register' => ['GET' => [$userController, 'index']],
     '/sms/register/create' => ['POST' => [$userController, 'create']],
     '/sms/forgot-password'=> [

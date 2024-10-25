@@ -26,4 +26,9 @@ class HomeController
     {
         include 'views/faqs.php';
     }
+
+    public function terms()
+    {
+        include 'views/terms.php';
+    }
 }
