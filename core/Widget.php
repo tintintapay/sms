@@ -61,13 +61,22 @@ class Widget
 
             $topRateds = $report->getTopRatedAthlete($data);
 
+            // dd($topRateds);
+
             foreach ($topRateds as $row) {
-                $topRated['name'][] = $row['first_name'] . " " . $row['last_name'] . "(" . Sport::getDescription($row['sport']) . ")";
+                // $topRated['name'][] = $row['first_name'] . " " . $row['last_name'] . "(" . Sport::getDescription($row['sport']) . ")";
+                $topRated['name'][] = $row['school'] . "(" . Sport::getDescription($row['sport']) . ")";
                 $topRated['data'][] = $row['avg_overall_rating'];
             }
         }
         $names = json_encode($topRated['name']);
         $data = json_encode($topRated['data']);
+
+        $name = array_map(function ($item) {
+            return [$item];
+        }, $topRated['name']);
+
+        $categories = json_encode($name);
 
         // starts output buffering
         ob_start();

@@ -79,6 +79,7 @@ class ReportData extends Model
                 user_info.first_name,
                 user_info.last_name,
                 user_info.sport,
+                user_info.school,
                 ROUND(AVG(athletes_ratings.teamwork), 2) AS avg_teamwork,
                 ROUND(AVG(athletes_ratings.sportsmanship), 2) AS avg_sportsmanship,
                 ROUND(AVG(athletes_ratings.technical_skills), 2) AS avg_technical_skills,
