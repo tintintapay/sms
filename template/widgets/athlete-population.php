@@ -3,12 +3,12 @@
 <script>
     var options = {
         title: {
-            text: 'Population: <?= $totalPopulation ?>', // Here you set the title
-            align: 'center', // Title alignment (left, center, right)
+            text: 'Population: <?= $totalPopulation ?>',
+            align: 'center',
             style: {
-                fontSize: '20px', // Title font size
-                fontWeight: 'bold', // Title font weight
-                color: '#263238' // Title color
+                fontSize: '20px',
+                fontWeight: 'bold',
+                color: '#263238'
             }
         },
         series: <?= $data ?>,

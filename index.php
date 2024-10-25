@@ -39,6 +39,45 @@ $allowanceController = new AllowanceController();
 $athleteRatingController = new AthleteRatingController();
 $fileResourceController = new FileResourceController();
 
+// dd
+function dd(...$vars)
+{
+    // Get the debug backtrace
+    $backtrace = debug_backtrace();
+
+    // Get the file path and line number from where the function is called
+    $filePath = $backtrace[0]['file'];
+    $line = $backtrace[0]['line'];
+
+    echo "<style>
+    pre {
+        background: #F8F9FA;
+        border: 1px solid #E1E1E8;
+        border-radius: 5px;
+        padding: 10px;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+    </style>";
+
+    echo "<pre>";
+    echo "Called in <strong>" . $filePath . "</strong> on line <strong>" . $line . "</strong>\n\n";
+
+    // Loop through all passed variables and dump them with pretty print
+    foreach ($vars as $var) {
+        ob_start();
+        var_dump($var);
+        $output = ob_get_clean();
+        echo $output;
+        // echo htmlspecialchars($output);
+    }
+
+    echo "</pre>";
+
+    // Terminate the script
+    die();
+}
+
 // Define routes
 $routes = [
     '/sms/index' => ['GET' => [$authenticateController, 'index']],
