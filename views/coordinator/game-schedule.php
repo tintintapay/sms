@@ -38,7 +38,7 @@
                             <a href="evaluations?game-id=<?= $game['id'] ?>"
                                 class="button button-warning button-xs">Show submission</a>
                         </div>
-                        <form action="game-schedule" method="post">
+                        <form action="game-schedule" method="post" enctype="multipart/form-data">
                             <div class="msg" style="display:<?php echo !empty($flash['message']) ? 'block' : 'none' ?>">
                                 <?php echo $flash['message'] ?? ''; ?>
                             </div>
@@ -61,6 +61,10 @@
                             <label for="schedule" class="label">Schedule:</label>
                             <input type="date" class="sms-input" id="schedule" name="schedule"
                                 value="<?= $game['schedule'] ?>" min="<?= $game['schedule'] ?>" autocomplete="off">
+
+                            <label for="schedule_picture" class="label">Schedule Picture:</label>
+                            <input type="file" class="sms-input" id="schedule_picture" name="schedule_picture"
+                                accept="image/png, image/jpeg">
 
                             <label for="sport" class="label">Sport:</label>
                             <select name="sport" id="sport" class="sms-input">

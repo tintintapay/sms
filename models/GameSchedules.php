@@ -49,8 +49,8 @@ class GameSchedules extends Model
 
     public function updateSchedule($id, $data)
     {
-        $stmt = $this->db->prepare("UPDATE game_schedules SET game_title = ?, schedule = ?, sport = ?, venue = ?, status = ? WHERE id = ?");
-        $stmt->bind_param("sssssi", $data['game_title'], $data['schedule'], $data['sport'], $data['venue'], $data['status'], $id);
+        $stmt = $this->db->prepare("UPDATE game_schedules SET game_title = ?, schedule = ?, sport = ?, venue = ?, schedule_picture = ?, status = ? WHERE id = ?");
+        $stmt->bind_param("ssssssi", $data['game_title'], $data['schedule'], $data['sport'], $data['venue'], $data['schedule_picture'], $data['status'], $id);
 
         return $stmt->execute();
     }
