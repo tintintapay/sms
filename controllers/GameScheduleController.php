@@ -113,6 +113,8 @@ class GameScheduleController
     {
         $gameId = $request['id'];
 
+        $gameData = $this->gameScheds->findById($gameId);
+
         // Validate request
         $loginRequest = new GameSchedulesRequest();
         $flash = $loginRequest->validate($request);
@@ -145,6 +147,41 @@ class GameScheduleController
             'venue' => Helper::sanitize($request['venue']),
             'status' => isset($request['status']) ? GameStatus::ACTIVE : GameStatus::INACTIVE,
         ];
+
+        if ($_FILES['schedule_picture']['size'] !== 0) {
+
+            if ($gameData['schedule_picture'] !== '') {
+                $file = "./assets/uploads/game_sched/$gameId/" . $gameData['schedule_picture'];
+
+                if (file_exists($file)) {
+                    unlink($file);
+                }
+            }
+
+            // schedule file name 
+            $pic_fileName = md5(uniqid());
+            $fileType = strtolower(pathinfo($_FILES["schedule_picture"]["name"], PATHINFO_EXTENSION));
+            $fileName = "$pic_fileName.$fileType";
+
+            // File Upload PICTURE
+            $pic_result = Helper::fileUpload([
+                'target_dir' => "assets/uploads/game_sched/$gameId/",
+                'filename' => $pic_fileName,
+                'file' => $_FILES['schedule_picture'],
+                'allowed_types' => ['jpg', 'png'],
+                'max_size' => 5000  // 5MB in kilobytes
+            ]);
+
+            if ($_FILES['schedule_picture']['size'] !== 0) {
+                $gameSchedData['schedule_picture'] = $fileName;
+            }
+
+            if (!$pic_result['success']) {
+                $flash = $pic_result;
+
+                return include 'views/coordinator/game-schedule.php';
+            }
+        }
 
         $updateGameSched = $this->gameScheds->updateSchedule($gameId, $gameSchedData);
 
@@ -204,7 +241,8 @@ class GameScheduleController
 
     public function schedule($params)
     {
-        $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']);;
+        $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']);
+        ;
         $gameId = $params['id'];
         $file = $params['file'];
         $img = "$url/assets/uploads/game_sched/$gameId/$file";
