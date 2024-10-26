@@ -48,8 +48,10 @@ class UserInfo extends Model
             $data['medical_cert'],
             $data['picture']
         );
+        $exec = $stmt->execute();
+        $stmt->close();
 
-        return $stmt->execute();
+        return $exec;
     }
 
     public function insertCoordinator($data)
@@ -57,7 +59,10 @@ class UserInfo extends Model
         $stmt = $this->db->prepare("INSERT INTO user_info (user_id, first_name, last_name, middle_name, gender, address, age, phone_number, picture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("isssssiss", $data['user_id'], $data['first_name'], $data['last_name'], $data['middle_name'], $data['gender'], $data['address'], $data['age'], $data['phone_number'], $data['picture']);
 
-        return $stmt->execute();
+        $exec = $stmt->execute();
+        $stmt->close();
+
+        return $exec;
     }
 
     public function updateCoordinator($data)
@@ -103,7 +108,10 @@ class UserInfo extends Model
         $stmt->bind_param($types, ...$params);
 
         // Execute and return result
-        return $stmt->execute();
+        $exec = $stmt->execute();
+        $stmt->close();
+
+        return $exec;
     }
 
     public function findUserInfoById($id)
@@ -111,6 +119,8 @@ class UserInfo extends Model
         $stmt = $this->db->prepare("SELECT * FROM user_info WHERE id = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
+        $stmt->close();
+
         return $stmt->get_result()->fetch_assoc();
     }
 
@@ -119,6 +129,8 @@ class UserInfo extends Model
         $stmt = $this->db->prepare("SELECT * FROM user_info WHERE user_id = ?");
         $stmt->bind_param("i", $userId);
         $stmt->execute();
+        $stmt->close();
+
         return $stmt->get_result()->fetch_assoc();
     }
 
@@ -127,6 +139,7 @@ class UserInfo extends Model
         $stmt = $this->db->prepare("SELECT first_name, middle_name, last_name FROM user_info WHERE user_id = ?");
         $stmt->bind_param("i", $userId);
         $stmt->execute();
+        $stmt->close();
 
         $result = $stmt->get_result()->fetch_assoc();
 
@@ -137,6 +150,7 @@ class UserInfo extends Model
     {
         $stmt = $this->db->prepare("SELECT school FROM user_info WHERE school != '' GROUP BY school");
         $stmt->execute();
+        $stmt->close();
         $result = $stmt->get_result();
 
         return $result->fetch_all(MYSQLI_ASSOC);

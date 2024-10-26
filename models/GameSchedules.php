@@ -15,6 +15,7 @@ class GameSchedules extends Model
         $stmt = $this->db->prepare("SELECT * FROM game_schedules WHERE id = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
+        $stmt->close();
 
         $result = $stmt->get_result();
 
@@ -30,6 +31,7 @@ class GameSchedules extends Model
             "SELECT * FROM game_schedules WHERE deleted_at IS NULL ORDER BY schedule DESC"
         );
         $stmt->execute();
+        $stmt->close();
 
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
@@ -41,8 +43,11 @@ class GameSchedules extends Model
         $stmt->bind_param("sssssis", $data['game_title'], $data['schedule'], $data['sport'], $data['venue'], $data['status'], $data['created_user'], $data['schedule_picture']);
 
         if (!$stmt->execute()) {
+            $stmt->close();
+
             return null;
         }
+        $stmt->close();
 
         return $this->db->insert_id;
     }
@@ -51,8 +56,10 @@ class GameSchedules extends Model
     {
         $stmt = $this->db->prepare("UPDATE game_schedules SET game_title = ?, schedule = ?, sport = ?, venue = ?, schedule_picture = ?, status = ? WHERE id = ?");
         $stmt->bind_param("ssssssi", $data['game_title'], $data['schedule'], $data['sport'], $data['venue'], $data['schedule_picture'], $data['status'], $id);
+        $exec = $stmt->execute();
+        $stmt->close();
 
-        return $stmt->execute();
+        return $exec;
     }
     public function delete($id)
     {
@@ -91,6 +98,7 @@ class GameSchedules extends Model
 
         $stmt->bind_param('isis', $_SESSION['user_id'], $_SESSION['sport'], $_SESSION['user_id'], $inactive);
         $stmt->execute();
+        $stmt->close();
 
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
@@ -103,6 +111,7 @@ class GameSchedules extends Model
 
         $stmt = $this->db->prepare("SELECT * FROM game_schedules WHERE schedule < CURDATE()");
         $stmt->execute();
+        $stmt->close();
 
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
@@ -115,8 +124,10 @@ class GameSchedules extends Model
 
         $stmt = $this->db->prepare("UPDATE game_schedules SET status = ? WHERE schedule < CURDATE() AND status = ?");
         $stmt->bind_param('ss', $completed, $active);
+        $exec = $stmt->execute();
+        $stmt->close();
 
-        return $stmt->execute();
+        return $exec;
     }
 
     public function fetchGameWhereInByAthlete($data)
@@ -140,6 +151,8 @@ class GameSchedules extends Model
         $stmt->bind_param($types, ...$params);
 
         $stmt->execute();
+        $stmt->close();
+
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
 
@@ -150,6 +163,7 @@ class GameSchedules extends Model
         $stmt = $this->db->prepare("SELECT COUNT(*) as total FROM game_schedules WHERE id IN (SELECT game_schedules_id FROM evaluations WHERE athlete_id = ? AND status = ?) AND status = ? ORDER BY schedule DESC");
         $stmt->bind_param('iss', $data['athleteId'], $approve, $completed);
         $stmt->execute();
+        $stmt->close();
 
         return $stmt->get_result()->fetch_assoc();
     }
@@ -178,7 +192,8 @@ class GameSchedules extends Model
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param($type, ...$params);
         $stmt->execute();
-
+        $stmt->close();
+        
         return $stmt->get_result()->fetch_assoc();
     }
 

@@ -14,8 +14,11 @@ class User extends Model
         $stmt->bind_param("issss", $data['active'], $data['role'], $data['email'], $hashedPassword, $data['status']);
 
         if (!$stmt->execute()) {
+            $stmt->close();
+
             return null;
         }
+        $stmt->close();
 
         return $this->db->insert_id;
     }
@@ -36,7 +39,10 @@ class User extends Model
 
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param($types, ...$params);
-        return $stmt->execute();
+        $exec = $stmt->execute();
+        $stmt->close();
+
+        return $exec;
     }
 
 
@@ -45,6 +51,7 @@ class User extends Model
         $stmt = $this->db->prepare("SELECT users.*, CONCAT(user_info.first_name, ' ', user_info.last_name) AS full_name FROM users JOIN user_info ON users.id = user_info.user_id WHERE users.email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
+        $stmt->close();
 
         $result = $stmt->get_result();
 
@@ -56,6 +63,7 @@ class User extends Model
         $stmt = $this->db->prepare("SELECT * FROM users WHERE id = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
+        $stmt->close();
 
         $result = $stmt->get_result();
 
@@ -87,6 +95,7 @@ class User extends Model
         );
         $stmt->bind_param("s", $coor);
         $stmt->execute();
+        $stmt->close();
 
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
@@ -106,6 +115,7 @@ class User extends Model
         );
         $stmt->bind_param("i", $user_id);
         $stmt->execute();
+        $stmt->close();
 
         $result = $stmt->get_result()->fetch_assoc();
         $result['gender'] = ucfirst($result['gender']);
@@ -157,6 +167,8 @@ class User extends Model
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("s" . $types, $coor, ...$params);
         $stmt->execute();
+        $stmt->close();
+
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
@@ -196,6 +208,7 @@ class User extends Model
         );
         $stmt->bind_param("ss", $coor, $status);
         $stmt->execute();
+        $stmt->close();
 
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
@@ -205,7 +218,10 @@ class User extends Model
     {
         $stmt = $this->db->prepare("UPDATE users SET status = ? WHERE id = ?");
         $stmt->bind_param("si", $status, $user_id);
-        return $stmt->execute();
+        $exec = $stmt->execute();
+        $stmt->close();
+
+        return $exec;
     }
 
     public function updatePassword($data)
@@ -214,8 +230,10 @@ class User extends Model
         $active = UserStatus::ACTIVE;
         $stmt = $this->db->prepare("UPDATE users SET password = ?, code = '' WHERE id = ? AND status = ?");
         $stmt->bind_param("sis", $hashedPassword, $data['id'], $active);
+        $exec = $stmt->execute();
+        $stmt->close();
 
-        return $stmt->execute();
+        return $exec;
     }
 
     public function fetchAthletesBySport($sport, $start, $length, $search)
@@ -250,6 +268,7 @@ class User extends Model
 
         $countQuery = $this->db->prepare($countSql);
         $countQuery->execute($params);
+        $countQuery->close();
         $countQuery->store_result();
         $countQuery->bind_result($totalRecords);
         $countQuery->fetch();
@@ -280,6 +299,7 @@ class User extends Model
 
         $dataQuery = $this->db->prepare($dataSql);
         $dataQuery->execute($params);
+        $dataQuery->close();
         $data = $dataQuery->get_result()->fetch_all(MYSQLI_ASSOC);
 
         $returnData = [];
@@ -305,7 +325,9 @@ class User extends Model
         $active = UserStatus::ACTIVE;
         $stmt = $this->db->prepare("UPDATE users SET code = ? WHERE email = ? AND status = ?");
         $stmt->bind_param("sss", $data['code'], $data['email'], $active);
-
-        return $stmt->execute();
+        $exec = $stmt->execute();
+        $stmt->close();
+        
+        return $exec;
     }
 }
