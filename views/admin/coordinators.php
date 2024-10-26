@@ -48,7 +48,6 @@
                             </thead>
                             <tbody>
                                 <?php
-                                if (!empty($coordinators)) {
                                     foreach ($coordinators as $coordinator): ?>
                                         <tr class="<?= $coordinator['status'] ?>">
                                             <td><?= $coordinator['full_name'] ?></td>
@@ -62,14 +61,7 @@
                                                 <a href="coordinator?id=<?= $coordinator['user_id'] ?>" class="button button-primary button-xs">View</a>
                                             </td>
                                         </tr>
-                                    <?php endforeach;
-                                } else {
-                                    ?>
-                                    <tr>
-                                        <td colspan="6" style="text-align: center;">No record...</td>
-                                    </tr>
-                                    <?php
-                                } ?>
+                                    <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
