@@ -10,6 +10,7 @@ class FileResourceController
         $directory = 'assets/downloadable';
         $files = array_diff(scandir($directory), ['.', '..']);
 
+        $_SESSION['menu'] = 'file_resource';
         include 'views/coordinator/file-resource.php';
     }
 

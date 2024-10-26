@@ -25,6 +25,7 @@ class GameScheduleController
     {
         $gameScheds = $this->gameScheds->fetchAll();
 
+        $_SESSION['menu'] = 'game_event';
         include 'views/coordinator/game-schedules.php';
     }
 

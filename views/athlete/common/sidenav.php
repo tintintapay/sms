@@ -1,6 +1,6 @@
 <div class="left-panel">
     <a href="home" class="menu">
-        <div class="menu-item">
+        <div class="menu-item <?= $_SESSION['menu'] === 'dashboard' ? 'active' : '' ?>">
             <span class="menu-title">Dashboard</span>
         </div>
     </a>

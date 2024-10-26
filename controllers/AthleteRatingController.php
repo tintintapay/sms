@@ -29,6 +29,7 @@ class AthleteRatingController
     {
         $gameScheds = $this->gameScheds->fetchAllCompleted();
 
+        $_SESSION['menu'] = 'athlete_rating';
         return include "views/coordinator/athlete-ratings.php";
     }
 

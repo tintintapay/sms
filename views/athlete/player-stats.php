@@ -11,7 +11,7 @@
     <script src="../assets/js/print.js"></script>
 </head>
 
-<body id="body" style="margin: 0; font-family: 'Arial', sans-serif; background-color: #1b1b1d; color: #f1f1f1;">
+<body id="body" style="margin: 0; font-family: 'Arial', sans-serif; background-color: #e8e8e8; color: #f1f1f1;">
     <span style="float:right">
         <button onclick="print_div('body')"><i class="fa-solid fa-print"></i></button>
     </span>
@@ -20,7 +20,7 @@
         <div style="display: flex; justify-content: space-between;">
 
             <!-- Left Column (Athlete Info) -->
-            <div style="width: 30%; background-color: #242429; border-radius: 10px; padding: 20px;">
+            <div style="width: 30%; background-color: #fff; color:#242429; border-radius: 10px; padding: 20px;">
                 <div class="athlete-photo"
                     style="background-color: #333; width: 100%; height: 350px; border-radius: 10px; margin-bottom: 20px; overflow: hidden;">
                     <img src="../assets/uploads/docs/<?= $athlete['user_id'] ?>/<?= $athlete['picture'] ?>" alt=""
@@ -41,43 +41,43 @@
 
                 <!-- Ratings and Radar Chart Section (Aligned) -->
                 <div
-                    style="background-color: #242429; border-radius: 10px; padding: 20px; display: flex; justify-content: space-between; align-items: center;">
+                    style="background-color: #fff; color:#242429; border-radius: 10px; padding: 20px; display: flex; justify-content: space-between; align-items: center;">
                     <div style="width: 70%;">
                         <h3 style="font-size: 20px; margin-bottom: 20px;">Player Ratings</h3>
                         <div style="display: flex; justify-content: space-between;">
 
                             <!-- Teamwork Rating -->
                             <div style="width: 18%; text-align: center;">
-                                <div style="font-size: 24px; color: #ffeb3b;"><?= $rating['teamwork'] ?></div>
-                                <p style="margin: 5px 0; color: #ccc;">Teamwork</p>
+                                <div style="font-size: 24px; color: #ff2c2c;"><?= $rating['teamwork'] ?></div>
+                                <p style="margin: 5px 0;  color:#242429;">Teamwork</p>
                                 <p style="font-size: 12px;">Collaborates effectively to achieve shared goals.</p>
                             </div>
 
                             <!-- Sportsmanship Rating -->
                             <div style="width: 18%; text-align: center;">
-                                <div style="font-size: 24px; color: #ffeb3b;"><?= $rating['sportsmanship'] ?></div>
-                                <p style="margin: 5px 0; color: #ccc;">Sportsmanship</p>
+                                <div style="font-size: 24px; color: #ff2c2c;"><?= $rating['sportsmanship'] ?></div>
+                                <p style="margin: 5px 0;  color:#242429;">Sportsmanship</p>
                                 <p style="font-size: 12px;">Displays respect and fairness in the game.</p>
                             </div>
 
                             <!-- Technical Skills Rating -->
                             <div style="width: 18%; text-align: center;">
-                                <div style="font-size: 24px; color: #ffeb3b;"><?= $rating['technical_skills'] ?></div>
-                                <p style="margin: 5px 0; color: #ccc;">Tech Skills</p>
+                                <div style="font-size: 24px; color: #ff2c2c;"><?= $rating['technical_skills'] ?></div>
+                                <p style="margin: 5px 0;  color:#242429;">Tech Skills</p>
                                 <p style="font-size: 12px;">Proficient in core mechanics of the game.</p>
                             </div>
 
                             <!-- Adaptability Rating -->
                             <div style="width: 18%; text-align: center;">
-                                <div style="font-size: 24px; color: #ffeb3b;"><?= $rating['adaptability'] ?></div>
-                                <p style="margin: 5px 0; color: #ccc;">Adaptability</p>
+                                <div style="font-size: 24px; color: #ff2c2c;"><?= $rating['adaptability'] ?></div>
+                                <p style="margin: 5px 0;  color:#242429;">Adaptability</p>
                                 <p style="font-size: 12px;">Adjusts strategies in changing conditions.</p>
                             </div>
 
                             <!-- Game Sense Rating -->
                             <div style="width: 18%; text-align: center;">
-                                <div style="font-size: 24px; color: #ffeb3b;"><?= $rating['game_sense'] ?></div>
-                                <p style="margin: 5px 0; color: #ccc;">Game Sense</p>
+                                <div style="font-size: 24px; color: #ff2c2c;"><?= $rating['game_sense'] ?></div>
+                                <p style="margin: 5px 0;  color:#242429;">Game Sense</p>
                                 <p style="font-size: 12px;">Deep understanding of strategy and positioning.</p>
                             </div>
                         </div>
@@ -91,10 +91,10 @@
 
 
                 <!-- Statistics Table -->
-                <div style="background-color: #242429; border-radius: 10px; padding: 20px;">
+                <div style="background-color: #fff; color:#242429; border-radius: 10px; padding: 20px;">
                     <h3 style="font-size: 20px; margin-bottom: 10px;">Previous Appearances</h3>
-                    <table style="width: 100%; color: #ffffff; border-spacing: 0;">
-                        <thead style="background-color: #333;">
+                    <table style="width: 100%; color:#242429; border-spacing: 0;">
+                        <thead style="background-color: #a31a1a;color: #fff;">
                             <tr>
                                 <th style="padding: 10px; text-align: left;">No.</th>
                                 <th style="padding: 10px; text-align: left;">Day</th>
@@ -128,47 +128,47 @@
                 <div style="display: flex; justify-content: space-between; gap: 20px;">
                     <!-- Best Event Highlight -->
                     <div
-                        style="flex: 1 1 100%; background-color: #242429; border-radius: 10px; padding: 20px; box-sizing: border-box; min-width: 280px;">
+                        style="flex: 1 1 100%; background-color: #fff; color:#242429; border-radius: 10px; padding: 20px; box-sizing: border-box; min-width: 280px;">
                         <h3 style="font-size: 20px;">Best Event Played</h3>
-                        <p style="font-size: 18px; color: #ffeb3b; margin-bottom: 5px;">
+                        <p style="font-size: 18px; color: #ff2c2c; margin-bottom: 5px;">
                             <?= $bestGame['game_title'] ?? 'N/A' ?></p>
                         <!-- Title -->
-                        <p style="color: #ccc; margin-bottom: 5px;">Date:
+                        <p style=" color:#242429; margin-bottom: 5px;">Date:
                             <?= Helper::formatDate($bestGame['schedule'], 'D F j, Y') ?? 'N/A' ?></p> <!-- Date -->
-                        <p style="color: #ccc; margin-bottom: 20px;">Venue: <?= $bestGame['venue'] ?? 'N/A' ?></p>
+                        <p style=" color:#242429; margin-bottom: 20px;">Venue: <?= $bestGame['venue'] ?? 'N/A' ?></p>
                         <!-- Venue -->
 
                         <!-- Ratings -->
                         <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px;">
                             <div style="text-align: center; flex: 1 1 18%; min-width: 100px;">
-                                <p style="font-size: 24px; color: #ffeb3b;"><?= $bestGame['teamwork'] ?? 0 ?></p>
-                                <p style="color: #ccc;">Teamwork</p>
+                                <p style="font-size: 24px; color: #ff2c2c;"><?= $bestGame['teamwork'] ?? 0 ?></p>
+                                <p style=" color:#242429;">Teamwork</p>
                             </div>
                             <div style="text-align: center; flex: 1 1 18%; min-width: 100px;">
-                                <p style="font-size: 24px; color: #ffeb3b;"><?= $bestGame['sportsmanship'] ?? 0 ?></p>
-                                <p style="color: #ccc;">Sportsmanship</p>
+                                <p style="font-size: 24px; color: #ff2c2c;"><?= $bestGame['sportsmanship'] ?? 0 ?></p>
+                                <p style=" color:#242429;">Sportsmanship</p>
                             </div>
                             <div style="text-align: center; flex: 1 1 18%; min-width: 100px;">
-                                <p style="font-size: 24px; color: #ffeb3b;"><?= $bestGame['technical_skills'] ?? 0 ?>
+                                <p style="font-size: 24px; color: #ff2c2c;"><?= $bestGame['technical_skills'] ?? 0 ?>
                                 </p>
-                                <p style="color: #ccc;">Tech Skills</p>
+                                <p style=" color:#242429;">Tech Skills</p>
                             </div>
                             <div style="text-align: center; flex: 1 1 18%; min-width: 100px;">
-                                <p style="font-size: 24px; color: #ffeb3b;"><?= $bestGame['adaptability'] ?? 0 ?></p>
-                                <p style="color: #ccc;">Adaptability</p>
+                                <p style="font-size: 24px; color: #ff2c2c;"><?= $bestGame['adaptability'] ?? 0 ?></p>
+                                <p style=" color:#242429;">Adaptability</p>
                             </div>
                             <div style="text-align: center; flex: 1 1 18%; min-width: 100px;">
-                                <p style="font-size: 24px; color: #ffeb3b;"><?= $bestGame['game_sense'] ?? 0 ?></p>
-                                <p style="color: #ccc;">Game Sense</p>
+                                <p style="font-size: 24px; color: #ff2c2c;"><?= $bestGame['game_sense'] ?? 0 ?></p>
+                                <p style=" color:#242429;">Game Sense</p>
                             </div>
                         </div>
                     </div>
 
-                    <div style="width: 50%; background-color: #242429; border-radius: 10px; padding: 20px;">
+                    <div style="width: 50%; background-color: #fff; color:#242429; border-radius: 10px; padding: 20px;">
                         <h3 style="font-size: 20px;">Rank</h3>
                         <div style="display:flex;justify-content: center;align-items: center;">
-                            <!-- <p style="font-size: 5rem; color: #ffeb3b;">#<?= $totalPlayed['total'] ?></p> -->
-                            <p style="font-size: 5rem; color: #ffeb3b;">#<?= $ranking ?></p>
+                            <!-- <p style="font-size: 5rem; color: #ff2c2c;">#<?= $totalPlayed['total'] ?></p> -->
+                            <p style="font-size: 5rem; color: #ff2c2c;">#<?= $ranking ?></p>
                         </div>
 
                     </div>
@@ -193,8 +193,8 @@
                         <?= $rating['adaptability'] ?>,
                         <?= $rating['game_sense'] ?>
                     ],
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(255, 31, 38, 0.2)',
+                    borderColor: 'rgba(255, 31, 38, 1)',
                     borderWidth: 2
                 }]
             },
@@ -206,13 +206,13 @@
                             stepSize: 2
                         },
                         grid: {
-                            color: '#ddd'
+                            color: '#000'
                         },
                         angleLines: {
-                            color: '#ddd'
+                            color: '#000'
                         },
                         pointLabels: {
-                            color: '#ddd'
+                            color: '#000'
                         },
                         suggestedMin: 0,
                         suggestedMax: 10
