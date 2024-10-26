@@ -1,0 +1,257 @@
+/* Body Styling */
+body {
+    background: url('../image/athletesprofile.png') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #333;
+}
+
+/* Container Styling */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+/* Card Styling */
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    flex: 1 1 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Title Styling */
+.card-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #e31b23;
+    margin-bottom: 10px;
+}
+
+/* Card Content Styling */
+.card-content {
+    font-size: 1em;
+    color: #666;
+}
+
+/* Button Styling */
+.button {
+    background-color: #e31b23;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.button:hover {
+    background-color: #bf161c;
+    transform: scale(1.05);
+}
+
+.button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Header Styling */
+.header {
+    background-color: #e31b23;
+    border-bottom: 1px solid #bf161c;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+/* User Info Styling */
+.user-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+
+.user-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-name {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.user-role {
+    font-size: 0.9em;
+    color: #fff;
+}
+
+/* Allowance Styling */
+.allowance {
+    font-size: 1em;
+    color: #fff;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.allowance:hover {
+    text-decoration: underline;
+}
+
+/* Sign-out Button Styling */
+a.signout {
+    background-color: #fff;
+    border: 1px solid #e31b23;
+    color: #e31b23;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+    text-decoration: none;
+}
+.signout {
+    background-color: #fff;
+    border: 1px solid #e31b23;
+    color: #e31b23;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.signout:hover {
+    background-color: #f8f8f8;
+    transform: scale(1.05);
+}
+
+/* File List Styling */
+.file-list {
+    margin-top: 10px;
+}
+
+.listbox {
+    width: 100%;
+    height: 150px;
+    margin-top: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 5px;
+    background-color: #fafafa;
+}
+
+/* Star Rating Styling */
+.star-rating {
+    display: flex;
+    align-items: center;
+}
+
+.star {
+    font-size: 1.5em;
+    color: #e0e0e0;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.star.checked {
+    color: #e31b23;
+}
+
+.star.disabled {
+    cursor: not-allowed;
+}
+
+/* Print Media Query */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    .printable, .printable * {
+        visibility: visible;
+    }
+    .printable {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+}
+
+/* Drawer Styles */
+.drawer {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #f8f9fa;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    border-right: 1px solid #e0e0e0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.drawer.open {
+    width: 300px;
+}
+
+.drawer-content {
+    padding: 25px;
+}
+
+.closebtn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+}
+
+.drawer-content h2 {
+    margin-top: 0;
+    color: #e31b23;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+.drawer-content p {
+    color: #555;
+    font-size: 1em;
+    margin: 15px 0;
+}

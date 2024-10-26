@@ -1,0 +1,151 @@
+.game-card {
+  display: flex;
+  width: auto;
+  border: 2px solid #e6e2e2;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: #ffefef;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.game-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.container {
+  display: flex;
+  padding: 20px;
+}
+
+.right-panel {
+  flex: 1;
+  /* padding: 20px; */
+}
+
+/* .section {
+  margin-bottom: 30px;
+} */
+
+/* .page-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+} */
+
+.allowance-box {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.allowance-box h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.allowance-box p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.allowance-box .date-info {
+  font-size: 14px;
+  color: #888;
+}
+
+.button {
+  background-color: #28a745;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #218838;
+}
+
+.announcement,
+.schedule {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.announcement h3,
+.schedule h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.announcement p,
+.schedule p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.flex {
+  display: flex;
+  gap: 10px;
+}
+
+.w-half {
+  flex: 1;
+}
+
+/* Adding spacing between schedule items */
+.game-card {
+  padding: 15px;
+  margin-bottom: 20px;
+  /* Add spacing between game cards */
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  width: auto;
+  justify-content: space-between;
+  align-items: center;
+}
+.game-info {
+  margin-bottom: 10px;
+}
+
+.game-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.game-schedule {
+  font-size: 14px;
+  color: #555;
+}
+
+.game-action {
+  text-align: right;
+  margin-top: 10px;
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+  .flex {
+    flex-direction: column;
+  }
+}

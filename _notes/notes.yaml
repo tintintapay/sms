@@ -1,0 +1,62 @@
+1. User session
+2. athletes_profile_html.php:
+    -Schedule
+        display image from coordinator -> Schedule 
+3. atheletes_profile_html.php
+
+[  ] Help.html
+:Cancel: - dito po yung sa search nagana na naman po sya kuya ang problema lang po is  once na nagtype ako then lalabas yung mga suggested words , i need ko po is dapat kapag click ko po yung at sinearch dapat may pop message that  contain information or instruction regard on that process
+:TODO: Make it FAQ
+[  ] Athletes-login.html
+- contact button dapat po kapag clinick is information nalang po jg contacts not chat bot
+-forgot button dapat nakakapag allow na magreset at nareceive dapat thru email
+[  ] Athletes profile
+- approved logo that tells or represent that their account was approved that is base on the database status
+- allowance button - allows the athletes to tract their allowance , like kapag clinick po may message lang containing information that tells whether their allowance was process or not yet applicable if not varsity
+-dapat may expand button sa announcements that allows user to view it more visible
+:DONE: - apply evaluation button , dito dapat mag didirect sa evaluation form
+:DONE: Apply evaluation for restricted to coordinator list. athlete will have a application form for evaluation(restrict 1 application only)
+
+:DONE: - forms dapat po yung mga file name siguro is clickable nalang instead of adding an download button and all this forms was came from the coordinator
+:DONE: Create upload module for coordinator. can upload multiple file. Display file to athletes home page.(downloadable)
+File clickable for download
+
+- schedule dapat dynamic yung image and allow user to download yung print button ( note okay na yung print button)
+-Credentials dito nakalagay yung mga list of credentials na meron sila and meron dapat upload button that let them upload file if may need silang isubmitted na dapat mag rereflect or manonotify si coor na nakapagsubmit na si specific player
+[  ] Admin page
+- same thing that need to fix with the athletes - logins.html
+[  ] Admin profile
+- dapat yung username was reflect from the data given base on the email na ginamit
+- administrator word below was constant
+- update button will use if the user wanted to update the allowance of athletes
+, filter button for campus and school is will use po to filter the names of coordinator per school and campuses na dapat magrereflect po sa list of coordinator kapag nag do na ng filterings
+- view button naman po is once na clinick dapat mag aallow kay admin na view yung basic information ni coordinator, and also must be the name was reflect on what name indicated on the field where the admin click the view button kahit pop up message nalang din po are kuya may × button lang
+- add button this will be allow the admin to add coordinator and when the user click it , she/ he must went to add coordinator page
+- filter for school, campus,  event  - use to easily navigate the names or specific information need based on filtering ( note kuya ito po ay ano lang to filter lang para kapag nag search sya using search field automatically ang lalabas lang na list ng athletes ay yung finilter nya)
+- list field di po dapat lalabas yung mga list of names the looking for per campus , or school or even events .
+- print allow the admin to print the names needed or resulted
+- chart it was same po sa coordinator chat dapat nakakapag allow din na mabago bago yung type of chart ang dapat ang makikita ditong mga rate was same with the coordinator chart dapat yung print button dito ang mapiprint lang was the chart 
+- dapat mag expand button din po sa chart
+[  ] Add Coordinator page
+- all field required to fill out and dapat kapag nag submit papasok sa database ng users
+[  ] Coordinator profile
+- same with admin dapat yung nagrereflect sa kung ano yung data base sa email na ginamit and coordinator word was constant
+- filtering for school and campus ( note yung campus po papaltan ng sports nalang
+- list of approval dito dapat lalabas yung mga list of athletes base sa filtering and each field dapat may view button na magdidirect sa approval form interface
+:TODO: create button to redirect to athlete's Profile.
+- athletes button was use to view athletes names *|( note dito po papasok yung profiling the players na kung saan kapag napresent na yung list kapag clinick ay papasok na  or pupunta na sa profiling the player page)|* and schedules button is in where they can upload updated schedules that must reflect sa mga respective page ng athletes  same with  events  button , and yung uploads button was use to upload generic forms na magrereflect sa forms ni athletes.
+- search field was use to search athletes name 
+- list field is in where they can see the list of athletes or forms na pwede nila ishare sa athletes
+- chart same thing with the chart of admin and print to print that chart only and dapat mag expand button din
+[  ] Approval form
+:DONE: - ito dapat yung makikita kapag clinick ko yung view sa lis t of approval field. Na nakay coordinator page na dapat ang lalabas ditong information is kung ano yung yung pinasa ni user upon registration  and yung parang file button po dito is kapag click ko po ito dapat mag didisplay yung mga file na pinasa ni athletes and the accept button was kapag clinick ni coordinator dapat magrereflect na sa data status ni athletes na approved and kapag declined was magrereflect din at kapag inaccept or hindi dapat may matatanggap si user na email whether approved or decline yung registration nila
+[] profiling the players
+ - ito kuya ay papasok dito sa part ni coordinator  yung athletes po nadiscuss ko po ito dito sa coordinator page and also dapat lahat ng info dito ay base sa lahat ng information na base sa records ni athletes as wells us kung saan sya naglaro na pwede po sigurong yung mga records na yun is base na sa details na binibigay ng mga nakaassign sa mga games or kada tournament
+
+
+- Generic form upload button for coor
+- forgot password
+- FAQ
+- ranking
+- dashboard allowance ( total no . Who claim allowance)
+- print button for bar graph , pie graph, highlight
