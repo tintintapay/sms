@@ -22,6 +22,7 @@ class Database
     public function getConnection()
     {
         return $this->connection;
+        $this->connection->close();
     }
 
     public function query($sql, $params = [])
@@ -51,5 +52,10 @@ class Database
         }
         
         return $conn->query($query);
+    }
+
+    public function __destruct()
+    {
+        
     }
 }
