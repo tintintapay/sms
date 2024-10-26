@@ -55,9 +55,10 @@ class Evaluation extends Model
         // Prepare and execute the statement
         $stmt = $this->db->prepare($sql);
         $stmt->execute($flatValues);
+        $result = $stmt->num_rows();
         $stmt->close();
 
-        return $stmt->num_rows();
+        return $result;
     }
 
 
@@ -72,9 +73,9 @@ class Evaluation extends Model
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $gameId);
         $stmt->execute();
-        $stmt->close();
-
         $result = $stmt->get_result();
+        
+        $stmt->close();
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
@@ -131,9 +132,10 @@ class Evaluation extends Model
         $stmt = $this->db->prepare("SELECT * FROM evaluations WHERE game_schedules_id = ? AND athlete_id = ?");
         $stmt->bind_param('ii', $gameId, $userId);
         $stmt->execute();
+        $result = $stmt->get_result();
         $stmt->close();
 
-        return $stmt->get_result()->fetch_assoc();
+        return $result->fetch_assoc();
     }
 
     public function findAllByGameIdJoinUsers($gameId, $fetchDeleted = false)
@@ -147,8 +149,8 @@ class Evaluation extends Model
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $gameId);
         $stmt->execute();
-        $stmt->close();
         $result = $stmt->get_result();
+        $stmt->close();
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
@@ -167,9 +169,10 @@ class Evaluation extends Model
         $stmt = $this->db->prepare("SELECT u.email, CONCAT(ui.first_name, ' ', IFNULL(ui.middle_name, ''), ' ', ui.last_name) AS full_name FROM evaluations e LEFT JOIN user_info ui ON ui.user_id = e.athlete_id LEFT JOIN users u ON u.id = e.athlete_id WHERE e.id = ?");
         $stmt->bind_param("i", $eval_id);
         $stmt->execute();
+        $result = $stmt->get_result();
         $stmt->close();
 
-        return $stmt->get_result()->fetch_assoc();
+        return $result->fetch_assoc();
     }
 
     public function findAllToRate($gameId, $fetchDeleted = false)
@@ -184,8 +187,8 @@ class Evaluation extends Model
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("is", $gameId, $appropved);
         $stmt->execute();
-        $stmt->close();
         $result = $stmt->get_result();
+        $stmt->close();
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }

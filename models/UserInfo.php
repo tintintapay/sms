@@ -119,9 +119,10 @@ class UserInfo extends Model
         $stmt = $this->db->prepare("SELECT * FROM user_info WHERE id = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
+        $result = $stmt->get_result();
         $stmt->close();
 
-        return $stmt->get_result()->fetch_assoc();
+        return $result->fetch_assoc();
     }
 
     public function findUserInfoByUserId($userId)
@@ -129,9 +130,10 @@ class UserInfo extends Model
         $stmt = $this->db->prepare("SELECT * FROM user_info WHERE user_id = ?");
         $stmt->bind_param("i", $userId);
         $stmt->execute();
+        $result = $stmt->get_result();
         $stmt->close();
 
-        return $stmt->get_result()->fetch_assoc();
+        return $result->fetch_assoc();
     }
 
     public function getUserFullName($userId)
@@ -139,9 +141,9 @@ class UserInfo extends Model
         $stmt = $this->db->prepare("SELECT first_name, middle_name, last_name FROM user_info WHERE user_id = ?");
         $stmt->bind_param("i", $userId);
         $stmt->execute();
-        $stmt->close();
-
         $result = $stmt->get_result()->fetch_assoc();
+        
+        $stmt->close();
 
         return $result['first_name'] . ' ' . $result['middle_name'] . ' ' . $result['last_name'];
     }
@@ -150,8 +152,8 @@ class UserInfo extends Model
     {
         $stmt = $this->db->prepare("SELECT school FROM user_info WHERE school != '' GROUP BY school");
         $stmt->execute();
-        $stmt->close();
         $result = $stmt->get_result();
+        $stmt->close();
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
