@@ -17,6 +17,7 @@ class AnnouncementController
     {
         $announcements = $this->announcement->fetchAll();
 
+        $_SESSION['menu'] = 'announcement';
         return include 'views/coordinator/announcements.php';
     }
 

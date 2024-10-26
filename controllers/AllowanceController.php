@@ -17,6 +17,7 @@ class AllowanceController
 
     public function index()
     {
+        $_SESSION['menu'] = 'allowance';
         return include 'views/admin/allowance.php';
     }
 

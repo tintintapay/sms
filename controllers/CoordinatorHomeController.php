@@ -33,6 +33,7 @@ class CoordinatorHomeController
         // game highlights
         $gameHighlights = Widget::topGameHighlights();
 
+        $_SESSION['menu'] = 'dashboard';
         include "views/coordinator/index.php";
     }
 

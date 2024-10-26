@@ -23,6 +23,7 @@ class AthleteController
         $schools = $this->userInfo->getAllSchool();
         $sports = Sport::fetchList();
 
+        $_SESSION['menu'] = 'manage_athlete';
         return include 'views/coordinator/manage-athlete.php';
     }
 
@@ -141,6 +142,7 @@ class AthleteController
         $schools = $this->userInfo->getAllSchool();
         $sports = Sport::fetchList();
 
+        $_SESSION['menu'] = 'manage_athlete';
         return include 'views/admin/manage-athlete.php';
     }
 }

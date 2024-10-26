@@ -27,6 +27,7 @@ class CoordinatorController
     {
         $coordinators = $this->user->getCoordinatorsWithInfo();
 
+        $_SESSION['menu'] = 'coordinators';
         include 'views/admin/coordinators.php';
     }
 

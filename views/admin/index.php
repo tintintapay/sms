@@ -41,8 +41,8 @@ require 'views/admin/config.php';
                             <hr>
                             <div style="display:flex;flex-direction: column;flex-wrap: wrap;gap: 7px;">
                                 <?php foreach ($events as $event): ?>
-                                    <div
-                                        style="display:flex;justify-content: space-between;align-items:center;background-color: #f8f9fa; padding: 20px; width: auto; font-family: Arial, sans-serif; border: 1px solid #dee2e6; border-radius: 8px;">
+                                    <div class="bg-red"
+                                        style="display:flex;justify-content: space-between;align-items:center; padding: 20px; width: auto; font-family: Arial, sans-serif; border: 1px solid #dee2e6; border-radius: 8px;">
                                         <div>
                                             <div><?= $event['game_title'] ?></div>
                                             <div style="font-size: 0.8rem;"><?= Sport::getDescription($event['sport']) ?>

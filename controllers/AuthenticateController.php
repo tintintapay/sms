@@ -58,6 +58,7 @@ class AuthenticateController
                 $_SESSION['full_name'] = $this->userInfo->getUserFullName($authUser['user_id']);
                 $_SESSION['role'] = UserRole::getDescription($user['role']);
                 $_SESSION['user_role'] = $user['role'];
+                $_SESSION['menu'] = 'dashboard';
 
                 // Redirect based on role
                 $this->redirectByRole($user['role']);

@@ -50,6 +50,13 @@
                                 <?php endforeach; ?>
                             </div>
                             <input type="hidden" name="id" id="id" value="<?= $game['id'] ?>">
+
+                            <label for="status" class="label">
+                                <input type="checkbox" name="status" id="status"
+                                    <?= (($game['status'] === GameStatus::ACTIVE) || ($game['status'] === GameStatus::COMPLETED)) ? 'checked' : '' ?>>
+                                Set as Active
+                            </label>
+
                             <label for="game_title" class="label">Title:</label>
                             <input type="text" class="sms-input text-only" id="game_title" name="game_title"
                                 value="<?= $game['game_title'] ?>" autocomplete="off">
@@ -74,12 +81,6 @@
                                     </option>
                                 <?php endforeach; ?>
                             </select>
-
-                            <label for="status" class="label">
-                                <input type="checkbox" name="status" id="status"
-                                    <?= (($game['status'] === GameStatus::ACTIVE) || ($game['status'] === GameStatus::COMPLETED)) ? 'checked' : '' ?>>
-                                Set as Active
-                            </label>
 
                             <hr>
 
