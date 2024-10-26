@@ -69,12 +69,12 @@ class Widget
                 $topRated['data'][] = $row['avg_overall_rating'];
             }
         }
-        $names = json_encode($topRated['name']);
-        $data = json_encode($topRated['data']);
+        $names = json_encode($topRated['name'] ?? '');
+        $data = json_encode($topRated['data'] ?? '');
 
         $name = array_map(function ($item) {
             return [$item];
-        }, $topRated['name']);
+        }, $topRated['name'] ?? []);
 
         $categories = json_encode($name);
 
@@ -99,8 +99,8 @@ class Widget
             $population['data'][] = $row['total'];
         }
 
-        $sport = json_encode($population['sport']);
-        $data = json_encode($population['data']);
+        $sport = json_encode($population['sport'] ?? '');
+        $data = json_encode($population['data'] ?? '');
         // starts output buffering
         ob_start();
         include 'template/widgets/athlete-population.php';
