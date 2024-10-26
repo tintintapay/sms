@@ -30,6 +30,7 @@ class Allowances extends Model
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param($types, ...$values);
 
+        $stmt->close();
         return $stmt->execute();
     }
 
@@ -40,6 +41,7 @@ class Allowances extends Model
         $stmt->execute();
         $result = $stmt->get_result();
 
+        $stmt->close();
         return $result->fetch_assoc();
     }
 
@@ -47,7 +49,8 @@ class Allowances extends Model
     {
         $stmt = $this->db->prepare("UPDATE allowances SET status = ? WHERE athlete_id = ?");
         $stmt->bind_param('si', $data['status'], $data['athlete_id']);
-        
+
+        $stmt->close();
         return $stmt->execute();
     }
 }

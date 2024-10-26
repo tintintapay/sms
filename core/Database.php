@@ -24,32 +24,10 @@ class Database
         return $this->connection;
     }
 
-    public function query($sql, $params = [])
+    public function closeConnection()
     {
-        $stmt = $this->connection->prepare($sql);
-        if ($params) {
-            $types = str_repeat('s', count($params));
-            $stmt->bind_param($types, ...$params);
+        if ($this->connection) {
+            $this->connection->close();
         }
-        $stmt->execute();
-        return $stmt->get_result();
-    }
-
-    public static function selectNative($query)
-    {
-        $config = require 'config.php';
-        $conn = new mysqli(
-            $config['db']['host'],
-            $config['db']['username'],
-            $config['db']['password'],
-            $config['db']['database']
-        );
-
-        // Check for connection errors
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-        
-        return $conn->query($query);
     }
 }
