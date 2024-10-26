@@ -20,8 +20,11 @@ class Announcement extends Model
         $stmt->bind_param('ssi', $data['title'], $data['description'], $data['created_user']);
 
         if (!$stmt->execute()) {
+            $stmt->close();
+            
             return null;
         }
+
         $stmt->close();
         return $this->db->insert_id;
     }

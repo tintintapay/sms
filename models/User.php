@@ -51,11 +51,13 @@ class User extends Model
         $stmt = $this->db->prepare("SELECT users.*, CONCAT(user_info.first_name, ' ', user_info.last_name) AS full_name FROM users JOIN user_info ON users.id = user_info.user_id WHERE users.email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
-        $stmt->close();
 
         $result = $stmt->get_result();
+        $return = $result->fetch_assoc();
 
-        return $result->fetch_assoc();
+        $stmt->close();
+
+        return $return;
     }
 
     public function findUserById($id)
@@ -63,9 +65,9 @@ class User extends Model
         $stmt = $this->db->prepare("SELECT * FROM users WHERE id = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
-        $stmt->close();
 
         $result = $stmt->get_result();
+        $stmt->close();
 
         return $result->fetch_assoc();
     }
@@ -95,9 +97,9 @@ class User extends Model
         );
         $stmt->bind_param("s", $coor);
         $stmt->execute();
-        $stmt->close();
-
         $result = $stmt->get_result();
+        
+        $stmt->close();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
@@ -115,9 +117,9 @@ class User extends Model
         );
         $stmt->bind_param("i", $user_id);
         $stmt->execute();
-        $stmt->close();
-
         $result = $stmt->get_result()->fetch_assoc();
+        
+        $stmt->close();
         $result['gender'] = ucfirst($result['gender']);
 
         return $result;
@@ -167,9 +169,9 @@ class User extends Model
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("s" . $types, $coor, ...$params);
         $stmt->execute();
-        $stmt->close();
-
         $result = $stmt->get_result();
+
+        $stmt->close();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
@@ -208,9 +210,9 @@ class User extends Model
         );
         $stmt->bind_param("ss", $coor, $status);
         $stmt->execute();
-        $stmt->close();
-
         $result = $stmt->get_result();
+        
+        $stmt->close();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
@@ -268,7 +270,6 @@ class User extends Model
 
         $countQuery = $this->db->prepare($countSql);
         $countQuery->execute($params);
-        $countQuery->close();
         $countQuery->store_result();
         $countQuery->bind_result($totalRecords);
         $countQuery->fetch();
@@ -299,7 +300,6 @@ class User extends Model
 
         $dataQuery = $this->db->prepare($dataSql);
         $dataQuery->execute($params);
-        $dataQuery->close();
         $data = $dataQuery->get_result()->fetch_all(MYSQLI_ASSOC);
 
         $returnData = [];
@@ -311,6 +311,9 @@ class User extends Model
                 $d['school']
             ];
         }
+
+        $countQuery->close();
+        $dataQuery->close();
 
         return [
             "recordsTotal" => $totalRecords,

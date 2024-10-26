@@ -30,8 +30,10 @@ class Allowances extends Model
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param($types, ...$values);
 
+        $exec = $stmt->execute();
         $stmt->close();
-        return $stmt->execute();
+
+        return $exec;
     }
 
     public function fetchLatest($athlete_id)
@@ -49,8 +51,8 @@ class Allowances extends Model
     {
         $stmt = $this->db->prepare("UPDATE allowances SET status = ? WHERE athlete_id = ?");
         $stmt->bind_param('si', $data['status'], $data['athlete_id']);
-
+        $exec = $stmt->execute();
         $stmt->close();
-        return $stmt->execute();
+        return $exec;
     }
 }

@@ -15,9 +15,9 @@ class GameSchedules extends Model
         $stmt = $this->db->prepare("SELECT * FROM game_schedules WHERE id = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
-        $stmt->close();
-
         $result = $stmt->get_result();
+        
+        $stmt->close();
 
         return $result->fetch_assoc();
     }
@@ -31,9 +31,10 @@ class GameSchedules extends Model
             "SELECT * FROM game_schedules WHERE deleted_at IS NULL ORDER BY schedule DESC"
         );
         $stmt->execute();
+        $result = $stmt->get_result();
+        
         $stmt->close();
 
-        $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
@@ -47,9 +48,10 @@ class GameSchedules extends Model
 
             return null;
         }
+        $lastInserted = $this->db->insert_id;
         $stmt->close();
 
-        return $this->db->insert_id;
+        return $lastInserted;
     }
 
     public function updateSchedule($id, $data)
@@ -65,8 +67,9 @@ class GameSchedules extends Model
     {
         $stmt = $this->db->prepare("UPDATE game_schedules SET deleted_at = NOW() WHERE id = ?");
         $stmt->bind_param('i', $id);
-
-        return $stmt->execute();
+        $exec = $stmt->execute();
+        $stmt->close();
+        return $exec;
     }
 
     public function fetchAthleteSchedule()
@@ -98,9 +101,10 @@ class GameSchedules extends Model
 
         $stmt->bind_param('isis', $_SESSION['user_id'], $_SESSION['sport'], $_SESSION['user_id'], $inactive);
         $stmt->execute();
+        $result = $stmt->get_result();
+
         $stmt->close();
 
-        $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
@@ -111,9 +115,10 @@ class GameSchedules extends Model
 
         $stmt = $this->db->prepare("SELECT * FROM game_schedules WHERE schedule < CURDATE()");
         $stmt->execute();
+        $result = $stmt->get_result();
+
         $stmt->close();
 
-        $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
@@ -151,9 +156,10 @@ class GameSchedules extends Model
         $stmt->bind_param($types, ...$params);
 
         $stmt->execute();
+        $result = $stmt->get_result();
         $stmt->close();
 
-        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     public function getPlayedCount($data)
@@ -163,9 +169,10 @@ class GameSchedules extends Model
         $stmt = $this->db->prepare("SELECT COUNT(*) as total FROM game_schedules WHERE id IN (SELECT game_schedules_id FROM evaluations WHERE athlete_id = ? AND status = ?) AND status = ? ORDER BY schedule DESC");
         $stmt->bind_param('iss', $data['athleteId'], $approve, $completed);
         $stmt->execute();
+        $result = $stmt->get_result();
         $stmt->close();
 
-        return $stmt->get_result()->fetch_assoc();
+        return $result->fetch_assoc();
     }
 
     public function bestGameHighlight($data = [])
@@ -192,9 +199,10 @@ class GameSchedules extends Model
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param($type, ...$params);
         $stmt->execute();
+        $result = $stmt->get_result();
         $stmt->close();
-        
-        return $stmt->get_result()->fetch_assoc();
+
+        return $result->fetch_assoc();
     }
 
 }
