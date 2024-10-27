@@ -4,6 +4,7 @@ require_once 'core/Helper.php';
 require_once 'models/User.php';
 require_once 'models/Allowances.php';
 require_once 'models/UserInfo.php';
+require_once 'enums/School.php';
 
 class AllowanceController
 {
@@ -42,7 +43,8 @@ class AllowanceController
         }
 
         $sports = Sport::fetchList();
-        $schools = $this->userInfo->getAllSchool();
+        $schools = School::fetchList();
+        // $schools = $this->userInfo->getAllSchool();
 
         $allowances = $this->allowance->getAllowances($data);
 

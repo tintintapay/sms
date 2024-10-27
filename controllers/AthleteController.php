@@ -5,6 +5,7 @@ require_once 'core/Database.php';
 require_once 'core/Helper.php';
 require_once 'enums/Sport.php';
 require_once 'models/UserInfo.php';
+require_once 'enums/School.php';
 
 class AthleteController
 {
@@ -20,7 +21,7 @@ class AthleteController
     {
         $athletes = $this->user->fetchAllAthleteWithInfo($params);
 
-        $schools = $this->userInfo->getAllSchool();
+        $schools = School::fetchList();
         $sports = Sport::fetchList();
 
         $_SESSION['menu'] = 'manage_athlete';
@@ -139,7 +140,7 @@ class AthleteController
     {
         $athletes = $this->user->fetchAllAthleteWithInfo($params);
 
-        $schools = $this->userInfo->getAllSchool();
+        $schools = School::fetchList();
         $sports = Sport::fetchList();
 
         $_SESSION['menu'] = 'manage_athlete';
