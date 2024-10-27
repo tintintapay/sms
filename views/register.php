@@ -69,8 +69,8 @@
                     <input type="email" id="email" name="email" class="sms-input" placeholder="Email" required>
                 </div>
                 <div class="form-field">
-                    <label for="school" class="label">School</label>
-                    <input type="text" id="school" name="school" class="sms-input" placeholder="School" required>
+                    <label for="school" class="label">Campus</label>
+                    <input type="text" id="school" name="school" class="sms-input" placeholder="Campus" required>
                 </div>
                 <div class="form-field">
                     <label for="guardian" class="label">Guardian</label>

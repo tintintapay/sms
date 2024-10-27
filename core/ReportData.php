@@ -220,7 +220,7 @@ class ReportData extends Model
             JOIN 
                 game_schedules gs ON ar.game_id = gs.id
             JOIN 
-                user_info ui ON ar.athlete_id = ui.id
+                user_info ui ON ar.athlete_id = ui.user_id
             WHERE 
                 gs.sport = ?
             GROUP BY 
@@ -265,5 +265,24 @@ class ReportData extends Model
         $result = $stmt->get_result();
 
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getLatestRemarks($data)
+    {
+        $stmt = $this->db->prepare("
+            SELECT athletes_ratings.remarks, user_info.first_name, user_info.middle_name, user_info.last_name
+            FROM athletes_ratings
+            JOIN user_info
+            ON athletes_ratings.athlete_id = user_info.user_id
+            JOIN game_schedules
+            ON game_schedules.id = athletes_ratings.game_id
+            WHERE athletes_ratings.athlete_id = ?
+            ORDER BY game_schedules.schedule DESC LIMIT 1
+        ");
+        $stmt->bind_param("s", $data["athlete_id"]);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_assoc();
     }
 }

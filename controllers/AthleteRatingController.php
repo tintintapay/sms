@@ -144,6 +144,13 @@ class AthleteRatingController
             }
         }
 
+        // remarks
+        $remarkData = [
+            'athlete_id' => $athlete['user_id']
+        ];
+        $remarks = $this->report->getLatestRemarks($remarkData);
+        $remark = $remarks['remarks'];
+
         include 'views/athlete/player-stats.php';
     }
 }

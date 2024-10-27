@@ -73,7 +73,7 @@
                                         <th></th>
                                         <th>Name</th>
                                         <th>Email</th>
-                                        <th>School</th>
+                                        <th>Campus</th>
                                     </tr>
                                 </thead>
                                 <tbody>
