@@ -70,7 +70,13 @@
                 </div>
                 <div class="form-field">
                     <label for="school" class="label">Campus</label>
-                    <input type="text" id="school" name="school" class="sms-input" placeholder="Campus" required>
+                    <!-- <input type="text" id="school" name="school" class="sms-input" placeholder="Campus" required> -->
+                    <select name="school" id="school" class="sms-input" required>
+                        <option value="" selected disabled>- Please Select -</option>
+                        <?php foreach ($schools as $key => $value): ?>
+                            <option value="<?= $key ?>"><?= $value ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
                 <div class="form-field">
                     <label for="guardian" class="label">Guardian</label>
