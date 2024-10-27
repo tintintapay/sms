@@ -86,7 +86,7 @@
                                         <td><?= Helper::getAge($athlete['birthday']) ?></td>
                                         <td><?= $athlete['phone_number'] ?></td>
                                         <td><?= $athlete['address'] ?></td>
-                                        <td><?= $athlete['school'] ?></td>
+                                        <td><?= School::getDescription($athlete['school']) ?></td>
                                         <td><?= Sport::getDescription($athlete['sport']) ?></td>
                                         <td><?= $athlete['status'] ?></td>
                                         <td>

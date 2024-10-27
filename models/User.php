@@ -48,8 +48,20 @@ class User extends Model
 
     public function findUserByEmail($email)
     {
-        $stmt = $this->db->prepare("SELECT users.*, CONCAT(user_info.first_name, ' ', user_info.last_name) AS full_name FROM users JOIN user_info ON users.id = user_info.user_id WHERE users.email = ?");
-        $stmt->bind_param("s", $email);
+        $deleted = UserStatus::DELETED;
+
+        $stmt = $this->db->prepare("
+            SELECT
+                users.*,
+                CONCAT (user_info.first_name, ' ', user_info.last_name) AS full_name
+            FROM
+                users
+                JOIN user_info ON users.id = user_info.user_id
+            WHERE
+                users.email = ?
+                AND status != ?
+        ");
+        $stmt->bind_param("ss", $email, $deleted);
         $stmt->execute();
 
         $result = $stmt->get_result();
