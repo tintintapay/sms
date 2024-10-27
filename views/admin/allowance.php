@@ -66,7 +66,7 @@
                                 <option value="">All</option>
                                     <option value="available" <?= isset($_GET['status']) && $_GET['status'] === 'available' ? 'selected' : '' ?>>
                                         Not yet claimed</option>
-                                    <option value="<?= $key ?>" <?= isset($_GET['status']) && $_GET['status'] === 'received' ? 'selected' : '' ?>>
+                                    <option value="received" <?= isset($_GET['status']) && $_GET['status'] === 'received' ? 'selected' : '' ?>>
                                         Claimed</option>
                             </select>
                 
