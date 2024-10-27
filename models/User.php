@@ -319,11 +319,12 @@ class User extends Model
     public function insertResetCode($data)
     {
         $active = UserStatus::ACTIVE;
-        $stmt = $this->db->prepare("UPDATE users SET code = ? WHERE email = ? AND status = ?");
-        $stmt->bind_param("sss", $data['code'], $data['email'], $active);
+        $dateNow = date("Y-m-d H:i:s");
+        $stmt = $this->db->prepare("UPDATE users SET code = ?, updated_at = ? WHERE email = ? AND status = ?");
+        $stmt->bind_param("ssss", $data['code'], $dateNow, $data['email'], $active);
         $exec = $stmt->execute();
         $stmt->close();
-        
+
         return $exec;
     }
 }
