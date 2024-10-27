@@ -5,9 +5,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="vendor/fontawesome-6.5.1/css/all.min.css">
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/login.css">
     <link rel="stylesheet" href="assets/css/register.css">
+    <script src="vendor/jquery/jquery-3.7.1.js"></script>
+    <script src="assets/js/toggle-password.js"></script>
     <title>Register</title>
 </head>
 
@@ -25,11 +28,13 @@
 
                 <div class="form-field">
                     <label for="first_name" class="label">First Name</label>
-                    <input type="text" id="first_name" name="first_name" class="sms-input" placeholder="First Name" required>
+                    <input type="text" id="first_name" name="first_name" class="sms-input" placeholder="First Name"
+                        required>
                 </div>
                 <div class="form-field">
                     <label for="last_name" class="label">Last Name</label>
-                    <input type="text" id="last_name" name="last_name" class="sms-input" placeholder="Last Name" required>
+                    <input type="text" id="last_name" name="last_name" class="sms-input" placeholder="Last Name"
+                        required>
                 </div>
                 <div class="form-field">
                     <label for="middle_name" class="label">Middle Name</label>
@@ -87,18 +92,26 @@
                 </div>
                 <div class="form-field">
                     <label for="phone_number" class="label">Phone Number</label>
-                    <input type="tel" id="phone_number" name="phone_number" class="sms-input" placeholder="Phone Number (11 digits)" pattern="\d{11}" required>
+                    <input type="tel" id="phone_number" name="phone_number" class="sms-input"
+                        placeholder="Phone Number (11 digits)" pattern="\d{11}" required>
                 </div>
 
                 <hr>
-                
-                <div class="form-field">
+
+                <div class="form-field" style="position:relative">
                     <label for="password" class="label">Password</label>
-                    <input type="password" id="password" name="password" class="sms-input" placeholder="Password" required>
+                    <!-- <input type="password" id="password" name="password" class="sms-input" placeholder="Password" required> -->
+
+                    <input type="password" class="toggle-password sms-input" id="password" name="password"
+                        placeholder="Password" style="padding-right: 30px; width:calc(100% - 44px)">
+                    <i class="fa-solid fa-eye" id="togglePassword"
+                        style="position: absolute; right: 10px; top: 55%; transform: translateY(-50%); cursor: pointer;"></i>
+
                 </div>
                 <div class="form-field">
                     <label for="confirm_password" class="label">Confirm Password</label>
-                    <input type="password" id="confirm_password" name="confirm_password" class="sms-input" placeholder="Confirm Password" required>
+                    <input type="password" id="confirm_password" name="confirm_password"
+                        class="toggle-password sms-input" placeholder="Confirm Password" required>
                 </div>
 
                 <hr>
