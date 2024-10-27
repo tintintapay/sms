@@ -247,32 +247,31 @@ class ReportData extends Model
     {
         $stmt = $this->db->prepare("
             SELECT 
-                a.status,
-                DATE(a.created_at) AS date,
-                COUNT(*) AS count
+                DATE_FORMAT(a.created_at, '%Y-%m-%d %H:%i:%s') AS datetime,
+                SUM(CASE WHEN a.status = 'available' THEN 1 ELSE 0 END) AS available,
+                SUM(CASE WHEN a.status = 'received' THEN 1 ELSE 0 END) AS received
             FROM 
                 allowances a
             JOIN 
                 (
-                    -- Select the two latest distinct dates
-                    SELECT DISTINCT DATE(created_at) AS latest_date
+                    -- Select the latest distinct datetime
+                    SELECT DATE_FORMAT(created_at, '%Y-%m-%d %H:%i:%s') AS latest_datetime
                     FROM allowances
                     ORDER BY created_at DESC
                     LIMIT 1
                 ) AS latest_dates
             ON 
-                DATE(a.created_at) = latest_dates.latest_date
+                DATE_FORMAT(a.created_at, '%Y-%m-%d %H:%i:%s') = latest_dates.latest_datetime
             GROUP BY 
-                a.status, DATE(a.created_at)
-            ORDER BY 
-                date DESC, status;
+                datetime;
 
         ");
+
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
 
-        return $result->fetch_all(MYSQLI_ASSOC);
+        return $result->fetch_assoc();
     }
 
     public function getLatestRemarks($data)
