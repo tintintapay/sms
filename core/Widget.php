@@ -115,18 +115,8 @@ class Widget
         $report = new ReportData();
 
         $allowances = $report->getTotalClaimAllowance([]);
-        $remainingClaim = "";
-        $totalClaim = "";
-        foreach ($allowances as $allowance) {
-            switch ($allowance['status']) {
-                case 'available':
-                    $remainingClaim = $allowance['count'];
-                    break;
-                case 'received':
-                    $totalClaim = $allowance['count'];
-                    break;
-            }
-        }
+        $remainingClaim = $allowances['available'] ?? 0;
+        $totalClaim = $allowances['received'] ?? 0;
 
         // starts output buffering
         ob_start();
