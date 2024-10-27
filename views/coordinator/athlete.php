@@ -50,7 +50,7 @@
                         <!-- Column 2: School Info & Documents -->
                         <div class="profile-column school-info">
                             <h2>School Information</h2>
-                            <p><strong>Campus:</strong> <?= $athlete['school'] ?></p>
+                            <p><strong>Campus:</strong> <?= School::getDescription($athlete['school']) ?></p>
                             <p><strong>Course:</strong> <?= $athlete['course'] ?></p>
                             <p><strong>Year Level:</strong> <?= $athlete['year_level'] ?> Year</p>
                             <p><strong>Sport:</strong> <?= Sport::getDescription($athlete['sport']) ?></p>

@@ -7,6 +7,7 @@ require_once 'enums/Sport.php';
 require_once 'models/User.php';
 require_once 'models/UserInfo.php';
 require_once 'requests/RegisterRequest.php';
+require_once 'enums/School.php';
 
 class UserController
 {
@@ -22,6 +23,7 @@ class UserController
     public function index()
     {
         $sports = Sport::fetchList();
+        $schools = School::fetchList();
 
         include 'views/register.php';
     }

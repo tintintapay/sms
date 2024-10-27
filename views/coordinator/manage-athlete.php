@@ -36,8 +36,8 @@
                             <label for="school" class="label">Campus</label>
                             <select name="school" id="school" class="sms-input">
                                 <option value="all">All</option>
-                                <?php foreach ($schools as $school): ?>
-                                    <option value="<?= $school['school'] ?>" <?= isset($_GET['school']) && $_GET['school'] === $school['school'] ? 'selected' : '' ?>><?= $school['school'] ?>
+                                <?php foreach ($schools as $key => $val): ?>
+                                    <option value="<?= $key ?>" <?= isset($_GET['school']) && $_GET['school'] === $key ? 'selected' : '' ?>><?= $val ?>
                                     </option>
                                 <?php endforeach; ?>
                             </select>
