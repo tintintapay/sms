@@ -3,6 +3,7 @@
 require_once 'core/Model.php';
 require_once 'enums/UserRole.php';
 require_once 'enums/UserStatus.php';
+require_once 'enums/School.php';
 
 class User extends Model
 {
@@ -313,7 +314,7 @@ class User extends Model
                 $d['user_id'],
                 $d['first_name'] . ' ' . $d['middle_name'] . ' ' . $d['last_name'],
                 $d['email'],
-                $d['school']
+                School::getDescription($d['school'])
             ];
         }
 
