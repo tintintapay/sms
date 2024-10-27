@@ -150,14 +150,7 @@ class User extends Model
                 ui.user_id, ui.first_name, ui.last_name, ui.middle_name,
                 CONCAT(ui.first_name, ' ', IFNULL(ui.middle_name, ''), ' ', ui.last_name) AS full_name,
                 ui.school,
-                CASE 
-                    WHEN ui.sport = 'base_ball' THEN 'Base Ball'
-                    WHEN ui.sport = 'basket_ball' THEN 'Basket Ball'
-                    WHEN ui.sport = 'soccer' THEN 'Soccer'
-                    WHEN ui.sport = 'swimming' THEN 'Swimming'
-                    WHEN ui.sport = 'tennis' THEN 'Tennis'
-                    ELSE ''
-                END AS sport,
+                ui.sport,
                 ui.gender, ui.address, ui.age, ui.phone_number, ui.birthday
             FROM users u
             LEFT JOIN user_info ui ON u.id = ui.user_id

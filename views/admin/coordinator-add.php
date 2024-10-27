@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="../assets/css/admin_profile.css">
     <link rel="stylesheet" href="../assets/css/sms-table.css">
     <link rel="stylesheet" href="../vendor/fontawesome-6.5.1/css/all.min.css">
+    <script src="../vendor/jquery/jquery-3.7.1.js"></script>
     <script type="module" src="../assets/js/main.js"></script>
+    <script src="../assets/js/toggle-password.js"></script>
 </head>
 
 <body>
@@ -82,10 +84,16 @@
                                 value="<?= $request['email'] ?? '' ?>" autocomplete="off">
 
                             <label for="password" class="label">Password:</label>
-                            <input type="password" class="sms-input" id="password" name="password" required>
+                            <!-- <input type="password" class="sms-input" id="password" name="password" required> -->
+                            <div style="position: relative;">
+                                <input type="password" class="toggle-password sms-input" id="password" name="password"
+                                    style="padding-right: 30px;width:calc(100% - 44px)">
+                                <i class="fa-solid fa-eye" id="togglePassword"
+                                    style="position: absolute; right: 10px; top: 36%; transform: translateY(-50%); cursor: pointer;"></i>
+                            </div>
 
                             <label for="confirm_password" class="label">Confirm Password:</label>
-                            <input type="password" class="sms-input" id="confirm_password" name="confirm_password"
+                            <input type="password" class="sms-input toggle-password" id="confirm_password" name="confirm_password"
                                 required>
                             <br>
                             <button type="submit" class="button button-primary">Save</button>

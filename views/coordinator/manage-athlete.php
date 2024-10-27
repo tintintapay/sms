@@ -33,7 +33,7 @@
                         <div class="card-title">Advance Search</div>
                         <form action="manage-athlete">
 
-                            <label for="school" class="label">School</label>
+                            <label for="school" class="label">Campus</label>
                             <select name="school" id="school" class="sms-input">
                                 <option value="all">All</option>
                                 <?php foreach ($schools as $school): ?>
@@ -66,7 +66,7 @@
                                     <th>Age</th>
                                     <th>Phone Number</th>
                                     <th>Address</th>
-                                    <th>School</th>
+                                    <th>Campus</th>
                                     <th>Sport</th>
                                     <th>Status</th>
                                     <th></th>
@@ -87,7 +87,7 @@
                                         <td><?= $athlete['phone_number'] ?></td>
                                         <td><?= $athlete['address'] ?></td>
                                         <td><?= $athlete['school'] ?></td>
-                                        <td><?= $athlete['sport'] ?></td>
+                                        <td><?= Sport::getDescription($athlete['sport']) ?></td>
                                         <td><?= $athlete['status'] ?></td>
                                         <td>
                                             <a href="athlete?id=<?= $athlete['user_id'] ?>"

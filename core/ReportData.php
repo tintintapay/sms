@@ -17,6 +17,7 @@ class ReportData extends Model
         $stmt->bind_param("ss", $active, $athlete);
         $stmt->execute();
         $result = $stmt->get_result();
+        $stmt->close();
         $row = $result->fetch_assoc();
 
         return $row['total'];
@@ -27,6 +28,7 @@ class ReportData extends Model
         $stmt = $this->db->prepare("SELECT * FROM announcements WHERE deleted_at IS NULL LIMIT $limit");
         $stmt->execute();
         $result = $stmt->get_result();
+        $stmt->close();
 
         $row = $limit === 1
             ? $result->fetch_assoc()
@@ -42,6 +44,7 @@ class ReportData extends Model
         $stmt->bind_param("s", $active);
         $stmt->execute();
         $result = $stmt->get_result();
+        $stmt->close();
 
         $row = $limit === 1
             ? $result->fetch_assoc()
@@ -58,6 +61,7 @@ class ReportData extends Model
         $stmt->bind_param("ss", $athlete, $active);
         $stmt->execute();
         $result = $stmt->get_result();
+        $stmt->close();
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
@@ -123,6 +127,7 @@ class ReportData extends Model
         $stmt->bind_param($type, ...$params);
         $stmt->execute();
         $result = $stmt->get_result();
+        $stmt->close();
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
@@ -201,6 +206,7 @@ class ReportData extends Model
         $stmt->bind_param($type, ...$params);
         $stmt->execute();
         $result = $stmt->get_result();
+        $stmt->close();
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
@@ -220,7 +226,7 @@ class ReportData extends Model
             JOIN 
                 game_schedules gs ON ar.game_id = gs.id
             JOIN 
-                user_info ui ON ar.athlete_id = ui.id
+                user_info ui ON ar.athlete_id = ui.user_id
             WHERE 
                 gs.sport = ?
             GROUP BY 
@@ -232,6 +238,7 @@ class ReportData extends Model
         $stmt->bind_param("s", $data['sport']);
         $stmt->execute();
         $result = $stmt->get_result();
+        $stmt->close();
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
@@ -263,7 +270,28 @@ class ReportData extends Model
         ");
         $stmt->execute();
         $result = $stmt->get_result();
+        $stmt->close();
 
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getLatestRemarks($data)
+    {
+        $stmt = $this->db->prepare("
+            SELECT athletes_ratings.remarks, user_info.first_name, user_info.middle_name, user_info.last_name
+            FROM athletes_ratings
+            JOIN user_info
+            ON athletes_ratings.athlete_id = user_info.user_id
+            JOIN game_schedules
+            ON game_schedules.id = athletes_ratings.game_id
+            WHERE athletes_ratings.athlete_id = ?
+            ORDER BY game_schedules.schedule DESC LIMIT 1
+        ");
+        $stmt->bind_param("s", $data["athlete_id"]);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        return $result->fetch_assoc();
     }
 }
