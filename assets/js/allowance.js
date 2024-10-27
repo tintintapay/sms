@@ -1,5 +1,49 @@
 $(function () {
 
+    const exportingCol = [0, 1, 2, 3];
+    const exportingTitle = 'Allowances';
+    let table = $("#myTable").DataTable({
+        responsive: true,
+        layout: {
+            topStart: {
+                buttons: [
+                    {
+                        extend: 'csv',
+                        title: exportingTitle,
+                        exportOptions: {
+                            columns: exportingCol
+                        },
+                        className: 'button button-s button-success',
+                    },
+                    {
+                        extend: 'print',
+                        title: exportingTitle,
+                        exportOptions: {
+                            columns: exportingCol
+                        },
+                        className: 'button button-s button-light',
+                    },
+                ]
+            },
+            topEnd: 'search',
+            bottomStart: 'info',
+            bottomEnd: {
+                paging: {
+                    firstLast: false
+                }
+            },
+        },
+        pageLength: 5,
+        ordering: false,
+        columnDefs: [
+            {
+                target: [4],
+                searchable: false
+            },
+        ]
+    });
+    $("#myTable").show();
+
     $('#send_allowance_notice').on('submit', function (e) {
         e.preventDefault();
 

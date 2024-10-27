@@ -78,7 +78,7 @@
                 </div>
                 <div class="form-field">
                     <label for="birthday" class="label">Birth Day</label>
-                    <input type="date" id="birthday" name="birthday" class="sms-input" placeholder="Birth Day" required>
+                    <input type="date" id="birthday" name="birthday" class="sms-input" max="<?= (new DateTime())->modify('-15 years')->format('Y-m-d');?>" placeholder="Birth Day" required>
                 </div>
 
                 <div class="form-field">

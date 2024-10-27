@@ -55,4 +55,63 @@ class Allowances extends Model
         $stmt->close();
         return $exec;
     }
+
+    public function getAllowances($data)
+    {
+        $where = [];
+        $types = "";
+        $params = [];
+
+        if (!empty($data['date_from']) && !empty($data['date_to'])) {
+            $where[] = "allowances.created_at BETWEEN ? AND ?";
+            $types .= "ss";
+            $params[] = $data['date_from'];
+            $params[] = $data['date_to'];
+        }
+
+        if (!empty($data['school'])) {
+            $where[] = "user_info.school = ?";
+            $types .= "s";
+            $params[] = $data['school'];
+        }
+
+        if (!empty($data['sport'])) {
+            $where[] = "user_info.sport = ?";
+            $types .= "s";
+            $params[] = $data['sport'];
+        }
+
+        if (!empty($data['status'])) {
+            $where[] = "allowances.status = ?";
+            $types .= "s";
+            $params[] = $data['status'];
+        }
+
+        $whereClause = count($where) ? " WHERE " . implode(" AND ", $where) : "";
+        $sql = "
+            SELECT
+                allowances.athlete_id,
+                allowances.status,
+                allowances.created_at,
+                CONCAT(user_info.first_name, ' ', IFNULL(user_info.middle_name, ''), ' ', user_info.last_name) AS full_name,
+                users.email,
+                user_info.phone_number
+            FROM allowances
+            JOIN user_info ON user_info.user_id = allowances.athlete_id
+            JOIN users ON users.id = allowances.athlete_id
+            $whereClause
+            ORDER BY allowances.created_at DESC
+        ";
+        
+        $stmt = $this->db->prepare($sql);
+        if (!empty($params)) {
+            $stmt->bind_param($types, ...$params);
+        }
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
 }

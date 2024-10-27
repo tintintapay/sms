@@ -17,6 +17,7 @@ class ReportData extends Model
         $stmt->bind_param("ss", $active, $athlete);
         $stmt->execute();
         $result = $stmt->get_result();
+        $stmt->close();
         $row = $result->fetch_assoc();
 
         return $row['total'];
@@ -27,6 +28,7 @@ class ReportData extends Model
         $stmt = $this->db->prepare("SELECT * FROM announcements WHERE deleted_at IS NULL LIMIT $limit");
         $stmt->execute();
         $result = $stmt->get_result();
+        $stmt->close();
 
         $row = $limit === 1
             ? $result->fetch_assoc()
@@ -42,6 +44,7 @@ class ReportData extends Model
         $stmt->bind_param("s", $active);
         $stmt->execute();
         $result = $stmt->get_result();
+        $stmt->close();
 
         $row = $limit === 1
             ? $result->fetch_assoc()
@@ -58,6 +61,7 @@ class ReportData extends Model
         $stmt->bind_param("ss", $athlete, $active);
         $stmt->execute();
         $result = $stmt->get_result();
+        $stmt->close();
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
@@ -123,6 +127,7 @@ class ReportData extends Model
         $stmt->bind_param($type, ...$params);
         $stmt->execute();
         $result = $stmt->get_result();
+        $stmt->close();
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
@@ -201,6 +206,7 @@ class ReportData extends Model
         $stmt->bind_param($type, ...$params);
         $stmt->execute();
         $result = $stmt->get_result();
+        $stmt->close();
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
@@ -232,6 +238,7 @@ class ReportData extends Model
         $stmt->bind_param("s", $data['sport']);
         $stmt->execute();
         $result = $stmt->get_result();
+        $stmt->close();
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
@@ -263,6 +270,7 @@ class ReportData extends Model
         ");
         $stmt->execute();
         $result = $stmt->get_result();
+        $stmt->close();
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
@@ -282,6 +290,7 @@ class ReportData extends Model
         $stmt->bind_param("s", $data["athlete_id"]);
         $stmt->execute();
         $result = $stmt->get_result();
+        $stmt->close();
 
         return $result->fetch_assoc();
     }
