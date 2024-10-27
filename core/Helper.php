@@ -69,7 +69,7 @@ class Helper
                     return ['success' => false, 'message' => "Error uploading file."];
                 }
             } else {
-                return ['success' => false, 'message' => "Invalid file type. Only ".strtoupper(implode(", ", $allowedTypes))." files are allowed."];
+                return ['success' => false, 'message' => "Invalid file type. Only " . strtoupper(implode(", ", $allowedTypes)) . " files are allowed."];
             }
         }
 
@@ -79,7 +79,7 @@ class Helper
     public static function sendMail($data)
     {
         $config = require 'config.php';
-        
+
         $mail = new PHPMailer(true);
 
         try {
@@ -155,13 +155,16 @@ class Helper
     public static function decryptEmail($email)
     {
         $config = require 'config.php';
-
         $key = $config['encryption_key'];
         $method = 'AES-256-CBC';
+
         // Decrypt email
         [$encryptedData, $iv] = explode('::', base64_decode($email), 2);
-        $decryptedEmail = openssl_decrypt($encryptedData, $method, $key, 0, $iv);
 
+        // Ensure IV is 16 bytes long
+        $iv = str_pad($iv, 16, "\0");
+
+        $decryptedEmail = openssl_decrypt($encryptedData, $method, $key, 0, $iv);
         return $decryptedEmail;
     }
 
@@ -178,7 +181,7 @@ class Helper
         if ($minutesElapsed <= $minutes) {
             return false;
         }
-        
+
         return true;
     }
 }
