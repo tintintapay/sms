@@ -9,6 +9,7 @@
     <title>Allowance</title>
     <link rel="stylesheet" href="../assets/css/main.css">
     <script src="../vendor/jquery/jquery-3.7.1.js"></script>
+    <?php include 'views/common/datatables.php'; ?>
     <script src="../vendor/sweetalert/sweetalert2.js"></script>
     <script src="../assets/js/allowance.js"></script>
 </head>
@@ -36,7 +37,82 @@
                         </form>
                     </div>
                 </div>
+                <hr>
+                <div class="section">
+                    <div class="card">
+                        <div class="card-title">Advance Search</div>
+                        <form action="allowance">
 
+                            <label for="school" class="label">Campus</label>
+                            <select name="school" id="school" class="sms-input">
+                                <option value="">All</option>
+                                <?php foreach ($schools as $school): ?>
+                                    <option value="<?= $school['school'] ?>" <?= isset($_GET['school']) && $_GET['school'] === $school['school'] ? 'selected' : '' ?>><?= $school['school'] ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                
+                            <label for="sport" class="label">Sport</label>
+                            <select name="sport" id="sport" class="sms-input">
+                                <option value="">All</option>
+                                <?php foreach ($sports as $key => $val): ?>
+                                    <option value="<?= $key ?>" <?= isset($_GET['sport']) && $_GET['sport'] === $key ? 'selected' : '' ?>>
+                                        <?= $val ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                
+                            <label for="status" class="label">Status</label>
+                            <select name="status" id="status" class="sms-input">
+                                <option value="">All</option>
+                                    <option value="available" <?= isset($_GET['status']) && $_GET['status'] === 'available' ? 'selected' : '' ?>>
+                                        Not yet claimed</option>
+                                    <option value="<?= $key ?>" <?= isset($_GET['status']) && $_GET['status'] === 'received' ? 'selected' : '' ?>>
+                                        Claimed</option>
+                            </select>
+                
+                            <label for="date_from" class="label">Date From</label>
+                            <input type="date" class="sms-input" name="date_from" id="date_from">
+
+                            <label for="date_to" class="label">Date To</label>
+                            <input type="date" class="sms-input" name="date_to" id="date_to">
+                
+                
+                            <button type="submit" class="button button-success">Search</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="card">
+                        <table id="myTable" style="display:none">
+                            <thead>
+                                <tr>
+                                    <th>Athlete</th>
+                                    <th>Phone Number</th>
+                                    <th>Email</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($allowances as $allowance): ?>
+                                    <tr>
+                                        <td>
+                                            <a href="../athlete/stat?id=<?= $allowance['athlete_id'] ?>"
+                                                style="text-decoration: none;">
+                                                <?= $allowance['full_name'] ?>
+                                            </a>
+                                        </td>
+                                        <td><?= $allowance['phone_number'] ?></td>
+                                        <td><?= $allowance['email'] ?></td>
+                                        <td><?= $allowance['status'] ?></td>
+                                        <td><?= $allowance['created_at'] ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
 
             </div>
         </div>
