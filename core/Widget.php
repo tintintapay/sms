@@ -65,7 +65,7 @@ class Widget
 
             foreach ($topRateds as $row) {
                 // $topRated['name'][] = $row['first_name'] . " " . $row['last_name'] . "(" . Sport::getDescription($row['sport']) . ")";
-                $topRated['name'][] = $row['school'] . "(" . Sport::getDescription($row['sport']) . ")";
+                $topRated['name'][] = School::getDescription($row['school']) . "(" . Sport::getDescription($row['sport']) . ")";
                 $topRated['data'][] = $row['avg_overall_rating'];
             }
         }
