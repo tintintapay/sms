@@ -31,11 +31,11 @@
                         <div class="card-title">Advance Search</div>
                         <form action="manage-athlete">
 
-                            <label for="school" class="label">School</label>
+                            <label for="school" class="label">Campus</label>
                             <select name="school" id="school" class="sms-input">
                                 <option value="all">All</option>
-                                <?php foreach ($schools as $school): ?>
-                                    <option value="<?= $school['school'] ?>" <?= isset($_GET['school']) && $_GET['school'] === $school['school'] ? 'selected' : '' ?>><?= $school['school'] ?>
+                                <?php foreach ($schools as $key => $val): ?>
+                                    <option value="<?= $key ?>" <?= isset($_GET['school']) && $_GET['school'] === $key ? 'selected' : '' ?>><?= $val ?>
                                     </option>
                                 <?php endforeach; ?>
                             </select>
@@ -64,7 +64,7 @@
                                     <th>Age</th>
                                     <th>Phone Number</th>
                                     <th>Address</th>
-                                    <th>School</th>
+                                    <th>Campus</th>
                                     <th>Sport</th>
                                     <th>Status</th>
                                 </tr>
@@ -79,8 +79,8 @@
                                         <td><?= Helper::getAge($athlete['birthday']) ?></td>
                                         <td><?= $athlete['phone_number'] ?></td>
                                         <td><?= $athlete['address'] ?></td>
-                                        <td><?= $athlete['school'] ?></td>
-                                        <td><?= $athlete['sport'] ?></td>
+                                        <td><?= School::getDescription($athlete['school']) ?></td>
+                                        <td><?= Sport::getDescription($athlete['sport']) ?></td>
                                         <td><?= $athlete['status'] ?></td>
                                     </tr>
                                 <?php endforeach; ?>

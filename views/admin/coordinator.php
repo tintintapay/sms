@@ -12,6 +12,7 @@
     <script src="../vendor/jquery/jquery-3.7.1.js"></script>
     <script type="module" src="../assets/js/main.js"></script>
     <script src="../assets/js/coordinator.js"></script>
+    <script src="../assets/js/toggle-password.js"></script>
 </head>
 
 <body>
@@ -86,10 +87,16 @@
                             
                             <h2>Change password</h2>
                             <label for="password" class="label">New Password:</label>
-                            <input type="password" class="sms-input" id="password" name="password">
+                            <!-- <input type="password" class="sms-input" id="password" name="password"> -->
+                             <div style="position: relative;">
+                                <input type="password" class="toggle-password sms-input" id="password" name="password"
+                                    style="padding-right: 30px;width:calc(100% - 44px)">
+                                <i class="fa-solid fa-eye" id="togglePassword"
+                                    style="position: absolute; right: 10px; top: 36%; transform: translateY(-50%); cursor: pointer;"></i>
+                            </div>
 
                             <label for="confirm_password" class="label">Confirm Password:</label>
-                            <input type="password" class="sms-input" id="confirm_password" name="confirm_password">
+                            <input type="password" class="toggle-password sms-input" id="confirm_password" name="confirm_password">
                             <br>
                             <button type="submit" class="button button-primary">Save</button>
                         </form>

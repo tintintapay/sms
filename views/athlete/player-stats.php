@@ -34,6 +34,9 @@
                     <div><strong>Date of Birth:</strong> <?= Helper::formatDate($athlete['birthday'], 'd F Y') ?></div>
                     <div><strong>Adress:</strong> <?= $athlete['address'] ?></div>
                 </div>
+                <div style="display: flex; flex-direction: column; gap: 10px;margin-top:30px; font-style:italic">
+                    <p><?= $remark ?></p>
+                </div>
             </div>
 
             <!-- Right Column (Statistics) -->

@@ -5,9 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="vendor/fontawesome-6.5.1/css/all.min.css">
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/login.css">
     <script src="vendor/jquery/jquery-3.7.1.js"></script>
+    <script src="assets/js/toggle-password.js"></script>
     <title>Password Reset</title>
 </head>
 
@@ -34,10 +36,16 @@
                 <hr>
                 <!-- New Password -->
                 <label for="password">New Password </label>
-                <input type="password" id="password" name="password" placeholder="New Password" required>
+                <!-- <input type="password" id="password" name="password" placeholder="New Password" required> -->
+                <div style="position: relative;">
+                    <input type="password" class="toggle-password" id="password" name="password" placeholder="New Password"
+                        style="padding-right: 30px;">
+                    <i class="fa-solid fa-eye" id="togglePassword"
+                        style="position: absolute; right: 10px; top: 36%; transform: translateY(-50%); cursor: pointer;"></i>
+                </div>
                 <!-- Confirm Password -->
                 <label for="confirm_password">Confirm Password </label>
-                <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+                <input type="password" class="toggle-password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
                 <button type="submit" style="margin-top: 15px;">Validate</button>
                 <div class="links">
                     <a href="login">Login</a>

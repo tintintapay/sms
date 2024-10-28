@@ -3,22 +3,52 @@
 require_once 'core/Helper.php';
 require_once 'models/User.php';
 require_once 'models/Allowances.php';
+require_once 'models/UserInfo.php';
+require_once 'enums/School.php';
 
 class AllowanceController
 {
     private $user;
     private $allowance;
+    private $userInfo;
 
     public function __construct()
     {
         $this->user = new User();
         $this->allowance = new Allowances();
+        $this->userInfo = new UserInfo();
     }
 
-    public function index()
+    public function index($params)
     {
         $_SESSION['menu'] = 'allowance';
-        return include 'views/admin/allowance.php';
+        
+        $data = [];
+
+        if ((!empty($params['date_from']) && $params['date_from'] !== '') && (!empty($params['date_to']) && $params['date_to'] !== '')) {
+            $data['date_from'] = $params['date_from'];
+            $data['date_to'] = $params['date_to'];
+        }
+
+        if (!empty($params['school']) && $params['school'] !== '') {
+            $data['school'] = $params['school'];
+        }
+
+        if (!empty($params['sport']) && $params['sport'] !== '') {
+            $data['sport'] = $params['sport'];
+        }
+
+        if (!empty($params['status']) && $params['status'] !== '') {
+            $data['status'] = $params['status'];
+        }
+
+        $sports = Sport::fetchList();
+        $schools = School::fetchList();
+        // $schools = $this->userInfo->getAllSchool();
+
+        $allowances = $this->allowance->getAllowances($data);
+
+        include 'views/admin/allowance.php';
     }
 
     public function send_allowance_notice($request)

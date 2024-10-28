@@ -3,6 +3,7 @@
 require_once 'core/Model.php';
 require_once 'enums/UserRole.php';
 require_once 'enums/UserStatus.php';
+require_once 'enums/School.php';
 
 class User extends Model
 {
@@ -48,8 +49,20 @@ class User extends Model
 
     public function findUserByEmail($email)
     {
-        $stmt = $this->db->prepare("SELECT users.*, CONCAT(user_info.first_name, ' ', user_info.last_name) AS full_name FROM users JOIN user_info ON users.id = user_info.user_id WHERE users.email = ?");
-        $stmt->bind_param("s", $email);
+        $deleted = UserStatus::DELETED;
+
+        $stmt = $this->db->prepare("
+            SELECT
+                users.*,
+                CONCAT (user_info.first_name, ' ', user_info.last_name) AS full_name
+            FROM
+                users
+                JOIN user_info ON users.id = user_info.user_id
+            WHERE
+                users.email = ?
+                AND status != ?
+        ");
+        $stmt->bind_param("ss", $email, $deleted);
         $stmt->execute();
 
         $result = $stmt->get_result();
@@ -150,14 +163,7 @@ class User extends Model
                 ui.user_id, ui.first_name, ui.last_name, ui.middle_name,
                 CONCAT(ui.first_name, ' ', IFNULL(ui.middle_name, ''), ' ', ui.last_name) AS full_name,
                 ui.school,
-                CASE 
-                    WHEN ui.sport = 'base_ball' THEN 'Base Ball'
-                    WHEN ui.sport = 'basket_ball' THEN 'Basket Ball'
-                    WHEN ui.sport = 'soccer' THEN 'Soccer'
-                    WHEN ui.sport = 'swimming' THEN 'Swimming'
-                    WHEN ui.sport = 'tennis' THEN 'Tennis'
-                    ELSE ''
-                END AS sport,
+                ui.sport,
                 ui.gender, ui.address, ui.age, ui.phone_number, ui.birthday
             FROM users u
             LEFT JOIN user_info ui ON u.id = ui.user_id
@@ -308,7 +314,7 @@ class User extends Model
                 $d['user_id'],
                 $d['first_name'] . ' ' . $d['middle_name'] . ' ' . $d['last_name'],
                 $d['email'],
-                $d['school']
+                School::getDescription($d['school'])
             ];
         }
 
@@ -326,11 +332,12 @@ class User extends Model
     public function insertResetCode($data)
     {
         $active = UserStatus::ACTIVE;
-        $stmt = $this->db->prepare("UPDATE users SET code = ? WHERE email = ? AND status = ?");
-        $stmt->bind_param("sss", $data['code'], $data['email'], $active);
+        $dateNow = date("Y-m-d H:i:s");
+        $stmt = $this->db->prepare("UPDATE users SET code = ?, updated_at = ? WHERE email = ? AND status = ?");
+        $stmt->bind_param("ssss", $data['code'], $dateNow, $data['email'], $active);
         $exec = $stmt->execute();
         $stmt->close();
-        
+
         return $exec;
     }
 }
