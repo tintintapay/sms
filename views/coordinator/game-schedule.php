@@ -67,7 +67,7 @@
 
                             <label for="schedule" class="label">Schedule:</label>
                             <input type="date" class="sms-input" id="schedule" name="schedule"
-                                value="<?= $game['schedule'] ?>" min="<?= $game['schedule'] ?>" autocomplete="off">
+                                value="<?= $game['schedule'] ?>" min="<?= $minimumDate ?>" autocomplete="off">
 
                             <label for="schedule_picture" class="label">Schedule Picture:</label>
                             <input type="file" class="sms-input" id="schedule_picture" name="schedule_picture"
