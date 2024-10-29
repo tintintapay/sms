@@ -28,7 +28,7 @@ class GameSchedules extends Model
         $this->updateGameSched();
 
         $stmt = $this->db->prepare(
-            "SELECT * FROM game_schedules WHERE deleted_at IS NULL ORDER BY schedule DESC"
+            "SELECT * FROM game_schedules WHERE deleted_at IS NULL ORDER BY status ASC, schedule ASC;"
         );
         $stmt->execute();
         $result = $stmt->get_result();
@@ -113,7 +113,7 @@ class GameSchedules extends Model
         // Update Game Sched
         $this->updateGameSched();
 
-        $stmt = $this->db->prepare("SELECT * FROM game_schedules WHERE schedule < CURDATE()");
+        $stmt = $this->db->prepare("SELECT * FROM game_schedules WHERE schedule < CURDATE() ORDER BY schedule DESC");
         $stmt->execute();
         $result = $stmt->get_result();
 

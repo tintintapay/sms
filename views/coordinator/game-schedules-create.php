@@ -50,7 +50,7 @@
                                 value="<?= $request['venue'] ?? '' ?>" autocomplete="off">
 
                             <label for="schedule" class="label">Schedule:</label>
-                            <input type="date" class="sms-input" id="schedule" name="schedule" min="<?= date('Y-m-d', strtotime('+1 day'))?>"
+                            <input type="date" class="sms-input" id="schedule" name="schedule" min="<?= $minimumDate?>"
                                 value="<?= $request['schedule'] ?? '' ?>" autocomplete="off">
 
                             <label for="schedule_picture" class="label">Schedule Picture:</label>

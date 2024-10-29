@@ -34,6 +34,10 @@ class GameScheduleController
         $sports = Sport::fetchList();
         $athletes = $this->user->fetchAllApprovedAthleteWithInfo();
 
+        $scheduleDate = new DateTime(date('Y-m-d'));
+        $date = (clone $scheduleDate)->modify('+7 days');
+        $minimumDate = $date->format('Y-m-d');
+
         return include 'views/coordinator/game-schedules-create.php';
     }
 
@@ -106,6 +110,10 @@ class GameScheduleController
         foreach ($selectedAthlete as $selected) {
             array_push($athletes, $selected['athlete_id']);
         }
+
+        $scheduleDate = new DateTime(date('Y-m-d'));
+        $date = (clone $scheduleDate)->modify('+7 days');
+        $minimumDate = $date->format('Y-m-d');
 
         return include 'views/coordinator/game-schedule.php';
     }
