@@ -63,10 +63,13 @@ class Allowances extends Model
         $params = [];
 
         if (!empty($data['date_from']) && !empty($data['date_to'])) {
+            $date = new DateTime($data['date_to']);
+            $date->modify('+1 day');
+
             $where[] = "allowances.created_at BETWEEN ? AND ?";
             $types .= "ss";
             $params[] = $data['date_from'];
-            $params[] = $data['date_to'];
+            $params[] = $date->format('Y-m-d');
         }
 
         if (!empty($data['school'])) {
