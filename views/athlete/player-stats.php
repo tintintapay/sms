@@ -46,7 +46,7 @@
                 <div
                     style="background-color: #fff; color:#242429; border-radius: 10px; padding: 20px; display: flex; justify-content: space-between; align-items: center;">
                     <div style="width: 70%;">
-                        <h3 style="font-size: 20px; margin-bottom: 20px;">Player Ratings</h3>
+                        <h3 style="font-size: 20px; margin-bottom: 20px;">Athlete Ratings</h3>
                         <div style="display: flex; justify-content: space-between;">
 
                             <!-- Teamwork Rating -->
