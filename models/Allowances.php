@@ -11,7 +11,7 @@ class Allowances extends Model
             return false;
         }
 
-        $available = AllowanceStatus::AVAILABLE;
+        $available = AllowanceStatus::NOT_YET_CLAIMED;
 
         $values = [];
         $types = "";

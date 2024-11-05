@@ -248,8 +248,8 @@ class ReportData extends Model
         $stmt = $this->db->prepare("
             SELECT 
                 DATE_FORMAT(a.created_at, '%Y-%m-%d %H:%i:%s') AS datetime,
-                SUM(CASE WHEN a.status = 'available' THEN 1 ELSE 0 END) AS available,
-                SUM(CASE WHEN a.status = 'received' THEN 1 ELSE 0 END) AS received
+                SUM(CASE WHEN a.status = 'not_yet_claimed' THEN 1 ELSE 0 END) AS not_yet_claimed,
+                SUM(CASE WHEN a.status = 'claimed' THEN 1 ELSE 0 END) AS claimed
             FROM 
                 allowances a
             JOIN 

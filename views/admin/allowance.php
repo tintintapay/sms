@@ -64,9 +64,9 @@
                             <label for="status" class="label">Status</label>
                             <select name="status" id="status" class="sms-input">
                                 <option value="">All</option>
-                                    <option value="available" <?= isset($_GET['status']) && $_GET['status'] === 'available' ? 'selected' : '' ?>>
+                                    <option value="<?= AllowanceStatus::NOT_YET_CLAIMED ?>" <?= isset($_GET['status']) && $_GET['status'] === AllowanceStatus::NOT_YET_CLAIMED ? 'selected' : '' ?>>
                                         Not yet claimed</option>
-                                    <option value="received" <?= isset($_GET['status']) && $_GET['status'] === 'received' ? 'selected' : '' ?>>
+                                    <option value="<?= AllowanceStatus::CLAIMED ?>" <?= isset($_GET['status']) && $_GET['status'] === AllowanceStatus::CLAIMED ? 'selected' : '' ?>>
                                         Claimed</option>
                             </select>
                 
@@ -104,7 +104,7 @@
                                         </td>
                                         <td><?= $allowance['phone_number'] ?></td>
                                         <td><?= $allowance['email'] ?></td>
-                                        <td><?= $allowance['status'] ?></td>
+                                        <td><?= AllowanceStatus::getDescription($allowance['status']) ?></td>
                                         <td><?= $allowance['created_at'] ?></td>
                                     </tr>
                                 <?php endforeach; ?>

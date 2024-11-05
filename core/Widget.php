@@ -115,8 +115,8 @@ class Widget
         $report = new ReportData();
 
         $allowances = $report->getTotalClaimAllowance([]);
-        $remainingClaim = $allowances['available'] ?? 0;
-        $totalClaim = $allowances['received'] ?? 0;
+        $remainingClaim = $allowances['not_yet_claimed'] ?? 0;
+        $totalClaim = $allowances['claimed'] ?? 0;
 
         // starts output buffering
         ob_start();
