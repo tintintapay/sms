@@ -4,16 +4,19 @@ require_once 'models/Evaluation.php';
 require_once 'models/GameSchedules.php';
 require_once 'core/Helper.php';
 require_once 'enums/EvaluationStatus.php';
+require_once 'models/User.php';
 
 class EvaluationController
 {
     private $evaluation;
     private $gameScheds;
+    private $user;
 
     public function __construct()
     {
         $this->evaluation = new Evaluation();
         $this->gameScheds = new GameSchedules();
+        $this->user = new User();
     }
 
     // /sms/athlete/submit-evaluation - Index page
@@ -148,6 +151,11 @@ class EvaluationController
     {
         header('Content-Type: application/json');
 
+        // get coordinator name
+        $user = $this->user->getUser($_SESSION['user_id']);
+
+        $note = Helper::sanitize($request['msg']);
+
         $status = ($request['action'] === 'approve')
             ? EvaluationStatus::APPROVED
             : EvaluationStatus::DISAPPROVED;
@@ -161,6 +169,11 @@ class EvaluationController
             : file_get_contents('template/evaluation/disapprove.html');
 
         $body = str_replace('[Athlete_Name]', $athlete['full_name'], $template);
+
+        if ($status === EvaluationStatus::DISAPPROVED) {
+            $body = str_replace('[Note]', "<strong>". $user['full_name']."</strong>: $note", $body);
+        }
+        
         $data = [
             'email' => $athlete['email'],
             'name' => $athlete['full_name'],

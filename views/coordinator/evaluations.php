@@ -56,11 +56,13 @@
                             <!-- Approval Status -->
                             <div class="approval-status" style="margin-bottom: 15px;">
                                 <?php if ($evaluation['status'] == EvaluationStatus::APPROVED): ?>
-                                    <span style="padding: 5px 10px; background-color: #28a745; color: white; border-radius: 5px;">
+                                    <span
+                                        style="padding: 5px 10px; background-color: #28a745; color: white; border-radius: 5px;">
                                         <i class="fas fa-check-circle"></i> Approved
                                     </span>
                                 <?php elseif ($evaluation['status'] == EvaluationStatus::DISAPPROVED): ?>
-                                    <span style="padding: 5px 10px; background-color: #dc3545; color: white; border-radius: 5px;">
+                                    <span
+                                        style="padding: 5px 10px; background-color: #dc3545; color: white; border-radius: 5px;">
                                         <i class="fas fa-times-circle"></i> Disapproved
                                     </span>
                                 <?php endif; ?>
@@ -69,7 +71,8 @@
                             <?php if ($evaluation['eligibility_form']): ?>
                                 <ul class="documents-list" style="list-style: none; padding: 0;">
                                     <li style="margin-bottom: 5px;">
-                                        Date of Contract: <strong><?= Helper::formatDate($evaluation['contract_date'], 'F j, Y') ?></strong>
+                                        Date of Contract:
+                                        <strong><?= Helper::formatDate($evaluation['contract_date'], 'F j, Y') ?></strong>
                                     </li>
                                     <li style="margin-bottom: 5px;">
                                         <i class="fas fa-file-alt" style="margin-right: 5px;"></i>
@@ -106,20 +109,36 @@
                                             download="<?= $evaluation['full_name'] . ' Copy of Grades' ?>">Copy of Grades</a>
                                     </li>
                                 </ul>
-                                <?php if (($evaluation['status'] === EvaluationStatus::SUBMITTED) && ($gameSched['status'] !== GameStatus::COMPLETED)):?>
-                                <!-- Buttons: Approve and Disapprove -->
-                                <div class="action-buttons" style="margin-top: 20px;">
-                                    <button class="approve-evaluation" data-id="<?= $evaluation['id']?>"
-                                        style="padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px;">
-                                        <i class="fas fa-check" style="margin-right: 5px;"></i> Approve
-                                    </button>
-                                    <button class="disapprove-evaluation" data-id="<?= $evaluation['id'] ?>"
-                                        style="padding: 10px 20px; background-color: #dc3545; color: white; border: none; border-radius: 5px; cursor: pointer;">
-                                        <i class="fas fa-times" style="margin-right: 5px;"></i> Disapprove
-                                    </button>
-                                </div>
-                                    
-                                <?php endif;?>
+                                <?php if (($evaluation['status'] === EvaluationStatus::SUBMITTED) && ($gameSched['status'] !== GameStatus::COMPLETED)): ?>
+                                    <!-- Buttons: Approve and Disapprove -->
+                                    <div class="action-buttons" style="margin-top: 20px;">
+                                        <button class="approve-evaluation" data-id="<?= $evaluation['id'] ?>"
+                                            style="padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px;">
+                                            <i class="fas fa-check" style="margin-right: 5px;"></i> Approve
+                                        </button>
+                                        <button class="disapprove"
+                                            style="padding: 10px 20px; background-color: #dc3545; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                                            <i class="fas fa-times" style="margin-right: 5px;"></i> Disapprove
+                                        </button>
+
+                                        <!-- Email Custom fields -->
+                                        <div class="field" style="display:none;margin-bottom:15px">
+                                            <textarea name="msg" id="msg" class="sms-input"
+                                                style="max-width:100%;margin-bottom:0px"></textarea>
+                                            <small class="err-msg" style="color:red; font-size:0.6rem"></small>
+                                        </div>
+                                        
+                                        <button class="cancel button-warning"
+                                            style="display:none;padding: 10px 20px; color: white; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px;">
+                                            <i class="fa-solid fa-ban" style="margin-right: 5px;"></i> Cancel
+                                        </button>
+                                        <button class="disapprove-evaluation" data-id="<?= $evaluation['id'] ?>"
+                                            style="display:none; padding: 10px 20px; background-color: #dc3545; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                                            <i class="fas fa-times" style="margin-right: 5px;"></i> Disapprove
+                                        </button>
+                                    </div>
+
+                                <?php endif; ?>
                             <?php else: ?>
                                 <h3 style="color: red;">
                                     <i class="fas fa-exclamation-circle" style="margin-right: 5px;"></i>Not yet submitted
