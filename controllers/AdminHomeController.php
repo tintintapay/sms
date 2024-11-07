@@ -12,8 +12,9 @@ class AdminHomeController
     {
         $this->report = new ReportData();
     }
-    public function index()
+    public function index($params)
     {
+        $schoolList = School::fetchList();
         $sportList = Sport::fetchList();
         $events = $this->report->getIncomingEvent(3);
         $announcement = $this->report->getLatestAnnouncement();
@@ -22,7 +23,7 @@ class AdminHomeController
         $allowanceClaim = Widget::claimsAllowanceCount();
 
         // population
-        $population = Widget::athletePopulation();
+        $population = Widget::athletePopulation($params);
 
         // Top rated athletes
         $topRatedAthletes = Widget::topRatedAthlete();

@@ -8,15 +8,30 @@ require_once 'enums/Sport.php';
 
 class ReportData extends Model
 {
-    public function getAthletePopulation()
+    public function getAthletePopulation($data = [])
     {
         $active = UserStatus::ACTIVE;
         $athlete = UserRole::ATHLETE;
 
-        $stmt = $this->db->prepare("SELECT COUNT(*) as total FROM users WHERE status = ? AND role = ?");
-        $stmt->bind_param("ss", $active, $athlete);
+        $types = "";
+        $params = [];
+
+        $sql = "SELECT COUNT(*) as total FROM users JOIN user_info ON users.id = user_info.user_id WHERE status = ? AND role = ?";
+        $types .= "ss";
+        $params[] = $active;
+        $params[] = $athlete;
+
+        if (!empty($data['school'])) {
+            $sql .= " AND  user_info.school = ? ";
+            $types .= "s";
+            $params[] = $data['school'];
+        }
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param($types, ...$params);
         $stmt->execute();
         $result = $stmt->get_result();
+
         $stmt->close();
         $row = $result->fetch_assoc();
 
@@ -53,12 +68,37 @@ class ReportData extends Model
         return $row;
     }
 
-    public function getPopulationBySport()
+    public function getPopulationBySport($data = [])
     {
         $athlete = UserRole::ATHLETE;
         $active = UserStatus::ACTIVE;
-        $stmt = $this->db->prepare("SELECT ui.sport, COUNT(*) as total FROM users u JOIN user_info ui ON u.id = ui.user_id WHERE u.role = ? AND u.status = ? GROUP BY ui.sport; ");
-        $stmt->bind_param("ss", $athlete, $active);
+
+        $params = [];
+
+        $sql = "
+            SELECT
+                ui.sport,
+                COUNT(*) as total
+            FROM users u
+            JOIN user_info ui
+            ON u.id = ui.user_id
+            WHERE u.role = ?
+            AND u.status = ?
+            ";
+        $types = "ss";
+        $params[] = $athlete;
+        $params[] = $active;
+
+        if (!empty($data['school'])) {
+            $sql .= " AND  ui.school = ? ";
+            $types .= "s";
+            $params[] = $data['school'];
+        }
+
+        $sql .= " GROUP BY ui.sport";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param($types, ...$params);
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
