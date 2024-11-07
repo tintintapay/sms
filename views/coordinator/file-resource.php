@@ -44,7 +44,7 @@
                                     <?php foreach ($files as $file): ?>
                                         <tr id="file_<?= $count ?>">
                                             <td>
-                                                <a href="/sms/assets/downloadable/<?= $file ?>" target="_blank" class=""
+                                                <a href="/assets/downloadable/<?= $file ?>" target="_blank" class=""
                                                     download="<?= $file ?>"><?= $file ?>
                                                 </a>
                                             </td>
