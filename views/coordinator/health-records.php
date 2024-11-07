@@ -6,11 +6,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Athlete Rating</title>
+    <title>Athlete's Health Record</title>
     <link rel="stylesheet" href="../assets/css/main.css">
     <script src="../vendor/jquery/jquery-3.7.1.js"></script>
     <?php include 'views/common/datatables.php'; ?>
-    <script src="../assets/js/athlete-ratings.js"></script>
+    <script src="../vendor/sweetalert/sweetalert2.js"></script>
+    <script src="../assets/js/health-records.js"></script>
 </head>
 
 <body>
@@ -23,7 +24,7 @@
             <?php include 'common/sidenav.php'; ?>
             <div class="right-panel">
                 <div class="page-title">
-                    Game Schedules
+                    Athlete's Health Record
                 </div>
                 <hr>
                 <div class="section">
@@ -31,29 +32,27 @@
                         <table id="myTable" style="display:none">
                             <thead>
                                 <tr>
-                                    <th>No.</th>
-                                    <th>Game Title</th>
-                                    <th>Schedule</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Campus</th>
                                     <th>Sport</th>
-                                    <th>Status</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $index = 1; ?>
-                                <?php foreach ($gameScheds as $gameSched): ?>
-                                    <tr class="<?= $gameSched['status'] ?>">
-                                        <td><?= $index ?></td>
-                                        <td><?= $gameSched['game_title'] ?></td>
-                                        <td><?= $gameSched['schedule'] ?></td>
-                                        <td><?= Sport::getDescription($gameSched['sport']) ?></td>
-                                        <td><?= $gameSched['status'] ?></td>
+                                <?php foreach ($athletes as $athlete): ?>
+                                    <tr>
                                         <td>
-                                            <a href="athlete-rating?game_id=<?= $gameSched['id'] ?>"
-                                                class="button button-primary button-xs">View</a>
+                                            <?= Helper::athleteWithHealthStatus($athlete['user_id'], $athlete['full_name'])?>
+                                        </td>
+                                        <td><?= $athlete['email'] ?></td>
+                                        <td><?= School::getDescription($athlete['school']) ?></td>
+                                        <td><?= Sport::getDescription($athlete['sport']) ?></td>
+                                        <td>
+                                            <a href="athlete-health-records?id=<?= $athlete['user_id'] ?>"
+                                                class="button button-primary button-xs">Details</a>
                                         </td>
                                     </tr>
-                                    <?php $index++; ?>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>

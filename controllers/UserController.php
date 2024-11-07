@@ -31,7 +31,16 @@ class UserController
     public function create($request)
     {
         $registerRequest = new RegisterRequest();
-        $registerRequest->validate($request);
+        $flash = $registerRequest->validate($request);
+
+        // Return errors
+        if (!$flash['isValid']) {
+            $sports = Sport::fetchList();
+            $schools = School::fetchList();
+            // $athletes = $this->user->fetchAllApprovedAthleteWithInfo();
+
+            return include 'views/register.php';
+        }
 
         // users data
         $userRequest = [
@@ -113,6 +122,6 @@ class UserController
         $this->userInfo->insertUserInfo($userInfoRequest);
 
         // Return to home page
-        Helper::redirect('../index');
+        Helper::redirect('index');
     }
 }

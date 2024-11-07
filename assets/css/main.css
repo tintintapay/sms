@@ -296,7 +296,7 @@ input[type="file"] {
 
 .button:hover {
   background-color: #ff4949 !important;
-  color:#fff;
+  color: #fff;
 }
 
 .button-primary {
@@ -373,6 +373,56 @@ tr.inactive {
 
 .flex {
   display: flex;
+}
+
+/* Pills */
+
+.pills {
+  display: inline-block;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  color: white;
+  border-radius: 50px;
+  text-align: center;
+  margin: 5px;
+  font-weight: 600;
+}
+
+.pill-icon {
+  padding: 6px;
+}
+
+.pills.pills-primary {
+  background-color: #007bff;
+  color: white;
+}
+.pills.pills-secondary {
+  background-color: #6C757D;
+  color: white;
+}
+.pills.pills-success {
+  background-color: #28A745;
+  color: white;
+}
+.pills.pills-danger {
+  background-color: #DC3545;
+  color: white;
+}
+.pills.pills-warning {
+  background-color: #FFC107;
+  color: rgb(18, 18, 18);
+}
+.pills.pills-info {
+  background-color: #17A2B8;
+  color: white;
+}
+.pills.pills-light {
+  background-color: #F8F9FA;
+  color: rgb(18, 18, 18);
+}
+.pills.pills-dark {
+  background-color: #343A40;
+  color: white;
 }
 
 /* Media Queries for Responsiveness */

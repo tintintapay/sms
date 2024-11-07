@@ -1,6 +1,6 @@
 $(function () {
 
-    const exportingCol = [0, 1, 2, 3];
+    const exportingCol = [0, 1, 2, 3, 4, 5];
     const exportingTitle = 'Allowances';
     let table = $("#myTable").DataTable({
         responsive: true,
@@ -17,11 +17,16 @@ $(function () {
                     },
                     {
                         extend: 'print',
-                        title: exportingTitle,
+                        title: '',
                         exportOptions: {
                             columns: exportingCol
                         },
                         className: 'button button-s button-light',
+                        customize: function (win) {
+                            $(win.document.body).prepend(`<h2>${exportingTitle}</h2>`);
+
+                            $(win.document.body).prepend('<div><img src="../assets/images/header.png" style="width:100%" /></div>');
+                        }
                     },
                 ]
             },
@@ -37,7 +42,7 @@ $(function () {
         ordering: false,
         columnDefs: [
             {
-                target: [4],
+                target: [5],
                 searchable: false
             },
         ]

@@ -31,14 +31,16 @@
                 <?php foreach ($evaluations as $evaluation): ?>
                     <div class="section"
                         style="align-items: flex-start; padding: 20px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
-
+                        <div style="float:right">
+                            <?= HealthStatus::getPills(Helper::getHealthStatus($evaluation['athlete_id'])) ?>
+                        </div>
                         <div class="athlete-name" style="font-weight: bold; font-size: 18px; margin-bottom: 10px;">
                             <i class="fas fa-user" style="margin-right: 5px;"></i>
                             <?= $evaluation['full_name'] ?>
                         </div>
 
                         <div class="msg msg_<?= $evaluation['id'] ?>" style="display:none">
-                            
+
                         </div>
 
                         <input type="hidden" name="athlete_id_<?= $evaluation['id'] ?>"
@@ -53,9 +55,7 @@
                             <input type="number" id="teamwork_<?= $evaluation['id'] ?>"
                                 name="teamwork_<?= $evaluation['id'] ?>"
                                 style="width: 100%; max-width: 100px; padding: 5px;" min="1" max="10"
-                                placeholder="Rate 1-10"
-                                value="<?= $evaluation['teamwork']?>"
-                                >
+                                placeholder="Rate 1-10" value="<?= $evaluation['teamwork'] ?>">
                         </div>
 
                         <!-- Sportsmanship Field -->
@@ -68,9 +68,7 @@
                             <input type="number" id="sportsmanship_<?= $evaluation['id'] ?>"
                                 name="sportsmanship_<?= $evaluation['id'] ?>"
                                 style="width: 100%; max-width: 100px; padding: 5px;" min="1" max="10"
-                                placeholder="Rate 1-10"
-                                value="<?= $evaluation['sportsmanship'] ?>"
-                                >
+                                placeholder="Rate 1-10" value="<?= $evaluation['sportsmanship'] ?>">
                         </div>
 
                         <!-- Technical Skills Field -->
@@ -83,9 +81,7 @@
                             <input type="number" id="technical_skills_<?= $evaluation['id'] ?>"
                                 name="technical_skills_<?= $evaluation['id'] ?>"
                                 style="width: 100%; max-width: 100px; padding: 5px;" min="1" max="10"
-                                placeholder="Rate 1-10"
-                                value="<?= $evaluation['technical_skills'] ?>"
-                                >
+                                placeholder="Rate 1-10" value="<?= $evaluation['technical_skills'] ?>">
                         </div>
 
                         <!-- Adaptability Field -->
@@ -98,9 +94,7 @@
                             <input type="number" id="adaptability_<?= $evaluation['id'] ?>"
                                 name="adaptability_<?= $evaluation['id'] ?>"
                                 style="width: 100%; max-width: 100px; padding: 5px;" min="1" max="10"
-                                placeholder="Rate 1-10"
-                                value="<?= $evaluation['adaptability'] ?>"
-                                >
+                                placeholder="Rate 1-10" value="<?= $evaluation['adaptability'] ?>">
                         </div>
 
                         <!-- Game Sense Field -->
@@ -112,23 +106,19 @@
                             <input type="number" id="game_sense_<?= $evaluation['id'] ?>"
                                 name="game_sense_<?= $evaluation['id'] ?>"
                                 style="width: 100%; max-width: 100px; padding: 5px;" min="1" max="10"
-                                placeholder="Rate 1-10"
-                                value="<?= $evaluation['game_sense'] ?>"
-                                >
+                                placeholder="Rate 1-10" value="<?= $evaluation['game_sense'] ?>">
                         </div>
 
                         <!-- Remarks -->
                         <div style="margin-bottom: 10px;">
-                            <label for="remarks_<?= $evaluation['id'] ?>" style="font-weight: bold;display:block;margin-bottom: 10px;">Remarks</label>
-                            <textarea id="remarks_<?= $evaluation['id'] ?>"
-                                rows="5"
-                                name="remarks_<?= $evaluation['id'] ?>"
+                            <label for="remarks_<?= $evaluation['id'] ?>"
+                                style="font-weight: bold;display:block;margin-bottom: 10px;">Remarks</label>
+                            <textarea id="remarks_<?= $evaluation['id'] ?>" rows="5" name="remarks_<?= $evaluation['id'] ?>"
                                 style="width: 100%; max-width: 400px; padding: 5px; resize: vertical;"
-                                placeholder="Performance remarks..."
-                                ><?= $evaluation['remarks'] ?></textarea>
+                                placeholder="Performance remarks..."><?= $evaluation['remarks'] ?></textarea>
                         </div>
 
-                        
+
 
                         <!-- Save Changes Button -->
                         <button type="button" class="save-btn" data-id="<?= $evaluation['id'] ?>"

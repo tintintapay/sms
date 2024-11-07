@@ -33,9 +33,14 @@
 
                         <!-- Left Section: Athlete Information -->
                         <div class="athlete-info" style="width: 45%; padding-right: 20px; border-right: 1px solid #ddd;">
+                            <div style="float:right">
+                                <?= HealthStatus::getPills(Helper::getHealthStatus($evaluation['athlete_id'])) ?>
+                            </div>
+
                             <div class="athlete-name" style="font-weight: bold; font-size: 18px; margin-bottom: 10px;">
                                 <i class="fas fa-user" style="margin-right: 5px;"></i>
                                 <?= $evaluation['full_name'] ?>
+
                             </div>
                             <div class="athlete-email" style="color: #555; margin-bottom: 5px;">
                                 <i class="fas fa-envelope" style="margin-right: 5px;"></i>
@@ -127,7 +132,7 @@
                                                 style="max-width:100%;margin-bottom:0px"></textarea>
                                             <small class="err-msg" style="color:red; font-size:0.6rem"></small>
                                         </div>
-                                        
+
                                         <button class="cancel button-warning"
                                             style="display:none;padding: 10px 20px; color: white; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px;">
                                             <i class="fa-solid fa-ban" style="margin-right: 5px;"></i> Cancel

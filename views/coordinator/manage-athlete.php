@@ -9,7 +9,6 @@
     <title>Manage Athlete</title>
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/admin_profile.css">
-    <link rel="stylesheet" href="../assets/css/sms-table.css">
     <script src="../vendor/jquery/jquery-3.7.1.js"></script>
     <?php include 'views/common/datatables.php'; ?>
     <script src="../assets/js/manage-athlete.js"></script>
@@ -60,6 +59,7 @@
                         <table id="myTable" style="display:none">
                             <thead>
                                 <tr>
+                                    <th>No.</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Gender</th>
@@ -73,13 +73,12 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $index = 1?>
                                 <?php foreach ($athletes as $athlete): ?>
                                     <tr class="<?= $athlete['status'] ?>">
+                                        <td><?= $index ?></td>
                                         <td>
-                                            <a href="../athlete/stat?id=<?= $athlete['user_id'] ?>"
-                                                style="text-decoration: none;">
-                                                <?= $athlete['full_name'] ?>
-                                            </a>
+                                            <?= Helper::athleteWithHealthStatus($athlete['user_id'], $athlete['full_name']) ?>
                                         </td>
                                         <td><?= $athlete['email'] ?></td>
                                         <td><?= $athlete['gender'] ?></td>
@@ -94,6 +93,7 @@
                                                 class="button button-primary button-xs">View</a>
                                         </td>
                                     </tr>
+                                    <?php $index++; ?>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>

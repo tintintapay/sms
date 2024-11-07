@@ -1,18 +1,11 @@
 $(document).ready(function () {
-    const exportingCol = [0, 1, 2, 3, 4, 5, 6];
+    const exportingCol = [0, 1, 2, 3, 4, 5, 6, 7];
     const exportingTitle = 'Coordinators';
     let table = $("#myTable").DataTable({
         responsive: true,
         layout: {
             topStart: {
                 buttons: [
-                    // {
-                    //     extend: 'copy',
-                    //     title: exportingTitle,
-                    //     exportOptions: {
-                    //         columns: exportingCol
-                    //     },
-                    // },
                     {
                         extend: 'csv',
                         title: exportingTitle,
@@ -21,20 +14,18 @@ $(document).ready(function () {
                         },
                         className: 'button button-s button-success',
                     },
-                    // {
-                    //     extend: 'pdfHtml5',
-                    //     title: exportingTitle,
-                    //     exportOptions: {
-                    //         columns: exportingCol
-                    //     },
-                    // },
                     {
                         extend: 'print',
-                        title: exportingTitle,
+                        title: '',
                         exportOptions: {
                             columns: exportingCol
                         },
                         className: 'button button-s button-light',
+                        customize: function (win) {
+                            $(win.document.body).prepend(`<h2>${exportingTitle}</h2>`);
+
+                            $(win.document.body).prepend('<div><img src="../assets/images/header.png" style="width:100%" /></div>');
+                        }
                     },
                 ]
             },
@@ -46,12 +37,12 @@ $(document).ready(function () {
         ordering: false,
         columnDefs: [
             {
-                target: [6, 7],
+                target: [7, 8],
                 searchable: false
             },
 
             {
-                target: [2, 3, 5, 6],
+                target: [3, 4, 6, 7],
                 visible: false,
                 searchable: false
             }

@@ -58,6 +58,7 @@
                         <table id="myTable" style="display:none">
                             <thead>
                                 <tr>
+                                    <th>No.</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Gender</th>
@@ -70,10 +71,13 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $index = 1?>
                                 <?php foreach ($athletes as $athlete): ?>
                                     <tr class="<?= $athlete['status'] ?>">
-                                        <td><a href="../athlete/stat?id=<?= $athlete['user_id'] ?>"
-                                                style="text-decoration: none;"><?= $athlete['full_name'] ?></a></td>
+                                        <td><?= $index ?></td>
+                                        <td>
+                                            <?= Helper::athleteWithHealthStatus($athlete['user_id'], $athlete['full_name']) ?>
+                                        </td>
                                         <td><?= $athlete['email'] ?></td>
                                         <td><?= $athlete['gender'] ?></td>
                                         <td><?= Helper::getAge($athlete['birthday']) ?></td>
@@ -83,6 +87,7 @@
                                         <td><?= Sport::getDescription($athlete['sport']) ?></td>
                                         <td><?= $athlete['status'] ?></td>
                                     </tr>
+                                    <?php $index++; ?>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>

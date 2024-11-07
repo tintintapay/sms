@@ -36,6 +36,7 @@
                         <table id="myTable" style="display:none">
                             <thead>
                                 <tr>
+                                    <th>No.</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Gender</th>
@@ -48,20 +49,25 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    foreach ($coordinators as $coordinator): ?>
-                                        <tr class="<?= $coordinator['status'] ?>">
-                                            <td><?= $coordinator['full_name'] ?></td>
-                                            <td><?= $coordinator['email'] ?></td>
-                                            <td><?= $coordinator['gender'] ?></td>
-                                            <td><?= $coordinator['age'] ?></td>
-                                            <td><?= $coordinator['phone_number'] ?></td>
-                                            <td><?= $coordinator['address'] ?></td>
-                                            <td><?= $coordinator['status'] ?></td>
-                                            <td>
-                                                <a href="coordinator?id=<?= $coordinator['user_id'] ?>" class="button button-primary button-xs">View</a>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
+                                $index = 1;
+                                foreach ($coordinators as $coordinator): ?>
+                                    <tr class="<?= $coordinator['status'] ?>">
+                                        <td><?= $index ?></td>
+                                        <td><?= $coordinator['full_name'] ?></td>
+                                        <td><?= $coordinator['email'] ?></td>
+                                        <td><?= $coordinator['gender'] ?></td>
+                                        <td><?= $coordinator['age'] ?></td>
+                                        <td><?= $coordinator['phone_number'] ?></td>
+                                        <td><?= $coordinator['address'] ?></td>
+                                        <td><?= $coordinator['status'] ?></td>
+                                        <td>
+                                            <a href="coordinator?id=<?= $coordinator['user_id'] ?>"
+                                                class="button button-primary button-xs">View</a>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                    $index++;
+                                endforeach; ?>
                             </tbody>
                         </table>
                     </div>

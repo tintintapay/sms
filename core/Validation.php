@@ -6,7 +6,7 @@ abstract class Validation
 
     public function isEmpty($field, $value)
     {
-        if (empty(trim($value)) && $value === "") {
+        if (empty(trim($value)) || $value === "") {
             $this->errors[$field] = ucfirst($field) . " cannot be empty.";
         }
     }
@@ -64,6 +64,13 @@ abstract class Validation
     {
         if (!preg_match($pattern, $value)) {
             $this->errors[$field] = ucfirst($field) . " " . $message;
+        }
+    }
+
+    public function hasAttachement($field, $value)
+    {
+        if (empty($value) || $value['size'] == 0) {
+            $this->errors[$field] = ucfirst($field) . " cannot be empty.";
         }
     }
 

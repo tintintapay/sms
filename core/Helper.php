@@ -7,8 +7,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-//Load Composer's autoloader
+//Load Composer's autoloader of PHPmailer
 require_once 'vendor/phpmailer/vendor/autoload.php';
+require_once 'models/HealthRecord.php';
 
 class Helper
 {
@@ -183,5 +184,24 @@ class Helper
         }
 
         return true;
+    }
+
+    public static function getHealthStatus($athlete_id)
+    {
+        $record = new HealthRecord();
+
+        $healthStatus = $record->getLatest($athlete_id);
+
+        return $healthStatus['status'];
+    }
+
+    public static function athleteWithHealthStatus($user_id, $full_name)
+    {
+        $template = file_get_contents('template/widgets/athlete-with-healthstatus.html');
+        $component = str_replace('[Icon]', HealthStatus::getIcon(self::getHealthStatus($user_id)), $template);
+        $component = str_replace('[User_Id]', $user_id, $component);
+        $component = str_replace('[Name]', $full_name, $component);
+
+        return $component;
     }
 }

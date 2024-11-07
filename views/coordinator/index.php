@@ -57,11 +57,13 @@
                         <div style="background-color:#fff; border-radius:10px; padding: 15px; flex:1">
                             <h3 style="margin: 0px 0px 15px 0px;">Latest Announcement</h3>
                             <hr>
+                            <?php if ($announcement): ?>
                             <div class="announcement-card">
                                 <h3><?= $announcement['title'] ?></h3>
                                 <p><?= Helper::formatDate($announcement['created_at'], 'M y, Y') ?></p>
                                 <p><?= $announcement['description'] ?></p>
                             </div>
+                            <?php endif; ?>
                         </div>
 
                         <!-- Population -->
