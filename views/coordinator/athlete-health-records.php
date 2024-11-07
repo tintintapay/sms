@@ -6,12 +6,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Event</title>
+    <title>Athlete's Health Record</title>
     <link rel="stylesheet" href="../assets/css/main.css">
-    <link rel="stylesheet" href="../assets/css/admin_profile.css">
     <script src="../vendor/jquery/jquery-3.7.1.js"></script>
     <?php include 'views/common/datatables.php'; ?>
-    <script src="../assets/js/game-schedules.js"></script>
+    <script src="../vendor/sweetalert/sweetalert2.js"></script>
+    <script src="../assets/js/athlete-health-records.js"></script>
 </head>
 
 <body>
@@ -24,40 +24,32 @@
             <?php include 'common/sidenav.php'; ?>
             <div class="right-panel">
                 <div class="page-title">
-                    Game Event
+                    Records
                     <div class="header-action">
-                        <a href="game-schedules-create" class="button button-success button-md">Add</a>
+                        <a href="athlete-health-record-create?athlete_id=<?= $params['id'] ?>" class="button button-success button-md approve-athlete">Add</a>
                     </div>
                 </div>
                 <hr>
                 <div class="section">
                     <div class="card">
+                        <input type="hidden" id="full_name" value="<?= $athlete['full_name']?>">
                         <table id="myTable" style="display:none">
                             <thead>
                                 <tr>
-                                    <th>No.</th>
-                                    <th>Title</th>
-                                    <th>Venue</th>
-                                    <th>Schedule</th>
-                                    <th>Sport</th>
+                                    <th style="width:15px">No.</th>
                                     <th>Status</th>
-                                    <th></th>
+                                    <th>Remarks</th>
+                                    <th>Date</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $index = 1; ?>
-                                <?php foreach ($gameScheds as $gameSched): ?>
-                                    <tr class="<?= $gameSched['status'] ?>">
+                                <?php $index = 1;?>
+                                <?php foreach ($records as $record): ?>
+                                    <tr>
                                         <td><?= $index ?></td>
-                                        <td><?= $gameSched['game_title'] ?></td>
-                                        <td><?= $gameSched['venue'] ?></td>
-                                        <td><?= $gameSched['schedule'] ?></td>
-                                        <td><?= Sport::getDescription($gameSched['sport']) ?></td>
-                                        <td><?= $gameSched['status'] ?></td>
-                                        <td>
-                                            <a href="game-schedule?id=<?= $gameSched['id'] ?>"
-                                                class="button button-primary button-xs">View</a>
-                                        </td>
+                                        <td><?= HealthStatus::getPills($record['status']) ?></td>
+                                        <td><?= $record['remarks'] ?></td>
+                                        <td><?= $record['created_at'] ?></td>
                                     </tr>
                                     <?php $index++; ?>
                                 <?php endforeach; ?>

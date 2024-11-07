@@ -22,6 +22,7 @@ require_once 'controllers/AnnouncementController.php';
 require_once 'controllers/AllowanceController.php';
 require_once 'controllers/AthleteRatingController.php';
 require_once 'controllers/FileResourceController.php';
+require_once 'controllers/HealthRecordController.php';
 
 // Define your controllers
 $userController = new UserController();
@@ -38,6 +39,7 @@ $announcementController = new AnnouncementController();
 $allowanceController = new AllowanceController();
 $athleteRatingController = new AthleteRatingController();
 $fileResourceController = new FileResourceController();
+$healthRecordController = new HealthRecordController();
 
 // dd
 function dd(...$vars)
@@ -90,9 +92,12 @@ $routes = [
         'POST' => [$authenticateController, 'store'],
     ],
     '/terms' => ['GET' => [$homeController, 'terms']],
-    '/register' => ['GET' => [$userController, 'index']],
-    '/register/create' => ['POST' => [$userController, 'create']],
-    '/forgot-password'=> [
+    '/register' => [
+        'GET' => [$userController, 'index'],
+        'POST' => [$userController, 'create']
+    ],
+    // '/sms/register/create' => [],
+    '/forgot-password' => [
         'GET' => [$authenticateController, 'forgot_password_index'],
         'POST' => [$authenticateController, 'forgot_pass_store']
     ],
@@ -150,6 +155,12 @@ $routes = [
         'POST' => [$fileResourceController, 'upload']
     ],
     '/coordinator/file-delete' => ['POST' => [$fileResourceController, 'delete']],
+    '/coordinator/health-records' => ['GET' => [$healthRecordController, 'index']],
+    '/coordinator/athlete-health-records' => ['GET' => [$healthRecordController, 'details']],
+    '/coordinator/athlete-health-record-create' => [
+        'GET' => [$healthRecordController, 'create'],
+        'POST' => [$healthRecordController, 'store']
+    ],
 
     // Athlete
     '/athlete/home' => ['GET' => [$athleteHomeController, 'index']],

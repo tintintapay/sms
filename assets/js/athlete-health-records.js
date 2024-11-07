@@ -1,8 +1,8 @@
 $(document).ready(function () {
-    const exportingCol = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-    const exportingTitle = 'Athletes';
+    const exportingTitle = `Health History`;
+    const exportingCol = [0, 1, 2, 3];
     let table = $("#myTable").DataTable({
-        responsive: true,
+        // responsive: true,
         layout: {
             topStart: {
                 buttons: [
@@ -22,9 +22,18 @@ $(document).ready(function () {
                         },
                         className: 'button button-s button-light',
                         customize: function (win) {
+                            var athlete = `<div style="border:2px solid gray;margin-top:20px">
+                                                <div style="border-right:2px solid gray; padding:5px;display:inline-block">Athlete:</div>
+                                                <div style="padding:5px;display:inline-block">
+                                                    ${$('#full_name').val()} 
+                                                </div>
+                                            </div>`;
+                            $(win.document.body).prepend(athlete);
+
                             $(win.document.body).prepend(`<h2>${exportingTitle}</h2>`);
 
                             $(win.document.body).prepend('<div><img src="../assets/images/header.png" style="width:100%" /></div>');
+
                         }
                     },
                 ]
@@ -41,17 +50,16 @@ $(document).ready(function () {
         ordering: false,
         columnDefs: [
             {
-                target: [3, 4, 5, 6, 9],
-                visible: false,
-                searchable: false
-            }
+                target: [1, 2, 3],
+                searchable: true
+            },
+            {
+                target: [0],
+                searchable: false,
+            },
         ]
     });
 
     $("#myTable").show();
-
-    table.on('click', '.btn-del', function (e) {
-        console.log($(e.target).data('id'));
-    });
 
 });

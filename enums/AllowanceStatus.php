@@ -2,14 +2,14 @@
 
 class AllowanceStatus
 {
-    const AVAILABLE = 'available';
-    const RECEIVED = 'received';
+    const NOT_YET_CLAIMED = 'not_yet_claimed';
+    const CLAIMED = 'claimed';
 
     public static function getDescription($status)
     {
         return match ($status) {
-            self::AVAILABLE => 'Available',
-            self::RECEIVED => 'Received',
+            self::NOT_YET_CLAIMED => 'Not Yet Claimed',
+            self::CLAIMED => 'Claimed',
             default => "",
         };
     }

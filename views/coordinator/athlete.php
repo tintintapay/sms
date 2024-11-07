@@ -39,7 +39,10 @@
                         <div class="profile-column basic-info">
                             <img src="../assets/uploads/docs/<?= $athlete['user_id'] ?>/<?= $athlete['picture'] ?>"
                                 alt="Student Photo" class="student-photo">
-                            <h2 class="student-name"><?= $athlete['full_name'] ?></h2>
+                            <h2 class="student-name">
+                                <?= $athlete['full_name'] ?>
+                                <?= HealthStatus::getPills(Helper::getHealthStatus($athlete['user_id'])) ?>
+                            </h2>
                             <p><strong>Email:</strong> <?= $athlete['email'] ?></p>
                             <p><strong>Gender:</strong> <?= $athlete['gender'] ?></p>
                             <p><strong>Age:</strong> <?= Helper::getAge($athlete['birthday']) ?></p>
@@ -60,25 +63,25 @@
                                 <li>Certificate of Registration (COR)
                                     <a href="../assets/uploads/docs/<?= $athlete['user_id'] ?>/<?= $athlete['cor'] ?>"
                                         target="_blank" class="button button-s button-danger"
-                                        download="<?= $athlete['full_name'].'Certificate of Registration (COR)' ?>">Download
+                                        download="<?= $athlete['full_name'] . 'Certificate of Registration (COR)' ?>">Download
                                     </a>
                                 </li>
                                 <li>PSA Birth Certificate
                                     <a href="../assets/uploads/docs/<?= $athlete['user_id'] ?>/<?= $athlete['psa'] ?>"
                                         target="_blank" class="button button-s button-danger"
-                                        download="<?= $athlete['full_name'].'PSA Birth Certificate' ?>">Download
+                                        download="<?= $athlete['full_name'] . 'PSA Birth Certificate' ?>">Download
                                     </a>
                                 </li>
                                 <li>Medical Certificate
                                     <a href="../assets/uploads/docs/<?= $athlete['user_id'] ?>/<?= $athlete['medical_cert'] ?>"
                                         target="_blank" class="button button-s button-danger"
-                                        download="<?= $athlete['full_name'].'Medical Certificate' ?>">Download
+                                        download="<?= $athlete['full_name'] . 'Medical Certificate' ?>">Download
                                     </a>
                                 </li>
                                 <li>2x2 Picture
                                     <a href="../assets/uploads/docs/<?= $athlete['user_id'] ?>/<?= $athlete['picture'] ?>"
                                         target="_blank" class="button button-s button-danger"
-                                        download="<?= $athlete['full_name'].'2x2 Picture' ?>">Download
+                                        download="<?= $athlete['full_name'] . '2x2 Picture' ?>">Download
                                     </a>
                                 </li>
                             </ul>

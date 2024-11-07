@@ -51,32 +51,33 @@
                                     </option>
                                 <?php endforeach; ?>
                             </select>
-                
+
                             <label for="sport" class="label">Sport</label>
                             <select name="sport" id="sport" class="sms-input">
                                 <option value="">All</option>
                                 <?php foreach ($sports as $key => $val): ?>
                                     <option value="<?= $key ?>" <?= isset($_GET['sport']) && $_GET['sport'] === $key ? 'selected' : '' ?>>
-                                        <?= $val ?></option>
+                                        <?= $val ?>
+                                    </option>
                                 <?php endforeach; ?>
                             </select>
-                
+
                             <label for="status" class="label">Status</label>
                             <select name="status" id="status" class="sms-input">
                                 <option value="">All</option>
-                                    <option value="available" <?= isset($_GET['status']) && $_GET['status'] === 'available' ? 'selected' : '' ?>>
-                                        Not yet claimed</option>
-                                    <option value="received" <?= isset($_GET['status']) && $_GET['status'] === 'received' ? 'selected' : '' ?>>
-                                        Claimed</option>
+                                <option value="<?= AllowanceStatus::NOT_YET_CLAIMED ?>" <?= isset($_GET['status']) && $_GET['status'] === AllowanceStatus::NOT_YET_CLAIMED ? 'selected' : '' ?>>
+                                    Not yet claimed</option>
+                                <option value="<?= AllowanceStatus::CLAIMED ?>" <?= isset($_GET['status']) && $_GET['status'] === AllowanceStatus::CLAIMED ? 'selected' : '' ?>>
+                                    Claimed</option>
                             </select>
-                
+
                             <label for="date_from" class="label">Date From</label>
                             <input type="date" class="sms-input" name="date_from" id="date_from">
 
                             <label for="date_to" class="label">Date To</label>
                             <input type="date" class="sms-input" name="date_to" id="date_to">
-                
-                
+
+
                             <button type="submit" class="button button-success">Search</button>
                         </form>
                     </div>
@@ -86,6 +87,7 @@
                         <table id="myTable" style="display:none">
                             <thead>
                                 <tr>
+                                    <th>No.</th>
                                     <th>Athlete</th>
                                     <th>Phone Number</th>
                                     <th>Email</th>
@@ -94,19 +96,19 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $index = 1; ?>
                                 <?php foreach ($allowances as $allowance): ?>
                                     <tr>
+                                        <td><?= $index; ?></td>
                                         <td>
-                                            <a href="../athlete/stat?id=<?= $allowance['athlete_id'] ?>"
-                                                style="text-decoration: none;">
-                                                <?= $allowance['full_name'] ?>
-                                            </a>
+                                            <?= Helper::athleteWithHealthStatus($allowance['athlete_id'], $allowance['full_name']) ?>
                                         </td>
                                         <td><?= $allowance['phone_number'] ?></td>
                                         <td><?= $allowance['email'] ?></td>
-                                        <td><?= $allowance['status'] ?></td>
+                                        <td><?= AllowanceStatus::getDescription($allowance['status']) ?></td>
                                         <td><?= $allowance['created_at'] ?></td>
                                     </tr>
+                                    <?php $index++; ?>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>

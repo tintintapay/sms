@@ -12,6 +12,7 @@ class AthletesRating extends Model
 
         $result = $stmt->get_result();
         $stmt->close();
+
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
@@ -23,6 +24,7 @@ class AthletesRating extends Model
 
         $result = $stmt->get_result();
         $stmt->close();
+
         return $result->fetch_assoc();
     }
 
@@ -48,14 +50,17 @@ class AthletesRating extends Model
 
         if (!$stmt->execute()) {
             $stmt->close();
-            
+
             return null;
         }
 
+        $lastInsertedId = $this->db->insert_id;
+
         $stmt->close();
-        return $this->db->insert_id;
+
+        return $lastInsertedId;
     }
-    
+
     public function update($data)
     {
         $stmt = $this->db->prepare("
@@ -75,7 +80,9 @@ class AthletesRating extends Model
             $data['athlete_id'],
         );
 
+        $result = $stmt->execute();
         $stmt->close();
-        return $stmt->execute();
+
+        return $result;
     }
 }

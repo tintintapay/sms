@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    const exportingCol = [0, 1, 2, 3, 4];
+    const exportingCol = [0, 1, 2, 3, 4, 5];
     const exportingTitle = 'Game Schedules';
     let table = $("#myTable").DataTable({
         responsive: true,
@@ -16,11 +16,16 @@ $(document).ready(function () {
                     },
                     {
                         extend: 'print',
-                        title: exportingTitle,
+                        title: '',
                         exportOptions: {
                             columns: exportingCol
                         },
                         className: 'button button-s button-light',
+                        customize: function (win) {
+                            $(win.document.body).prepend(`<h2>${exportingTitle}</h2>`);
+
+                            $(win.document.body).prepend('<div><img src="../assets/images/header.png" style="width:100%" /></div>');
+                        }
                     },
                 ]
             },
@@ -32,7 +37,7 @@ $(document).ready(function () {
         ordering: false,
         columnDefs: [
             {
-                target: [4, 5],
+                target: [5, 6],
                 searchable: false
             }
         ]

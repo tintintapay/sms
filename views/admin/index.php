@@ -18,6 +18,29 @@ require 'views/admin/config.php';
 </head>
 
 <body>
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content" style="max-width:500px">
+            <h3>Population Filter by Campus<span class="close">&times;</span></h3>
+            <hr>
+            <div>
+                <form action="">
+                    <label for="school">Select Campus:</label>
+                    <!-- <input type="text" class="sms-input" name="school" id="school"> -->
+                    <select name="school" id="school" class="sms-input">
+                        <option value="">- Please Select -</option>
+                        <?php foreach ($schoolList as $key => $value): ?>
+                            <option value="<?= $key?>"><?= $value ?></option>
+                        <?php endforeach; ?>
+                    </select>
+
+                    <button class="button button-primary button-sm">Filter</button>
+                    <a href="home" class="button button-warning button-sm">Clear</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- HEADER -->
     <?php include 'common/header.php'; ?>
     <div class="container">
@@ -68,7 +91,13 @@ require 'views/admin/config.php';
                         <!-- Population -->
                         <div id="report_population"
                             style="background-color:#fff; border-radius:10px; padding: 15px; flex:0.6">
-                            <h3 style="margin: 0px 0px 15px 0px;">Athlete Population</h3>
+                            <h3 style="margin: 0px 0px 15px 0px;">Athlete Population
+                                <span style="float:right">
+                                    <button class="button button-white button-sm" onclick="openModal()">
+                                        <i class="fa-solid fa-filter"></i>
+                                    </button>
+                                </span>
+                            </h3>
                             <hr>
 
                             <?= $population; ?>
@@ -101,7 +130,7 @@ require 'views/admin/config.php';
             </div>
         </div>
     </div>
-    <!-- <script src="../assets/js/admin-dashboard.js"></script> -->
+    <script src="../assets/js/modal.js"></script>
 </body>
 
 </html>

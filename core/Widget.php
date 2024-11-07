@@ -61,14 +61,19 @@ class Widget
 
             $topRateds = $report->getTopRatedAthlete($data);
 
-            // dd($topRateds);
-
-            foreach ($topRateds as $row) {
-                // $topRated['name'][] = $row['first_name'] . " " . $row['last_name'] . "(" . Sport::getDescription($row['sport']) . ")";
-                $topRated['name'][] = School::getDescription($row['school']) . "(" . Sport::getDescription($row['sport']) . ")";
-                $topRated['data'][] = $row['avg_overall_rating'];
+            if ($topRateds) {
+                foreach ($topRateds as $row) {
+                    // $topRated['name'][] = $row['first_name'] . " " . $row['last_name'] . "(" . Sport::getDescription($row['sport']) . ")";
+                    $topRated['name'][] = School::getDescription($row['school']) . "(" . Sport::getDescription($row['sport']) . ")";
+                    $topRated['data'][] = $row['avg_overall_rating'];
+                }
             }
         }
+
+        if (!$topRated) {
+            return '';
+        }
+
         $names = json_encode($topRated['name'] ?? '');
         $data = json_encode($topRated['data'] ?? '');
 
@@ -87,12 +92,12 @@ class Widget
         return $html;
     }
 
-    public static function athletePopulation()
+    public static function athletePopulation($params)
     {
         $report = new ReportData();
         $population = [];
-        $totalPopulation = $report->getAthletePopulation();
-        $sportPopulation = $report->getPopulationBySport();
+        $totalPopulation = $report->getAthletePopulation($params);
+        $sportPopulation = $report->getPopulationBySport($params);
 
         foreach ($sportPopulation as $row) {
             $population['sport'][] = Sport::getDescription($row['sport']);
@@ -115,8 +120,8 @@ class Widget
         $report = new ReportData();
 
         $allowances = $report->getTotalClaimAllowance([]);
-        $remainingClaim = $allowances['available'] ?? 0;
-        $totalClaim = $allowances['received'] ?? 0;
+        $remainingClaim = $allowances['not_yet_claimed'] ?? 0;
+        $totalClaim = $allowances['claimed'] ?? 0;
 
         // starts output buffering
         ob_start();

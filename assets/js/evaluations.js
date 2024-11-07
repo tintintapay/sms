@@ -37,7 +37,32 @@ $(function () {
         });
     });
 
+    $('.disapprove').on('click', function() {
+        $('.approve-evaluation').hide();
+        $('.disapprove').hide();
+        $('.field').show();
+        $('.disapprove-evaluation').show();
+        $('.cancel').show();
+    });
+
+    $('.cancel').on('click', function() {
+        $('.approve-evaluation').show();
+        $('.disapprove').show();
+        $('.field').hide();
+        $('.disapprove-evaluation').hide();
+        $('.cancel').hide();
+    });
+
     $('.disapprove-evaluation').on('click', function () {
+        const msg = $('#msg').val();
+        if (msg == '') {
+            $('.err-msg').html('This field is required');
+
+            return;
+        }
+
+        $('.err-msg').html('');
+
         var ele = $(this);
         var id = ele.data('id');
         Swal.fire({
@@ -56,7 +81,7 @@ $(function () {
                     const action = 'disapprove';
                     $.ajax({
                         url: 'evaluations-approve-disapprove',
-                        data: { action: action, id: id },
+                        data: { action: action, id: id, msg: msg },
                         type: 'post',
                         dataType: 'json',
                         beforeSend: function () {

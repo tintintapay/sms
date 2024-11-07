@@ -24,49 +24,51 @@
             <h1>Register</h1>
         </div>
         <div class="card" style="width: 500px; height: 550px; overflow:auto">
-            <form action="register/create" method="POST" enctype="multipart/form-data">
-
+            <form action="register" method="POST" enctype="multipart/form-data">
+                <div class="msg" style="display:<?php echo !empty($flash['message']) ? 'block' : 'none' ?>">
+                    <?php echo $flash['message'] ?? ''; ?>
+                </div>
                 <div class="form-field">
                     <label for="first_name" class="label">First Name</label>
-                    <input type="text" id="first_name" name="first_name" class="sms-input" placeholder="First Name"
+                    <input type="text" id="first_name" name="first_name" class="sms-input" value="<?= $request['first_name'] ?? ''?>" placeholder="First Name"
                         required>
                 </div>
                 <div class="form-field">
                     <label for="last_name" class="label">Last Name</label>
-                    <input type="text" id="last_name" name="last_name" class="sms-input" placeholder="Last Name"
+                    <input type="text" id="last_name" name="last_name" class="sms-input" value="<?= $request['last_name'] ?? '' ?>" placeholder="Last Name"
                         required>
                 </div>
                 <div class="form-field">
                     <label for="middle_name" class="label">Middle Name</label>
-                    <input type="text" id="middle_name" name="middle_name" class="sms-input" placeholder="Middle Name">
+                    <input type="text" id="middle_name" name="middle_name" class="sms-input" value="<?= $request['middle_name'] ?? '' ?>" placeholder="Middle Name">
                 </div>
                 <div class="form-field gender-field">
                     <label class="label">Gender</label>
-                    <label><input type="radio" name="gender" value="male" required> Male</label>
-                    <label><input type="radio" name="gender" value="female" required> Female</label>
+                    <label><input type="radio" name="gender" value="male" <?= isset($request['gender']) && $request['gender'] === 'male' ? 'checked' : ''?> required> Male</label>
+                    <label><input type="radio" name="gender" value="female" <?= isset($request['gender']) && $request['gender'] === 'female' ? 'checked' : '' ?> required> Female</label>
                 </div>
                 <div class="form-field">
                     <label for="year_level" class="label">Year Level</label>
                     <select id="year_level" name="year_level" class="sms-input" required>
                         <option value="" selected disabled>- Please Select -</option>
-                        <option value="1st">1st</option>
-                        <option value="2nd">2nd</option>
-                        <option value="3rd">3rd</option>
-                        <option value="4th">4th</option>
-                        <option value="5th">5th</option>
+                        <option value="1st" <?= isset($request['year_level']) && $request['year_level'] === '1st' ? 'selected' : '' ?>>1st</option>
+                        <option value="2nd" <?= isset($request['year_level']) && $request['year_level'] === '2nd' ? 'selected' : '' ?>>2nd</option>
+                        <option value="3rd" <?= isset($request['year_level']) && $request['year_level'] === '3rd' ? 'selected' : '' ?>>3rd</option>
+                        <option value="4th" <?= isset($request['year_level']) && $request['year_level'] === '4th' ? 'selected' : '' ?>>4th</option>
+                        <option value="5th" <?= isset($request['year_level']) && $request['year_level'] === '5th' ? 'selected' : '' ?>>5th</option>
                     </select>
                 </div>
                 <div class="form-field">
                     <label for="course" class="label">Course</label>
-                    <input type="text" id="course" name="course" class="sms-input" placeholder="Year & Course" required>
+                    <input type="text" id="course" name="course" class="sms-input" value="<?= $request['course'] ?? '' ?>" placeholder="Course" required>
                 </div>
                 <div class="form-field">
                     <label for="address" class="label">Address</label>
-                    <input type="text" id="address" name="address" class="sms-input" placeholder="Address" required>
+                    <input type="text" id="address" name="address" class="sms-input" value="<?= $request['address'] ?? '' ?>" placeholder="Address" required>
                 </div>
                 <div class="form-field">
                     <label for="email" class="label">Email (G Suite Account)</label>
-                    <input type="email" id="email" name="email" class="sms-input" placeholder="Email" required>
+                    <input type="email" id="email" name="email" class="sms-input" value="<?= $request['email'] ?? '' ?>" placeholder="Email" required>
                 </div>
                 <div class="form-field">
                     <label for="school" class="label">Campus</label>
@@ -74,17 +76,17 @@
                     <select name="school" id="school" class="sms-input" required>
                         <option value="" selected disabled>- Please Select -</option>
                         <?php foreach ($schools as $key => $value): ?>
-                            <option value="<?= $key ?>"><?= $value ?></option>
+                            <option value="<?= $key ?>" <?= isset($request['school']) && $request['school'] === $key ? 'selected' : '' ?>><?= $value ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
                 <div class="form-field">
                     <label for="guardian" class="label">Guardian</label>
-                    <input type="text" id="guardian" name="guardian" class="sms-input" placeholder="Guardian" required>
+                    <input type="text" id="guardian" name="guardian" class="sms-input" value="<?= $request['guardian'] ?? '' ?>" placeholder="Guardian" required>
                 </div>
                 <div class="form-field">
                     <label for="birthday" class="label">Birth Day</label>
-                    <input type="date" id="birthday" name="birthday" class="sms-input" max="<?= (new DateTime())->modify('-15 years')->format('Y-m-d');?>" placeholder="Birth Day" required>
+                    <input type="date" id="birthday" name="birthday" class="sms-input" value="<?= $request['birthday'] ?? '' ?>" max="<?= (new DateTime())->modify('-15 years')->format('Y-m-d');?>" placeholder="Birth Day" required>
                 </div>
 
                 <div class="form-field">
@@ -92,13 +94,13 @@
                     <select name="sport" id="sport" class="sms-input">
                         <option value="" selected disabled>- Please Select -</option>
                         <?php foreach ($sports as $key => $value): ?>
-                            <option value="<?= $key ?>"><?= $value ?></option>
+                            <option value="<?= $key ?>" <?= isset($request['sport']) && $request['sport'] === $key ? 'selected' : '' ?>><?= $value ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
                 <div class="form-field">
                     <label for="phone_number" class="label">Phone Number</label>
-                    <input type="tel" id="phone_number" name="phone_number" class="sms-input"
+                    <input type="tel" id="phone_number" name="phone_number" class="sms-input"  value="<?= $request['phone_number'] ?? '' ?>"
                         placeholder="Phone Number (11 digits)" pattern="\d{11}" required>
                 </div>
 
@@ -106,7 +108,6 @@
 
                 <div class="form-field" style="position:relative">
                     <label for="password" class="label">Password</label>
-                    <!-- <input type="password" id="password" name="password" class="sms-input" placeholder="Password" required> -->
 
                     <input type="password" class="toggle-password sms-input" id="password" name="password"
                         placeholder="Password" style="padding-right: 30px; width:calc(100% - 44px)">
