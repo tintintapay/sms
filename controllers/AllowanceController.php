@@ -104,7 +104,7 @@ class AllowanceController
     {
         $data = [
             'athlete_id' => $request['id'],
-            'status' => AllowanceStatus::RECEIVED
+            'status' => AllowanceStatus::CLAIMED
         ];
 
         $update = $this->allowance->updateClaim($data);

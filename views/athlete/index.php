@@ -34,7 +34,7 @@
                             </p>
                             <p><?= $allowance['message'] ?></p>
                             <p class="date-info"><?= Helper::formatDate($allowance['created_at'], 'Y-m-d') ?></p>
-                            <?php if ($allowance['status'] === AllowanceStatus::AVAILABLE): ?>
+                            <?php if ($allowance['status'] === AllowanceStatus::NOT_YET_CLAIMED): ?>
                                 <div style="text-align: right;">
                                     <form action="claim-allowance" method="POST">
                                         <input type="hidden" name="id" id="id" value="<?= $_SESSION['user_id'] ?>">

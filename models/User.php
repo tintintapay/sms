@@ -156,6 +156,12 @@ class User extends Model
             $params[] = $data['sport'];
         }
 
+        if (!empty($data['status']) && $data['status'] !== 'all') {
+            $where .= " AND u.status = ?";
+            $types .= "s";
+            $params[] = $data['status'];
+        }
+
         $coor = UserRole::ATHLETE;
         $sql = "
             SELECT 
@@ -310,9 +316,11 @@ class User extends Model
 
         $returnData = [];
         foreach ($data as $d) {
+            $full_name = $d['first_name'] . ' ' . $d['middle_name'] . ' ' . $d['last_name'];
+
             $returnData[] = [
                 $d['user_id'],
-                $d['first_name'] . ' ' . $d['middle_name'] . ' ' . $d['last_name'],
+                Helper::athleteWithHealthStatus($d['user_id'], $full_name),
                 $d['email'],
                 School::getDescription($d['school'])
             ];

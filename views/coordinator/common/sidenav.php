@@ -19,6 +19,11 @@
             <span class="menu-title">Manage Athlete</span>
         </div>
     </a>
+    <a href="health-records" class="menu">
+        <div class="menu-item <?= $_SESSION['menu'] === 'health-records' ? 'active' : '' ?>">
+            <span class="menu-title">Athlete's Health Record</span>
+        </div>
+    </a>
     <a href="announcements" class="menu">
         <div class="menu-item <?= $_SESSION['menu'] === 'announcement' ? 'active' : '' ?>">
             <span class="menu-title">Announcement</span>
