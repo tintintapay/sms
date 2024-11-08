@@ -49,7 +49,7 @@
                                         <?php foreach($files as $file): ?>
                                         <tr>
                                             <td>
-                                                <a href="/sms/assets/downloadable/<?= $file?>" target="_blank"
+                                                <a href="/assets/downloadable/<?= $file?>" target="_blank"
                                                     class="" download="<?= $file?>"><?= $file?>
                                                 </a>
                                             </td>

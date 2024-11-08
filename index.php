@@ -180,7 +180,7 @@ $routes = [
 
 // Strip query string from URI
 $uri = strtok($_SERVER['REQUEST_URI'], '?');
-$uri = $uri === '/sms/' ? '/sms/index' : $uri;
+$uri = $uri === '/' ? '/index' : $uri;
 $method = $_SERVER['REQUEST_METHOD'];
 
 // Match route
