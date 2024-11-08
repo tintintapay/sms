@@ -117,7 +117,6 @@ $routes = [
         'GET' => [$coordinatorController, 'show'],
         'POST' => [$coordinatorController, 'update']
     ],
-    // '/sms/admin/coordinator-update' => ['GET' => [$coordinatorController, 'update']],
     '/sms/admin/manage-athlete' => ['GET' => [$athleteController, 'admin_index']],
     '/sms/admin/allowance' => ['GET' => [$allowanceController, 'index']],
     '/sms/admin/send-allowance-notice' => ['POST' => [$allowanceController, 'send_allowance_notice']],
