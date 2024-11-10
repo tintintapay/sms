@@ -192,7 +192,7 @@ class Helper
 
         $healthStatus = $record->getLatest($athlete_id);
 
-        return $healthStatus['status'];
+        return $healthStatus['status'] ?? '';
     }
 
     public static function athleteWithHealthStatus($user_id, $full_name)
