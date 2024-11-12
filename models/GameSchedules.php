@@ -86,6 +86,7 @@ class GameSchedules extends Model
                     FROM evaluations 
                     WHERE game_schedules_id = g.id 
                     AND athlete_id = ?
+                    AND deleted_at IS NULL
                 )
                 THEN 1 
                 ELSE 0 
