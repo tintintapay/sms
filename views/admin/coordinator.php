@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../vendor/fontawesome-6.5.1/css/all.min.css">
     <script src="../vendor/jquery/jquery-3.7.1.js"></script>
-    <script type="module" src="../assets/js/main.js"></script>
+    <script src="../vendor/sweetalert/sweetalert2.js"></script>
+    <script src="../assets/js/main.js"></script>
     <script src="../assets/js/coordinator.js"></script>
     <script src="../assets/js/toggle-password.js"></script>
 </head>

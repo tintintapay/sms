@@ -9,6 +9,8 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/athlete-home.css">
+    <script src="../vendor/sweetalert/sweetalert2.js"></script>
+    <script src="../assets/js/main.js"></script>
 </head>
 
 <body>

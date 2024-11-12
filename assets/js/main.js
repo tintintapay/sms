@@ -62,3 +62,23 @@ class InputRestrictor {
 
 // Instantiate the class to attach listeners
 new InputRestrictor();
+
+
+$(function() {
+    // Delete request
+    $('.logout').on('click', function () {
+        Swal.fire({
+            title: "Logout",
+            text: "Are you sure to Logout?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "Yes! Logout",
+            confirmButtonColor: "#ff2c2c",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '../logout';
+            }
+        });
+    });
+})

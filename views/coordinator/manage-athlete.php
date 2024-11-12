@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="../assets/css/admin_profile.css">
     <script src="../vendor/jquery/jquery-3.7.1.js"></script>
     <?php include 'views/common/datatables.php'; ?>
+    <script src="../vendor/sweetalert/sweetalert2.js"></script>
+    <script src="../assets/js/main.js"></script>
     <script src="../assets/js/manage-athlete.js"></script>
 </head>
 
@@ -73,7 +75,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $index = 1?>
+                                <?php $index = 1 ?>
                                 <?php foreach ($athletes as $athlete): ?>
                                     <tr class="<?= $athlete['status'] ?>">
                                         <td><?= $index ?></td>
