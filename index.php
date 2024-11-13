@@ -82,105 +82,105 @@ function dd(...$vars)
 
 // Define routes
 $routes = [
-    '/sms/index' => ['GET' => [$authenticateController, 'index']],
-    '/sms/about' => ['GET' => [$homeController, 'about']],
-    '/sms/sport' => ['GET' => [$homeController, 'sport']],
-    '/sms/contact' => ['GET' => [$homeController, 'contact']],
-    '/sms/faqs' => ['GET' => [$homeController, 'faqs']],
-    '/sms/login' => [
+    '/index' => ['GET' => [$authenticateController, 'index']],
+    '/about' => ['GET' => [$homeController, 'about']],
+    '/sport' => ['GET' => [$homeController, 'sport']],
+    '/contact' => ['GET' => [$homeController, 'contact']],
+    '/faqs' => ['GET' => [$homeController, 'faqs']],
+    '/login' => [
         'GET' => [$authenticateController, 'index'],
         'POST' => [$authenticateController, 'store'],
     ],
-    '/sms/terms' => ['GET' => [$homeController, 'terms']],
-    '/sms/register' => [
+    '/terms' => ['GET' => [$homeController, 'terms']],
+    '/register' => [
         'GET' => [$userController, 'index'],
         'POST' => [$userController, 'create']
     ],
     // '/sms/register/create' => [],
-    '/sms/forgot-password' => [
+    '/forgot-password' => [
         'GET' => [$authenticateController, 'forgot_password_index'],
         'POST' => [$authenticateController, 'forgot_pass_store']
     ],
-    '/sms/password-reset-validate' => [
+    '/password-reset-validate' => [
         'GET' => [$authenticateController, 'password_reset_validate'],
         'POST' => [$authenticateController, 'password_reset_validate_store']
     ],
 
     // Admin
-    '/sms/admin/home' => ['GET' => [$adminHomeController, 'index']],
-    '/sms/admin/coordinators' => ['GET' => [$coordinatorController, 'index']],
-    '/sms/admin/coordinator-add' => [
+    '/admin/home' => ['GET' => [$adminHomeController, 'index']],
+    '/admin/coordinators' => ['GET' => [$coordinatorController, 'index']],
+    '/admin/coordinator-add' => [
         'GET' => [$coordinatorController, 'addnew'],
         'POST' => [$coordinatorController, 'create']
     ],
-    '/sms/admin/coordinator' => [
+    '/admin/coordinator' => [
         'GET' => [$coordinatorController, 'show'],
         'POST' => [$coordinatorController, 'update']
     ],
-    '/sms/admin/manage-athlete' => ['GET' => [$athleteController, 'admin_index']],
-    '/sms/admin/allowance' => ['GET' => [$allowanceController, 'index']],
-    '/sms/admin/send-allowance-notice' => ['POST' => [$allowanceController, 'send_allowance_notice']],
+    '/admin/manage-athlete' => ['GET' => [$athleteController, 'admin_index']],
+    '/admin/allowance' => ['GET' => [$allowanceController, 'index']],
+    '/admin/send-allowance-notice' => ['POST' => [$allowanceController, 'send_allowance_notice']],
 
     //Coordinator
-    '/sms/coordinator/home' => ['GET' => [$coordinatorHomeController, 'index']],
-    '/sms/coordinator/manage-athlete' => ['GET' => [$athleteController, 'index']],
-    '/sms/coordinator/athlete' => ['GET' => [$athleteController, 'show']],
-    '/sms/coordinator/athlete-approve' => ['POST' => [$athleteController, 'store']],
-    '/sms/coordinator/athlete-delete' => ['POST' => [$athleteController, 'delete']],
-    '/sms/coordinator/game-schedules' => ['GET' => [$gameScheduleController, 'index']],
-    '/sms/coordinator/game-schedules-create' => [
+    '/coordinator/home' => ['GET' => [$coordinatorHomeController, 'index']],
+    '/coordinator/manage-athlete' => ['GET' => [$athleteController, 'index']],
+    '/coordinator/athlete' => ['GET' => [$athleteController, 'show']],
+    '/coordinator/athlete-approve' => ['POST' => [$athleteController, 'store']],
+    '/coordinator/athlete-delete' => ['POST' => [$athleteController, 'delete']],
+    '/coordinator/game-schedules' => ['GET' => [$gameScheduleController, 'index']],
+    '/coordinator/game-schedules-create' => [
         'GET' => [$gameScheduleController, 'create'],
         'POST' => [$gameScheduleController, 'store']
     ],
-    '/sms/coordinator/game-schedule-delete' => ['POST' => [$gameScheduleController, 'delete']],
-    '/sms/coordinator/game-schedule' => [
+    '/coordinator/game-schedule-delete' => ['POST' => [$gameScheduleController, 'delete']],
+    '/coordinator/game-schedule' => [
         'GET' => [$gameScheduleController, 'show'],
         'POST' => [$gameScheduleController, 'update']
     ],
-    '/sms/coordinator/evaluations' => ['GET' => [$evaluationController, 'show']],
-    '/sms/coordinator/evaluations-approve-disapprove' => ['POST' => [$evaluationController, 'approve_disapprove']],
-    '/sms/coordinator/announcements' => ['GET' => [$announcementController, 'index']],
-    '/sms/coordinator/announcements-create' => [
+    '/coordinator/evaluations' => ['GET' => [$evaluationController, 'show']],
+    '/coordinator/evaluations-approve-disapprove' => ['POST' => [$evaluationController, 'approve_disapprove']],
+    '/coordinator/announcements' => ['GET' => [$announcementController, 'index']],
+    '/coordinator/announcements-create' => [
         'GET' => [$announcementController, 'create'],
         'POST' => [$announcementController, 'store']
     ],
-    '/sms/coordinator/announcement' => ['GET' => [$announcementController, 'show']],
-    '/sms/coordinator/announcement-delete' => ['POST' => [$announcementController, 'delete']],
-    '/sms/coordinator/athlete-ratings' => ['GET' => [$athleteRatingController, 'index']],
-    '/sms/coordinator/athlete-rating' => ['GET' => [$athleteRatingController, 'show']],
-    '/sms/coordinator/athlete-rating-save' => ['POST' => [$athleteRatingController, 'store']],
-    '/sms/coordinator/file-resource' => [
+    '/coordinator/announcement' => ['GET' => [$announcementController, 'show']],
+    '/coordinator/announcement-delete' => ['POST' => [$announcementController, 'delete']],
+    '/coordinator/athlete-ratings' => ['GET' => [$athleteRatingController, 'index']],
+    '/coordinator/athlete-rating' => ['GET' => [$athleteRatingController, 'show']],
+    '/coordinator/athlete-rating-save' => ['POST' => [$athleteRatingController, 'store']],
+    '/coordinator/file-resource' => [
         'GET' => [$fileResourceController, 'index'],
         'POST' => [$fileResourceController, 'upload']
     ],
-    '/sms/coordinator/file-delete' => ['POST' => [$fileResourceController, 'delete']],
-    '/sms/coordinator/health-records' => ['GET' => [$healthRecordController, 'index']],
-    '/sms/coordinator/athlete-health-records' => ['GET' => [$healthRecordController, 'details']],
-    '/sms/coordinator/athlete-health-record-create' => [
+    '/coordinator/file-delete' => ['POST' => [$fileResourceController, 'delete']],
+    '/coordinator/health-records' => ['GET' => [$healthRecordController, 'index']],
+    '/coordinator/athlete-health-records' => ['GET' => [$healthRecordController, 'details']],
+    '/coordinator/athlete-health-record-create' => [
         'GET' => [$healthRecordController, 'create'],
         'POST' => [$healthRecordController, 'store']
     ],
 
     // Athlete
-    '/sms/athlete/home' => ['GET' => [$athleteHomeController, 'index']],
-    '/sms/athlete/submit-evaluation' => [
+    '/athlete/home' => ['GET' => [$athleteHomeController, 'index']],
+    '/athlete/submit-evaluation' => [
         'GET' => [$evaluationController, 'submit'],
         'POST' => [$evaluationController, 'submit_form']
     ],
-    '/sms/athlete/stat' => ['GET' => [$athleteRatingController, 'stat']],
-    '/sms/athlete/claim-allowance' => ['POST' => [$allowanceController, 'claim']],
-    '/sms/athlete/game-schedule' => ['GET' => [$gameScheduleController, 'schedule']],
+    '/athlete/stat' => ['GET' => [$athleteRatingController, 'stat']],
+    '/athlete/claim-allowance' => ['POST' => [$allowanceController, 'claim']],
+    '/athlete/game-schedule' => ['GET' => [$gameScheduleController, 'schedule']],
 
     // Ajax API request
-    '/sms/coordinator/target-athlete' => ['POST' => [$athleteController, 'target_athlete']],
+    '/coordinator/target-athlete' => ['POST' => [$athleteController, 'target_athlete']],
 
     // Logout
-    '/sms/logout' => ['GET' => [$authenticateController, 'logout']],
+    '/logout' => ['GET' => [$authenticateController, 'logout']],
 ];
 
 // Strip query string from URI
 $uri = strtok($_SERVER['REQUEST_URI'], '?');
-$uri = $uri === '/sms/' ? '/sms/index' : $uri;
+$uri = $uri === '/' ? '/index' : $uri;
 $method = $_SERVER['REQUEST_METHOD'];
 
 // Match route
