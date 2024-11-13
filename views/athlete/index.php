@@ -9,6 +9,8 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/athlete-home.css">
+    <script src="../vendor/sweetalert/sweetalert2.js"></script>
+    <script src="../assets/js/main.js"></script>
 </head>
 
 <body>
@@ -67,17 +69,18 @@
                         <h3>Schedule</h3>
                         <div class="schedule-body">
                             <?php foreach ($schedules as $schedule): ?>
-                                <div class="game-card">
-                                    <div class="game-info">
-                                        <div class="game-title"><?= $schedule['game_title'] ?></div>
-                                        <div class="game-schedule"><?= $schedule['schedule'] ?></div>
-                                        <?php if (!empty($schedule['schedule_picture'])): ?>
-                                            <div class="game-schedule"><a target="_blank"
-                                                    href="game-schedule?id=<?= $schedule['id'] ?>&file=<?= $schedule['schedule_picture'] ?>">Game
-                                                    Schedule</a></div>
-                                        <?php endif; ?>
-                                    </div>
-                                    <?php if ($schedule['is_included']): ?>
+                                <?php if ($schedule['is_included']): ?>
+                                    <div class="game-card">
+                                        <div class="game-info">
+                                            <div class="game-title"><?= $schedule['game_title'] ?></div>
+                                            <div class="game-schedule"><?= $schedule['schedule'] ?></div>
+                                            <?php if (!empty($schedule['schedule_picture'])): ?>
+                                                <div class="game-schedule"><a target="_blank"
+                                                        href="game-schedule?id=<?= $schedule['id'] ?>&file=<?= $schedule['schedule_picture'] ?>">Game
+                                                        Schedule</a></div>
+                                            <?php endif; ?>
+                                        </div>
+
                                         <!-- PENDING -->
                                         <?php if ($schedule['status'] === EvaluationStatus::PENDING): ?>
                                             <div class="game-action">
@@ -101,8 +104,8 @@
                                         <?php elseif ($schedule['status'] === EvaluationStatus::DISAPPROVED): ?>
                                             <div class="game-action">Evaluation Disapproved!</div>
                                         <?php endif; ?>
-                                    <?php endif; ?>
-                                </div>
+                                    </div>
+                                <?php endif; ?>
                             <?php endforeach; ?>
                         </div>
                     </div>
