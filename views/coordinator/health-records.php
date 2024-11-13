@@ -11,6 +11,7 @@
     <script src="../vendor/jquery/jquery-3.7.1.js"></script>
     <?php include 'views/common/datatables.php'; ?>
     <script src="../vendor/sweetalert/sweetalert2.js"></script>
+    <script src="../assets/js/main.js"></script>
     <script src="../assets/js/health-records.js"></script>
 </head>
 
@@ -43,7 +44,7 @@
                                 <?php foreach ($athletes as $athlete): ?>
                                     <tr>
                                         <td>
-                                            <?= Helper::athleteWithHealthStatus($athlete['user_id'], $athlete['full_name'])?>
+                                            <?= Helper::athleteWithHealthStatus($athlete['user_id'], $athlete['full_name']) ?>
                                         </td>
                                         <td><?= $athlete['email'] ?></td>
                                         <td><?= School::getDescription($athlete['school']) ?></td>

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../assets/css/athlete-show.css">
     <script src="../vendor/jquery/jquery-3.7.1.js"></script>
     <script src="../vendor/sweetalert/sweetalert2.js"></script>
+    <script src="../assets/js/main.js"></script>
     <script src="../assets/js/athlete.js"></script>
 </head>
 

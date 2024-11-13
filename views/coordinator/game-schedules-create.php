@@ -8,10 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Event | Create</title>
     <link rel="stylesheet" href="../assets/css/main.css">
-    <link rel="stylesheet" href="../assets/css/admin_profile.css">
     <link rel="stylesheet" href="../vendor/jquery/datepicker/jquery-ui.css">
     <script src="../vendor/jquery/jquery-3.7.1.js"></script>
     <?php include 'views/common/datatables.php'; ?>
+    <script src="../vendor/sweetalert/sweetalert2.js"></script>
+    <script src="../assets/js/main.js"></script>
     <script src="../assets/js/game-schedules-create.js"></script>
 </head>
 
@@ -50,11 +51,12 @@
                                 value="<?= $request['venue'] ?? '' ?>" autocomplete="off">
 
                             <label for="schedule" class="label">Schedule:</label>
-                            <input type="date" class="sms-input" id="schedule" name="schedule" min="<?= $minimumDate?>"
+                            <input type="date" class="sms-input" id="schedule" name="schedule" min="<?= $minimumDate ?>"
                                 value="<?= $request['schedule'] ?? '' ?>" autocomplete="off">
 
                             <label for="schedule_picture" class="label">Schedule Picture:</label>
-                            <input type="file" class="sms-input" id="schedule_picture" name="schedule_picture" accept="image/png, image/jpeg">
+                            <input type="file" class="sms-input" id="schedule_picture" name="schedule_picture"
+                                accept="image/png, image/jpeg">
 
                             <label for="sport" class="label">Sport:</label>
                             <select name="sport" id="sport" class="sms-input">
@@ -77,7 +79,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+
                                 </tbody>
                             </table>
 

@@ -9,5 +9,5 @@
             <p><?= Sport::getDescription($_SESSION['sport']) ; ?></p>
         </div>
     </div>
-    <a href="../logout" class="sms-btn btn-white">Logout</a>
+    <a href="../logout" class="sms-btn btn-white logout">Logout</a>
 </div>

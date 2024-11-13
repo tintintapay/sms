@@ -7,11 +7,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coordinators</title>
-    <link rel="stylesheet" href="../assets/css/admin_profile.css">
     <link rel="stylesheet" href="../assets/css/sms-table.css">
     <link rel="stylesheet" href="../assets/css/main.css">
     <script src="../vendor/jquery/jquery-3.7.1.js"></script>
     <?php include 'views/common/datatables.php'; ?>
+    <script src="../vendor/sweetalert/sweetalert2.js"></script>
+    <script src="../assets/js/main.js"></script>
     <script src="../assets/js/coordinators.js"></script>
 </head>
 
