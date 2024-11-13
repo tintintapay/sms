@@ -82,27 +82,27 @@
                                     </li>
                                     <li style="margin-bottom: 5px;">
                                         <i class="fas fa-file-alt" style="margin-right: 5px;"></i>
-                                        <a href="/assets/uploads/evaluation/<?= $evaluation['athlete_id'] ?>/<?= $evaluation['eligibility_form'] ?>"
+                                        <a href="/sms/assets/uploads/evaluation/<?= $evaluation['athlete_id'] ?>/<?= $evaluation['eligibility_form'] ?>"
                                             target="_blank" style="color: #007bff;"
                                             download="<?= $evaluation['full_name'] . ' Eligibility Form' ?>">Eligibility
                                             Form</a>
                                     </li>
                                     <li style="margin-bottom: 5px;">
                                         <i class="fas fa-file-alt" style="margin-right: 5px;"></i>
-                                        <a href="/assets/uploads/evaluation/<?= $evaluation['athlete_id'] ?>/<?= $evaluation['tryout_form'] ?>"
+                                        <a href="/sms/assets/uploads/evaluation/<?= $evaluation['athlete_id'] ?>/<?= $evaluation['tryout_form'] ?>"
                                             target="_blank" style="color: #007bff;"
                                             download="<?= $evaluation['full_name'] . ' Try-out Form' ?>">Try-out Form</a>
                                     </li>
                                     <li style="margin-bottom: 5px;">
                                         <i class="fas fa-file-medical" style="margin-right: 5px;"></i>
-                                        <a href="/assets/uploads/evaluation/<?= $evaluation['athlete_id'] ?>/<?= $evaluation['med_cert'] ?>"
+                                        <a href="/sms/assets/uploads/evaluation/<?= $evaluation['athlete_id'] ?>/<?= $evaluation['med_cert'] ?>"
                                             target="_blank" style="color: #007bff;"
                                             download="<?= $evaluation['full_name'] . ' Medical Certification' ?>">Medical
                                             Certification</a>
                                     </li>
                                     <li style="margin-bottom: 5px;">
                                         <i class="fas fa-file-alt" style="margin-right: 5px;"></i>
-                                        <a href="/assets/uploads/evaluation/<?= $evaluation['athlete_id'] ?>/<?= $evaluation['cor'] ?>"
+                                        <a href="/sms/assets/uploads/evaluation/<?= $evaluation['athlete_id'] ?>/<?= $evaluation['cor'] ?>"
                                             target="_blank" style="color: #007bff;"
                                             download="<?= $evaluation['full_name'] . ' Certification of Registration (COR)' ?>">Certification
                                             of
@@ -110,7 +110,7 @@
                                     </li>
                                     <li>
                                         <i class="fas fa-file-alt" style="margin-right: 5px;"></i>
-                                        <a href="/assets/uploads/evaluation/<?= $evaluation['athlete_id'] ?>/<?= $evaluation['grades'] ?>"
+                                        <a href="/sms/assets/uploads/evaluation/<?= $evaluation['athlete_id'] ?>/<?= $evaluation['grades'] ?>"
                                             target="_blank" style="color: #007bff;"
                                             download="<?= $evaluation['full_name'] . ' Copy of Grades' ?>">Copy of Grades</a>
                                     </li>
