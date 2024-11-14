@@ -333,4 +333,81 @@ class ReportData extends Model
 
         return $result->fetch_assoc();
     }
+
+    public function getTotalHealthStatus($data = [])
+    {
+        // Initialize filter variables
+        $school = $data['school'] ?? null;
+        $sport = $data['sport'] ?? null;
+        $gender = $data['gender'] ?? null;
+
+        // Start building the SQL query
+        $sql = "
+            WITH LatestHealthRecords AS (
+                SELECT hr.*
+                FROM health_records hr
+                JOIN users u ON hr.athlete_id = u.id
+                WHERE u.status != 'deleted'
+                AND hr.created_at = (
+                    SELECT MAX(hr2.created_at)
+                    FROM health_records hr2
+                    WHERE hr2.athlete_id = hr.athlete_id
+                )
+            )
+            SELECT status, COUNT(*) AS count
+            FROM LatestHealthRecords hr
+        ";
+
+        // Initialize an array to hold conditions
+        $conditions = [];
+        $params = [];
+
+        // Add filtering conditions based on user input
+        if ($school) {
+            $conditions[] = "ui.school = ?";
+            $params[] = $school; // add the school parameter
+        }
+        if ($sport) {
+            $conditions[] = "ui.sport = ?";
+            $params[] = $sport; // add the sport parameter
+        }
+        if ($gender) {
+            $conditions[] = "ui.gender = ?";
+            $params[] = $gender; // add the gender parameter
+        }
+
+        // If there are conditions, append them to the query
+        if (count($conditions) > 0) {
+            $sql .= " JOIN user_info ui ON hr.athlete_id = ui.user_id WHERE " . implode(' AND ', $conditions);
+        } else {
+            // If no filters are applied, we need to join user_info to get the status
+            $sql .= " JOIN user_info ui ON hr.athlete_id = ui.user_id";
+        }
+
+        // Group by status
+        $sql .= " GROUP BY status";
+
+        // Prepare the statement
+        $stmt = $this->db->prepare($sql);
+
+        // Dynamically bind parameters if there are any
+        if ($params) {
+            // Create a string for the types of the parameters
+            $types = str_repeat('s', count($params)); // Assuming all parameters are strings
+            $stmt->bind_param($types, ...$params);
+        }
+
+        // Execute the statement
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        // Fetch and return the results
+        $counts = [];
+        while ($row = $result->fetch_assoc()) {
+            $counts[] = $row; // Store each row in an array
+        }
+
+        return $counts; // Return the array of counts
+    }
 }

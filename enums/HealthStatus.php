@@ -49,4 +49,15 @@ class HealthStatus
             default => "",
         };
     }
+
+    public static function getColor($status)
+    {
+        return match ($status) {
+            self::HEALTHY => '#28a745',
+            self::INJURED => '#dc3545',
+            self::RECOVERING => '#17a2b8',
+            self::REHABILITATING => '#ffc107',
+            default => "",
+        };
+    }
 }

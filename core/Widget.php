@@ -2,6 +2,7 @@
 
 require_once 'core/ReportData.php';
 require_once 'enums/Sport.php';
+require_once 'enums/HealthStatus.php';
 
 class Widget
 {
@@ -126,6 +127,39 @@ class Widget
         // starts output buffering
         ob_start();
         include 'template/widgets/allowance-claim.php';
+        // store output buffering
+        $html = ob_get_clean();
+
+        return $html;
+    }
+
+    public static function totalHealthRecord($params)
+    {
+        $report = new ReportData();
+
+        $data = [
+            'sport' => $params['hsport'] ?? null,
+            'school' => $params['hschool'] ?? null,
+            'gender' => $params['hgender'] ?? null
+        ];
+
+        $healthStatuses = $report->getTotalHealthStatus($data);
+
+        $totalHealthStatus = [];
+
+        foreach ($healthStatuses as $key => $healthStatus) {
+            $totalHealthStatus['status'][] = HealthStatus::getDescription($healthStatus['status']);
+            $totalHealthStatus['count'][] = $healthStatus['count'];
+            $totalHealthStatus['color'][] = HealthStatus::getColor($healthStatus['status']);
+        }
+
+        $status = json_encode($totalHealthStatus['status'] ?? '');
+        $count = json_encode($totalHealthStatus['count'] ?? '');
+        $colors = json_encode($totalHealthStatus['color'] ?? '');
+
+        // starts output buffering
+        ob_start();
+        include 'template/widgets/health-status.php';
         // store output buffering
         $html = ob_get_clean();
 

@@ -1,16 +1,9 @@
-<div id="sportDistribution"></div>
+
+<div id="healthStatus"></div>
 <script>
     var options = {
-        title: {
-            text: 'Total: <?= $totalPopulation ?>',
-            align: 'center',
-            style: {
-                fontSize: '20px',
-                fontWeight: 'bold',
-                color: '#263238'
-            }
-        },
-        series: <?= $data ?>,
+        series: <?= $count ?>,
+        colors: <?= $colors ?>,
         chart: {
             width: '100%',
             type: 'pie',
@@ -43,7 +36,7 @@
             enabled: true,
             offsetX: -30
         },
-        labels: <?= $sport ?>,
+        labels: <?= $status ?>,
         responsive: [{
             breakpoint: 480,
             options: {
@@ -57,6 +50,6 @@
         }]
     };
 
-    var chart = new ApexCharts(document.querySelector("#sportDistribution"), options);
+    var chart = new ApexCharts(document.querySelector("#healthStatus"), options);
     chart.render();
 </script>

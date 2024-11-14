@@ -20,6 +20,7 @@ require 'views/admin/config.php';
 
 <body>
     <!-- Modal -->
+    <!-- Population filter -->
     <div id="modal" class="modal">
         <div class="modal-content" style="max-width:500px">
             <h3>Population Filter by Campus<span class="close">&times;</span></h3>
@@ -31,8 +32,46 @@ require 'views/admin/config.php';
                     <select name="school" id="school" class="sms-input">
                         <option value="">- Please Select -</option>
                         <?php foreach ($schoolList as $key => $value): ?>
-                            <option value="<?= $key?>"><?= $value ?></option>
+                            <option value="<?= $key ?>"><?= $value ?></option>
                         <?php endforeach; ?>
+                    </select>
+
+                    <button class="button button-primary button-sm">Filter</button>
+                    <a href="home" class="button button-warning button-sm">Clear</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Health record filter -->
+    <div id="hmodal" class="modal">
+        <div class="modal-content" style="max-width:500px">
+            <h3>Health Status Filter<span class="close">&times;</span></h3>
+            <hr>
+            <div>
+                <form action="">
+                    <!-- School -->
+                    <label for="hschool">Select Campus:</label>
+                    <select name="hschool" id="hschool" class="sms-input">
+                        <option value="">- Please Select -</option>
+                        <?php foreach ($schoolList as $key => $value): ?>
+                            <option value="<?= $key ?>"><?= $value ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <!-- Sport -->
+                    <label for="hsport">Select Sport:</label>
+                    <select name="hsport" id="hsport" class="sms-input">
+                        <option value="">- Please Select -</option>
+                        <?php foreach ($sportList as $key => $value): ?>
+                            <option value="<?= $key ?>"><?= $value ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <!-- Gender -->
+                    <label for="hgender">Select Gender:</label>
+                    <select name="hgender" id="hgender" class="sms-input">
+                        <option value="">- Please Select -</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
                     </select>
 
                     <button class="button button-primary button-sm">Filter</button>
@@ -60,7 +99,7 @@ require 'views/admin/config.php';
                 <div class="section">
                     <div style="display: flex;gap:15px;flex-wrap: wrap;">
                         <!-- Incoming Event -->
-                        <div style="background-color:#fff; border-radius:10px; padding: 15px; flex:1">
+                        <div style="background-color:#fff; border-radius:10px; padding: 15px; flex:0.7">
                             <h3 style="margin: 0px 0px 15px 0px;">Incoming Events</h3>
                             <hr>
                             <div style="display:flex;flex-direction: column;flex-wrap: wrap;gap: 7px;">
@@ -79,7 +118,7 @@ require 'views/admin/config.php';
                         </div>
 
                         <!-- Latest Announcement -->
-                        <div style="background-color:#fff; border-radius:10px; padding: 15px; flex:1">
+                        <div style="background-color:#fff; border-radius:10px; padding: 15px; flex:1.3">
                             <h3 style="margin: 0px 0px 15px 0px;">Latest Announcement</h3>
                             <hr>
                             <div class="announcement-card">
@@ -88,19 +127,35 @@ require 'views/admin/config.php';
                                 <p><?= $announcement['description'] ?></p>
                             </div>
                         </div>
+                    </div>
+                </div>
 
-                        <!-- Population -->
+                <div class="section">
+                    <div style="display:flex;gap:15px;flex-wrap: wrap;">
+                        <!-- Health Record -->
                         <div id="report_population"
-                            style="background-color:#fff; border-radius:10px; padding: 15px; flex:0.6">
-                            <h3 style="margin: 0px 0px 15px 0px;">Athlete Population
+                            style="background-color:#fff; border-radius:10px; padding: 15px; flex:0.5">
+                            <h3 style="margin: 0px 0px 15px 0px;">Health Status
                                 <span style="float:right">
-                                    <button class="button button-white button-sm" onclick="openModal()">
+                                    <button class="button button-white button-sm" onclick="openModal('#hmodal')">
                                         <i class="fa-solid fa-filter"></i>
                                     </button>
                                 </span>
                             </h3>
                             <hr>
-
+                            <?= $healthRecords ?>
+                        </div>
+                        <!-- Population -->
+                        <div id="report_population"
+                            style="background-color:#fff; border-radius:10px; padding: 15px; flex:0.5">
+                            <h3 style="margin: 0px 0px 15px 0px;">Athlete Population
+                                <span style="float:right">
+                                    <button class="button button-white button-sm" onclick="openModal('#modal')">
+                                        <i class="fa-solid fa-filter"></i>
+                                    </button>
+                                </span>
+                            </h3>
+                            <hr>
                             <?= $population; ?>
                         </div>
                     </div>
