@@ -33,6 +33,12 @@ class UserController
         $registerRequest = new RegisterRequest();
         $flash = $registerRequest->validate($request);
 
+        $userExist = $this->user->findUserByEmail($request['email']);
+        if ($userExist) {
+            $flash['message'] .= "<br> Email already exist";
+            $flash['isValid'] = false;
+        }
+
         // Return errors
         if (!$flash['isValid']) {
             $sports = Sport::fetchList();
@@ -92,7 +98,7 @@ class UserController
             'target_dir' => "assets/uploads/docs/$userId/",
             'filename' => $pic_fileName,
             'file' => $_FILES['picture'],
-            'allowed_types' => ['pdf', 'jpg', 'png'],
+            'allowed_types' => ['jpg', 'png'],
             'max_size' => 5000  // 5MB in kilobytes
         ]);
 
