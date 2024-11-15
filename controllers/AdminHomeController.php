@@ -31,6 +31,9 @@ class AdminHomeController
         //game highlights
         $gameHighlights = Widget::topGameHighlights();
 
+        // health records
+        $healthRecords = Widget::totalHealthRecord($params);
+
         $_SESSION['menu'] = 'dashboard';
         include 'views/admin/index.php';
     }

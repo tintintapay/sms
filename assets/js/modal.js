@@ -1,7 +1,8 @@
-var modal = $("#modal");
+var modal = '';
 var span = $(".close");
 
-function openModal() {
+function openModal(target) {
+    modal = $(target);
     modal.fadeIn(); // Smooth fade in
 }
 
@@ -10,7 +11,7 @@ span.on("click", function () {
 });
 
 $(document).on("click", function (event) {
-    if ($(event.target).is("#modal")) {
+    if ($(event.target).is('.modal')) {
         modal.fadeOut();
     }
 });
