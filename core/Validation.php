@@ -103,6 +103,17 @@ abstract class Validation
         }
     }
 
+    public function isStrongPassword($field, $value)
+    {
+        $pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/';
+        if (!preg_match($pattern, $value)) {
+            $this->addError(
+                $field,
+                "Password must be at least 8 characters, contain at least one uppercase letter, one lowercase letter and one number."
+            );
+        }
+    }
+
     public function getErrors()
     {
         return $this->errors;

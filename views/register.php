@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="assets/css/register.css">
     <script src="vendor/jquery/jquery-3.7.1.js"></script>
     <script src="assets/js/toggle-password.js"></script>
+    <script src="assets/js/main.js"></script>
     <title>Register</title>
 </head>
 
@@ -30,21 +31,22 @@
                 </div>
                 <div class="form-field">
                     <label for="first_name" class="label">First Name</label>
-                    <input type="text" id="first_name" name="first_name" class="sms-input" value="<?= $request['first_name'] ?? ''?>" placeholder="First Name"
-                        required>
+                    <input type="text" id="first_name" name="first_name" class="sms-input"
+                        value="<?= $request['first_name'] ?? '' ?>" placeholder="First Name" required>
                 </div>
                 <div class="form-field">
                     <label for="last_name" class="label">Last Name</label>
-                    <input type="text" id="last_name" name="last_name" class="sms-input" value="<?= $request['last_name'] ?? '' ?>" placeholder="Last Name"
-                        required>
+                    <input type="text" id="last_name" name="last_name" class="sms-input"
+                        value="<?= $request['last_name'] ?? '' ?>" placeholder="Last Name" required>
                 </div>
                 <div class="form-field">
                     <label for="middle_name" class="label">Middle Name</label>
-                    <input type="text" id="middle_name" name="middle_name" class="sms-input" value="<?= $request['middle_name'] ?? '' ?>" placeholder="Middle Name">
+                    <input type="text" id="middle_name" name="middle_name" class="sms-input"
+                        value="<?= $request['middle_name'] ?? '' ?>" placeholder="Middle Name">
                 </div>
                 <div class="form-field gender-field">
                     <label class="label">Gender</label>
-                    <label><input type="radio" name="gender" value="male" <?= isset($request['gender']) && $request['gender'] === 'male' ? 'checked' : ''?> required> Male</label>
+                    <label><input type="radio" name="gender" value="male" <?= isset($request['gender']) && $request['gender'] === 'male' ? 'checked' : '' ?> required> Male</label>
                     <label><input type="radio" name="gender" value="female" <?= isset($request['gender']) && $request['gender'] === 'female' ? 'checked' : '' ?> required> Female</label>
                 </div>
                 <div class="form-field">
@@ -60,15 +62,18 @@
                 </div>
                 <div class="form-field">
                     <label for="course" class="label">Course</label>
-                    <input type="text" id="course" name="course" class="sms-input" value="<?= $request['course'] ?? '' ?>" placeholder="Course" required>
+                    <input type="text" id="course" name="course" class="sms-input"
+                        value="<?= $request['course'] ?? '' ?>" placeholder="Course" required>
                 </div>
                 <div class="form-field">
                     <label for="address" class="label">Address</label>
-                    <input type="text" id="address" name="address" class="sms-input" value="<?= $request['address'] ?? '' ?>" placeholder="Address" required>
+                    <input type="text" id="address" name="address" class="sms-input"
+                        value="<?= $request['address'] ?? '' ?>" placeholder="Address" required>
                 </div>
                 <div class="form-field">
                     <label for="email" class="label">Email (G Suite Account)</label>
-                    <input type="email" id="email" name="email" class="sms-input" value="<?= $request['email'] ?? '' ?>" placeholder="Email" required>
+                    <input type="email" id="email" name="email" class="sms-input" value="<?= $request['email'] ?? '' ?>"
+                        placeholder="Email" required>
                 </div>
                 <div class="form-field">
                     <label for="school" class="label">Campus</label>
@@ -82,11 +87,15 @@
                 </div>
                 <div class="form-field">
                     <label for="guardian" class="label">Guardian</label>
-                    <input type="text" id="guardian" name="guardian" class="sms-input" value="<?= $request['guardian'] ?? '' ?>" placeholder="Guardian" required>
+                    <input type="text" id="guardian" name="guardian" class="sms-input"
+                        value="<?= $request['guardian'] ?? '' ?>" placeholder="Guardian" required>
                 </div>
                 <div class="form-field">
                     <label for="birthday" class="label">Birth Day</label>
-                    <input type="date" id="birthday" name="birthday" class="sms-input" value="<?= $request['birthday'] ?? '' ?>" max="<?= (new DateTime())->modify('-15 years')->format('Y-m-d');?>" placeholder="Birth Day" required>
+                    <input type="date" id="birthday" name="birthday" class="sms-input"
+                        value="<?= $request['birthday'] ?? '' ?>"
+                        max="<?= (new DateTime())->modify('-15 years')->format('Y-m-d'); ?>" placeholder="Birth Day"
+                        required>
                 </div>
 
                 <div class="form-field">
@@ -100,21 +109,29 @@
                 </div>
                 <div class="form-field">
                     <label for="phone_number" class="label">Phone Number</label>
-                    <input type="tel" id="phone_number" name="phone_number" class="sms-input"  value="<?= $request['phone_number'] ?? '' ?>"
-                        placeholder="Phone Number (11 digits)" pattern="\d{11}" required>
+                    <input type="tel" id="phone_number" name="phone_number" class="sms-input num-only" data-limit="11"
+                        value="<?= $request['phone_number'] ?? '' ?>" placeholder="Phone Number (11 digits)"
+                        pattern="\d{11}" required>
                 </div>
 
                 <hr>
+                <div style="margin-bottom:20px">
+                    <div class="form-field" style="position:relative;margin-bottom:0px">
+                        <label for="password" class="label">Password</label>
 
-                <div class="form-field" style="position:relative">
-                    <label for="password" class="label">Password</label>
-
-                    <input type="password" class="toggle-password sms-input" id="password" name="password"
-                        placeholder="Password" style="padding-right: 30px; width:calc(100% - 44px)">
-                    <i class="fa-solid fa-eye" id="togglePassword"
-                        style="position: absolute; right: 10px; top: 55%; transform: translateY(-50%); cursor: pointer;"></i>
-
+                        <input type="password" class="toggle-password sms-input password-input" id="password"
+                            name="password" placeholder="Password"
+                            style="padding-right: 30px; width:calc(100% - 44px); margin-bottom:0px">
+                        <i class="fa-solid fa-eye" id="togglePassword"
+                            style="position: absolute; right: 10px; top: 69%; transform: translateY(-50%); cursor: pointer;"></i>
+                    </div>
+                    <!-- Error message holder -->
+                    <div id="passwordError" class="error-message"
+                        style="color: red; display: none;font-size: 0.7rem;">
+                        <!-- Error message will be displayed here -->
+                    </div>
                 </div>
+
                 <div class="form-field">
                     <label for="confirm_password" class="label">Confirm Password</label>
                     <input type="password" id="confirm_password" name="confirm_password"

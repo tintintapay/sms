@@ -9,6 +9,7 @@ class RegisterRequest extends Validation
         $this->isEmpty('email', $request['email']);
         $this->isEmail('email', $request['email']);
         $this->isEmpty('password', $request['password']);
+        $this->isStrongPassword('password', $request['password']);
         $this->isEmpty('confirm Password', $request['confirm_password']);
         $this->isEmpty('first Name', $request['first_name']);
         $this->isEmpty('last Name', $request['last_name']);

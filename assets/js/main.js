@@ -1,71 +1,102 @@
-class InputRestrictor {
-    constructor() {
-        this.attachListeners();
-    }
+$(function () {
+    // Restrict input to numbers only
+    $('.num-only').on('input', function () {
+        $(this).val($(this).val().replace(/[^0-9]/g, ''));
+    });
 
-    attachListeners() {
-        document.querySelectorAll('.num-only').forEach(input => {
-            input.addEventListener('input', this.restrictNumber);
-        });
+    // Restrict input to text only
+    $('.text-only').on('input', function () {
+        $(this).val($(this).val().replace(/[^a-zA-Z\s]/g, ''));
+    });
 
-        document.querySelectorAll('.text-only').forEach(input => {
-            input.addEventListener('input', this.restrictText);
-        });
-
-        document.querySelectorAll('.char-limit').forEach(input => {
-            input.addEventListener('input', this.restrictCharLimit);
-        });
-
-        document.querySelectorAll('.file-input').forEach(input => {
-            input.addEventListener('change', this.checkFile);
-        });
-
-        document.querySelectorAll('.no-special-chars').forEach(input => {
-            input.addEventListener('input', this.restrictNoSpecialChars);
-        });
-    }
-
-    restrictNoSpecialChars(event) {
-        event.target.value = event.target.value.replace(/[^a-zA-Z0-9\s]/g, '');
-    }
-
-    restrictNumber(event) {
-        event.target.value = event.target.value.replace(/[^0-9]/g, '');
-    }
-
-    restrictText(event) {
-        event.target.value = event.target.value.replace(/[^a-zA-Z\s]/g, '');
-    }
-
-    restrictCharLimit(event) {
+    // Restrict input to character limit
+    $('.char-limit').on('input', function () {
         const maxLength = 20;
-        if (event.target.value.length > maxLength) {
-            event.target.value = event.target.value.slice(0, maxLength);
+        if ($(this).val().length > maxLength) {
+            $(this).val($(this).val().slice(0, maxLength));
         }
-    }
+    });
 
-    checkFile(event) {
-        const file = event.target.files[0];
+    // Character limit
+    $('[data-limit]').on('input', function () {
+        const maxLength = $(this).data('limit');
+        if ($(this).val().length > maxLength) {
+            $(this).val($(this).val().slice(0, maxLength));
+        }
+    });
+
+    // Restrict input to no special characters
+    $('.no-special-chars').on('input', function () {
+        $(this).val($(this).val().replace(/[^a-zA-Z0-9\s]/g, ''));
+    });
+
+    // Check file type
+    $('.file-input').on('change', function () {
+        const file = $(this)[0].files[0];
         const allowedTypes = ['application/pdf', 'image/png', 'image/jpeg'];
 
         if (file) {
             if (file.size === 0) {
                 alert('File size is 0. Please select a valid file.');
-                event.target.value = '';
+                $(this).val('');
             } else if (!allowedTypes.includes(file.type)) {
                 alert('Invalid file type. Only PDF, PNG, and JPG are allowed.');
-                event.target.value = '';
+                $(this).val('');
             }
         }
+    });
+
+    function isStrongPassword(password) {
+        const hasUppercase = /[A-Z]/.test(password);
+        const hasLowercase = /[a-z]/.test(password);
+        const hasNumbers = /[0-9]/.test(password);
+        const hasMinLength = password.length >= 8;
+
+        return {
+            isValid: hasUppercase && hasLowercase && hasNumbers && hasMinLength,
+            errors: {
+                uppercase: !hasUppercase,
+                lowercase: !hasLowercase,
+                numbers: !hasNumbers,
+                minLength: !hasMinLength
+            }
+        };
     }
-}
 
-// Instantiate the class to attach listeners
-new InputRestrictor();
+    $('.password-input').on('input', function () {
+        const password = $(this).val();
+        const errorMessageHolder = $('#passwordError');
+        const validation = isStrongPassword(password);
 
+        $(this).toggleClass('invalid', !validation.isValid);
+        $(this).toggleClass('valid', validation.isValid);
 
-$(function() {
-    // Delete request
+        if (!validation.isValid) {
+            let errorMessages = [];
+
+            if (validation.errors.uppercase) {
+                errorMessages.push('Include at least one uppercase letter.');
+            }
+            if (validation.errors.lowercase) {
+                errorMessages.push('Include at least one lowercase letter.');
+            }
+            if (validation.errors.numbers) {
+                errorMessages.push('Include at least one number.');
+            }
+            if (validation.errors.minLength) {
+                errorMessages.push('Must be at least 8 characters long.');
+            }
+
+            errorMessageHolder.html('<ul><li>' + errorMessages.join('</li><li>') + '</li></ul>');
+            errorMessageHolder.show(); // Show the error message
+            console.log('invalid');
+        } else {
+            errorMessageHolder.hide(); // Hide the error message
+            console.log('valid');
+        }
+    });
+
+    // Logout
     $('.logout').on('click', function () {
         Swal.fire({
             title: "Logout",
@@ -81,4 +112,4 @@ $(function() {
             }
         });
     });
-})
+});
