@@ -18,8 +18,8 @@
     <div class="container">
       <div class="content">
         <p>
-          <img src="email-icon.png" alt="Email Icon"> Email: <span id="contact-email">21_67906@gamil.com</span><br>
-          <img src="phone-icon.png" alt="Phone Icon"> Contact Number: <span id="contact-phone">09123456789</span>
+          Email: <span id="contact-email">sports.malvar@g.batstate-u.edu.ph</span><br>
+          Contact Number: <span id="contact-phone">09123456789</span>
         </p>
       </div>
     </div>
