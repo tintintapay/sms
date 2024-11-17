@@ -19,7 +19,16 @@
       <div class="content">
         <p>
           Email: <span id="contact-email">sports.malvar@g.batstate-u.edu.ph</span><br>
-          Contact Number: <span id="contact-phone">09123456789</span>
+        <div id="contact-phone" style="display:flex;">
+          <div style="min-width:150px;text-align: left;">
+            Contact Number:
+          </div>
+          <div>
+            (043) 778-2170<br>
+            (043) 778-6633<br>
+            (043) 406-0830
+          </div>
+        </div>
         </p>
       </div>
     </div>
