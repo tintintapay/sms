@@ -88,7 +88,6 @@
             data: <?= $data ?>
         }],
         chart: {
-            height: 350,
             type: 'bar',
             events: {
                 click: function (chart, w, e) {
@@ -118,6 +117,7 @@
         },
         xaxis: {
             categories: <?= $categories ?>,
+            // categories: [["BatStateU JPLPC Malvar", "Campus(Sepak Takraw)"]],
             labels: {
                 style: {
                     //   colors: colors,
