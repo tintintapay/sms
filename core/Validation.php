@@ -7,70 +7,99 @@ abstract class Validation
     public function isEmpty($field, $value)
     {
         if (empty(trim($value)) || $value === "") {
-            $this->errors[$field] = ucfirst($field) . " cannot be empty.";
+            $this->addError($field, ucfirst($field) . " cannot be empty.");
         }
     }
 
     public function passwordMatch($password, $confirmPassword)
     {
         if ($password !== $confirmPassword) {
-            $this->errors['password'] = "Passwords do not match.";
+            $this->addError('password', "Passwords do not match.");
         }
     }
 
     public function isExist($field, $key, $array)
     {
         if (!array_key_exists($key, $array)) {
-            $this->errors[$field] = ucfirst($field) . " must not be empty";
+            $this->addError($field, ucfirst($field) . " must not be empty.");
         }
     }
 
     public function minValue($field, $value, $minValue)
     {
         if ($value < $minValue) {
-            $this->errors[$field] = ucfirst($field) . " must not be less than $minValue.";
+            $this->addError($field, ucfirst($field) . " must not be less than $minValue.");
         }
     }
 
     public function minLength($field, $value, $minLength)
     {
         if (strlen($value) < $minLength) {
-            $this->errors[$field] = ucfirst($field) . " must be at least $minLength characters.";
+            $this->addError($field, ucfirst($field) . " must be at least $minLength characters.");
         }
     }
 
     public function maxLength($field, $value, $maxLength)
     {
         if (strlen($value) > $maxLength) {
-            $this->errors[$field] = ucfirst($field) . " must not be exceed to $maxLength characters.";
+            $this->addError($field, ucfirst($field) . " must not exceed $maxLength characters.");
         }
     }
 
     public function maxValue($field, $value, $maxValue)
     {
         if ($value > $maxValue) {
-            $this->errors[$field] = ucfirst($field) . " must not be greater than $maxValue.";
+            $this->addError($field, ucfirst($field) . " must not be greater than $maxValue.");
         }
     }
 
     public function isEmail($field, $value)
     {
         if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
-            $this->errors[$field] = "Invalid email address.";
+            $this->addError($field, "Invalid email address.");
         }
     }
 
     public function isValidPattern($field, $value, $pattern, $message)
     {
         if (!preg_match($pattern, $value)) {
-            $this->errors[$field] = ucfirst($field) . " " . $message;
+            $this->addError($field, ucfirst($field) . " " . $message);
         }
     }
 
-    public function hasAttachement($field, $value)
+    public function hasAttachment($field, $value)
     {
         if (empty($value) || $value['size'] == 0) {
-            $this->errors[$field] = ucfirst($field) . " cannot be empty.";
+            $this->addError($field, ucfirst($field) . " cannot be empty.");
+        }
+    }
+
+    public function isValidFileType($field, $value, $allowedTypes)
+    {
+        $allowedTypes = array_map('strtolower', $allowedTypes);
+        $fileType = strtolower(pathinfo($value['name'], PATHINFO_EXTENSION));
+        if (!in_array($fileType, $allowedTypes)) {
+            $this->addError($field, ucfirst($field) . " must be of type " . implode(', ', $allowedTypes));
+        }
+    }
+
+    public function isValidFileSize($field, $value, $maxSize = 5242880)
+    {
+        if ($value['size'] > $maxSize) {
+            $this->addError($field, ucfirst($field) . " must not be greater than " . $this->formatFileSize($maxSize) . ".");
+        }
+    }
+
+    private function formatFileSize($size)
+    {
+        if ($size >= 1073741824) {
+            return round($size / 1073741824, 2) . " GB";
+        } elseif ($size >= 1048576) {
+            return round($size / 1048576, 2) . " MB";
+        } elseif ($size >= 1024) {
+            return round($size / 1024, 2) . " KB";
+        } else {
+            return $size . " bytes";
         }
     }
 
@@ -86,7 +115,10 @@ abstract class Validation
 
     public function addError($field, $message)
     {
-        $this->errors[$field] = $message;
+        if (!isset($this->errors[$field])) {
+            $this->errors[$field] = ''; // Initialize as an empty string instead of an array
+        }
+        $this->errors[$field] .= ($this->errors[$field] ? '<br>' : '') . $message; // Append the message
     }
 }
 

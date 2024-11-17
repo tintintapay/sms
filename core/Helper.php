@@ -36,7 +36,7 @@ class Helper
         $target_dir = $options['target_dir'] ?? "uploads/";
         $file = $options['file'] ?? null;
         $allowedTypes = $options['allowed_types'] ?? ['pdf', 'jpg', 'png'];
-        $maxSize = ($options['max_size'] ?? 5000) * 1024;
+        $maxSize = ($options['max_size'] ?? 5120) * 1024;
         $customName = $options['filename'] ?? null;
 
         // Create directory if it doesn't exist
