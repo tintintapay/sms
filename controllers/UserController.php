@@ -57,10 +57,8 @@ class UserController
             'status' => UserStatus::PENDING,
             'confirm_password' => Helper::sanitize($request['confirm_password']),
         ];
-
         // Insert to users table
         $userId = $this->user->insertUser($userRequest);
-
 
         // File Upload COR
         $cor_fileName = md5(uniqid(date('YmdHis'), true));
@@ -69,7 +67,6 @@ class UserController
             'filename' => $cor_fileName,
             'file' => $_FILES['cor'],
             'allowed_types' => ['pdf', 'jpg', 'png'],
-            'max_size' => 5000  // 5MB in kilobytes
         ]);
 
         // File Upload PSA
@@ -79,7 +76,6 @@ class UserController
             'filename' => $psa_fileName,
             'file' => $_FILES['psa'],
             'allowed_types' => ['pdf', 'jpg', 'png'],
-            'max_size' => 5000  // 5MB in kilobytes
         ]);
 
         // File Upload MEDICAL CERTIFICATE
@@ -89,7 +85,6 @@ class UserController
             'filename' => $medc_fileName,
             'file' => $_FILES['medical_cert'],
             'allowed_types' => ['pdf', 'jpg', 'png'],
-            'max_size' => 5000  // 5MB in kilobytes
         ]);
 
         // File Upload PICTURE
@@ -99,7 +94,6 @@ class UserController
             'filename' => $pic_fileName,
             'file' => $_FILES['picture'],
             'allowed_types' => ['jpg', 'png'],
-            'max_size' => 5000  // 5MB in kilobytes
         ]);
 
         // user_info data

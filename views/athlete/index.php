@@ -12,6 +12,7 @@
     <script src="../vendor/jquery/jquery-3.7.1.js"></script>
     <script src="../vendor/sweetalert/sweetalert2.js"></script>
     <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/athlete-dashboard.js"></script>
 </head>
 
 <body>
@@ -39,9 +40,9 @@
                             <p class="date-info"><?= Helper::formatDate($allowance['created_at'], 'Y-m-d') ?></p>
                             <?php if ($allowance['status'] === AllowanceStatus::NOT_YET_CLAIMED): ?>
                                 <div style="text-align: right;">
-                                    <form action="claim-allowance" method="POST">
+                                    <form action="claim-allowance" method="POST" id="allowance-claim-form">
                                         <input type="hidden" name="id" id="id" value="<?= $_SESSION['user_id'] ?>">
-                                        <button type="submit" class="button">Claim</button>
+                                        <button type="button" class="button claim-button">Claim</button>
                                     </form>
                                 </div>
                             <?php endif; ?>

@@ -114,7 +114,7 @@ class GameSchedules extends Model
         // Update Game Sched
         $this->updateGameSched();
 
-        $stmt = $this->db->prepare("SELECT * FROM game_schedules WHERE schedule < CURDATE() ORDER BY schedule DESC");
+        $stmt = $this->db->prepare("SELECT * FROM game_schedules WHERE schedule < CURDATE() AND deleted_at IS NULL ORDER BY schedule DESC");
         $stmt->execute();
         $result = $stmt->get_result();
 

@@ -9,6 +9,7 @@ class RegisterRequest extends Validation
         $this->isEmpty('email', $request['email']);
         $this->isEmail('email', $request['email']);
         $this->isEmpty('password', $request['password']);
+        $this->isStrongPassword('password', $request['password']);
         $this->isEmpty('confirm Password', $request['confirm_password']);
         $this->isEmpty('first Name', $request['first_name']);
         $this->isEmpty('last Name', $request['last_name']);
@@ -21,10 +22,22 @@ class RegisterRequest extends Validation
         $this->isEmpty('sport', $request['sport']);
         $this->isEmpty('phone Number', $request['phone_number']);
         $this->isEmpty('terms', $request['terms']);
-        $this->hasAttachement('Picture', $_FILES['picture']);
-        $this->hasAttachement('COR', $_FILES['cor']);
-        $this->hasAttachement('PSA', $_FILES['psa']);
-        $this->hasAttachement('medical Cert', $_FILES['medical_cert']);
+
+        $this->hasAttachment('Picture', $_FILES['picture']);
+        $this->isValidFileType('Picture', $_FILES['picture'], ['jpg', 'png']);
+        $this->isValidFileSize('Picture', $_FILES['picture']);
+
+        $this->hasAttachment('COR', $_FILES['cor']);
+        $this->isValidFileType('COR', $_FILES['cor'], ['pdf', 'jpg', 'png']);
+        $this->isValidFileSize('COR', $_FILES['cor']);
+
+        $this->hasAttachment('PSA', $_FILES['psa']);
+        $this->isValidFileType('PSA', $_FILES['psa'], ['pdf', 'jpg', 'png']);
+        $this->isValidFileSize('PSA', $_FILES['psa']);
+
+        $this->hasAttachment('medical Cert', $_FILES['medical_cert']);
+        $this->isValidFileType('medical Cert', $_FILES['medical_cert'], ['pdf', 'jpg', 'png']);
+        $this->isValidFileSize('medical Cert', $_FILES['medical_cert']);
 
         $this->passwordMatch($request['password'], $request['confirm_password']);
 
