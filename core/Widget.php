@@ -50,7 +50,6 @@ class Widget
     public static function topRatedAthlete()
     {
         $report = new ReportData();
-
         $sportList = Sport::fetchList();
 
         $topRated = [];
@@ -64,8 +63,8 @@ class Widget
 
             if ($topRateds) {
                 foreach ($topRateds as $row) {
-                    // $topRated['name'][] = $row['first_name'] . " " . $row['last_name'] . "(" . Sport::getDescription($row['sport']) . ")";
-                    $topRated['name'][] = School::getDescription($row['school']) . "(" . Sport::getDescription($row['sport']) . ")";
+                    $fullName = School::getDescription($row['school']) . "(" . Sport::getDescription($row['sport']) . ")";
+                    $topRated['name'][] = $fullName;
                     $topRated['data'][] = $row['avg_overall_rating'];
                 }
             }
@@ -75,14 +74,24 @@ class Widget
             return '';
         }
 
-        $names = json_encode($topRated['name'] ?? '');
-        $data = json_encode($topRated['data'] ?? '');
-
-        $name = array_map(function ($item) {
-            return [$item];
+        $names = array_map(function ($item) {
+            $parts = [];
+            while (strlen($item) > 20) {
+                $spacePos = strrpos(substr($item, 0, 20), ' ');
+                if ($spacePos !== false) {
+                    $parts[] = substr($item, 0, $spacePos);
+                    $item = trim(substr($item, $spacePos));
+                } else {
+                    $parts[] = substr($item, 0, 20);
+                    $item = substr($item, 20);
+                }
+            }
+            $parts[] = $item; // Add the remaining part
+            return $parts;
         }, $topRated['name'] ?? []);
 
-        $categories = json_encode($name);
+        $categories = json_encode($names);
+        $data = json_encode($topRated['data'] ?? '');
 
         // starts output buffering
         ob_start();
