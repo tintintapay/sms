@@ -44,7 +44,7 @@
                                 Active
                             </label>
 
-                            <label for="first_name" class="label">First Name:</label>
+                            <label for="first_name" class="label"><span style="color:red">*</span>First Name:</label>
                             <input type="text" class="sms-input text-only" id="first_name" name="first_name"
                                 value="<?= $request['first_name'] ?? '' ?>" required autocomplete="off">
 
@@ -52,15 +52,15 @@
                             <input type="text" class="sms-input text-only" id="middle_name" name="middle_name"
                                 value="<?= $request['middle_name'] ?? '' ?>">
 
-                            <label for="last_name" class="label">Last Name:</label>
+                            <label for="last_name" class="label"><span style="color:red">*</span>Last Name:</label>
                             <input type="text" class="sms-input text-only" id="last_name" name="last_name"
                                 value="<?= $request['last_name'] ?? '' ?>" required>
 
-                            <label for="address" class="label">Address:</label>
+                            <label for="address" class="label"><span style="color:red">*</span>Address:</label>
                             <input type="text" class="sms-input no-special-chars" id="address" name="address"
                                 value="<?= $request['address'] ?? '' ?>" required autocomplete="off">
 
-                            <label class="label">Gender:
+                            <label class="label"><span style="color:red">*</span>Gender:
                                 <div class="radio-group">
                                     <input type="radio" id="male" name="gender" value="male" <?= strtolower($request['gender']) === 'male' ? 'checked' : '' ?> required>
                                     <label for="male">Male</label>
@@ -82,12 +82,12 @@
                             <input type="file" class="file-input" id="picture" name="picture" accept="image/*">
 
                             <hr>
-                            <label for="email" class="label">Email:</label>
+                            <label for="email" class="label"><span style="color:red">*</span>Email:</label>
                             <input type="email" class="sms-input" id="email" name="email" required
                                 value="<?= $request['email'] ?? '' ?>" autocomplete="off">
                             
                             <h2>Change password</h2>
-                            <label for="password" class="label">New Password:</label>
+                            <label for="password" class="label"><span style="color:red">*</span>New Password:</label>
                             <!-- <input type="password" class="sms-input" id="password" name="password"> -->
                              <div style="position: relative;">
                                 <input type="password" class="toggle-password sms-input" id="password" name="password"
@@ -96,7 +96,7 @@
                                     style="position: absolute; right: 10px; top: 36%; transform: translateY(-50%); cursor: pointer;"></i>
                             </div>
 
-                            <label for="confirm_password" class="label">Confirm Password:</label>
+                            <label for="confirm_password" class="label"><span style="color:red">*</span>Confirm Password:</label>
                             <input type="password" class="toggle-password sms-input" id="confirm_password" name="confirm_password">
                             <br>
                             <button type="submit" class="button button-primary">Save</button>

@@ -29,6 +29,21 @@ class Announcement extends Model
         return $this->db->insert_id;
     }
 
+    public function update($data)
+    {
+        $stmt = $this->db->prepare("UPDATE announcements SET title = ?, description = ? WHERE id = ?");
+        $stmt->bind_param('ssi', $data['title'], $data['description'], $data['id']);
+
+        if (!$stmt->execute()) {
+            $stmt->close();
+            
+            return null;
+        }
+
+        $stmt->close();
+        return true;
+    }
+
     public function findById($id)
     {
         $stmt = $this->db->prepare("SELECT * FROM announcements WHERE id = ?");

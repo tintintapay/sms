@@ -49,7 +49,8 @@
 
                         <!-- Teamwork Field -->
                         <div style="margin-bottom: 10px;">
-                            <label for="teamwork_<?= $evaluation['id'] ?>" style="font-weight: bold;">Teamwork</label>
+                            <label for="teamwork_<?= $evaluation['id'] ?>" style="font-weight: bold;"><span
+                                    style="color:red">*</span>Teamwork</label>
                             <p style="font-size: 12px; margin-bottom: 5px;">Ability to collaborate effectively with others
                                 to achieve shared
                                 goals.</p>
@@ -61,8 +62,8 @@
 
                         <!-- Sportsmanship Field -->
                         <div style="margin-bottom: 10px;">
-                            <label for="sportsmanship_<?= $evaluation['id'] ?>"
-                                style="font-weight: bold;">Sportsmanship</label>
+                            <label for="sportsmanship_<?= $evaluation['id'] ?>" style="font-weight: bold;"><span
+                                    style="color:red">*</span>Sportsmanship</label>
                             <p style="font-size: 12px; margin-bottom: 5px;">Respectful and fair behavior toward opponents,
                                 teammates, and the
                                 game itself.</p>
@@ -74,7 +75,8 @@
 
                         <!-- Technical Skills Field -->
                         <div style="margin-bottom: 10px;">
-                            <label for="technical_skills_<?= $evaluation['id'] ?>" style="font-weight: bold;">Technical
+                            <label for="technical_skills_<?= $evaluation['id'] ?>" style="font-weight: bold;"><span
+                                    style="color:red">*</span>Technical
                                 Skills</label>
                             <p style="font-size: 12px; margin-bottom: 5px;">Proficiency in the core mechanics and techniques
                                 required to excel
@@ -87,8 +89,8 @@
 
                         <!-- Adaptability Field -->
                         <div style="margin-bottom: 10px;">
-                            <label for="adaptability_<?= $evaluation['id'] ?>"
-                                style="font-weight: bold;">Adaptability</label>
+                            <label for="adaptability_<?= $evaluation['id'] ?>" style="font-weight: bold;"><span
+                                    style="color:red">*</span>Adaptability</label>
                             <p style="font-size: 12px; margin-bottom: 5px;">Capacity to quickly adjust strategies and
                                 approaches in response to
                                 changing conditions.</p>
@@ -100,7 +102,8 @@
 
                         <!-- Game Sense Field -->
                         <div style="margin-bottom: 10px;">
-                            <label for="game_sense_<?= $evaluation['id'] ?>" style="font-weight: bold;">Game Sense</label>
+                            <label for="game_sense_<?= $evaluation['id'] ?>" style="font-weight: bold;"><span
+                                    style="color:red">*</span>Game Sense</label>
                             <p style="font-size: 12px; margin-bottom: 5px;">Deep understanding of game strategy,
                                 positioning, and timing to make
                                 smart decisions.</p>

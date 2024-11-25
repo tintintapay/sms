@@ -130,7 +130,7 @@
                                         <!-- Email Custom fields -->
                                         <div class="field" style="display:none;margin-bottom:15px">
                                             <textarea name="msg" id="msg" class="sms-input"
-                                                style="max-width:100%;margin-bottom:0px"></textarea>
+                                                style="max-width:100%;margin-bottom:0px" placeholder="*"></textarea>
                                             <small class="err-msg" style="color:red; font-size:0.6rem"></small>
                                         </div>
 

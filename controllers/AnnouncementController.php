@@ -60,6 +60,31 @@ class AnnouncementController
         return include 'views/coordinator/announcement.php';
     }
 
+    public function update($request)
+    {
+        $validated = new AnnouncementRequest();
+        $flash = $validated->validate($request);
+        
+        $title = Helper::sanitize($request['title']);
+        $description = Helper::sanitize($request['description']);
+
+        if (!$flash['isValid']) {
+            return include 'views/coordinator/announcement.php';
+        }
+
+        $data = [
+            'id' => $request['id'],
+            'title' => $title,
+            'description' => $description,
+        ];
+
+        $response = $this->announcement->update($data);
+
+        if ($response) {
+            Helper::redirect('announcements');
+        }
+    }
+
     public function delete($request)
     {
         header('Content-Type: application/json');
