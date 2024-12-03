@@ -32,13 +32,13 @@
                 <hr>
                 <div class="section">
                     <div class="card">
-                        <form action="announcements-create" method="post">
+                        <form action="announcement" method="post">
                             <input type="hidden" name="id" id="id" value="<?= $request['id']?>">
-                            <label for="title" class="label">Title:</label>
-                            <input type="text" class="sms-input text-only" id="title" name="title"
+                            <label for="title" class="label"><span style="color:red">*</span>Title:</label>
+                            <input type="text" class="sms-input" id="title" name="title"
                                 value="<?= $request['title'] ?? '' ?>" autocomplete="off" required>
                             
-                            <label for="description" class="label">Description:</label>
+                            <label for="description" class="label"><span style="color:red">*</span>Description:</label>
                             <textarea name="description" id="description" class="sms-input" rows="5" style="resize: vertical;" required><?= $request['description'] ?? '' ?></textarea>
                         
                             <button type="submit" class="button button-success">Save</button>

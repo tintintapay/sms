@@ -33,6 +33,23 @@
                 <hr>
                 <div class="section">
                     <div class="card">
+                        <div class="card-title">Advance Search</div>
+                        <form>
+                            <label for="sport" class="label">Sport</label>
+                            <select name="sport" id="sport" class="sms-input">
+                                <option value="">All</option>
+                                <?php foreach ($sports as $key => $val): ?>
+                                    <option value="<?= $key ?>" <?= isset($_GET['sport']) && $_GET['sport'] === $key ? 'selected' : '' ?>><?= $val ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+
+                            <button type="submit" class="button button-success">Search</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="card">
                         <table id="myTable" style="display:none">
                             <thead>
                                 <tr>

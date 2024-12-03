@@ -64,7 +64,7 @@
                         </div>
                         <form action="file-resource" method="POST" enctype="multipart/form-data">
                             <div style="display: block;">
-                                <label class="label">Upload new files</label>
+                                <label class="label"><span style="color:red">*</span>Upload new files</label>
                                 <input type="file" class="" name="file" id="file" required>
                             </div>
 

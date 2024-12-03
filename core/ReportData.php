@@ -317,7 +317,7 @@ class ReportData extends Model
     public function getLatestRemarks($data)
     {
         $stmt = $this->db->prepare("
-            SELECT athletes_ratings.remarks, user_info.first_name, user_info.middle_name, user_info.last_name
+            SELECT athletes_ratings.remarks, user_info.first_name, user_info.middle_name, user_info.last_name, athletes_ratings.created_user
             FROM athletes_ratings
             JOIN user_info
             ON athletes_ratings.athlete_id = user_info.user_id

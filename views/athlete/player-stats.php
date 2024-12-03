@@ -35,7 +35,12 @@
                     <div><strong>Adress:</strong> <?= $athlete['address'] ?></div>
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 10px;margin-top:30px; font-style:italic">
-                    <p><?= $remark ?></p>
+                    <?php if ($remark):?>
+                    <p>
+                        “<?= $remark ?>”<br>
+                        <span style="font-size:0.9rem">- <?= $author ?></span>
+                    </p>
+                    <?php endif;?>
                 </div>
             </div>
 
@@ -134,10 +139,12 @@
                         style="flex: 1 1 100%; background-color: #fff; color:#242429; border-radius: 10px; padding: 20px; box-sizing: border-box; min-width: 280px;">
                         <h3 style="font-size: 20px;">Best Event Played</h3>
                         <p style="font-size: 18px; color: #ff2c2c; margin-bottom: 5px;">
-                            <?= $bestGame['game_title'] ?? 'N/A' ?></p>
+                            <?= $bestGame['game_title'] ?? 'N/A' ?>
+                        </p>
                         <!-- Title -->
                         <p style=" color:#242429; margin-bottom: 5px;">Date:
-                            <?= Helper::formatDate($bestGame['schedule'], 'D F j, Y') ?? 'N/A' ?></p> <!-- Date -->
+                            <?= Helper::formatDate($bestGame['schedule'], 'D F j, Y') ?? 'N/A' ?>
+                        </p> <!-- Date -->
                         <p style=" color:#242429; margin-bottom: 20px;">Venue: <?= $bestGame['venue'] ?? 'N/A' ?></p>
                         <!-- Venue -->
 
