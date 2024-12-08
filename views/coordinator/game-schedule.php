@@ -57,15 +57,15 @@
                                 Set as Active
                             </label>
 
-                            <label for="game_title" class="label">Title:</label>
+                            <label for="game_title" class="label"><span style="color:red">*</span>Title:</label>
                             <input type="text" class="sms-input text-only" id="game_title" name="game_title"
                                 value="<?= $game['game_title'] ?>" autocomplete="off">
 
-                            <label for="venue" class="label">Venue:</label>
+                            <label for="venue" class="label"><span style="color:red">*</span>Venue:</label>
                             <input type="text" class="sms-input" id="venue" name="venue"
                                 value="<?= $game['venue'] ?? '' ?>" autocomplete="off">
 
-                            <label for="schedule" class="label">Schedule:</label>
+                            <label for="schedule" class="label"><span style="color:red">*</span>Schedule:</label>
                             <input type="date" class="sms-input" id="schedule" name="schedule"
                                 value="<?= $game['schedule'] ?>" min="<?= $minimumDate ?>" autocomplete="off">
 
@@ -73,7 +73,7 @@
                             <input type="file" class="sms-input" id="schedule_picture" name="schedule_picture"
                                 accept="image/png, image/jpeg">
 
-                            <label for="sport" class="label">Sport:</label>
+                            <label for="sport" class="label"><span style="color:red">*</span>Sport:</label>
                             <select name="sport" id="sport" class="sms-input">
                                 <option value="" selected disabled>- Please Select -</option>
                                 <?php foreach ($sports as $key => $value): ?>
@@ -84,7 +84,7 @@
 
                             <hr>
 
-                            <h3>Target Athletes:</h3>
+                            <h3><span style="color:red">*</span>Target Athletes:</h3>
                             <table id="myTable">
                                 <thead>
                                     <tr>

@@ -31,7 +31,7 @@
                 <div class="section">
                     <div class="card">
                         <form id="send_allowance_notice">
-                            <label for="msg" class="label">Message</label>
+                            <label for="msg" class="label"><span style="color:red">*</span>Message</label>
                             <textarea name="msg" id="msg" class="sms-input" rows="5"
                                 style="resize: vertical; font-size:1.2rem;font-family: Arial, sans-serif;">Your allowance is now available for collection at the accounting department. Please ensure that you claim it within the next 5 days to avoid any inconvenience.</textarea>
                             <button type="submit" id="submit" class="button button-success">Send Notice</button>

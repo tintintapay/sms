@@ -149,7 +149,10 @@ class AthleteRatingController
             'athlete_id' => $athlete['user_id']
         ];
         $remarks = $this->report->getLatestRemarks($remarkData);
+        $remarksAuthor = $this->user->getUser($remarks['created_user']);
+
         $remark = $remarks['remarks'];
+        $author = $remarksAuthor['full_name'];
 
         include 'views/athlete/player-stats.php';
     }

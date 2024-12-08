@@ -35,7 +35,7 @@
                             </div>
                             <input type="hidden" name="athlete_id" id="athlete_id" value="<?= $params['athlete_id']?>">
 
-                            <label for="status" class="label">Health Status:</label>
+                            <label for="status" class="label"><span style="color:red">*</span>Health Status:</label>
                             <select name="status" id="status" class="sms-input">
                                 <option value="" selected disabled>- Please Select -</option>
                                 <?php foreach ($healthStatus as $key => $value): ?>
@@ -46,7 +46,7 @@
                                 <?php endforeach; ?>
                             </select>
 
-                            <label for="remarks" class="label">Remarks:</label>
+                            <label for="remarks" class="label"><span style="color:red">*</span>Remarks:</label>
                             <textarea name="remarks" id="remarks" class="sms-input" rows="5"
                                 style="resize: vertical; font-size:1rem;"><?= $request['remarks'] ?? '' ?></textarea>
 

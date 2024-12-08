@@ -144,7 +144,10 @@ $routes = [
         'GET' => [$announcementController, 'create'],
         'POST' => [$announcementController, 'store']
     ],
-    '/coordinator/announcement' => ['GET' => [$announcementController, 'show']],
+    '/coordinator/announcement' => [
+        'GET' => [$announcementController, 'show'],
+        'POST' => [$announcementController, 'update']
+    ],
     '/coordinator/announcement-delete' => ['POST' => [$announcementController, 'delete']],
     '/coordinator/athlete-ratings' => ['GET' => [$athleteRatingController, 'index']],
     '/coordinator/athlete-rating' => ['GET' => [$athleteRatingController, 'show']],

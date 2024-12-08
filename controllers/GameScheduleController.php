@@ -21,9 +21,16 @@ class GameScheduleController
         $this->evaluation = new Evaluation();
     }
 
-    public function index()
+    public function index($params)
     {
-        $gameScheds = $this->gameScheds->fetchAll();
+        $data = [];
+
+        if (!empty($params['sport']) && $params['sport'] !== '') {
+            $data['sport'] = $params['sport'];
+        }
+
+        $gameScheds = $this->gameScheds->fetchAll($data);
+        $sports = Sport::fetchList();
 
         $_SESSION['menu'] = 'game_event';
         include 'views/coordinator/game-schedules.php';

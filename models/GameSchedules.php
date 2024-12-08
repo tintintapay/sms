@@ -22,14 +22,26 @@ class GameSchedules extends Model
         return $result->fetch_assoc();
     }
 
-    public function fetchAll()
+    public function fetchAll($data = [])
     {
         // Update Game Sched
         $this->updateGameSched();
 
-        $stmt = $this->db->prepare(
-            "SELECT * FROM game_schedules WHERE deleted_at IS NULL ORDER BY status ASC, schedule ASC;"
-        );
+        $sport = $data['sport'] ?? null;
+        $params = [];
+        $types = "";
+        
+
+        if ($sport) {
+            $sql = "SELECT * FROM game_schedules WHERE deleted_at IS NULL ";
+            $sql .= "AND sport = ?";
+            $sql .= " ORDER BY status ASC, schedule ASC";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bind_param("s", $sport);
+        } else {
+            $sql = "SELECT * FROM game_schedules WHERE deleted_at IS NULL ORDER BY status ASC, schedule ASC";
+            $stmt = $this->db->prepare($sql);
+        }
         $stmt->execute();
         $result = $stmt->get_result();
         

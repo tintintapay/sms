@@ -69,7 +69,7 @@
                                         <input type="hidden" name="athlete_id" value="<?= $_SESSION['user_id'] ?>">
 
                                         <label class="label">Contract date:</label>
-                                        <input type="date" class="sms-input text-only" name="contract_date" id="contract_date" required>
+                                        <input type="date" class="sms-input" name="contract_date" id="contract_date" required>
 
                                         <label class="label">Name:</label>
                                         <input type="text" class="sms-input text-only"
