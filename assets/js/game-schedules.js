@@ -49,4 +49,17 @@ $(document).ready(function () {
     //     console.log($(e.target).data('id'));
     // });
 
+    if (window.location.search.includes('saved')) {
+        Swal.fire({
+            title: "Game Event",
+            text: "New game event has been saved!",
+            icon: "success"
+        });
+
+        // Remove the "saved" parameter from the URL
+        const url = new URL(window.location.href);
+        url.searchParams.delete('saved');
+        window.history.pushState({}, '', url.href);
+    }
+
 });

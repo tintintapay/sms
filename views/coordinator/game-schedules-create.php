@@ -43,7 +43,7 @@
                             </label>
 
                             <label for="game_title" class="label"><span style="color:red">*</span>Title:</label>
-                            <input type="text" class="sms-input text-only" id="game_title" name="game_title"
+                            <input type="text" class="sms-input" id="game_title" name="game_title"
                                 value="<?= $request['game_title'] ?? '' ?>" autocomplete="off">
 
                             <label for="venue" class="label"><span style="color:red">*</span>Venue:</label>

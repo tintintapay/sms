@@ -100,7 +100,7 @@ class GameScheduleController
 
         $res = $this->evaluation->upsertUser('evaluations', $evalData);
 
-        Helper::redirect('game-schedules');
+        Helper::redirect('game-schedules?saved=1');
     }
 
     public function show($params)
