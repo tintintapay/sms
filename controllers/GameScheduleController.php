@@ -238,8 +238,9 @@ class GameScheduleController
         $this->evaluation->updateDeleteWhereIn($evalData, ['column' => 'athlete_id', 'athletes' => $athletes]);
 
         $game = $this->gameScheds->findById($request['id']);
+
         // return to view page
-        return include 'views/coordinator/game-schedule.php';
+        Helper::redirect("game-schedule?id=$gameId&saved=1");
     }
 
     public function delete($request)
