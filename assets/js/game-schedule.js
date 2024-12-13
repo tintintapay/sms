@@ -162,4 +162,27 @@ $(function () {
             }
         });
     });
+
+    if (window.location.search.includes('saved')) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        Toast.fire({
+            icon: "success",
+            title: "Game event saved!"
+        });
+
+        // Remove the "saved" parameter from the URL
+        const url = new URL(window.location.href);
+        url.searchParams.delete('saved');
+        window.history.pushState({}, '', url.href);
+    }
 });
