@@ -105,7 +105,6 @@ $routes = [
         'GET' => [$authenticateController, 'password_reset_validate'],
         'POST' => [$authenticateController, 'password_reset_validate_store']
     ],
-
     // Admin
     '/admin/home' => ['GET' => [$adminHomeController, 'index']],
     '/admin/coordinators' => ['GET' => [$coordinatorController, 'index']],
